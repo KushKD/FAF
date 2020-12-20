@@ -5,6 +5,7 @@
 
 <script src="${pageContext.request.contextPath}/resources/js/jquery-3.5.1.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/script.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/internationalization.js"></script>
 <script type="text/javascript">
    $( document ).ready(function() {
       // getroles();
@@ -30,39 +31,56 @@
    <div class="row">
       <div class="col-lg-12">
          <hr>
-         <h2> Flight Application Form for Patients/ Locals/ Others</h2>
+         <h2> <spring:message code="form.application.Form" text="Flight Application Form for Patients/ Locals/ Others" /></h2>
          <hr>
       </div>
+
+
+
+       <div class="form-group col-lg-6">
+               <label for="locales"> <spring:message code="form.choose.lang"  text="Choose Language" /></label>
+               <select class="form-control" id="locales">
+               <option value=""><spring:message code="form.select" text="Please Select"/></option>
+                  <option value="en"><spring:message code="form.lang.english" text="English"/></option>
+                  <option value="hi"><spring:message code="form.lang.hindi" text="Hindi"/></option>
+               </select>
+            </div>
+
+
       <div class="form-group col-lg-4">
-         <label for="fullname">Full Name</label>
+         <label for="fullname"> <spring:message code="form.fullname"   text="Full Name" /></label>
          <input type="text" class="form-control" id="fullname" placeholder="Enter Full Name">
       </div>
       <div class="form-group col-lg-4">
-         <label for="parentname">Son/Daughter/Wife </label>
+         <label for="parentname"> <spring:message code="form.parentname"   text="Parent Name" /> </label>
          <input type="text" class="form-control" id="parentname" placeholder="S/O, D/O, W/O">
       </div>
       <div class="form-group col-lg-4">
-         <label for="mobilenumber">Mobile Number</label>
+         <label for="mobilenumber"><spring:message code="form.mobilenumber"  text="Mobile Number" /></label>
          <input type="text" class="form-control" id="mobilenumber" placeholder="Mobile Number">
       </div>
       <div class="form-group col-lg-4">
-         <label for="age">Age</label>
+         <label for="age"> <spring:message code="form.age" text="Age" /></label>
          <input type="text" class="form-control" id="age" placeholder="Age">
       </div>
       <div class="form-group col-lg-4">
-         <label for="weight">Weight</label>
+         <label for="weight"> <spring:message code="form.weight" text="Weight" /></label>
          <input type="text" class="form-control" id="weight" placeholder="Weight">
       </div>
       <div class="form-group col-lg-4">
-         <label for="height">Height</label>
+         <label for="height"><spring:message code="from.height" text="Height" /></label>
          <input type="text" class="form-control" id="height" placeholder="height">
       </div>
       <div class="form-group col-lg-6">
-         <label for="serviceavailingDate">Tentative Date for availing flight Service</label>
+         <label for="serviceavailingDate"><spring:message code="form.serviceavailingDate"  text="Tentative Date for availing flight Service" /></label>
          <input type="text" class="form-control" id="serviceavailingDate" >
       </div>
+       <div class="form-group col-lg-6">
+               <label for="address"><spring:message code="form.address"  text="Address" /></label>
+               <input type="text" class="form-control" id="address" >
+            </div>
       <div class="form-group col-lg-6">
-         <label for="serviceavailingDate">Type of Reservation</label>
+         <label for="reservationType"> <spring:message code="form.reservationType"  text="Type of Reservation" /></label>
          <select class="form-control" id="sel1">
             <option>Normal</option>
             <option>Emergency</option>
@@ -70,7 +88,8 @@
       </div>
       <div class="form-innline col-lg-6">
          <label >
-            <h6>Has the applicant availed the flight service after 15th Nov</h6>
+            <h6><spring:message code="form.service.availed.after.15.nov" text="Has the applicant availed the flight service after 15th Nov" />
+                      </h6>
          </label>
          &nbsp; &nbsp;
          <label class="radio-inline"><input type="radio" name="oner" value="Y">Yes</label>
@@ -78,7 +97,8 @@
       </div>
       <div class="form-innline col-lg-6">
          <label >
-            <h6>Has the earlier flight service been availed in Emergency Situation</h6>
+            <h6><spring:message code="from.service.availed.emergency.situation" text="Has the earlier flight service been availed in Emergency Situation" />
+                      </h6>
          </label>
          &nbsp; &nbsp;
          <label class="radio-inline"><input type="radio" name="oner" value="Y">Yes</label>
@@ -88,7 +108,8 @@
    <div class="row">
       <div class="col-lg-9">
          <hr>
-         <strong>Give details of all services availed earlier: - </strong>
+         <strong><spring:message code="from.give.details.all.the.services.availed" text="Give details of all services availed earlier: -" />
+                       </strong>
          <hr>
       </div>
       <div class="col-lg-3 ">
@@ -100,19 +121,19 @@
    <div class="row" >
       <div class="col-lg-4">
          <div class="form-group">
-            <label for="username" class="field-label">Date of Travel</label>
+            <label for="username" class="field-label"><spring:message code="form.date.travell" text="Date of Travel" /></label>
             <input maxlength="10"  type="date" class="form-control input-sm" />
          </div>
       </div>
       <div class="col-lg-4">
          <div class="form-group">
-            <label for="username" class="field-label">From which Helipad Name</label>
+            <label for="username" class="field-label"> <spring:message code="form.helipadname" text="From which Helipad Name" /></label>
             <input maxlength="10"  class="form-control input-sm" placeholder="" type="number" />
          </div>
       </div>
       <div class="col-lg-4">
          <div class="form-group">
-            <label><strong>Category Emergency/General </strong></label>
+            <label><strong> <spring:message code="form.category.emergency.general" text=" Category Emergency/General" /> </strong></label>
             <select  id="productname_id" name="hiringCenterList[0].instrumentN" class="form-control input-sm" data-live-search="true" data-width="100%" >
                <option value="">--Select--</option>
                <c:if test="${!empty instList}">
