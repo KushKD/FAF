@@ -1,0 +1,174 @@
+<%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"  %>
+	<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+	<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
+<script src="${pageContext.request.contextPath}/resources/js/jquery-3.5.1.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/script.js"></script>
+<script type="text/javascript">
+   $( document ).ready(function() {
+      // getroles();
+
+      $('#serviceavailingDate').datepicker({
+              	format: "dd/mm/yyyy",
+              	autoclose: true,
+              	todayHighlight: true
+              });
+   });
+
+</script>
+<main class="app-content">  
+
+   <h2 class="form-signin-heading"><spring:message code="instructions.head" text="Instructions Heading"/></h2>
+   <ol class="breadcrumb">
+      <li> <spring:message code="instructions.head.one" text="Instructions Heading One"/> </li>
+      <li> <spring:message code="instructions.head.two" text="Instructions Heading Two"/> </li>
+      <li><spring:message code="instructions.head.three" text="Instructions Heading Three"/></li>
+      <li><spring:message code="instructions.head.four" text="Instructions Heading Four"/></li>
+      <li><spring:message code="instructions.head.five" text="Instructions Heading Five"/> </li>
+   </ol>
+   <div class="row">
+      <div class="col-lg-12">
+         <hr>
+         <h2> Flight Application Form for Patients/ Locals/ Others</h2>
+         <hr>
+      </div>
+      <div class="form-group col-lg-4">
+         <label for="fullname">Full Name</label>
+         <input type="text" class="form-control" id="fullname" placeholder="Enter Full Name">
+      </div>
+      <div class="form-group col-lg-4">
+         <label for="parentname">Son/Daughter/Wife </label>
+         <input type="text" class="form-control" id="parentname" placeholder="S/O, D/O, W/O">
+      </div>
+      <div class="form-group col-lg-4">
+         <label for="mobilenumber">Mobile Number</label>
+         <input type="text" class="form-control" id="mobilenumber" placeholder="Mobile Number">
+      </div>
+      <div class="form-group col-lg-4">
+         <label for="age">Age</label>
+         <input type="text" class="form-control" id="age" placeholder="Age">
+      </div>
+      <div class="form-group col-lg-4">
+         <label for="weight">Weight</label>
+         <input type="text" class="form-control" id="weight" placeholder="Weight">
+      </div>
+      <div class="form-group col-lg-4">
+         <label for="height">Height</label>
+         <input type="text" class="form-control" id="height" placeholder="height">
+      </div>
+      <div class="form-group col-lg-6">
+         <label for="serviceavailingDate">Tentative Date for availing flight Service</label>
+         <input type="text" class="form-control" id="serviceavailingDate" >
+      </div>
+      <div class="form-group col-lg-6">
+         <label for="serviceavailingDate">Type of Reservation</label>
+         <select class="form-control" id="sel1">
+            <option>Normal</option>
+            <option>Emergency</option>
+         </select>
+      </div>
+      <div class="form-innline col-lg-6">
+         <label >
+            <h6>Has the applicant availed the flight service after 15th Nov</h6>
+         </label>
+         &nbsp; &nbsp;
+         <label class="radio-inline"><input type="radio" name="oner" value="Y">Yes</label>
+         <label class="radio-inline"><input type="radio" name="oner" value="N">No</label>
+      </div>
+      <div class="form-innline col-lg-6">
+         <label >
+            <h6>Has the earlier flight service been availed in Emergency Situation</h6>
+         </label>
+         &nbsp; &nbsp;
+         <label class="radio-inline"><input type="radio" name="oner" value="Y">Yes</label>
+         <label class="radio-inline"><input type="radio" name="oner" value="N">No</label>
+      </div>
+   </div>
+   <div class="row">
+      <div class="col-lg-9">
+         <hr>
+         <strong>Give details of all services availed earlier: - </strong>
+         <hr>
+      </div>
+      <div class="col-lg-3 ">
+         <br/>
+         <button type="button"  class="btn btn-success" data-style="slide-right" onclick="return addNewRow();" >Add Row</button>
+         <button type="button"  class="btn btn-danger" data-style="slide-right" onclick="return deleteRow();" >Delete Row</button>
+      </div>
+   </div>
+   <div class="row" >
+      <div class="col-lg-4">
+         <div class="form-group">
+            <label for="username" class="field-label">Date of Travel</label>
+            <input maxlength="10"  type="date" class="form-control input-sm" />
+         </div>
+      </div>
+      <div class="col-lg-4">
+         <div class="form-group">
+            <label for="username" class="field-label">From which Helipad Name</label>
+            <input maxlength="10"  class="form-control input-sm" placeholder="" type="number" />
+         </div>
+      </div>
+      <div class="col-lg-4">
+         <div class="form-group">
+            <label><strong>Category Emergency/General </strong></label>
+            <select  id="productname_id" name="hiringCenterList[0].instrumentN" class="form-control input-sm" data-live-search="true" data-width="100%" >
+               <option value="">--Select--</option>
+               <c:if test="${!empty instList}">
+                  <c:forEach items="${instList}" var="instList">
+                     <option value="${instList.instrumentName}">${instList.instrumentName}</option>
+                  </c:forEach>
+               </c:if>
+            </select>
+         </div>
+      </div>
+      <div id="addRow" class="col-lg-12">
+      </div>
+   </div>
+   <div class="col-lg-4">
+      <br /> <input type="submit" value="<spring:message code="customhiring.submit" text="Submit"/>"
+      class="btn btn-success"> <input type="reset"
+         value="<spring:message code="customhiring.reset" text="Reset"/>" class="btn btn-danger">
+      <br/>
+      <br/>
+   </div>
+   </div>
+   </div>
+</main>
+<script type="text/javascript">
+   var add= 0+${count+1};
+   //alert(add);
+   var status=0;
+
+    function addNewRow()
+   {
+
+   	var row ='<div class="row " id="id'+add+'">'
+   	+'<div class="col-lg-4"><div class="form-group"><input maxlength="10" name="hiringCenterList['+add+'].dateOfPur" type="date"   class="form-control" placeholder="UOM"  /></div></div>'
+   	+'<div class="col-lg-4"><div class="form-group"><input maxlength="10" name="hiringCenterList['+add+'].rentPerD" type="number"  class="form-control" placeholder="Rent/Day"  /></div></div>'
+       +'<div class="col-md-4"><div class="form-group"><select name="hiringCenterList['+add+'].instrumentN" id="productname_id" class="form-control input-sm" data-live-search="true" data-width="100%" >'
+                				+'<option value="">--Select--</option><c:if test="${!empty instList}"><c:forEach items="${instList}" var="instList"><option value="${instList.instrumentName}">${instList.instrumentName}</option></c:forEach></c:if></select></div></div>'
+
+
+       +'</div>'
+
+   	add++;
+        $("#addRow").append(row);
+        $('.bootstrap-select').selectpicker('render');
+   }
+
+   function deleteRow()
+   {
+
+   	if(add==0){
+   		alert("Last Row can Not be deleted !!")
+   	}else{
+
+   		$("#id"+(add-1)).remove();
+   		add--;
+   	}
+   }
+
+
+</script>
