@@ -218,3 +218,11 @@ CREATE TABLE log_vahan_service (
     FOREIGN KEY (log_user_id) REFERENCES users(user_id)
 
 );
+
+
+
+-- Category
+-- Reservation Type
+-- Relationship Prefix
+-- Reason for availing Flight Service
+-- Category Emergency/ General

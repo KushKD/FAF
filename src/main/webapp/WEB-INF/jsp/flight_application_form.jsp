@@ -318,7 +318,9 @@
                         </div>
                         <!-- Declaration End -->
 
+<!-- Captcha -->
 
+<!-- Captcha -->
 
 
       <div class="col-lg-4">

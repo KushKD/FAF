@@ -28,7 +28,7 @@
                      <li> <a  href="#">A</a></li>
                      <li > <a   href="#">A<sub>+</sub></a></li>
                   </ul>
-                  <div class="register_department" ><a class="text_decorate" href="#" >Department Login</a> </div>
+                  <div class="register_department" ><a class="text_decorate" href="${pageContext.request.contextPath}/index" >Department Login</a> </div>
                   <div class="form-group col-lg-5">
                      <select class="form-control" id="locales">
                         <option value="">
@@ -522,7 +522,7 @@
                <ul class="secondary_menu">
                   <li><a href="${pageContext.request.contextPath}/">Home</a></li>
                   <li><a href="#">Contact Us</a></li>
-                  <li><a href="https://cmsankalp.hp.gov.in/">Grievance</a></li>
+                  <li><a href="https://cmsankalp.hp.gov.in/" target="_blank">Grievance</a></li>
                   <li><a href="#">Gallery</a></li>
                   <li><a href="${pageContext.request.contextPath}/applicationform">Flight Application Form</a></li>
                </ul>
@@ -533,7 +533,7 @@
                <div id="myLinks">
                   <li><a href="${pageContext.request.contextPath}/">Home</a></li>
                   <li><a href="#">Contact Us</a></li>
-                  <li><a href="https://cmsankalp.hp.gov.in/">Grievance</a></li>
+                  <li><a href="https://cmsankalp.hp.gov.in/" target="_blank">Grievance</a></li>
                   <li><a href="#">Gallery</a></li>
                   <li><a href="${pageContext.request.contextPath}/applicationform">Flight Application Form</a></li>
                </div>
