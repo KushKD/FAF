@@ -18,7 +18,8 @@
    });
 
 </script>
-<main class="app-content">
+<section>
+ <div class="container back_pg" >
 
    <h2 class="form-signin-heading"><spring:message code="instructions.head" text="Instructions Heading"/></h2>
    <ol class="breadcrumb">
@@ -175,7 +176,8 @@
    </div>
    </div>
    </div>
-</main>
+</div>
+</section>
 <script type="text/javascript">
    var add= 0+${count+1};
    //alert(add);

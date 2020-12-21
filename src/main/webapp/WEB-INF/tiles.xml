@@ -15,6 +15,12 @@
         <put-attribute name="footer" value="/WEB-INF/views/footer_dashboard.jsp" />
     </definition>
 
+    <definition name="main" template="/WEB-INF/views/main_page.jsp">
+        <put-attribute name="content" value="" />
+        <put-attribute name="header" value="/WEB-INF/views/header_mainpage.jsp" />
+        <put-attribute name="footer" value="/WEB-INF/views/footer_mainpage.jsp" />
+    </definition>
+
 
 
 
@@ -25,8 +31,12 @@
         <put-attribute name="content" value="/WEB-INF/jsp/errorpage.jsp" />
     </definition>
 
-    <definition name="flightapplication" extends="baselayoutdashboard">
+    <definition name="flightapplication" extends="main">
         <put-attribute name="content" value="/WEB-INF/jsp/flight_application_form.jsp" />
+    </definition>
+
+    <definition name="mainpage" extends="main">
+        <put-attribute name="content" value="/WEB-INF/jsp/mainpage.jsp" />
     </definition>
 
     <definition name="homepage_new" extends="baselayoutdashboard">

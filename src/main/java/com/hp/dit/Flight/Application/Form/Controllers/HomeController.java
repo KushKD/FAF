@@ -95,10 +95,31 @@ public class HomeController {
 //    }
 
     //flight_application_form.
-        @RequestMapping(value = "/", method = RequestMethod.GET)
+        @RequestMapping(value = "/applicationform", method = RequestMethod.GET)
     public String index(Model model) {
             System.out.println("We are Here");
             return "flightapplication";
+    }
+
+    //mainpage
+
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public String mainpage(Model model) {
+
+//        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        Collection<GrantedAuthority> authorities = (Collection<GrantedAuthority>) SecurityContextHolder.getContext().getAuthentication().getAuthorities();
+//        String username;
+//        if (principal instanceof UserDetails) {
+//            username = ((UserDetails) principal).getUsername();
+//        } else {
+//            username = principal.toString();
+//        }
+//        for (GrantedAuthority authority : authorities) {
+//            System.out.println(authority.getAuthority().toString());
+//        }
+//
+//        System.out.println(username);
+        return "mainpage";
     }
 
 
