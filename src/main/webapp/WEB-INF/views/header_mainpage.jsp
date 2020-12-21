@@ -39,16 +39,16 @@
             <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1" style="margin-left: 50px;"> <img src="${pageContext.request.contextPath}/resources/images/logo_gov_hp.png"  class="logo_hp"   alt="Himachal Pradesh Government"></div>
             <div class="col-xl-4 col-lg-4 col-md-10 col-sm-9 col-9 padding_">
                <div>
-                  <p class="text-left text_logo_one">DEPARTMENT OF INDUSTRIES</p>
+                  <p class="text-left text_logo_one">DEPARTMENT OF Information Technology</p>
                </div>
                <div>
                   <p class="text_logo_two">GOVERNMENT OF HIMACHAL PRADESH </p>
                </div>
             </div>
             <div class="col-xl-6 col-lg-6 col-md-12">
-               <nav class="navbar_" style="margin-top: 10px;">
+               <nav class="navbar_" style="margin-top: 15px;">
                   <ul >
-                     <li><a href="#"> <img src="${pageContext.request.contextPath}/resources/images/vector/house.svg" class="icon_mega_menu"><span class="parent-menga-menu">Home</span></a></li>
+                     <li><a href="${pageContext.request.contextPath}/"> <img src="${pageContext.request.contextPath}/resources/images/vector/house.svg" class="icon_mega_menu"><span class="parent-menga-menu">Home</span></a></li>
                      <li>
                         <a href="#"> <img src="${pageContext.request.contextPath}/resources/images/vector/information.svg" class="icon_mega_menu"><span class="parent-menga-menu">Information</span></a>
                         <div class="mega-menu">
@@ -58,13 +58,13 @@
                            <div class="row">
                               <!-- First Row-->
                               <div  class="col-lg-4" style="float:left">
-                                 <div><span class="mega-menu-header">Information </span></div>
+                                 <div><span class="mega-menu-header">Section 1 </span></div>
                                  <ul >
                                     <li>
                                        <a href="#">
                                           <div class="mega-menu-div-design">
                                              <i class="fa fa-caret-right mega-menu-div-design-fa-icon" aria-hidden="true"></i>
-                                             <span class="mega-menu-div-design-span"> CIA </span>
+                                             <span class="mega-menu-div-design-span"> -- </span>
                                           </div>
                                        </a>
                                     </li>
@@ -72,7 +72,7 @@
                                        <a href="#">
                                           <div class="mega-menu-div-design">
                                              <i class="fa fa-caret-right mega-menu-div-design-fa-icon" aria-hidden="true"></i>
-                                             <span class="mega-menu-div-design-span">Global Corporate In Himachal</span>
+                                             <span class="mega-menu-div-design-span"> -- </span>
                                           </div>
                                        </a>
                                     </li>
@@ -80,7 +80,7 @@
                                        <a href="#">
                                           <div class="mega-menu-div-design">
                                              <i class="fa fa-caret-right mega-menu-div-design-fa-icon" aria-hidden="true"></i>
-                                             <span class="mega-menu-div-design-span">Levies Imposed By SLB </span>
+                                             <span class="mega-menu-div-design-span"> -- </span>
                                           </div>
                                        </a>
                                     </li>
@@ -88,7 +88,7 @@
                                        <a href="#">
                                           <div class="mega-menu-div-design">
                                              <i class="fa fa-caret-right mega-menu-div-design-fa-icon" aria-hidden="true"></i>
-                                             <span class="mega-menu-div-design-span"> Notifications</span>
+                                             <span class="mega-menu-div-design-span"> -- </span>
                                           </div>
                                        </a>
                                     </li>
@@ -96,7 +96,7 @@
                                        <a href="#">
                                           <div class="mega-menu-div-design">
                                              <i class="fa fa-caret-right mega-menu-div-design-fa-icon" aria-hidden="true"></i>
-                                             <span class="mega-menu-div-design-span"> Feedback </span>
+                                             <span class="mega-menu-div-design-span"> --  </span>
                                           </div>
                                        </a>
                                     </li>
@@ -104,7 +104,7 @@
                                        <a href="#">
                                           <div class="mega-menu-div-design">
                                              <i class="fa fa-caret-right mega-menu-div-design-fa-icon" aria-hidden="true"></i>
-                                             <span class="mega-menu-div-design-span">Information Wizard</span>
+                                             <span class="mega-menu-div-design-span"> --</span>
                                           </div>
                                        </a>
                                     </li>
@@ -112,7 +112,7 @@
                                        <a href="#">
                                           <div class="mega-menu-div-design">
                                              <i class="fa fa-caret-right mega-menu-div-design-fa-icon" aria-hidden="true"></i>
-                                             <span class="mega-menu-div-design-span">Website Links</span>
+                                             <span class="mega-menu-div-design-span"> -- </span>
                                           </div>
                                        </a>
                                     </li>
@@ -120,7 +120,7 @@
                                        <a href="#">
                                           <div class="mega-menu-div-design">
                                              <i class="fa fa-caret-right mega-menu-div-design-fa-icon" aria-hidden="true"></i>
-                                             <span class="mega-menu-div-design-span">Verify Application</span>
+                                             <span class="mega-menu-div-design-span"> -- </span>
                                           </div>
                                        </a>
                                     </li>
@@ -128,7 +128,7 @@
                                        <a href="#">
                                           <div class="mega-menu-div-design">
                                              <i class="fa fa-caret-right mega-menu-div-design-fa-icon" aria-hidden="true"></i>
-                                             <span class="mega-menu-div-design-span"> Department Statistics</span>
+                                             <span class="mega-menu-div-design-span"> -- </span>
                                           </div>
                                        </a>
                                     </li>
@@ -136,7 +136,7 @@
                                        <a href="#">
                                           <div class="mega-menu-div-design">
                                              <i class="fa fa-caret-right mega-menu-div-design-fa-icon" aria-hidden="true"></i>
-                                             <span class="mega-menu-div-design-span">World Food India 2017</span>
+                                             <span class="mega-menu-div-design-span"> -- </span>
                                           </div>
                                        </a>
                                     </li>
@@ -145,13 +145,13 @@
                               <!-- First Row Ends-->
                               <!-- Second Row Starts-->
                               <div class="col-lg-4">
-                                 <div><span class="mega-menu-header">EODB Responses</span></div>
+                                 <div><span class="mega-menu-header">Section 2</span></div>
                                  <ul >
                                     <li>
                                        <a href="#">
                                           <div class="mega-menu-div-design">
                                              <i class="fa fa-caret-right mega-menu-div-design-fa-icon" aria-hidden="true"></i>
-                                             <span class="mega-menu-div-design-span">High Court</span>
+                                             <span class="mega-menu-div-design-span"> -- </span>
                                           </div>
                                        </a>
                                     </li>
@@ -159,7 +159,7 @@
                                        <a href="#">
                                           <div class="mega-menu-div-design">
                                              <i class="fa fa-caret-right mega-menu-div-design-fa-icon" aria-hidden="true"></i>
-                                             <span class="mega-menu-div-design-span">Revenue</span>
+                                             <span class="mega-menu-div-design-span"> -- </span>
                                           </div>
                                        </a>
                                     </li>
@@ -167,7 +167,7 @@
                                        <a href="#">
                                           <div class="mega-menu-div-design">
                                              <i class="fa fa-caret-right mega-menu-div-design-fa-icon" aria-hidden="true"></i>
-                                             <span class="mega-menu-div-design-span text-left">Bisuness Reform Action Plan 2017</span>
+                                             <span class="mega-menu-div-design-span text-left"> -- </span>
                                           </div>
                                        </a>
                                     </li>
@@ -175,7 +175,7 @@
                                        <a href="#">
                                           <div class="mega-menu-div-design">
                                              <i class="fa fa-caret-right mega-menu-div-design-fa-icon" aria-hidden="true"></i>
-                                             <span class="mega-menu-div-design-span">Commercial Disputes Cases</span>
+                                             <span class="mega-menu-div-design-span"> -- </span>
                                           </div>
                                        </a>
                                     </li>
@@ -184,13 +184,13 @@
                               <!--Second Row Ends-->
                               <!--Third Row-->
                               <div class="col-lg-4">
-                                 <div><span class="mega-menu-header">Store Purchase Organisation</span></div>
+                                 <div><span class="mega-menu-header">Sextion 3</span></div>
                                  <ul >
                                     <li>
                                        <a href="#">
                                           <div class="mega-menu-div-design">
                                              <i class="fa fa-caret-right mega-menu-div-design-fa-icon" aria-hidden="true"></i>
-                                             <span class="mega-menu-div-design-span"> Tenders Website</span>
+                                             <span class="mega-menu-div-design-span"> -- </span>
                                           </div>
                                        </a>
                                     </li>
@@ -198,7 +198,7 @@
                                        <a href="#">
                                           <div class="mega-menu-div-design">
                                              <i class="fa fa-caret-right mega-menu-div-design-fa-icon" aria-hidden="true"></i>
-                                             <span class="mega-menu-div-design-span"> Notice Inviting Tenders</span>
+                                             <span class="mega-menu-div-design-span"> -- </span>
                                           </div>
                                        </a>
                                     </li>
@@ -206,7 +206,7 @@
                                        <a href="#">
                                           <div class="mega-menu-div-design">
                                              <i class="fa fa-caret-right mega-menu-div-design-fa-icon" aria-hidden="true"></i>
-                                             <span class="mega-menu-div-design-span"> GEM Notification</span>
+                                             <span class="mega-menu-div-design-span"> -- </span>
                                           </div>
                                        </a>
                                     </li>
@@ -214,7 +214,7 @@
                                        <a href="#">
                                           <div class="mega-menu-div-design">
                                              <i class="fa fa-caret-right mega-menu-div-design-fa-icon" aria-hidden="true"></i>
-                                             <span class="mega-menu-div-design-span"> Store Purchase Rules</span>
+                                             <span class="mega-menu-div-design-span"> -- </span>
                                           </div>
                                        </a>
                                     </li>
@@ -222,7 +222,7 @@
                                        <a href="#">
                                           <div class="mega-menu-div-design">
                                              <i class="fa fa-caret-right mega-menu-div-design-fa-icon" aria-hidden="true"></i>
-                                             <span class="mega-menu-div-design-span"> Rate Contacts</span>
+                                             <span class="mega-menu-div-design-span"> -- </span>
                                           </div>
                                        </a>
                                     </li>
@@ -230,7 +230,7 @@
                                        <a href="#">
                                           <div class="mega-menu-div-design">
                                              <i class="fa fa-caret-right mega-menu-div-design-fa-icon" aria-hidden="true"></i>
-                                             <span class="mega-menu-div-design-span">Purchase of Desktops for HP Judicial Academy</span>
+                                             <span class="mega-menu-div-design-span"> -- </span>
                                           </div>
                                        </a>
                                        </li> -->
@@ -238,7 +238,7 @@
                                        <a href="#">
                                           <div class="mega-menu-div-design">
                                              <i class="fa fa-caret-right mega-menu-div-design-fa-icon" aria-hidden="true"></i>
-                                             <span class="mega-menu-div-design-span">Purchase of UPS For H.P. District</span>
+                                             <span class="mega-menu-div-design-span"> -- </span>
                                           </div>
                                        </a>
                                     </li>
@@ -246,7 +246,7 @@
                                        <a href="#">
                                           <div class="mega-menu-div-design">
                                              <i class="fa fa-caret-right mega-menu-div-design-fa-icon" aria-hidden="true"></i>
-                                             <span class="mega-menu-div-design-span">RFP for Supply,Installation</span>
+                                             <span class="mega-menu-div-design-span"> -- </span>
                                           </div>
                                        </a>
                                     </li>
@@ -271,7 +271,7 @@
                                        <a href="#">
                                           <div class="mega-menu-div-design">
                                              <i class="fa fa-caret-right mega-menu-div-design-fa-icon" aria-hidden="true"></i>
-                                             <span class="mega-menu-div-design-span">  Startup Industry </span>
+                                             <span class="mega-menu-div-design-span">  Scheme Name 1 </span>
                                           </div>
                                        </a>
                                     </li>
@@ -279,7 +279,7 @@
                                        <a href="#">
                                           <div class="mega-menu-div-design">
                                              <i class="fa fa-caret-right mega-menu-div-design-fa-icon" aria-hidden="true"></i>
-                                             <span class="mega-menu-div-design-span">Industry Eco System</span>
+                                             <span class="mega-menu-div-design-span">Scheme Name 2</span>
                                           </div>
                                        </a>
                                     </li>
@@ -287,7 +287,7 @@
                                        <a href="#">
                                           <div class="mega-menu-div-design">
                                              <i class="fa fa-caret-right mega-menu-div-design-fa-icon" aria-hidden="true"></i>
-                                             <span class="mega-menu-div-design-span">Industry Policy </span>
+                                             <span class="mega-menu-div-design-span"> Scheme Name 3 </span>
                                           </div>
                                        </a>
                                     </li>
@@ -295,7 +295,7 @@
                                        <a href="#">
                                           <div class="mega-menu-div-design">
                                              <i class="fa fa-caret-right mega-menu-div-design-fa-icon" aria-hidden="true"></i>
-                                             <span class="mega-menu-div-design-span"> Incentive Rules</span>
+                                             <span class="mega-menu-div-design-span"> Scheme Name 4</span>
                                           </div>
                                        </a>
                                     </li>
@@ -303,7 +303,7 @@
                                        <a href="#">
                                           <div class="mega-menu-div-design">
                                              <i class="fa fa-caret-right mega-menu-div-design-fa-icon" aria-hidden="true"></i>
-                                             <span class="mega-menu-div-design-span"> Startup Policy </span>
+                                             <span class="mega-menu-div-design-span"> Scheme Name 5 </span>
                                           </div>
                                        </a>
                                     </li>
@@ -311,7 +311,7 @@
                                        <a href="#">
                                           <div class="mega-menu-div-design">
                                              <i class="fa fa-caret-right mega-menu-div-design-fa-icon" aria-hidden="true"></i>
-                                             <span class="mega-menu-div-design-span">Food & Processing</span>
+                                             <span class="mega-menu-div-design-span">Scheme Name 6</span>
                                           </div>
                                        </a>
                                     </li>
@@ -319,7 +319,7 @@
                                        <a href="#">
                                           <div class="mega-menu-div-design">
                                              <i class="fa fa-caret-right mega-menu-div-design-fa-icon" aria-hidden="true"></i>
-                                             <span class="mega-menu-div-design-span"> Awareness Program </span>
+                                             <span class="mega-menu-div-design-span"> Scheme Name 7 </span>
                                           </div>
                                        </a>
                                     </li>
@@ -329,7 +329,7 @@
                            </div>
                         </div>
                      </li>
-                     <li>
+                     <li style="display:none;">
                         <a href="#"><img src="${pageContext.request.contextPath}/resources/images/vector/act_and_rules.svg" class="icon_mega_menu"><span class="parent-menga-menu">Acts & Rules</span></a>
                         <div class="mega-menu">
                            <!-- <div class="header">
@@ -496,54 +496,7 @@
                            </div>
                         </div>
                      </li>
-                     <li>
-                        <a href="#"><img src="${pageContext.request.contextPath}/resources/images/vector/landbank.svg" class="icon_mega_menu"><span class="parent-menga-menu">Land Bank</span></a>
-                        <div class="mega-menu-double">
-                           <!-- <div class="header">
-                              <h2>Mega Menu</h2>
-                              </div>  -->
-                           <div class="row">
-                              <!-- First Row-->
-                              <div class="col-lg-6">
-                                 <div><span class="mega-menu-header">Government Land Bank </span></div>
-                                 <ul >
-                                    <li>
-                                       <a href="#">
-                                          <div class="mega-menu-div-design">
-                                             <i class="fa fa-caret-right mega-menu-div-design-fa-icon" aria-hidden="true"></i>
-                                             <span class="mega-menu-div-design-span">Industrial Plots</span>
-                                          </div>
-                                       </a>
-                                    </li>
-                                    <li>
-                                       <a href="#">
-                                          <div class="mega-menu-div-design">
-                                             <i class="fa fa-caret-right mega-menu-div-design-fa-icon" aria-hidden="true"></i>
-                                             <span class="mega-menu-div-design-span"> Oter Government Land  </span>
-                                          </div>
-                                       </a>
-                                    </li>
-                                 </ul>
-                              </div>
-                              <!-- First Row Ends-->
-                              <!-- Extra Row Starts-->
-                              <div class="col-lg-6">
-                                 <div><span class="mega-menu-header">Private Land Bank</span></div>
-                                 <ul >
-                                    <li>
-                                       <a href="#">
-                                          <div class="mega-menu-div-design">
-                                             <i class="fa fa-caret-right mega-menu-div-design-fa-icon" aria-hidden="true"></i>
-                                             <span class="mega-menu-div-design-span">Private Land Bank</span>
-                                          </div>
-                                       </a>
-                                    </li>
-                                 </ul>
-                              </div>
-                              <!--Extra Row Ends-->
-                           </div>
-                        </div>
-                     </li>
+
                   </ul>
                </nav>
             </div>
@@ -554,28 +507,22 @@
          <div class="row">
             <div class="hide_unhide">
                <ul class="secondary_menu">
-                  <li><a href="#">Home</a></li>
-                  <li><a href="#">Why Invest In HP</a></li>
-                  <li><a href="#">State Profile</a></li>
-                  <li><a href="#">Gallery</a></li>
-                  <li><a href="#">Tenders</a></li>
+                  <li><a href="${pageContext.request.contextPath}/">Home</a></li>
                   <li><a href="#">Contact Us</a></li>
                   <li><a href="#">Grievance</a></li>
                   <li><a href="#">Gallery</a></li>
+                  <li><a href="${pageContext.request.contextPath}/applicationform">Flight Application Form</a></li>
                </ul>
             </div>
             <div class="topnav">
                   <a href="#home" class="active">&nbsp;</a>
                   <!-- Navigation links (hidden by default) -->
                   <div id="myLinks">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Why Invest In HP</a></li>
-                    <li><a href="#">State Profile</a></li>
-                    <li><a href="#">Gallery</a></li>
-                    <li><a href="#">Tenders</a></li>
+                    <li><a href="${pageContext.request.contextPath}/">Home</a></li>
                     <li><a href="#">Contact Us</a></li>
                     <li><a href="#">Grievance</a></li>
                     <li><a href="#">Gallery</a></li>
+                    <li><a href="${pageContext.request.contextPath}/applicationform">Flight Application Form</a></li>
                   </div>
                   <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
                   <a href="javascript:void(0);" class="icon" onclick="myFunction()">

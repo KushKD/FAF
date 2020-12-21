@@ -11,17 +11,10 @@
             <div class="col-lg-4">
                <h3 style="margin-top:0; padding-top:20px; padding-bottom:10px; padding-left:30px; color:#FFF;">Other Department Links</h3>
                <ul class="footer_list">
-                  <li ><a href="#">Ease of doing business</a></li>
-                  <li ><a href="#">Power </a></li>
+                  <li ><a href="#">Link 1</a></li>
+                  <li ><a href="#">Link 2 </a></li>
                   <li ><a href="#">Tourism</a></li>
-                  <li ><a href="#">Language, Art & Culture</a></li>
-                  <li ><a href="#">Education</a></li>
-                  <li ><a href="#">Healthcare</a></li>
-                  <li ><a href="#">Food & Agri Processing</a></li>
-                  <li ><a href="#">Public Work</a></li>
-                  <li ><a href="#">PMEGP</a></li>
-                  <li class="last leaf"><a href="#">Startup</a></li>
-                  <li class="last leaf"><a href='#'>Mining</a></li>
+
                </ul>
             </div>
             <div class="col-lg-4">
@@ -29,10 +22,7 @@
                <ul class="footer_list">
                   <li><a title="Copyright Policy " href="#">Copyright Policy </a></li>
                   <li><a title="Hyperlinking Policy " href="#">Hyperlinking Policy </a></li>
-                  <li><a title="Privacy Policy " href="#">Privacy Policy </a></li>
-                  <li><a title="Accessibility Statement" href="#">Accessibility Statement</a></li>
-                  <li><a title="Screen Reader " href="#">Screen Reader </a></li>
-                  <li><a title="Content Management" href="#">Content Management</a></li>
+
                </ul>
             </div>
             <div class="col-lg-4">
@@ -40,15 +30,11 @@
                <ul class="footer_list">
                   <li><a title=" " href="#">Government Link 1</a></li>
                   <li><a title=" " href="#"> Government Link 2 </a></li>
-                  <li><a title=" " href="#"> Government Link 3 </a></li>
-                  <li><a title="" href="#">Government Link 4</a></li>
-                  <li><a title=" " href="#">Government Link 5 </a></li>
-                  <li><a title="" href="#">Government Link 6</a></li>
-                  <li><a title="" href="#">Government Link 7</a></li>
+
                </ul>
             </div>
          </div>
-         <!-- <div class="container-fluid" style="background-color: #F2F2F2; margin: 0; padding: 0;">
+          <div class="container-fluid" style="background-color: #F2F2F2; margin: 0; padding: 0;">
             <div class="row">
                 <div class="footer-bottom-wrapper">
                 <ul class="footer-bottom-wrapper-list">
@@ -58,7 +44,7 @@
                 </ul>
                 </div>
             </div>
-                                    </div> -->
+                                    </div>
       </div>
       <!-- Footer Ends -->
      <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.3.1.slim.min.js"></script>

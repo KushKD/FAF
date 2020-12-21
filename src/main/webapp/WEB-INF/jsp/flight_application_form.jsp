@@ -19,7 +19,7 @@
 
 </script>
 <section>
- <div class="container back_pg" >
+ <div class="container back_pg" style="padding-top:10px;" >
 
    <h2 class="form-signin-heading"><spring:message code="instructions.head" text="Instructions Heading"/></h2>
    <ol class="breadcrumb">

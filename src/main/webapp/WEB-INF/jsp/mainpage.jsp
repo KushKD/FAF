@@ -5,19 +5,18 @@
          <div class="container-fluid back_pg" >
             <div class="row">
                <!--Slider Starts-->
-               <div class="col-xl-9 col-lg-12" style="margin-top:10px;" >
+               <div class="col-xl-9 col-lg-12" style="margin-top:10px; margin-bottom:10px;" >
                   <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                      <ol class="carousel-indicators">
                         <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
                         <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                        <!-- <li data-target="#carouselExampleIndicators" data-slide-to="2"></li> -->
                      </ol>
                      <div class="carousel-inner">
                         <div class="carousel-item active">
-                           <img class="d-block w-100 slider_height" src="${pageContext.request.contextPath}/resources/images/banner3.jpg"   alt="First slide">
+                           <img class="d-block w-100 slider_height" src="${pageContext.request.contextPath}/resources/images/slider1.jpg"   alt="First slide">
                         </div>
                         <div class="carousel-item">
-                           <img class="d-block w-100 slider_height"  src="${pageContext.request.contextPath}/resources/images/banner4.jpg"   alt="Second slide">
+                           <img class="d-block w-100 slider_height"  src="${pageContext.request.contextPath}/resources/images/slider2.jpg"   alt="Second slide">
                         </div>
                      </div>
                      <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -44,61 +43,43 @@
                      </div>
                   </div>
                   <div class="cm col-xl-12 col-lg-4 col-md-4 col-sm-12">
-                     <div class="pic"><img src="${pageContext.request.contextPath}/resources/images/IM.jpg" class="img-thumbnail" style="height:100%; width:100%;"></div>
-                     <div class="name"><strong>Sh. Bikram Singh </strong><br>
-                        Minister Of Industries, Himachal Pradesh<br> <a class="read_more" href="">Read Message </a>
+                     <div class="pic"><img src="${pageContext.request.contextPath}/resources/images/DC_Lahual.jpg" class="img-thumbnail" style="height:100%; width:100%;"></div>
+                     <div class="name"><strong>Sh. Pankaj Rai </strong><br>
+                        DC Lahaul and Spiti<br> <a class="read_more" href="">Read Message </a>
                      </div>
                   </div>
-                  <div class="col-xl-12 col-lg-4 col-md-4 col-sm-12 cm">
-                     <a href="" >
-                        <div ><img src="${pageContext.request.contextPath}/resources/images/rising_himachal.png" class="rising_himachal" ></div>
-                     </a>
-                  </div>
+
+                   <div class="cm col-xl-12 col-lg-4 col-md-4 col-sm-12">
+                                       <div class="pic"><img src="${pageContext.request.contextPath}/resources/images/digital_india.png" class="img-thumbnail" style="height:100%; width:100%;"></div>
+                                       <div class="name"><strong> Digital India Transformation </strong>
+                                          <br> <a class="read_more" href="">Read Message </a>
+                                       </div>
+                                    </div>
+
                </div>
             </div>
                <!-- CM Minister Links-->
             </div>
          </div>
       </section>
-      <!-- Section Marqie-->
-      <section class="container-fluid marquee_con" >
+      <!-- Section Marqie Working-->
+     <!--  <section class="container-fluid marquee_con" >
          <div class="row">
             <div class="col-lg-12">
                <marquee style="margin-top: auto; margin-bottom: auto;" direction="left"><span style="margin-top: auto; font-weight: bold; margin-top: 5px; margin-bottom: auto; color:#FFF;">TEXT</span></marquee>
             </div>
          </div>
-      </section>
+      </section> -->
       <!-- Section Marquee-->
       <!-- Investment Count-->
       <!-- INVESTMENT COUNTS -->
       <section>
-         <div class="container back_pg" style="padding: 20px 0;">
-            <a href="#" style="color: #5B3560 !important;text-align: center;;text-transform: uppercase;" title="LIVE :: Departmental Statistics">
-               <h1 style="font-size: 25px;"><i class="fa fa-pie-chart"> &nbsp; </i>Total Number of Enterprise Established till 31.05.2018</h1>
+         <div class="container" style="padding: 20px 0; margin-top:10px; margin-bottom:10px;">
+            <a href="${pageContext.request.contextPath}/applicationform" style="color: #5B3560 !important;text-align: center;text-decoration: none;text-transform: uppercase;" title="LIVE :: Departmental Statistics">
+               <h1 style="font-size: 25px;"><i class="fa fa-pie-chart"> &nbsp; </i>Flight Application Form for Patients/ Locals/ Others</h1>
+                 <h4 class="count text-center">Apply Now</h4>
             </a>
-            <div class="row">
-               <div class="col-md-4 col-sm-4 text-center">
-                  <div class="stats-data col-lg-9 offset-md-2 offset-sm-0 col-sm-12">
-                     <div class="stats-icon col-md-4 col-sm-12"><img src="${pageContext.request.contextPath}/resources/images/vector/industry.svg" style="width: 60px; height: 50px;"  alt="Generic placeholder image" ></div>
-                     <h4 class="count">46623</h4>
-                     <p>No. of Units</p>
-                  </div>
-               </div>
-               <div class="col-md-4 col-sm-4 text-center stats-center">
-                  <div class="stats-data col-lg-10 offset-md-1 offset-sm-0 col-sm-12">
-                     <div class="stats-icon col-md-4 col-sm-12"><img src="${pageContext.request.contextPath}/resources/images/vector/investment.svg" style="width: 60px; height: 50px;" alt="Generic placeholder image" ></div>
-                     <h4>26535.97</h4>
-                     <p>Investment (in cr.)</p>
-                  </div>
-               </div>
-               <div class="col-md-4 col-sm-4 text-center">
-                  <div class="stats-data col-lg-9 offset-md-2 offset-sm-0 col-sm-12">
-                     <div class="stats-icon col-md-4 col-sm-12"><img src="${pageContext.request.contextPath}/resources/images/vector/worker.svg" style="width: 60px; height: 50px;" alt="Generic placeholder image" ></div>
-                     <h4 class="count">378913</h4>
-                     <p>Employment</p>
-                  </div>
-               </div>
-            </div>
+
          </div>
          </div>
       </section>
@@ -175,73 +156,10 @@
                <!-- Statistics Start-->
                <div class="col-xl-3 col-lg-6 col-md-6">
                   <p style="font-size: 20px; text-align: center; color: #FFF; background-color: #114368; "> <i class="fa fa-pie-chart"></i> &nbsp;Live Statistics</p>
+
                   <div  class="stats_live">
                      <div class="stats_key" >
-                        <p class="stats_key_p" >Registrations</p>
-                     </div>
-                     <div class="stats_value">
-                        <p class="stats_value_p">2000000</p>
-                     </div>
-                  </div>
-                  <div  class="stats_live">
-                     <div class="stats_key" >
-                        <p class="stats_key_p" >Proposed Employment</p>
-                     </div>
-                     <div class="stats_value">
-                        <p class="stats_value_p">121122</p>
-                     </div>
-                  </div>
-                  <div  class="stats_live">
-                     <div class="stats_key" >
-                        <p class="stats_key_p" ><i class="fas fa-rupee-sign"></i> Proposed Investment (Cr.)</p>
-                     </div>
-                     <div class="stats_value">
-                        <p class="stats_value_p">12345678</p>
-                     </div>
-                  </div>
-                  <div  class="stats_live">
-                     <div class="stats_key" >
-                        <p class="stats_key_p" >eApplications</p>
-                     </div>
-                     <div class="stats_value">
-                        <p class="stats_value_p">19,85784</p>
-                     </div>
-                  </div>
-                  <div  class="stats_live">
-                     <div class="stats_key" >
-                        <p class="stats_key_p" >eCertificates</p>
-                     </div>
-                     <div class="stats_value">
-                        <p class="stats_value_p">34,454</p>
-                     </div>
-                  </div>
-                  <div  class="stats_live">
-                     <div class="stats_key" >
-                        <p class="stats_key_p" >eCertificates</p>
-                     </div>
-                     <div class="stats_value">
-                        <p class="stats_value_p">34,454</p>
-                     </div>
-                  </div>
-                  <div  class="stats_live">
-                     <div class="stats_key" >
-                        <p class="stats_key_p" >eCertificates</p>
-                     </div>
-                     <div class="stats_value">
-                        <p class="stats_value_p">34,454</p>
-                     </div>
-                  </div>
-                  <div  class="stats_live">
-                     <div class="stats_key" >
-                        <p class="stats_key_p" >eCertificates</p>
-                     </div>
-                     <div class="stats_value">
-                        <p class="stats_value_p">34,454</p>
-                     </div>
-                  </div>
-                  <div  class="stats_live">
-                     <div class="stats_key" >
-                        <p class="stats_key_p" >eCertificates</p>
+                        <p class="stats_key_p" >Total Registrations Till Date</p>
                      </div>
                      <div class="stats_value">
                         <p class="stats_value_p">34,454</p>
@@ -256,15 +174,9 @@
                   <div class="col-xl-3 col-lg-6 col-md-6 back_pg">
                       <p style="font-size: 20px; text-align: center; color: #FFF; background-color: #114368; ">Quick Links</p>
                       <ul class="menu_" style="margin-left: -40px; margin-top: 20px; ">
-                          <li ><a href="#">Ease of doing business</a></li>
-                          <li ><a href="#">Power </a></li>
-                          <li ><a href="#">Tourism</a></li>
-                          <li ><a href="#">Language, Art & Culture</a></li>
-                          <li ><a href="#">Education</a></li>
-                          <li ><a href="#">Healthcare</a></li>
-                          <li ><a href="#">Healthcare</a></li>
-                          <li class="last leaf"><a href="#">Startup</a></li>
-                          <li class="last leaf"><a href='#'>Mining</a></li>
+
+                          <li class="last leaf"><a href="#">Quick Link 1</a></li>
+                          <li class="last leaf"><a href='#'>Quick link 2</a></li>
                           </ul>
                   </div>
                <!-- Other Stuff To think Ends-->
@@ -285,34 +197,20 @@
                                <p class="queries_key_p" >General Queries</p>
                             </div>
                             <div class="queries_value">
-                               <p class="queries_value_p">9418481174</p>
+                               <p class="queries_value_p">91XXXXXXXX</p>
                             </div>
                          </div>
-                         <div  class="queries_live">
-                                <div class="queries_key" >
-                                   <p class="queries_key_p" >Mining Queries</p>
-                                </div>
-                                <div class="queries_value">
-                                   <p class="queries_value_p">9816686165</p>
-                                </div>
-                             </div>
+
 
                              <div  class="queries_live">
                                     <div class="queries_key" >
                                        <p class="queries_key_p" >Technical Support</p>
                                     </div>
                                     <div class="queries_value">
-                                       <p class="queries_value_p">9882102908,7837840230</p>
+                                       <p class="queries_value_p">91XXXXXXXX,91XXXXXXXX</p>
                                     </div>
                              </div>
-                                 <div  class="queries_live">
-                                        <div class="queries_key" >
-                                           <p class="queries_key_p" >Swavlambhan Yojna Queries</p>
-                                        </div>
-                                        <div class="queries_value">
-                                           <p class="queries_value_p">0177-2659735</p>
-                                        </div>
-                                     </div>
+
 
 
                </div>
