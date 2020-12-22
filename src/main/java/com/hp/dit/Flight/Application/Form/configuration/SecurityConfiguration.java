@@ -33,15 +33,15 @@ import java.io.IOException;
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-//    @Autowired
-//    private PasswordEncoder passwordEncoder;
-//
-//    @Autowired
-//    private DataSource dataSource;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
-//    @Qualifier("userDetailsServiceImpl")
-//    @Autowired
-//    private UserDetailsService userDetailsService;
+    @Autowired
+    private DataSource dataSource;
+
+    @Qualifier("userDetailsServiceImpl")
+    @Autowired
+    private UserDetailsService userDetailsService;
 
     private static final Logger logger = LoggerFactory.getLogger(SecurityConfiguration.class);
 
@@ -56,10 +56,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         return authenticationManager();
     }
 
-//    @Autowired
-//    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-//        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
-//    }
+    @Autowired
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {

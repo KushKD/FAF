@@ -44,7 +44,7 @@ window.addEventListener('popstate', function(event) {
             </div>
           </div>
         </div>
-         <sec:authorize access="hasAuthority('ADMIN')">
+         <sec:authorize access="hasAuthority('Admin')">
            <div class="col-md-6 col-lg-3">
                   <div class="widget-small warning coloured-icon"><i class="icon fa fa-user fa-3x"></i>
                     <div class="info">
@@ -55,7 +55,7 @@ window.addEventListener('popstate', function(event) {
                   </div>
                 </div>
                 </sec:authorize>
- <sec:authorize access="hasAuthority('ADMIN')">
+ <sec:authorize access="hasAuthority('Admin')">
    <div class="col-md-6 col-lg-3">
           <div class="widget-small danger coloured-icon"><i class="icon fa fa-file-excel-o fa-3x"></i>
             <div class="info">
@@ -68,7 +68,7 @@ window.addEventListener('popstate', function(event) {
  </sec:authorize>
 
 <!--
- <sec:authorize access="hasAuthority('ADMIN')">
+ <sec:authorize access="hasAuthority('Admin')">
     <div class="col-md-6 col-lg-3">
            <div class="widget-small warning coloured-icon"><i class="icon fa fa-bus fa-3x"></i>
              <div class="info">
@@ -80,7 +80,7 @@ window.addEventListener('popstate', function(event) {
          </div>
   </sec:authorize>
 
-  <sec:authorize access="hasAuthority('ADMIN')">
+  <sec:authorize access="hasAuthority('Admin')">
       <div class="col-md-6 col-lg-3">
              <div class="widget-small danger coloured-icon"><i class="icon fa fa-id-card fa-3x"></i>
                <div class="info">

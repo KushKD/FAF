@@ -1,6 +1,14 @@
 package com.hp.dit.Flight.Application.Form.Controllers;
 
 
+import com.hp.dit.Flight.Application.Form.entities.RolesEntity;
+import com.hp.dit.Flight.Application.Form.entities.UserEntity;
+import com.hp.dit.Flight.Application.Form.form.RegisterUser;
+import com.hp.dit.Flight.Application.Form.form.RolesForm;
+import com.hp.dit.Flight.Application.Form.services.RoleService;
+import com.hp.dit.Flight.Application.Form.services.UserService;
+import com.hp.dit.Flight.Application.Form.validators.RoleValidator;
+import com.hp.dit.Flight.Application.Form.validators.UserValidator;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.pdf.qrcode.WriterException;
 import org.apache.poi.util.IOUtils;
@@ -27,6 +35,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.transaction.Transactional;
 //import javax.transaction.Transactional;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -35,23 +44,23 @@ import java.util.*;
 @Controller
 public class HomeController {
 
-//    @Autowired
-//    private UserValidator userValidator;
-//
-//    @Autowired
-//    private RoleValidator roleValidator;
-//
+    @Autowired
+    private UserValidator userValidator;
+
+    @Autowired
+    private RoleValidator roleValidator;
+    //
 //    @Autowired
 //    private GenerateIdCardValidator generateIdCardValidator;
 //
 //    @Autowired
 //    private CustomUserService userService;
 //
-//    @Autowired
-//    private UserService userservice;
-//
-//    @Autowired
-//    private RoleService roleService;
+    @Autowired
+    private UserService userservice;
+
+    @Autowired
+    private RoleService roleService;
 //
 //    @Autowired
 //    private SecurityService securityService;
@@ -87,132 +96,112 @@ public class HomeController {
         return "homepage_new";
     }
 
-//    @RequestMapping(value = "/", method = RequestMethod.GET)
-//    public String index(Model model) {
-//        System.out.println("We are here");
-//
-//        return "login";
-//    }
 
-    //flight_application_form.
-        @RequestMapping(value = "/applicationform", method = RequestMethod.GET)
+    @RequestMapping(value = "/applicationform", method = RequestMethod.GET)
     public String index(Model model) {
-            System.out.println("We are Here");
-            return "flightapplication";
+        System.out.println("We are Here");
+        return "flightapplication";
     }
 
-    //mainpage
+
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String mainpage(Model model) {
 
-//        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        Collection<GrantedAuthority> authorities = (Collection<GrantedAuthority>) SecurityContextHolder.getContext().getAuthentication().getAuthorities();
-//        String username;
-//        if (principal instanceof UserDetails) {
-//            username = ((UserDetails) principal).getUsername();
-//        } else {
-//            username = principal.toString();
-//        }
-//        for (GrantedAuthority authority : authorities) {
-//            System.out.println(authority.getAuthority().toString());
-//        }
-//
-//        System.out.println(username);
         return "mainpage";
     }
 
 
-//    @RequestMapping(value = "/createUser", method = RequestMethod.GET)
-//    public String createUser(Model model) {
-//        model.addAttribute("registerUser", new RegisterUser());
-//        return "createuser";
-//    }
+    @RequestMapping(value = "/createUser", method = RequestMethod.GET)
+    public String createUser(Model model) {
+        model.addAttribute("registerUser", new RegisterUser());
+        return "createuser";
+    }
 
-//    @RequestMapping(value = "/saveuser", method = RequestMethod.POST)
-//    @Transactional
-//    public String saveUser(@ModelAttribute("registerUser") RegisterUser registerUser, BindingResult bindingResult, Model model, HttpServletRequest request) {
-//        userValidator.validate(registerUser, bindingResult);
-//
-//        if (bindingResult.hasErrors()) {
-//            return "createuser";
-//        }
-//        try {
-//            UserEntity user = new UserEntity();
-//            PasswordEncoder encoder = new BCryptPasswordEncoder();
-//            user.setActive(true);
-//            user.setMobileNumber(Long.valueOf(registerUser.getMobileNumber()));
-//            user.setUserName(registerUser.getUsername());
-//            user.setPassword(encoder.encode(registerUser.getPassword()));
-//            String roleIid = registerUser.getRoleId();
-//
-//            Optional<RolesEntity> role = roleService.getRoleDetails(roleIid);
-//            if (role.get() != null) {
-//                List<RolesEntity> list = new ArrayList<RolesEntity>();
-//                list.add(role.get());
-//                user.setRoles(list);
-//                UserEntity savedData = userservice.saveUser(user);
-//
-//                request.getSession().setAttribute("successMessage", savedData.getUserName() + "  Successfully Saved. ID is" + savedData.getUserId());
-//                registerUser.setMobileNumber("");
-//                registerUser.setPasswordConfirm("");
-//                registerUser.setPassword("");
-//                registerUser.setUsername("");
-//                registerUser.setRoleId("0");
-//                return "createuser";
-//            } else {
-//                registerUser.setMobileNumber("");
-//                registerUser.setPasswordConfirm("");
-//                registerUser.setPassword("");
-//                registerUser.setUsername("");
-//                registerUser.setRoleId("0");
-//                model.addAttribute("serverError", "No Role Name and Role Description Exist with this ID");
-//                return "createuser";
-//            }
-//
-//        } catch (Exception ex) {
-//            registerUser.setMobileNumber("");
-//            registerUser.setPasswordConfirm("");
-//            registerUser.setUsername("");
-//            registerUser.setPassword("");
-//            model.addAttribute("serverError", ex.toString());
-//            return "createuser";
-//        }
-//
-//    }
+    @RequestMapping(value = "/saveuser", method = RequestMethod.POST)
+    @Transactional
+    public String saveUser(@ModelAttribute("registerUser") RegisterUser registerUser, BindingResult bindingResult, Model model, HttpServletRequest request) {
+        userValidator.validate(registerUser, bindingResult);
+
+        if (bindingResult.hasErrors()) {
+            return "createuser";
+        }
+        try {
+            UserEntity user = new UserEntity();
+            PasswordEncoder encoder = new BCryptPasswordEncoder();
+            user.setActive(true);
+            user.setMobileNumber(Long.valueOf(registerUser.getMobileNumber()));
+            user.setUsername(registerUser.getUsername());
+            user.setPassword(encoder.encode(registerUser.getPassword()));
+            String roleIid = registerUser.getRoleId();
+
+            Optional<RolesEntity> role = roleService.getRoleDetails(roleIid);
+            if (role.get() != null) {
+                List<RolesEntity> list = new ArrayList<RolesEntity>();
+                list.add(role.get());
+                user.setRoles(list);
+                UserEntity savedData = userservice.saveUser(user);
+
+                request.getSession().setAttribute("successMessage", savedData.getUsername() + "  Successfully Saved. ID is" + savedData.getUserId());
+                registerUser.setMobileNumber("");
+                registerUser.setPasswordConfirm("");
+                registerUser.setPassword("");
+                registerUser.setUsername("");
+                registerUser.setRoleId("0");
+                return "createuser";
+            } else {
+                registerUser.setMobileNumber("");
+                registerUser.setPasswordConfirm("");
+                registerUser.setPassword("");
+                registerUser.setUsername("");
+                registerUser.setRoleId("0");
+                model.addAttribute("serverError", "No Role Name and Role Description Exist with this ID");
+                return "createuser";
+            }
+
+        } catch (Exception ex) {
+            registerUser.setMobileNumber("");
+            registerUser.setPasswordConfirm("");
+            registerUser.setUsername("");
+            registerUser.setPassword("");
+            model.addAttribute("serverError", ex.toString());
+            return "createuser";
+        }
+
+    }
 
 
-//    @RequestMapping(value = "/createRole", method = RequestMethod.GET)
-//    public String createRole(Model model) {
-//        model.addAttribute("rolesForm", new RolesForm());
-//        return "createrole";
-//    }
-//
-//
-//    @RequestMapping(value = "/saveRole", method = RequestMethod.POST)
-//    public String saveRole(@ModelAttribute("rolesForm") RolesForm roleForm, BindingResult bindingResult, Model model, HttpServletRequest request) {
-//        roleValidator.validate(roleForm, bindingResult);
-//
-//        if (bindingResult.hasErrors()) {
-//            return "createrole";
-//        }
-//        try {
-//            RolesEntity rolesEntity = new RolesEntity();
-//            rolesEntity.setActive(true);
-//            rolesEntity.setRoleName(roleForm.getRoleName());
-//            rolesEntity.setRoleDescription(roleForm.getRoleDescription());
-//            RolesEntity savedData = roleService.saveRole(rolesEntity);
-//            roleForm.setRoleName("");
-//            roleForm.setRoleDescription("");
-//            request.getSession().setAttribute("successMessage", savedData.getRoleName() + " role Successfully Saved. ID is" + savedData.getRoleId());
-//            return "createrole";
-//        } catch (Exception ex) {
-//            roleForm.setRoleName("");
-//            roleForm.setRoleDescription("");
-//            model.addAttribute("serverError", ex.toString());
-//            return "createrole";
-//        }
-//    }
+    @RequestMapping(value = "/createRole", method = RequestMethod.GET)
+    public String createRole(Model model) {
+        model.addAttribute("rolesForm", new RolesForm());
+        return "createrole";
+    }
+
+
+    @RequestMapping(value = "/saveRole", method = RequestMethod.POST)
+    public String saveRole(@ModelAttribute("rolesForm") RolesForm roleForm, BindingResult bindingResult, Model model, HttpServletRequest request) {
+        roleValidator.validate(roleForm, bindingResult);
+
+        if (bindingResult.hasErrors()) {
+            return "createrole";
+        }
+        try {
+            RolesEntity rolesEntity = new RolesEntity();
+            rolesEntity.setActive(true);
+            rolesEntity.setRoleName(roleForm.getRoleName());
+            rolesEntity.setRoleDescription(roleForm.getRoleDescription());
+            RolesEntity savedData = roleService.saveRole(rolesEntity);
+            roleForm.setRoleName("");
+            roleForm.setRoleDescription("");
+            request.getSession().setAttribute("successMessage", savedData.getRoleName() + " role Successfully Saved. ID is" + savedData.getRoleId());
+            return "createrole";
+        } catch (Exception ex) {
+            roleForm.setRoleName("");
+            roleForm.setRoleDescription("");
+            model.addAttribute("serverError", ex.toString());
+            return "createrole";
+        }
+    }
 
 //    @RequestMapping(value = "/showIdCards", method = RequestMethod.GET)
 //    public String showIdCardList(Model model) {

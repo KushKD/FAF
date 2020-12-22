@@ -59,7 +59,7 @@
     </definition>
 
 
-    <definition name="login" extends="baselayoutdashboardnonav">
+    <definition name="login" extends="main">
         <put-attribute name="content" value="/WEB-INF/jsp/login.jsp" />
     </definition>
 

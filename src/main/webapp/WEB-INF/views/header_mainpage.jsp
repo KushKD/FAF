@@ -28,7 +28,7 @@
                      <li> <a  href="#">A</a></li>
                      <li > <a   href="#">A<sub>+</sub></a></li>
                   </ul>
-                  <div class="register_department" ><a class="text_decorate" href="${pageContext.request.contextPath}/index" >Department Login</a> </div>
+                  <div class="register_department" ><a class="text_decorate" href="${pageContext.request.contextPath}/login" >Department Login</a> </div>
                   <div class="form-group col-lg-5">
                      <select class="form-control" id="locales">
                         <option value="">

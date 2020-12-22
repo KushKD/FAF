@@ -49,7 +49,7 @@
       </div>
       <ul class="app-menu">
         <li><a class="app-menu__item active" href="${pageContext.request.contextPath}/index"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Dashboard</span></a></li>
-        <sec:authorize access="hasAuthority('ADMIN')">
+        <sec:authorize access="hasAuthority('Admin')">
         <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-laptop"></i><span class="app-menu__label">User Management</span><i class="treeview-indicator fa fa-angle-right"></i></a>
           <ul class="treeview-menu">
             <li><a class="treeview-item" href="${pageContext.request.contextPath}/createUser"><i class="icon fa fa-circle-o"></i> Create User</a></li>
