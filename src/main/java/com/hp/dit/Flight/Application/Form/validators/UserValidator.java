@@ -4,6 +4,7 @@ package com.hp.dit.Flight.Application.Form.validators;
 
 import com.hp.dit.Flight.Application.Form.CustomLogin.CustomUserService;
 import com.hp.dit.Flight.Application.Form.form.RegisterUser;
+import com.hp.dit.Flight.Application.Form.utilities.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
@@ -24,6 +25,8 @@ public class UserValidator implements Validator {
     public void validate(Object o, Errors errors) {
         RegisterUser user = (RegisterUser) o;
 
+
+
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "username", "NotEmpty");
         if (user.getUsername().length() <= 3 || user.getUsername().length() > 32) {
             errors.rejectValue("username", "Size.registerUser.username");
@@ -38,6 +41,17 @@ public class UserValidator implements Validator {
         }
         if (userService.findByMobileNumber(user.getMobileNumber()) != null) {
             errors.rejectValue("mobileNumber", "Duplicate.registerUser.mobileNumber");
+        }
+        if(user.getGender().isEmpty() || user.getGender().equalsIgnoreCase("")){
+            errors.rejectValue("gender", "Duplicate.registerUser.gender");
+        }
+
+        if(user.getEmailAddress().isEmpty()){
+            errors.rejectValue("emailAddress", "Blank.registerUser.emailAddress");
+        }
+
+        if(!Constants.isValid(user.getEmailAddress().trim())){
+            errors.rejectValue("emailAddress", "valid.registerUser.emailAddress");
         }
 
 

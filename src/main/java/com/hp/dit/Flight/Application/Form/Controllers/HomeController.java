@@ -3,6 +3,7 @@ package com.hp.dit.Flight.Application.Form.Controllers;
 
 import com.hp.dit.Flight.Application.Form.entities.RolesEntity;
 import com.hp.dit.Flight.Application.Form.entities.UserEntity;
+import com.hp.dit.Flight.Application.Form.form.FlightApplicationForm;
 import com.hp.dit.Flight.Application.Form.form.RegisterUser;
 import com.hp.dit.Flight.Application.Form.form.RolesForm;
 import com.hp.dit.Flight.Application.Form.services.RoleService;
@@ -100,6 +101,7 @@ public class HomeController {
     @RequestMapping(value = "/applicationform", method = RequestMethod.GET)
     public String index(Model model) {
         System.out.println("We are Here");
+        model.addAttribute("flightApplicationForm", new FlightApplicationForm());
         return "flightapplication";
     }
 
@@ -118,6 +120,66 @@ public class HomeController {
         return "createuser";
     }
 
+    //saveDetails
+    @RequestMapping(value = "/saveDetails", method = RequestMethod.POST)
+    @Transactional
+    public String saveDetails(@ModelAttribute("flightApplicationForm") FlightApplicationForm flightApplicationForm, BindingResult bindingResult, Model model, HttpServletRequest request) {
+        System.out.println(flightApplicationForm.toString());
+//        userValidator.validate(registerUser, bindingResult);
+//
+//        if (bindingResult.hasErrors()) {
+//            return "createuser";
+//        }
+//        try {
+//            UserEntity user = new UserEntity();
+//            PasswordEncoder encoder = new BCryptPasswordEncoder();
+//            user.setActive(true);
+//            user.setIs_deleted(false);
+//            user.setMobileNumber(Long.valueOf(registerUser.getMobileNumber()));
+//            user.setUsername(registerUser.getUsername());
+//            user.setPassword(encoder.encode(registerUser.getPassword()));
+//            String roleIid = registerUser.getRoleId();
+//            user.setEmail(registerUser.getEmailAddress());
+//            user.setGender(registerUser.getGender());
+//
+//            Optional<RolesEntity> role = roleService.getRoleDetails(roleIid);
+//            if (role.get() != null) {
+//                List<RolesEntity> list = new ArrayList<RolesEntity>();
+//                list.add(role.get());
+//                user.setRoles(list);
+//                UserEntity savedData = userservice.saveUser(user);
+//
+//                request.getSession().setAttribute("successMessage", savedData.getUsername() + "  Successfully Saved. ID is" + savedData.getUserId());
+//                registerUser.setMobileNumber("");
+//                registerUser.setPasswordConfirm("");
+//                registerUser.setPassword("");
+//                registerUser.setUsername("");
+//                registerUser.setRoleId("0");
+//                return "createuser";
+//            } else {
+//                registerUser.setMobileNumber("");
+//                registerUser.setPasswordConfirm("");
+//                registerUser.setPassword("");
+//                registerUser.setUsername("");
+//                registerUser.setRoleId("0");
+//                model.addAttribute("serverError", "No Role Name and Role Description Exist with this ID");
+//                return "createuser";
+//            }
+//
+//        } catch (Exception ex) {
+//            registerUser.setMobileNumber("");
+//            registerUser.setPasswordConfirm("");
+//            registerUser.setUsername("");
+//            registerUser.setPassword("");
+//            model.addAttribute("serverError", ex.toString());
+//            return "createuser";
+//        }
+        return "flightapplication";
+
+    }
+
+
+
     @RequestMapping(value = "/saveuser", method = RequestMethod.POST)
     @Transactional
     public String saveUser(@ModelAttribute("registerUser") RegisterUser registerUser, BindingResult bindingResult, Model model, HttpServletRequest request) {
@@ -130,10 +192,13 @@ public class HomeController {
             UserEntity user = new UserEntity();
             PasswordEncoder encoder = new BCryptPasswordEncoder();
             user.setActive(true);
+            user.setIs_deleted(false);
             user.setMobileNumber(Long.valueOf(registerUser.getMobileNumber()));
             user.setUsername(registerUser.getUsername());
             user.setPassword(encoder.encode(registerUser.getPassword()));
             String roleIid = registerUser.getRoleId();
+            user.setEmail(registerUser.getEmailAddress());
+            user.setGender(registerUser.getGender());
 
             Optional<RolesEntity> role = roleService.getRoleDetails(roleIid);
             if (role.get() != null) {

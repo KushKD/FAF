@@ -8,6 +8,8 @@ public class RegisterUser implements Serializable {
     private String password;
     private String passwordConfirm;
     private String mobileNumber;
+    private String emailAddress;
+    private String gender;
     private String roleId;
 
     public String getMobileNumber() {
@@ -50,6 +52,22 @@ public class RegisterUser implements Serializable {
         this.roleId = roleId;
     }
 
+    public String getEmailAddress() {
+        return emailAddress;
+    }
+
+    public void setEmailAddress(String emailAddress) {
+        this.emailAddress = emailAddress;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
     @Override
     public String toString() {
         return "RegisterUser{" +
@@ -57,6 +75,8 @@ public class RegisterUser implements Serializable {
                 ", password='" + password + '\'' +
                 ", passwordConfirm='" + passwordConfirm + '\'' +
                 ", mobileNumber='" + mobileNumber + '\'' +
+                ", emailAddress='" + emailAddress + '\'' +
+                ", gender='" + gender + '\'' +
                 ", roleId='" + roleId + '\'' +
                 '}';
     }
