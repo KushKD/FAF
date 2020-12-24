@@ -31,6 +31,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -121,10 +122,26 @@ public class HomeController {
     }
 
     //saveDetails
-    @RequestMapping(value = "/saveDetails", method = RequestMethod.POST)
+
+    /**
+     * aadhaar_doc
+     * officeCardDoc
+     * medicalDoc
+     * otherDoc
+     * @param flightApplicationForm
+     * @param bindingResult
+     * @param model
+     * @param request
+     * @return
+     */
+    @RequestMapping(value = "/saveDetails", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @Transactional
-    public String saveDetails(@ModelAttribute("flightApplicationForm") FlightApplicationForm flightApplicationForm, BindingResult bindingResult, Model model, HttpServletRequest request) {
-        System.out.println(flightApplicationForm.toString());
+    public String saveDetails(@ModelAttribute("flightApplicationForm") FlightApplicationForm flightApplicationForm,
+                              BindingResult bindingResult,
+                              Model model,
+                              HttpServletRequest request
+                              ) {
+        System.out.println("$%%$%$%$%$%$%$%$%%%%%%%%$$$$$$$$$$$%%%%%%%$$$$$$"+flightApplicationForm.toString());
 //        userValidator.validate(registerUser, bindingResult);
 //
 //        if (bindingResult.hasErrors()) {

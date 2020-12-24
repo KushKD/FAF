@@ -7,6 +7,11 @@
 <script src="${pageContext.request.contextPath}/resources/js/jquery-3.5.1.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/script.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/internationalization.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/flight_application_form.js"></script>
+
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/common.js"></script>
+
+
 <script type="text/javascript">
    $( document ).ready(function() {
       // getroles();
@@ -20,7 +25,7 @@
 
 </script>
 <section>
-<form:form method="POST" modelAttribute="flightApplicationForm" action="${pageContext.request.contextPath}/saveDetails" class="form-signin">
+<form:form method="POST" modelAttribute="flightApplicationForm" action="${pageContext.request.contextPath}/saveDetails" enctype="multipart/form-data" class="form-signin">
 <c:if test="${not empty successMessage}">
          <div id="serverError" class="successMessage">${successMessage}</div>
       </c:if>
@@ -193,64 +198,81 @@
          </div>
           </spring:bind>
 
+           <spring:bind path="flightDistrictToGoFrom">
+                   <div class="form-group col-lg-4 ${status.error ? 'has-error' : ''}">
+                      <label for="locales">  <spring:message code="form.togodistirct"  text="Select District" /> </label>
+                      <form:select path="flightDistrictToGoFrom" class="form-control" id="locales">
+
+                      </form:select>
+                      <form:errors  path="flightDistrictToGoFrom"></form:errors>
+                   </div>
+                   </spring:bind>
 
 
-         <div class="form-innline col-lg-12">
+                    <spring:bind path="flightHelipadNameToGoFrom">
+                            <div class="form-group col-lg-4 ${status.error ? 'has-error' : ''}">
+                               <label for="locales">  <spring:message code="from.togohalipadname"  text="Select Helipad" /> </label>
+                               <form:select path="flightHelipadNameToGoFrom" class="form-control" id="locales">
+
+                               </form:select>
+                               <form:errors  path="flightHelipadNameToGoFrom"></form:errors>
+                            </div>
+                            </spring:bind>
+
+
+ <spring:bind path="availedFlightBefore15">
+         <div class="form-innline col-lg-12 ${status.error ? 'has-error' : ''}">
             <label ><h6>   <spring:message code="form.service.availed.after.15.nov" text="Has the applicant availed the flight service after 15th Nov" /> </h6>
             </label>
             &nbsp; &nbsp;
-            <label class="radio-inline"><input type="radio" name="oner" value="Y">Yes</label>
-            <label class="radio-inline"><input type="radio" name="oner" value="N">No</label>
+            <form:radiobutton path = "availedFlightBefore15" value = "Y" label = "Yes" />
+            <form:radiobutton path = "availedFlightBefore15" value = "N" label = "No" />
+ <form:errors  path="availedFlightBefore15"></form:errors>
          </div>
+          </spring:bind>
 
 
-         <div class="form-innline col-lg-12">
+ <spring:bind path="earlierFlightServiceEmergency">
+         <div class="form-innline col-lg-12 ${status.error ? 'has-error' : ''}">
             <label >
                <h6>  <spring:message code="from.service.availed.emergency.situation" text="Has the earlier flight service been availed in Emergency Situation" />
                </h6>
             </label>
             &nbsp; &nbsp;
-            <label class="radio-inline"><input type="radio" name="oner" value="Y">Yes</label>
-            <label class="radio-inline"><input type="radio" name="oner" value="N">No</label>
+             <form:radiobutton path = "earlierFlightServiceEmergency" value = "Y" label = "Yes" />
+             <form:radiobutton path = "earlierFlightServiceEmergency" value = "N" label = "No" />
+             <form:errors  path="earlierFlightServiceEmergency"></form:errors>
          </div>
       </div>
+       </spring:bind>
 
 
       <!-- Documentary Proof Start -->
       <div class="row" style="margin-bottom:10px;">
-         <div class="col-lg-12">
-            <hr>
-            <strong>
-               <spring:message code="form.documentry.proff" text="Flight Details" />
-            </strong>
-            <hr>
+         <div class="col-lg-12"><hr><strong><spring:message code="form.documentry.proff" text="Flight Details" /></strong><hr></div>
+         <div class="form-group col-lg-4">
+            <label for="aadhaar_doc" class="form-label"><spring:message code="form.documentry.aadhaar" text="Aadhaar Card" /> </label>
+            <form:input class="form-control" type="file" id="aadhaar_doc" path="aadhaar_doc" name="aadhaar_doc" />
          </div>
          <div class="form-group col-lg-4">
-            <label for="formFileDisabled" class="form-label">
-               <spring:message code="form.documentry.aadhaar" text="Aadhaar Card" />
-            </label>
-            <input class="form-control" type="file" id="formFileDisabled"  />
+            <label for="officeCardDoc" class="form-label"><spring:message code="form.documentry.officeid" text="Office Card" /></label>
+            <form:input class="form-control" type="file" path="officeCardDoc" id="officeCardDoc" name="officeCardDoc"  />
          </div>
          <div class="form-group col-lg-4">
-            <label for="formFileDisabled" class="form-label">
-               <spring:message code="form.documentry.officeid" text="Office Card" />
-            </label>
-            <input class="form-control" type="file" id="formFileDisabled"  />
+            <label for="medicalDoc" class="form-label"><spring:message code="form.documentry.medial" text="Medical Report" /> </label>
+            <form:input class="form-control" type="file" path="medicalDoc" id="medicalDoc" name="medicalDoc"  />
          </div>
          <div class="form-group col-lg-4">
-            <label for="formFileDisabled" class="form-label">
-               <spring:message code="form.documentry.medial" text="Medical Report" />
-            </label>
-            <input class="form-control" type="file" id="formFileDisabled"  />
-         </div>
-         <div class="form-group col-lg-4">
-            <label for="formFileDisabled" class="form-label">
-               <spring:message code="form.documentry.other" text="Any Other Document" />
-            </label>
-            <input class="form-control" type="file" id="formFileDisabled"  />
+            <label for="otherDoc" class="form-label"><spring:message code="form.documentry.other" text="Any Other Document" /></label>
+            <form:input class="form-control" type="file" id="otherDoc" path="otherDoc" name="otherDoc"  />
          </div>
       </div>
       <!-- Documentary Proof Ends -->
+
+
+
+
+
       <div class="row" style="margin-bottom:10px;">
          <div class="col-lg-9">
             <hr>
@@ -266,39 +288,44 @@
          </div>
       </div>
       <div class="row" style="margin-top:10px">
-         <div class="col-lg-4">
+
+       <spring:bind path="dateTravel">
+         <div class="col-lg-4 ${status.error ? 'has-error' : ''}">
             <div class="form-group">
-               <label for="username" class="field-label">
+               <form:label path="dateTravel" for="dateTravel" class="field-label"/>
                   <spring:message code="form.date.travell" text="Date of Travel" />
-               </label>
-               <input maxlength="10"  type="date" class="form-control input-sm" />
+               <form:input path="availedServiceListForm[0].dateTravelled" maxlength="10"  type="date" class="form-control input-sm" />
+               <form:errors  path="availedServiceListForm[0].dateTravelled"></form:errors>
             </div>
          </div>
-         <div class="col-lg-4">
+         </spring:bind>
+
+
+         <spring:bind path="halipadDistrict">
+         <div class="col-lg-4 ${status.error ? 'has-error' : ''}">
             <div class="form-group">
-               <label for="username" class="field-label">
-                  <spring:message code="form.helipadname" text="From which Helipad Name" />
-               </label>
-               <input maxlength="10"  class="form-control input-sm" placeholder="" type="number" />
+               <form:label for="username" path="halipadDistrict" class="field-label"> <spring:message code="form.helipadname" text="From which Helipad Name" /></form:label>
+
+               <form:input maxlength="10"  path="availedServiceListForm[0].helipadDistrict" class="form-control input-sm" placeholder="" type="number" />
+               <form:errors  path="halipadDistrict"></form:errors>
             </div>
          </div>
-         <div class="col-lg-4">
+         </spring:bind>
+
+         <spring:bind path="halipadLocation">
+         <div class="col-lg-4 ${status.error ? 'has-error' : ''}">
             <div class="form-group">
-               <label>
-                  <strong>
-                     <spring:message code="form.category.emergency.general" text=" Category Emergency/General" />
-                  </strong>
-               </label>
-               <select  id="productname_id" name="hiringCenterList[0].instrumentN" class="form-control input-sm" data-live-search="true" data-width="100%" >
-                  <option value="">--Select--</option>
-                  <c:if test="${!empty instList}">
-                     <c:forEach items="${instList}" var="instList">
-                        <option value="${instList.instrumentName}">${instList.instrumentName}</option>
-                     </c:forEach>
-                  </c:if>
-               </select>
+               <form:label path="halipadLocation">  <strong> <spring:message code="form.halipadDistrict" text="District" /></strong>
+               </form:label>
+               <form:select path="halipadLocation" id="productname_id" name="availedServiceListForm[0].helipadName" class="form-control input-sm" data-live-search="true" data-width="100%" >
+                  <form:option value="">--Select--</form:option>
+
+               </form:select>
+               <form:errors  path="halipadLocation"></form:errors>
             </div>
          </div>
+         </spring:bind>
+
          <div id="addRow" class="col-lg-12">
          </div>
       </div>
@@ -311,17 +338,22 @@
             </div>
             <!-- Identity Bond Ends -->
 
+
+
+
+
              <!-- Declaration Start -->
-                        <div class="row breadcrumb" style="margin-bottom:10px;">
-                            <label >
-                                          <h6>
-                                             <spring:message code="form.declaration" text="Declaration" />
-                                          </h6>
-                                       </label>
-                                       &nbsp; &nbsp;
-                                       <label class="radio-inline"><input type="radio" name="oner" value="Y">Yes</label>
-                                       <label class="radio-inline"><input type="radio" name="oner" value="N">No</label>
+             <spring:bind path="declerationUser">
+                        <div class="row breadcrumb " style="margin-bottom:10px;">
+                            <label > <h6><spring:message code="form.declaration" text="Declaration" /> </h6> </label>
+                             &nbsp; &nbsp;
+                              <div class="form-innline col-lg-12 ${status.error ? 'has-error' : ''}">
+                             <form:radiobutton path = "declerationUser" value = "Y" label = "Yes" />
+                             <form:radiobutton path = "declerationUser" value = "N" label = "No" />
+                             <form:errors  path="declerationUser"></form:errors>
+                             <div>
                         </div>
+                         </spring:bind>
                         <!-- Declaration End -->
 
 <!-- Captcha -->
@@ -330,10 +362,10 @@
 
 
       <div class="col-lg-4">
-         <br /> <input type="submit" value="<spring:message code="customhiring.submit" text="Submit"/>"
-         class="btn btn-success"> <input type="reset"
-            value="<spring:message code="customhiring.reset" text="Reset"/>" class="btn btn-danger">
-         <br/>
+         <br />
+         <input type="submit" value="<spring:message code="customhiring.submit" text="Submit"/>" class="btn btn-success">
+          <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+          <br/>
          <br/>
       </div>
    </div>
@@ -350,10 +382,10 @@
    {
 
    	var row ='<div class="row " id="id'+add+'">'
-   	+'<div class="col-lg-4"><div class="form-group"><input maxlength="10" name="hiringCenterList['+add+'].dateOfPur" type="date"   class="form-control" placeholder="UOM"  /></div></div>'
-   	+'<div class="col-lg-4"><div class="form-group"><input maxlength="10" name="hiringCenterList['+add+'].rentPerD" type="number"  class="form-control" placeholder="Rent/Day"  /></div></div>'
-       +'<div class="col-md-4"><div class="form-group"><select name="hiringCenterList['+add+'].instrumentN" id="productname_id" class="form-control input-sm" data-live-search="true" data-width="100%" >'
-                				+'<option value="">--Select--</option><c:if test="${!empty instList}"><c:forEach items="${instList}" var="instList"><option value="${instList.instrumentName}">${instList.instrumentName}</option></c:forEach></c:if></select></div></div>'
+   	+'<div class="col-lg-4"><div class="form-group"><input maxlength="10" path="availedServiceListForm['+add+'].dateTravelled" name="availedServiceListForm['+add+'].dateTravelled" type="date"   class="form-control" placeholder="Date"  /></div></div>'
+   	+'<div class="col-lg-4"><div class="form-group"><input maxlength="10" path="availedServiceListForm['+add+'].dateTravelled" name="availedServiceListForm['+add+'].helipadDistrict" type="text"  class="form-control" placeholder="District"  /></div></div>'
+       +'<div class="col-md-4"><div class="form-group"><select path="availedServiceListForm['+add+'].helipadName" name="availedServiceListForm['+add+'].helipadName" id="productname_id" class="form-control input-sm" data-live-search="true" data-width="100%" >'
+                				+'<option value="">--Select--</option></select></div></div>'
 
 
        +'</div>'
