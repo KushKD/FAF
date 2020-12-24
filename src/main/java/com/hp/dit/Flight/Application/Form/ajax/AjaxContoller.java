@@ -1,8 +1,10 @@
 package com.hp.dit.Flight.Application.Form.ajax;
 
 
+import com.hp.dit.Flight.Application.Form.entities.*;
 import com.hp.dit.Flight.Application.Form.modal.RolesModal;
 import com.hp.dit.Flight.Application.Form.repositories.RolesRepository;
+import com.hp.dit.Flight.Application.Form.services.*;
 import com.hp.dit.Flight.Application.Form.utilities.Constants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,23 +28,23 @@ public class AjaxContoller {
     @Autowired
     RolesRepository rolesRepository;
 
-//    @Autowired
-//    DistrictService districtService;
+    @Autowired
+    UserTypeService userTypeService;
 
-//    @Autowired
-//    BarrierService barrierService;
-//
-//    @Autowired
-//    VehicleOwnerEntriesService vehicleOwnerEntriesService;
-//
-//    @Autowired
-//    VehicleInOutService vehicleInOutService;
-//
-//    @Autowired
-//    VehicleTypeService vehicleTypeService;
-//
-//    @Autowired
-//    VehicleUserTypeService vehicleUserTypeService;
+    @Autowired
+    ReservationTypeService reservationTypeService;
+
+    @Autowired
+    RelationshipPrefixService relationshipPrefixService;
+
+    @Autowired
+    ReasonAvailingFlightService reasonAvailingFlightService;
+
+    @Autowired
+    DistrictService districtService;
+
+    @Autowired
+    HelipadService helipadService;
 
     private static final Logger logger = LoggerFactory.getLogger(AjaxContoller.class);
 
@@ -72,20 +74,99 @@ public class AjaxContoller {
 
     }
 
-//    @RequestMapping(value = "/ajax/getDistricts", method = RequestMethod.GET,  produces="application/json")
-//    public @ResponseBody
-//    ResponseEntity<?> getDistricts() throws Exception {
-//        Map<String, Object> map = null;
-//        List<DistrictMaster> districts = districtService.getDistricts(9);
-//
-//        map = new HashMap<String, Object>();
-//        map.put(Constants.keyResponse, districts);
-//        map.put(Constants.keyMessage, Constants.valueMessage);
-//        map.put(Constants.keyStatus, HttpStatus.OK);
-//        return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
-//
-//
-//    }
+    @RequestMapping(value = "/ajax/getUserType", method = RequestMethod.GET,  produces="application/json")
+    public @ResponseBody
+    ResponseEntity<?> getUserType() throws Exception {
+        Map<String, Object> map = null;
+        List<UserType> getUserType = userTypeService.getActiveUserType();
+
+        map = new HashMap<String, Object>();
+        map.put(Constants.keyResponse, getUserType);
+        map.put(Constants.keyMessage, Constants.valueMessage);
+        map.put(Constants.keyStatus, HttpStatus.OK);
+        return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
+
+
+    }
+
+
+    @RequestMapping(value = "/ajax/registrationType", method = RequestMethod.GET,  produces="application/json")
+    public @ResponseBody
+    ResponseEntity<?> getRegistrationType() throws Exception {
+        Map<String, Object> map = null;
+        List<RegistrationType> listRegistrationType = reservationTypeService.getResevationType();
+
+        map = new HashMap<String, Object>();
+        map.put(Constants.keyResponse, listRegistrationType);
+        map.put(Constants.keyMessage, Constants.valueMessage);
+        map.put(Constants.keyStatus, HttpStatus.OK);
+        return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
+
+
+    }
+
+    @RequestMapping(value = "/ajax/relationshipPrefix", method = RequestMethod.GET,  produces="application/json")
+    public @ResponseBody
+    ResponseEntity<?> getRelationshipPrefix() throws Exception {
+        Map<String, Object> map = null;
+        List<RelationshipPrefix> listRegistrationType = relationshipPrefixService.getRelationshipPrefixes();
+
+        map = new HashMap<String, Object>();
+        map.put(Constants.keyResponse, listRegistrationType);
+        map.put(Constants.keyMessage, Constants.valueMessage);
+        map.put(Constants.keyStatus, HttpStatus.OK);
+        return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
+
+
+    }
+
+    @RequestMapping(value = "/ajax/reasonAvailingFlightService", method = RequestMethod.GET,  produces="application/json")
+    public @ResponseBody
+    ResponseEntity<?> getReasonAvailingFlightService() throws Exception {
+        Map<String, Object> map = null;
+        List<ReasonAvailingFlight> listRegistrationType = reasonAvailingFlightService.getReasonAvailingFlight();
+
+        map = new HashMap<String, Object>();
+        map.put(Constants.keyResponse, listRegistrationType);
+        map.put(Constants.keyMessage, Constants.valueMessage);
+        map.put(Constants.keyStatus, HttpStatus.OK);
+        return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
+
+
+    }
+
+
+    @RequestMapping(value = "/ajax/flightDistrictToGoFrom", method = RequestMethod.GET,  produces="application/json")
+    public @ResponseBody
+    ResponseEntity<?> getFlightDistrictToGoFrom() throws Exception {
+        Map<String, Object> map = null;
+        List<District> listRegistrationType = districtService.getDistricts();
+
+        map = new HashMap<String, Object>();
+        map.put(Constants.keyResponse, listRegistrationType);
+        map.put(Constants.keyMessage, Constants.valueMessage);
+        map.put(Constants.keyStatus, HttpStatus.OK);
+        return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
+
+
+    }
+
+    @RequestMapping(value = "/ajax/flightHelipadNameToGoFrom", method = RequestMethod.GET,  produces="application/json")
+    public @ResponseBody
+    ResponseEntity<?> getFlightHelipadNameToGoFrom(@RequestParam(value = "id", required = true) String id) throws Exception {
+        Map<String, Object> map = null;
+        List<Helipad> barriers = helipadService.getDistricts(Integer.parseInt(id));
+
+        map = new HashMap<String, Object>();
+        map.put(Constants.keyResponse, barriers);
+        map.put(Constants.keyMessage, Constants.valueMessage);
+        map.put(Constants.keyStatus, HttpStatus.OK);
+        return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
+
+
+    }
+
+
 
 
 //    @RequestMapping(value = "/ajax/getVehicleType", method = RequestMethod.GET,  produces="application/json")

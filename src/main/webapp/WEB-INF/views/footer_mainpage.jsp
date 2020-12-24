@@ -47,7 +47,7 @@
                                     </div>
       </div>
       <!-- Footer Ends -->
-     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.3.1.slim.min.js"></script>
+     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.5.1.min.js"></script>
      <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
      <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/internationalization.js"></script>
 

@@ -14,7 +14,11 @@
 
 <script type="text/javascript">
    $( document ).ready(function() {
-      // getroles();
+      getUserType();
+      getRegistrationType();
+      getRelationPrefix();
+      getReasonAvailingFlightService();
+      getFlightDistrictToGoFrom();
 
       $('#serviceavailingDate').datepicker({
               	format: "dd/mm/yyyy",
@@ -54,12 +58,7 @@
            <spring:bind path="category">
          <div class="form-group col-lg-4 ${status.error ? 'has-error' : ''}">
             <label> <spring:message code="form.user.category"  text="Category" /> </label>
-            <form:select path="category" id="category" class="form-control">
-               <form:option value=""> <spring:message code="form.select" text="Please Select" /> </form:option>
-               <form:option value="1"> <spring:message code="form.user.category.office" text="Official" /> </form:option>
-               <form:option value="2"> <spring:message code="form.user.category.patient " text="Patient" /> </form:option>
-               <form:option value="3"> <spring:message code="form.user.category.local" text="Local" />  </form:option>
-               <form:option value="4"> <spring:message code="form.user.category.other" text="Other" />  </form:option>
+            <form:select path="category" id="category" class="form-control" >
             </form:select>
              <form:errors  path="category"></form:errors>
          </div>
@@ -74,10 +73,7 @@
          <div class="form-group col-lg-4 ${status.error ? 'has-error' : ''}">
             <form:label for="reservationType" path="registrationType">  <spring:message code="form.reservationType"  text="Type of Reservation" /> </form:label>
             <form:select path="registrationType" class="form-control" id="registrationType">
-               <form:option value=""> <spring:message code="form.select" text="Please Select" /> </form:option>
-               <form:option value="0"> <spring:message code="form.reservation.type.normal" text="Normal" /> </form:option>
-               <form:option value="1"> <spring:message code="form.reservation.type.emergency" text="Emergency" /> </form:option>
-            </form:select>
+              </form:select>
              <form:errors  path="registrationType"></form:errors>
          </div>
          </spring:bind>
@@ -98,10 +94,7 @@
          <div class="form-group col-lg-4 ${status.error ? 'has-error' : ''}">
             <form:label  path="relationPrifix" for="relation_prefix"><spring:message code="form.parentname.prefix"  text="Relation Prefix" /></form:label>
             <form:select  path="relationPrifix" class="form-control" id="relationPrifix">
-               <form:option value="">  <spring:message code="form.select" text="Please Select" /> </form:option>
-               <form:option value="0"> <spring:message code="form.parentname.relation.so" text="S/O" /> </form:option>
-               <form:option value="1">  <spring:message code="form.parentname.relation.wo" text="W/O" /> </form:option>
-               <form:option value="2">  <spring:message code="form.parentname.relation.do" text="D/O" /> </form:option>
+                  <form:option value="2">  <spring:message code="form.parentname.relation.do" text="D/O" /> </form:option>
             </form:select>
             <form:errors  path="relationPrifix"></form:errors>
          </div>
@@ -180,12 +173,7 @@
          <div class="form-group col-lg-4 ${status.error ? 'has-error' : ''}">
             <label for="locales">  <spring:message code="form.reason.awailing.service"  text="Reasons for availing Flight Service." /> </label>
             <form:select path="reasonAvailingFlightService" class="form-control" id="reasonAvailingFlightService">
-               <form:option value=""> <spring:message code="form.select" text="Please Select"/>  </form:option>
-               <form:option value="en">  <spring:message code="form.reason.awailing.service.option.one" text="Emergency" />  </form:option>
-               <form:option value="hi"> <spring:message code="form.reason.awailing.service.option.two" text="Examination" /> </form:option>
-               <form:option value="hi"> <spring:message code="form.reason.awailing.service.option.three" text="Officail" /> </form:option>
-               <form:option value="hi">  <spring:message code="form.reason.awailing.service.option.four" text="Other" /> </form:option>
-            </form:select>
+                </form:select>
             <form:errors  path="reasonAvailingFlightService"></form:errors>
          </div>
          </spring:bind>
@@ -201,7 +189,7 @@
            <spring:bind path="flightDistrictToGoFrom">
                    <div class="form-group col-lg-4 ${status.error ? 'has-error' : ''}">
                       <label for="locales">  <spring:message code="form.togodistirct"  text="Select District" /> </label>
-                      <form:select path="flightDistrictToGoFrom" class="form-control" id="flightDistrictToGoFrom">
+                      <form:select path="flightDistrictToGoFrom" class="form-control" id="flightDistrictToGoFrom" onchange="getFlightHelipadNameToGoFrom(this.value)">
 
                       </form:select>
                       <form:errors  path="flightDistrictToGoFrom"></form:errors>
