@@ -307,7 +307,7 @@
             <div class="form-group">
                <form:label path="halipadLocation">  <strong> <spring:message code="form.halipadname" text="Helipad Name" /></strong>
                </form:label>
-               <form:select path="halipadLocation" id="halipadLocation" name="availedServiceListForm[0].helipadName" class="form-control input-sm" data-live-search="true" data-width="100%" >
+               <form:select path="availedServiceListForm[0].helipadName" id="halipadLocation" name="availedServiceListForm[0].helipadName" class="form-control input-sm" data-live-search="true" data-width="100%" >
                   <form:option value="">--Select--</form:option>
 
                </form:select>

@@ -171,7 +171,6 @@ function gethalipadDistrict() {
 }
 
 function gethalipadDistrictadd(add) {
-  alert(add);
     $.ajax({
         type: "GET",
         url: formURL + "/ajax/flightDistrictToGoFrom",
