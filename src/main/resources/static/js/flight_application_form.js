@@ -145,3 +145,112 @@ function getFlightHelipadNameToGoFrom(id) {
 
 
 }
+
+
+
+function gethalipadDistrict() {
+
+    $.ajax({
+        type: "GET",
+        url: formURL + "/ajax/flightDistrictToGoFrom",
+        success: function(data) {
+            console.log(data.RESPONSE)
+            var selectRole = $('#halipadDistrict'); // the state select element
+            selectRole.find('option').remove();
+            selectRole.append("<option value=" + 0 + " >" + "---Please Select---" + "</option>")
+            for (i = 0; i < data.RESPONSE.length; i++) {
+                selectRole.append("<option value=" + data.RESPONSE[i].districtId + " >" + data.RESPONSE[i].districtName + "</option>")
+            }
+
+        },
+        error: function(data) {
+            console.log(data)
+        }
+
+    });
+}
+
+function gethalipadDistrictadd(add) {
+  alert(add);
+    $.ajax({
+        type: "GET",
+        url: formURL + "/ajax/flightDistrictToGoFrom",
+        success: function(data) {
+            console.log(data.RESPONSE)
+            var id_ = "#helipadDistrict"+add;
+            console.log(id_)
+            var selectRole = $(id_); // the state select element
+            selectRole.find('option').remove();
+            selectRole.append("<option value=" + 0 + " >" + "---Please Select---" + "</option>")
+            for (i = 0; i < data.RESPONSE.length; i++) {
+                selectRole.append("<option value=" + data.RESPONSE[i].districtId + " >" + data.RESPONSE[i].districtName + "</option>")
+            }
+
+        },
+        error: function(data) {
+            console.log(data)
+        }
+
+    });
+}
+
+// gethalipadLocation();
+function gethalipadLocation(id) {
+    $.ajax({
+        type: "GET",
+        url: formURL + "/ajax/flightHelipadNameToGoFrom",
+        data: {
+            "id": id
+        },
+        success: function(data) {
+            console.log(data.RESPONSE)
+            var selectRole = $('#halipadLocation'); // the state select element
+            selectRole.find('option').remove();
+            selectRole.append("<option value=" + 0 + " >" + "--- Select ---" + "</option>")
+            for (i = 0; i < data.RESPONSE.length; i++) {
+            if(document.getElementById('halipadLocation') != null && document.getElementById('halipadLocation').value == data.RESPONSE[i].helipadId ){
+                            selectRole.append("<option selected value=" + data.RESPONSE[i].helipadId + " >" + data.RESPONSE[i].helipadName + "</option>")
+                        }else {
+                            selectRole.append("<option value=" + data.RESPONSE[i].helipadId + " >" + data.RESPONSE[i].helipadName + "</option>")
+                        }
+
+            };
+
+        },
+        error: function(data) {
+            console.log(data)
+        }
+
+    });
+
+
+}
+
+
+function gethalipadLocationadd(id,add) {
+
+    $.ajax({
+        type: "GET",
+        url: formURL + "/ajax/flightHelipadNameToGoFrom",
+        data: {
+            "id": id
+        },
+        success: function(data) {
+            console.log(data.RESPONSE)
+            var id_ = "#halipadLocation"+add;
+            var selectRole = $(id_); // the state select element
+            selectRole.find('option').remove();
+            selectRole.append("<option value=" + 0 + " >" + "--- Select ---" + "</option>")
+            for (i = 0; i < data.RESPONSE.length; i++) {
+                selectRole.append("<option value=" + data.RESPONSE[i].helipadId + " >" + data.RESPONSE[i].helipadName + "</option>")
+                        }
+
+        },
+        error: function(data) {
+            console.log(data)
+        }
+
+    });
+
+
+}

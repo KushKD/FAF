@@ -19,6 +19,7 @@
       getRelationPrefix();
       getReasonAvailingFlightService();
       getFlightDistrictToGoFrom();
+      gethalipadDistrict();
 
       $('#serviceavailingDate').datepicker({
               	format: "dd/mm/yyyy",
@@ -292,9 +293,10 @@
          <spring:bind path="halipadDistrict">
          <div class="col-lg-4 ${status.error ? 'has-error' : ''}">
             <div class="form-group">
-               <form:label for="username" path="halipadDistrict" class="field-label"> <spring:message code="form.helipadname" text="From which Helipad Name" /></form:label>
+               <form:label for="username" path="halipadDistrict" class="field-label"> <spring:message code="form.halipadDistrict" text="From which District" /></form:label>
 
-               <form:input maxlength="10"  path="availedServiceListForm[0].helipadDistrict" class="form-control input-sm" placeholder="" type="number" />
+               <form:select id="halipadDistrict" onchange="gethalipadLocation(this.value)"  path="availedServiceListForm[0].helipadDistrict" class="form-control input-sm" placeholder="" >
+               </form:select>
                <form:errors  path="halipadDistrict"></form:errors>
             </div>
          </div>
@@ -303,9 +305,9 @@
          <spring:bind path="halipadLocation">
          <div class="col-lg-4 ${status.error ? 'has-error' : ''}">
             <div class="form-group">
-               <form:label path="halipadLocation">  <strong> <spring:message code="form.halipadDistrict" text="District" /></strong>
+               <form:label path="halipadLocation">  <strong> <spring:message code="form.halipadname" text="Helipad Name" /></strong>
                </form:label>
-               <form:select path="halipadLocation" id="productname_id" name="availedServiceListForm[0].helipadName" class="form-control input-sm" data-live-search="true" data-width="100%" >
+               <form:select path="halipadLocation" id="halipadLocation" name="availedServiceListForm[0].helipadName" class="form-control input-sm" data-live-search="true" data-width="100%" >
                   <form:option value="">--Select--</form:option>
 
                </form:select>
@@ -368,15 +370,12 @@
 
     function addNewRow()
    {
-
+   gethalipadDistrictadd(add);
    	var row ='<div class="row " id="id'+add+'">'
    	+'<div class="col-lg-4"><div class="form-group"><input maxlength="10" path="availedServiceListForm['+add+'].dateTravelled" name="availedServiceListForm['+add+'].dateTravelled" type="date"   class="form-control" placeholder="Date"  /></div></div>'
-   	+'<div class="col-lg-4"><div class="form-group"><input maxlength="10" path="availedServiceListForm['+add+'].dateTravelled" name="availedServiceListForm['+add+'].helipadDistrict" type="text"  class="form-control" placeholder="District"  /></div></div>'
-       +'<div class="col-md-4"><div class="form-group"><select path="availedServiceListForm['+add+'].helipadName" name="availedServiceListForm['+add+'].helipadName" id="productname_id" class="form-control input-sm" data-live-search="true" data-width="100%" >'
-                				+'<option value="">--Select--</option></select></div></div>'
-
-
-       +'</div>'
+   	+'<div class="col-lg-4"><div class="form-group"><select maxlength="10" path="availedServiceListForm['+add+'].dateTravelled" name="availedServiceListForm['+add+'].helipadDistrict" id="helipadDistrict'+add+'"   class="form-control" placeholder="District"  onchange="gethalipadLocationadd(this.value ,'+add+')" ></select></div></div>'
+    +'<div class="col-md-4"><div class="form-group"><select path="availedServiceListForm['+add+'].helipadName" name="availedServiceListForm['+add+'].helipadName" id="halipadLocation'+add+'" class="form-control input-sm"  data-width="100%"></select></div></div>'
+    +'</div>'
 
    	add++;
         $("#addRow").append(row);
