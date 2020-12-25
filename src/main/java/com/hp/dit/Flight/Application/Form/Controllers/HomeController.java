@@ -8,6 +8,7 @@ import com.hp.dit.Flight.Application.Form.form.RegisterUser;
 import com.hp.dit.Flight.Application.Form.form.RolesForm;
 import com.hp.dit.Flight.Application.Form.services.RoleService;
 import com.hp.dit.Flight.Application.Form.services.UserService;
+import com.hp.dit.Flight.Application.Form.validators.FlightFormValidator;
 import com.hp.dit.Flight.Application.Form.validators.RoleValidator;
 import com.hp.dit.Flight.Application.Form.validators.UserValidator;
 import com.itextpdf.text.DocumentException;
@@ -51,7 +52,10 @@ public class HomeController {
 
     @Autowired
     private RoleValidator roleValidator;
-    //
+
+    @Autowired
+    private FlightFormValidator flightFormValidator;
+
 //    @Autowired
 //    private GenerateIdCardValidator generateIdCardValidator;
 //
@@ -142,11 +146,11 @@ public class HomeController {
                               HttpServletRequest request
                               ) {
         System.out.println("$%%$%$%$%$%$%$%$%%%%%%%%$$$$$$$$$$$%%%%%%%$$$$$$"+flightApplicationForm.toString());
-//        userValidator.validate(registerUser, bindingResult);
-//
-//        if (bindingResult.hasErrors()) {
-//            return "createuser";
-//        }
+        flightFormValidator.validate(flightApplicationForm, bindingResult);
+
+        if (bindingResult.hasErrors()) {
+            return "flightapplication";
+        }
 //        try {
 //            UserEntity user = new UserEntity();
 //            PasswordEncoder encoder = new BCryptPasswordEncoder();

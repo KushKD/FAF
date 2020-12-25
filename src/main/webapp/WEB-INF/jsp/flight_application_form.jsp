@@ -61,7 +61,7 @@
             <label> <spring:message code="form.user.category"  text="Category" /> </label>
             <form:select path="category" id="category" class="form-control" >
             </form:select>
-             <form:errors  path="category"></form:errors>
+             <form:errors style="color:red;"  path="category"></form:errors>
          </div>
    </spring:bind>
 
@@ -72,10 +72,10 @@
 
   <spring:bind path="registrationType">
          <div class="form-group col-lg-4 ${status.error ? 'has-error' : ''}">
-            <form:label for="reservationType" path="registrationType">  <spring:message code="form.reservationType"  text="Type of Reservation" /> </form:label>
+            <form:label  for="reservationType" path="registrationType">  <spring:message code="form.reservationType"  text="Type of Reservation" /> </form:label>
             <form:select path="registrationType" class="form-control" id="registrationType">
               </form:select>
-             <form:errors  path="registrationType"></form:errors>
+             <form:errors style="color:red;"  path="registrationType"></form:errors>
          </div>
          </spring:bind>
 
@@ -84,9 +84,9 @@
 
           <spring:bind path="fullName">
          <div class="form-group col-lg-4 ${status.error ? 'has-error' : ''}">
-            <form:label path="fullName" for="fullname"> <spring:message code="form.fullname"   text="Full Name" /> </form:label>
+            <form:label  path="fullName" for="fullname"> <spring:message code="form.fullname"   text="Full Name" /> </form:label>
              <form:input type="text" path="fullName" id="fullName" class="form-control" placeholder="Username" autofocus="true" ></form:input>
-           <form:errors  path="fullName"></form:errors>
+           <form:errors style="color:red;"  path="fullName"></form:errors>
          </div>
           </spring:bind>
 
@@ -97,7 +97,7 @@
             <form:select  path="relationPrifix" class="form-control" id="relationPrifix">
                   <form:option value="2">  <spring:message code="form.parentname.relation.do" text="D/O" /> </form:option>
             </form:select>
-            <form:errors  path="relationPrifix"></form:errors>
+            <form:errors  style="color:red;" path="relationPrifix"></form:errors>
          </div>
           </spring:bind>
 
@@ -106,7 +106,7 @@
          <div class="form-group col-lg-4 ${status.error ? 'has-error' : ''}">
             <form:label path="relationName" for="parentname">  <spring:message code="form.parentname.relation.name"   text="Parent Name"  /> </form:label>
             <form:input type="text" path="relationName" id="relationName" class="form-control"  />
-            <form:errors  path="relationName"></form:errors>
+            <form:errors style="color:red;"  path="relationName"></form:errors>
          </div>
           </spring:bind>
 
@@ -114,8 +114,8 @@
            <spring:bind path="mobileNumber">
          <div class="form-group col-lg-4 ${status.error ? 'has-error' : ''}">
             <form:label path="mobileNumber" for="mobilenumber"> <spring:message code="form.mobilenumber"  text="Mobile Number" /> </form:label>
-            <form:input type="text" path="mobileNumber" id="mobileNumber" class="form-control"  />
-            <form:errors  path="mobileNumber"></form:errors>
+            <form:input type="number" path="mobileNumber" onKeyPress="if(this.value.length==10) return false;"  id="mobileNumber" class="form-control"  />
+            <form:errors style="color:red;"  path="mobileNumber"></form:errors>
          </div>
          </spring:bind>
 
@@ -123,24 +123,24 @@
           <spring:bind path="age" >
          <div class="form-group col-lg-4 ${status.error ? 'has-error' : ''}">
             <form:label path="age" for="age"> <spring:message code="form.age" text="Age" /> </form:label>
-            <form:input type="text"  path="age" id="age" class="form-control" />
-            <form:errors  path="age"></form:errors>
+            <form:input type="number" onKeyPress="if(this.value.length>=3) return false;" path="age" id="age" class="form-control" />
+            <form:errors style="color:red;"  path="age"></form:errors>
          </div>
          </spring:bind>
 
          <spring:bind path="weight">
          <div class="form-group col-lg-4 ${status.error ? 'has-error' : ''}">
             <form:label  path="weight"  for="weight"> <spring:message code="form.weight" text="Weight" /> </form:label>
-            <form:input type="text"  path="weight"  id="weight" class="form-control" />
-             <form:errors  path="weight"></form:errors>
+            <form:input type="number" onKeyPress="if(this.value.length>=3) return false;"  path="weight"  id="weight" class="form-control" />
+             <form:errors  style="color:red;" path="weight"></form:errors>
          </div>
          </spring:bind>
 
          <spring:bind path="luggageWeight">
          <div class="form-group col-lg-4 ${status.error ? 'has-error' : ''}" >
             <label for="luggage_weight"> <spring:message code="form.estimated.luggage.weight" text="Luggage Weight (KG)" /> </label>
-            <form:input type="text"  path="luggageWeight" id="luggageWeight" class="form-control"  />
-            <form:errors  path="luggageWeight"></form:errors>
+            <form:input type="number"  onKeyPress="if(this.value.length>=4) return false;" path="luggageWeight" id="luggageWeight" class="form-control"  />
+            <form:errors maxlength="4" style="color:red;" path="luggageWeight"></form:errors>
          </div>
           </spring:bind>
 
@@ -149,7 +149,7 @@
          <div class="form-group col-lg-4 ${status.error ? 'has-error' : ''}">
             <label for="address"> <spring:message code="form.address"  text="Address" /> </label>
             <form:textarea rows="4" path="permanentAddress" id="permanentAddress" class="form-control"  />
-             <form:errors  path="permanentAddress"></form:errors>
+             <form:errors style="color:red;"  path="permanentAddress"></form:errors>
          </div>
           </spring:bind>
 
@@ -157,7 +157,7 @@
          <div class="form-group col-lg-4 ${status.error ? 'has-error' : ''}">
             <label for="correspondence_address">  <spring:message code="form.correspondence.address"  text="Correspondence Address" /> </label>
             <form:textarea rows="4"  path="correspondenceAddress" class="form-control" id="correspondenceAddress" />
-            <form:errors  path="correspondenceAddress"></form:errors>
+            <form:errors style="color:red;" path="correspondenceAddress"></form:errors>
          </div>
          </spring:bind>
 
@@ -175,15 +175,26 @@
             <label for="locales">  <spring:message code="form.reason.awailing.service"  text="Reasons for availing Flight Service." /> </label>
             <form:select path="reasonAvailingFlightService" class="form-control" id="reasonAvailingFlightService">
                 </form:select>
-            <form:errors  path="reasonAvailingFlightService"></form:errors>
+            <form:errors  style="color:red;" path="reasonAvailingFlightService"></form:errors>
          </div>
          </spring:bind>
+
+
+
+         <spring:bind path="comments">
+                  <div class="form-group col-lg-4 ${status.error ? 'has-error' : ''}">
+                     <label for="comments">  <spring:message code="form.comments"  text="Comments" /> </label>
+                     <form:textarea rows="4"  path="comments" class="form-control" id="comments" />
+                     <form:errors style="color:red;" path="comments"></form:errors>
+                  </div>
+                  </spring:bind>
+
 
          <spring:bind path="tentitiveFlightDate">
          <div class="form-group col-lg-4 ${status.error ? 'has-error' : ''}">
             <label for="serviceavailingDate"> <spring:message code="form.serviceavailingDate"  text="Tentative Date for availing flight Service" /> </label>
             <form:input maxlength="10"  path="tentitiveFlightDate" id="tentitiveFlightDate" type="date" class="form-control input-sm" />
-            <form:errors  path="tentitiveFlightDate"></form:errors>
+            <form:errors  style="color:red;" path="tentitiveFlightDate"></form:errors>
          </div>
           </spring:bind>
 
@@ -193,7 +204,7 @@
                       <form:select path="flightDistrictToGoFrom" class="form-control" id="flightDistrictToGoFrom" onchange="getFlightHelipadNameToGoFrom(this.value)">
 
                       </form:select>
-                      <form:errors  path="flightDistrictToGoFrom"></form:errors>
+                      <form:errors style="color:red;"  path="flightDistrictToGoFrom"></form:errors>
                    </div>
                    </spring:bind>
 
@@ -204,7 +215,7 @@
                                <form:select path="flightHelipadNameToGoFrom" class="form-control" id="flightHelipadNameToGoFrom">
 
                                </form:select>
-                               <form:errors  path="flightHelipadNameToGoFrom"></form:errors>
+                               <form:errors style="color:red;"  path="flightHelipadNameToGoFrom"></form:errors>
                             </div>
                             </spring:bind>
 
@@ -216,7 +227,7 @@
             &nbsp; &nbsp;
             <form:radiobutton  path = "availedFlightBefore15" value = "Y" label = "Yes" />
             <form:radiobutton path = "availedFlightBefore15" value = "N" label = "No" />
- <form:errors  path="availedFlightBefore15"></form:errors>
+ <form:errors style="color:red;"  path="availedFlightBefore15"></form:errors>
          </div>
           </spring:bind>
 
@@ -230,7 +241,7 @@
             &nbsp; &nbsp;
              <form:radiobutton path = "earlierFlightServiceEmergency" value = "Y" label = "Yes" />
              <form:radiobutton path = "earlierFlightServiceEmergency" value = "N" label = "No" />
-             <form:errors  path="earlierFlightServiceEmergency"></form:errors>
+             <form:errors style="color:red;" path="earlierFlightServiceEmergency"></form:errors>
          </div>
       </div>
        </spring:bind>
@@ -284,7 +295,7 @@
                <form:label path="dateTravel" for="dateTravel" class="field-label"/>
                   <spring:message code="form.date.travell" text="Date of Travel" />
                <form:input path="availedServiceListForm[0].dateTravelled" maxlength="10"  type="date" class="form-control input-sm" />
-               <form:errors  path="availedServiceListForm[0].dateTravelled"></form:errors>
+               <form:errors style="color:red;" path="availedServiceListForm[0].dateTravelled"></form:errors>
             </div>
          </div>
          </spring:bind>
@@ -297,7 +308,7 @@
 
                <form:select id="halipadDistrict" onchange="gethalipadLocation(this.value)"  path="availedServiceListForm[0].helipadDistrict" class="form-control input-sm" placeholder="" >
                </form:select>
-               <form:errors  path="halipadDistrict"></form:errors>
+               <form:errors style="color:red;" path="halipadDistrict"></form:errors>
             </div>
          </div>
          </spring:bind>
@@ -311,7 +322,7 @@
                   <form:option value="">--Select--</form:option>
 
                </form:select>
-               <form:errors  path="halipadLocation"></form:errors>
+               <form:errors style="color:red;" path="halipadLocation"></form:errors>
             </div>
          </div>
          </spring:bind>
@@ -340,7 +351,7 @@
                               <div class="form-innline col-lg-12 ${status.error ? 'has-error' : ''}">
                              <form:radiobutton path = "declerationUser" value = "Y" label = "Yes" />
                              <form:radiobutton path = "declerationUser" value = "N" label = "No" />
-                             <form:errors  path="declerationUser"></form:errors>
+                             <form:errors style="color:red;" path="declerationUser"></form:errors>
                              <div>
                         </div>
                          </spring:bind>

@@ -20,6 +20,7 @@ public class FlightApplicationForm implements Serializable {
     private String permanentAddress;
     private String correspondenceAddress;
     private String reasonAvailingFlightService;
+    public String comments;
     private String tentitiveFlightDate;
     private String availedFlightBefore15;
     private String earlierFlightServiceEmergency;
@@ -36,6 +37,14 @@ public class FlightApplicationForm implements Serializable {
     private MultipartFile medicalDoc;
     private MultipartFile otherDoc;
 
+
+    public String getComments() {
+        return comments;
+    }
+
+    public void setComments(String comments) {
+        this.comments = comments;
+    }
 
     public MultipartFile getAadhaar_doc() {
         return aadhaar_doc;
@@ -261,6 +270,7 @@ public class FlightApplicationForm implements Serializable {
                 ", permanentAddress='" + permanentAddress + '\'' +
                 ", correspondenceAddress='" + correspondenceAddress + '\'' +
                 ", reasonAvailingFlightService='" + reasonAvailingFlightService + '\'' +
+                ", comments='" + comments + '\'' +
                 ", tentitiveFlightDate='" + tentitiveFlightDate + '\'' +
                 ", availedFlightBefore15='" + availedFlightBefore15 + '\'' +
                 ", earlierFlightServiceEmergency='" + earlierFlightServiceEmergency + '\'' +
