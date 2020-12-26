@@ -1,11 +1,14 @@
 package com.hp.dit.Flight.Application.Form.Controllers;
 
 
+import com.hp.dit.Flight.Application.Form.entities.FlightFormEntity;
 import com.hp.dit.Flight.Application.Form.entities.RolesEntity;
 import com.hp.dit.Flight.Application.Form.entities.UserEntity;
 import com.hp.dit.Flight.Application.Form.form.FlightApplicationForm;
 import com.hp.dit.Flight.Application.Form.form.RegisterUser;
 import com.hp.dit.Flight.Application.Form.form.RolesForm;
+import com.hp.dit.Flight.Application.Form.services.FileStorageService;
+import com.hp.dit.Flight.Application.Form.services.FlightFormService;
 import com.hp.dit.Flight.Application.Form.services.RoleService;
 import com.hp.dit.Flight.Application.Form.services.UserService;
 import com.hp.dit.Flight.Application.Form.validators.FlightFormValidator;
@@ -56,32 +59,27 @@ public class HomeController {
     @Autowired
     private FlightFormValidator flightFormValidator;
 
-//    @Autowired
-//    private GenerateIdCardValidator generateIdCardValidator;
-//
-//    @Autowired
-//    private CustomUserService userService;
-//
+    @Autowired
+    private FlightFormService flightFormService;
+
+    @Autowired
+    private FileStorageService fileStorageService;
+
+
     @Autowired
     private UserService userservice;
 
     @Autowired
     private RoleService roleService;
-//
-//    @Autowired
-//    private SecurityService securityService;
-//
-//    @Autowired
-//    private VehicleOwnerEntriesService vehicleOwnerEntriesService;
-//
-//    @Autowired
-//    private SearchIdCardValidator searchIdCardValidator;
-//
-//    @Autowired
-//    private VahanLogsRepository vahanLogsRepository;
+
 
     private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
+
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public String mainpage(Model model) {
+        return "mainpage";
+    }
 
     @RequestMapping(value = "/index", method = RequestMethod.GET)
     public String homePage(Model model) {
@@ -110,34 +108,13 @@ public class HomeController {
         return "flightapplication";
     }
 
-
-
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String mainpage(Model model) {
-
-        return "mainpage";
-    }
-
-
     @RequestMapping(value = "/createUser", method = RequestMethod.GET)
     public String createUser(Model model) {
         model.addAttribute("registerUser", new RegisterUser());
         return "createuser";
     }
 
-    //saveDetails
 
-    /**
-     * aadhaar_doc
-     * officeCardDoc
-     * medicalDoc
-     * otherDoc
-     * @param flightApplicationForm
-     * @param bindingResult
-     * @param model
-     * @param request
-     * @return
-     */
     @RequestMapping(value = "/saveDetails", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @Transactional
     public String saveDetails(@ModelAttribute("flightApplicationForm") FlightApplicationForm flightApplicationForm,
@@ -145,57 +122,88 @@ public class HomeController {
                               Model model,
                               HttpServletRequest request
                               ) {
-        System.out.println("$%%$%$%$%$%$%$%$%%%%%%%%$$$$$$$$$$$%%%%%%%$$$$$$"+flightApplicationForm.toString());
+
         flightFormValidator.validate(flightApplicationForm, bindingResult);
 
         if (bindingResult.hasErrors()) {
             return "flightapplication";
         }
-//        try {
-//            UserEntity user = new UserEntity();
-//            PasswordEncoder encoder = new BCryptPasswordEncoder();
-//            user.setActive(true);
-//            user.setIs_deleted(false);
-//            user.setMobileNumber(Long.valueOf(registerUser.getMobileNumber()));
-//            user.setUsername(registerUser.getUsername());
-//            user.setPassword(encoder.encode(registerUser.getPassword()));
-//            String roleIid = registerUser.getRoleId();
-//            user.setEmail(registerUser.getEmailAddress());
-//            user.setGender(registerUser.getGender());
-//
-//            Optional<RolesEntity> role = roleService.getRoleDetails(roleIid);
-//            if (role.get() != null) {
-//                List<RolesEntity> list = new ArrayList<RolesEntity>();
-//                list.add(role.get());
-//                user.setRoles(list);
-//                UserEntity savedData = userservice.saveUser(user);
-//
-//                request.getSession().setAttribute("successMessage", savedData.getUsername() + "  Successfully Saved. ID is" + savedData.getUserId());
-//                registerUser.setMobileNumber("");
-//                registerUser.setPasswordConfirm("");
-//                registerUser.setPassword("");
-//                registerUser.setUsername("");
-//                registerUser.setRoleId("0");
-//                return "createuser";
-//            } else {
-//                registerUser.setMobileNumber("");
-//                registerUser.setPasswordConfirm("");
-//                registerUser.setPassword("");
-//                registerUser.setUsername("");
-//                registerUser.setRoleId("0");
-//                model.addAttribute("serverError", "No Role Name and Role Description Exist with this ID");
-//                return "createuser";
-//            }
-//
-//        } catch (Exception ex) {
-//            registerUser.setMobileNumber("");
-//            registerUser.setPasswordConfirm("");
-//            registerUser.setUsername("");
-//            registerUser.setPassword("");
-//            model.addAttribute("serverError", ex.toString());
-//            return "createuser";
-//        }
-        return "flightapplication";
+        try {
+            FlightFormEntity flightForm = new FlightFormEntity();
+
+            flightForm.setActive(true);
+           // flightForm.setMobileNumber(Long.valueOf(flightApplicationForm.getMobileNumber()));
+            flightForm.setCategory(Integer.parseInt(flightApplicationForm.getCategory()));
+            flightForm.setRegistrationType(Integer.parseInt(flightApplicationForm.getRegistrationType()));
+            flightForm.setRelationPrifix(Integer.parseInt(flightApplicationForm.getRelationPrifix()));
+            flightForm.setFullName(flightApplicationForm.getFullName());
+            flightForm.setRelationName(flightApplicationForm.getRelationName());
+            flightForm.setMobileNumber(Long.parseLong(flightApplicationForm.getMobileNumber()));
+            flightForm.setAge(Integer.parseInt(flightApplicationForm.getAge()));
+            flightForm.setWeight(Integer.parseInt(flightApplicationForm.getWeight()));
+            flightForm.setLuggageWeight(Integer.parseInt(flightApplicationForm.getLuggageWeight()));
+            flightForm.setCorrespondenceAddress(flightApplicationForm.getCorrespondenceAddress());
+            flightForm.setPermanentAddress(flightApplicationForm.getPermanentAddress());
+            flightForm.setReasonAvailingFlightService(Integer.parseInt(flightApplicationForm.getReasonAvailingFlightService()));
+            flightForm.setTentitiveFlightDate(flightApplicationForm.getTentitiveFlightDate());
+            flightForm.setFlightDistrictToGoFrom(Integer.parseInt(flightApplicationForm.getFlightDistrictToGoFrom()));
+            flightForm.setFlightHelipadNameToGoFrom(Integer.parseInt(flightApplicationForm.getFlightHelipadNameToGoFrom()));
+            flightForm.setAvailedFlightBefore15(flightApplicationForm.getAvailedFlightBefore15());
+            flightForm.setEarlierFlightServiceEmergency(flightApplicationForm.getEarlierFlightServiceEmergency());
+            flightForm.setDeclerationUser(flightApplicationForm.getDeclerationUser());
+            flightForm.setEarlierService(flightApplicationForm.getEarlierService());
+
+
+            flightForm.setComments(flightApplicationForm.getComments());
+            flightForm.setApplicaionStatus("P");
+
+            if( !flightApplicationForm.getAadhaar_doc().getOriginalFilename().isEmpty()){
+                flightForm.setAadhaar_doc(flightApplicationForm.getAadhaar_doc().getOriginalFilename());
+                fileStorageService.storeFile(flightApplicationForm.getAadhaar_doc());
+            }else {
+                flightForm.setAadhaar_doc("");
+            }
+
+            if( !flightApplicationForm.getMedicalDoc().getOriginalFilename().isEmpty()){
+                flightForm.setMedicalDoc(flightApplicationForm.getMedicalDoc().getOriginalFilename());
+                fileStorageService.storeFile(flightApplicationForm.getMedicalDoc());
+            }else {
+                flightForm.setMedicalDoc("");
+            }
+
+            if(!flightApplicationForm.getOtherDoc().getOriginalFilename().isEmpty()){
+                flightForm.setOtherDoc(flightApplicationForm.getOtherDoc().getOriginalFilename());
+                fileStorageService.storeFile(flightApplicationForm.getOtherDoc());
+            }else {
+                flightForm.setOtherDoc("");
+            }
+
+            if(!flightApplicationForm.getOfficeCardDoc().getOriginalFilename().isEmpty()){
+                flightForm.setOfficeCardDoc(flightApplicationForm.getOfficeCardDoc().getOriginalFilename());
+                fileStorageService.storeFile(flightApplicationForm.getOfficeCardDoc());
+            }else {
+                flightForm.setOfficeCardDoc("");
+            }
+
+
+
+
+
+            Optional<RolesEntity> role = Optional.ofNullable(roleService.checkRoleName("Admin"));
+            //if (role.get() != null) {
+                flightForm.setApplicationForwardedToRole(Math.toIntExact(role.get().getRoleId()));
+                FlightFormEntity savedData = flightFormService.saveUser(flightForm);
+
+                request.getSession().setAttribute("successMessage", savedData.getFullName() + "  Successfully Saved. ID is" + savedData.getUserId());
+
+                return "flightapplication";
+            //}
+
+        } catch (Exception ex) {
+
+            model.addAttribute("serverError", ex.toString());
+            return "flightapplication";
+        }
 
     }
 

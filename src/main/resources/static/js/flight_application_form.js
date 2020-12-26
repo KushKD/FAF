@@ -294,7 +294,7 @@ function validateFields() {
 
      if (category == "" || category == null || category == "0") {
      //setFocus(category);
-             alert("Please select Category");
+             alert("Please select User Type");
              return false;
          }else if (registrationType == "" || registrationType == null || registrationType == "0") {
         alert("Please Select the Type of Registration.");

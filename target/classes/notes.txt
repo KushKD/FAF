@@ -184,36 +184,48 @@ INSERT INTO mst_helipad ( helipad_name,district_id, active) VALUES ('Dhanker',2,
 
 
 
--- Vehicle User Entries
-CREATE TABLE mst_vehicle_owner_entries (
-    vehicle_owner_id serial PRIMARY KEY  NOT NULL,
-    id_card_number character varying(50) NOT NULL,
-    district_id INTEGER NOT NULL,
-    barrier_id INTEGER NOT NULL,
-    vehicle_type_id INTEGER NOT NULL,
-    vehicle_owner_type_id INTEGER NOT NULL,
-    vehicle_owner_name character varying(50) NOT NULL,
-    vehicle_owner_imagename character varying(50) NOT NULL,
-    vehicle_owner_mobile_number INTEGER NOT NULL,
-    id_valid_from DATE NOT NULL,
-    id_valid_upto DATE NOT NULL,
-    vehicle_owner_aadhaar_number INTEGER NOT NULL,
-    vehicle_owner_vehicle_number character varying(15) NOT NULL,
-    vehicle_owner_chassis_number character varying(30) NOT NULL,
-    vehicle_owner_engine_number character varying(30) NOT NULL,
-    vehicle_owner_driving_licence character varying(15) NOT NULL,
-    mobile_information character varying(100) NOT NULL,
-    other_information character varying(255) NOT NULL,
-    data_entered_by INTEGER NOT NULL,
+-- User Form Data
+CREATE TABLE userFormData (
+    user_id serial PRIMARY KEY  NOT NULL,
+    user_type INTEGER NOT NULL,
+    registration_type INTEGER NOT NULL,
+    full_name character varying(50) NOT NULL,
+    relation_prifix INTEGER NOT NULL,
+    relation_name character varying(50) NOT NULL,
+    mobile_number INTEGER NOT NULL,
+    age INTEGER NOT NULL,
+    weight INTEGER NOT NULL,
+    luggage_weight INTEGER NOT NULL,
+    p_address character varying(255) NOT NULL,
+    c_address character varying(255) ,
+    reason_availing_flight_service INTEGER NOT NULL,
+    comments character varying(255) ,
+    tentitive_flight_date character varying(10) NOT NULL ,
+    availed_flight_befor15 character varying(2) NOT NULL ,
+    earlier_flight_service_emergency character varying(2) NOT NULL ,
+    decleration_user character varying(2) NOT NULL ,
+    flight_district_to_go_from INTEGER NOT NULL,
+    flight_helipad_name_to_go_from INTEGER NOT NULL,
+    earlierService character varying(2) NOT NULL,
+    aadhaar_doc_name character varying(100),
+    office_card_coc_name character varying(100),
+    medical_doc_name character varying(100),
+    other_doc character varying(100),
+    application_forwarded_to_role_id INTEGER NOT NULL,
+    application_status character varying(2) NOT NULL,
     active boolean DEFAULT true NOT NULL,
-    createddate timestamp without time zone DEFAULT ('now'::text)::date NOT NULL,
+    createddate timestamp with time zone DEFAULT ('now'::text)::date ,
     lastmodifieddate timestamp without time zone,
-    FOREIGN KEY (data_entered_by) REFERENCES users(user_id),
-    FOREIGN KEY (district_id) REFERENCES mst_district(district_id),
-    FOREIGN KEY (barrier_id) REFERENCES mst_barrier(barrier_id),
-    FOREIGN KEY (vehicle_type_id) REFERENCES mst_vehicle_type(vehicle_type_id),
-    FOREIGN KEY (vehicle_owner_type_id) REFERENCES mst_vehicle_owner_type(vehicle_owner_type_id)
+    FOREIGN KEY (user_type) REFERENCES mst_category(category_id),
+    FOREIGN KEY (registration_type) REFERENCES mst_typeuser(user_type_id),
+    FOREIGN KEY (relation_prifix) REFERENCES mst_relationshipprefix(relationshipprifix_id),
+    FOREIGN KEY (reason_availing_flight_service	) REFERENCES mst_reasonavailing_flight(reasonavailing_flight_id),
+    FOREIGN KEY (flight_district_to_go_from) REFERENCES mst_district(district_id),
+    FOREIGN KEY (flight_helipad_name_to_go_from) REFERENCES mst_helipad(helipad_id),
+    FOREIGN KEY (application_forwarded_to_role_id) REFERENCES roles(role_id)
 );
+
+
 
 -- Vehicle User photo Byte
 CREATE TABLE mst_vehicle_owner_documents (
