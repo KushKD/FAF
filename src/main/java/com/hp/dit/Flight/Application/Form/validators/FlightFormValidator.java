@@ -53,12 +53,12 @@ public class FlightFormValidator implements Validator {
         }
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "age", "NotEmpty");
-        if (flightForm.getRelationName().length() > 3 ) {
+        if (flightForm.getAge().length() > 3 ) {
             errors.rejectValue("age", "Size.flightApplicationForm.age");
         }
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "weight", "NotEmpty");
-        if (flightForm.getRelationName().length() > 5) {
+        if (flightForm.getWeight().length() > 5) {
             errors.rejectValue("weight", "Size.flightApplicationForm.weight");
         }
 

@@ -31,12 +31,21 @@ public class FlightApplicationForm implements Serializable {
     private String flightDistrictToGoFrom;
     private String flightHelipadNameToGoFrom;
     private List<AvailedServices>  availedServiceListForm;
+    private String earlierService;
 
     private MultipartFile aadhaar_doc;
     private MultipartFile officeCardDoc;
     private MultipartFile medicalDoc;
     private MultipartFile otherDoc;
 
+
+    public String getEarlierService() {
+        return earlierService;
+    }
+
+    public void setEarlierService(String earlierService) {
+        this.earlierService = earlierService;
+    }
 
     public String getComments() {
         return comments;
@@ -281,6 +290,7 @@ public class FlightApplicationForm implements Serializable {
                 ", flightDistrictToGoFrom='" + flightDistrictToGoFrom + '\'' +
                 ", flightHelipadNameToGoFrom='" + flightHelipadNameToGoFrom + '\'' +
                 ", availedServiceListForm=" + availedServiceListForm +
+                ", earlierService='" + earlierService + '\'' +
                 ", aadhaar_doc=" + aadhaar_doc +
                 ", officeCardDoc=" + officeCardDoc +
                 ", medicalDoc=" + medicalDoc +

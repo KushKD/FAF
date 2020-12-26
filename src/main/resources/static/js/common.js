@@ -483,6 +483,13 @@ function hide_ctrl(ele_nms,d__hdeq){
 	for (d__i=0;d__i<d__lst.length;d__i++)
 		document.getElementById(d__lst[d__i]).style.display=(eval(d__hdeq)?"none":"");
 }
+
+function unhide_ctrl(ele_nms,d__hdeq){
+	var d__lst=ele_nms.split("~"),d__i=0;
+	for (d__i=0;d__i<d__lst.length;d__i++)
+		document.getElementById(d__lst[d__i]).style.display=(eval(d__hdeq)?"block":"");
+}
+
 function disable_ctrl(ele_nms,d__hdeq){
 	var d__lst=ele_nms.split("~"),d__i=0;
 	for (d__i=0;d__i<d__lst.length;d__i++){

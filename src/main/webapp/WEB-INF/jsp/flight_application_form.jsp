@@ -30,7 +30,7 @@
 
 </script>
 <section>
-<form:form method="POST" modelAttribute="flightApplicationForm" action="${pageContext.request.contextPath}/saveDetails" enctype="multipart/form-data" class="form-signin">
+<form:form method="POST" onsubmit="return submit_form()" modelAttribute="flightApplicationForm" action="${pageContext.request.contextPath}/saveDetails" enctype="multipart/form-data" class="form-signin">
 <c:if test="${not empty successMessage}">
          <div id="serverError" class="successMessage">${successMessage}</div>
       </c:if>
@@ -173,7 +173,7 @@
           <spring:bind path="reasonAvailingFlightService">
          <div class="form-group col-lg-4 ${status.error ? 'has-error' : ''}">
             <label for="locales">  <spring:message code="form.reason.awailing.service"  text="Reasons for availing Flight Service." /> </label>
-            <form:select path="reasonAvailingFlightService" class="form-control" id="reasonAvailingFlightService">
+            <form:select path="reasonAvailingFlightService" onchange="hide_unhide_docsandComments(this.value)" class="form-control" id="reasonAvailingFlightService">
                 </form:select>
             <form:errors  style="color:red;" path="reasonAvailingFlightService"></form:errors>
          </div>
@@ -182,9 +182,9 @@
 
 
          <spring:bind path="comments">
-                  <div class="form-group col-lg-4 ${status.error ? 'has-error' : ''}">
+                  <div id="comments" class="form-group col-lg-4 ${status.error ? 'has-error' : ''}" style="display:none;">
                      <label for="comments">  <spring:message code="form.comments"  text="Comments" /> </label>
-                     <form:textarea rows="4"  path="comments" class="form-control" id="comments" />
+                     <form:textarea rows="4"  path="comments" class="form-control" id="comments_Text" />
                      <form:errors style="color:red;" path="comments"></form:errors>
                   </div>
                   </spring:bind>
@@ -221,26 +221,26 @@
 
 
  <spring:bind path="availedFlightBefore15">
-         <div class="form-innline col-lg-12 ${status.error ? 'has-error' : ''}">
+         <div  class="form-innline col-lg-12 ${status.error ? 'has-error' : ''}">
             <label ><h6>   <spring:message code="form.service.availed.after.15.nov" text="Has the applicant availed the flight service after 15th Nov" /> </h6>
             </label>
             &nbsp; &nbsp;
-            <form:radiobutton  path = "availedFlightBefore15" value = "Y" label = "Yes" />
-            <form:radiobutton path = "availedFlightBefore15" value = "N" label = "No" />
+            <form:radiobutton name="availedFlightBefore15" path = "availedFlightBefore15" value = "Y" label = "Yes" />
+            <form:radiobutton  name ="availedFlightBefore15" path = "availedFlightBefore15" value = "N" label = "No" />
  <form:errors style="color:red;"  path="availedFlightBefore15"></form:errors>
          </div>
           </spring:bind>
 
 
  <spring:bind path="earlierFlightServiceEmergency">
-         <div class="form-innline col-lg-12 ${status.error ? 'has-error' : ''}">
+         <div  class="form-innline col-lg-12 ${status.error ? 'has-error' : ''}">
             <label >
                <h6>  <spring:message code="from.service.availed.emergency.situation" text="Has the earlier flight service been availed in Emergency Situation" />
                </h6>
             </label>
             &nbsp; &nbsp;
-             <form:radiobutton path = "earlierFlightServiceEmergency" value = "Y" label = "Yes" />
-             <form:radiobutton path = "earlierFlightServiceEmergency" value = "N" label = "No" />
+             <form:radiobutton name="earlierFlightServiceEmergency"  path = "earlierFlightServiceEmergency" value = "Y" label = "Yes" />
+             <form:radiobutton name="earlierFlightServiceEmergency"  path = "earlierFlightServiceEmergency" value = "N" label = "No" />
              <form:errors style="color:red;" path="earlierFlightServiceEmergency"></form:errors>
          </div>
       </div>
@@ -250,29 +250,43 @@
       <!-- Documentary Proof Start -->
       <div class="row" style="margin-bottom:10px;">
          <div class="col-lg-12"><hr><strong><spring:message code="form.documentry.proff" text="Flight Details" /></strong><hr></div>
-         <div class="form-group col-lg-4">
+         <div  id="aadhaar_div" class="form-group col-lg-4">
             <label for="aadhaar_doc" class="form-label"><spring:message code="form.documentry.aadhaar" text="Aadhaar Card" /> </label>
             <form:input class="form-control" type="file" id="aadhaar_doc" path="aadhaar_doc" name="aadhaar_doc" />
          </div>
-         <div class="form-group col-lg-4">
+         <div id="official_div" class="form-group col-lg-4">
             <label for="officeCardDoc" class="form-label"><spring:message code="form.documentry.officeid" text="Office Card" /></label>
             <form:input class="form-control" type="file" path="officeCardDoc" id="officeCardDoc" name="officeCardDoc"  />
          </div>
-         <div class="form-group col-lg-4">
+         <div id="medical_div" class="form-group col-lg-4">
             <label for="medicalDoc" class="form-label"><spring:message code="form.documentry.medial" text="Medical Report" /> </label>
             <form:input class="form-control" type="file" path="medicalDoc" id="medicalDoc" name="medicalDoc"  />
          </div>
-         <div class="form-group col-lg-4">
+         <div id="other_div" class="form-group col-lg-4">
             <label for="otherDoc" class="form-label"><spring:message code="form.documentry.other" text="Any Other Document" /></label>
             <form:input class="form-control" type="file" id="otherDoc" path="otherDoc" name="otherDoc"  />
          </div>
+
+
       </div>
       <!-- Documentary Proof Ends -->
 
+<div class="row">
+ <spring:bind path="earlierService">
+         <div class="form-group col-lg-4 ${status.error ? 'has-error' : ''}">
+            <form:label  path="relationPrifix" for="earlierService"><spring:message code="form.previous.service"  text="Any Earlier Service" /></form:label>
+            <form:select  path="earlierService" class="form-control" id="earlierService" onchange="rowhideUnhide(this.value);">
+                  <form:option value=""> --Select-- </form:option>
+                  <form:option value="Y"> Yes</form:option>
+                  <form:option value="N">No</form:option>
+            </form:select>
+            <form:errors  style="color:red;" path="earlierService"></form:errors>
+         </div>
+          </spring:bind>
+</div>
 
-
-
-
+<!-- tableDiv -->
+<div id="tableDiv" style="display:none">
       <div class="row" style="margin-bottom:10px;">
          <div class="col-lg-9">
             <hr>
@@ -331,6 +345,8 @@
          </div>
       </div>
 
+      </div>
+
       <!-- Identity Bond Start -->
             <div class="row breadcrumb" style="margin-bottom:10px;">
                <p class="form-signin-heading">
@@ -349,8 +365,8 @@
                             <label > <h6><spring:message code="form.declaration" text="Declaration" /> </h6> </label>
                              &nbsp; &nbsp;
                               <div class="form-innline col-lg-12 ${status.error ? 'has-error' : ''}">
-                             <form:radiobutton path = "declerationUser" value = "Y" label = "Yes" />
-                             <form:radiobutton path = "declerationUser" value = "N" label = "No" />
+                             <form:radiobutton name="declerationUser" path = "declerationUser" value = "Y" label = "Yes" />
+                             <form:radiobutton name="declerationUser" path = "declerationUser" value = "N" label = "No" />
                              <form:errors style="color:red;" path="declerationUser"></form:errors>
                              <div>
                         </div>
@@ -362,9 +378,9 @@
 <!-- Captcha -->
 
 
-      <div class="col-lg-4">
+      <div class="col-lg-12">
          <br />
-         <input type="submit" value="<spring:message code="customhiring.submit" text="Submit"/>" class="btn btn-success">
+         <input type="submit"  value="<spring:message code="customhiring.submit" text="Submit"/>" class="btn btn-success">
           <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
           <br/>
          <br/>
