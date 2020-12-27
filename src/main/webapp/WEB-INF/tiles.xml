@@ -35,6 +35,14 @@
         <put-attribute name="content" value="/WEB-INF/jsp/flight_application_form.jsp" />
     </definition>
 
+    <definition name="checkStatus" extends="main">
+        <put-attribute name="content" value="/WEB-INF/jsp/checkStatus.jsp" />
+    </definition>
+
+    <definition name="paymentpage" extends="main">
+        <put-attribute name="content" value="/WEB-INF/jsp/proceed_to_payment.jsp" />
+    </definition>
+
     <definition name="mainpage" extends="main">
         <put-attribute name="content" value="/WEB-INF/jsp/mainpage.jsp" />
     </definition>

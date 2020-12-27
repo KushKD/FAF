@@ -4,23 +4,26 @@ package com.hp.dit.Flight.Application.Form.Controllers;
 import com.hp.dit.Flight.Application.Form.entities.FlightFormEntity;
 import com.hp.dit.Flight.Application.Form.entities.RolesEntity;
 import com.hp.dit.Flight.Application.Form.entities.UserEntity;
+import com.hp.dit.Flight.Application.Form.entities.userFormDataPreviousServiceEntity;
 import com.hp.dit.Flight.Application.Form.form.FlightApplicationForm;
 import com.hp.dit.Flight.Application.Form.form.RegisterUser;
 import com.hp.dit.Flight.Application.Form.form.RolesForm;
-import com.hp.dit.Flight.Application.Form.services.FileStorageService;
-import com.hp.dit.Flight.Application.Form.services.FlightFormService;
-import com.hp.dit.Flight.Application.Form.services.RoleService;
-import com.hp.dit.Flight.Application.Form.services.UserService;
+import com.hp.dit.Flight.Application.Form.modal.AvailedServices;
+import com.hp.dit.Flight.Application.Form.services.*;
+import com.hp.dit.Flight.Application.Form.utilities.Constants;
+import com.hp.dit.Flight.Application.Form.utilities.DateUtilities;
 import com.hp.dit.Flight.Application.Form.validators.FlightFormValidator;
 import com.hp.dit.Flight.Application.Form.validators.RoleValidator;
 import com.hp.dit.Flight.Application.Form.validators.UserValidator;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.pdf.qrcode.WriterException;
+import com.sun.tools.javac.comp.Todo;
 import org.apache.poi.util.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
+import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -33,6 +36,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -64,6 +68,9 @@ public class HomeController {
 
     @Autowired
     private FileStorageService fileStorageService;
+
+    @Autowired
+    private userFormDataPreviousService userFormDataPreviousServices;
 
 
     @Autowired
@@ -102,8 +109,8 @@ public class HomeController {
 
 
     @RequestMapping(value = "/applicationform", method = RequestMethod.GET)
-    public String index(Model model) {
-        System.out.println("We are Here");
+    public String index(Model model,HttpServletRequest request) {
+        request.getSession().setAttribute("successMessage", "");
         model.addAttribute("flightApplicationForm", new FlightApplicationForm());
         return "flightapplication";
     }
@@ -115,24 +122,75 @@ public class HomeController {
     }
 
 
+    @RequestMapping(value = "/checkStatus", method = RequestMethod.GET)
+    public String checkStatus(Model model) {
+        model.addAttribute("registerUser", new RegisterUser());
+        return "checkStatus";
+    }
+
+
+    @RequestMapping(value = "/paymentpage", method = RequestMethod.GET)
+    public String paymentpage(Model model) {
+        //model.addAttribute("registerUser", new RegisterUser());
+        return "paymentpage";
+    }
+
+
     @RequestMapping(value = "/saveDetails", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @Transactional
-    public String saveDetails(@ModelAttribute("flightApplicationForm") FlightApplicationForm flightApplicationForm,
-                              BindingResult bindingResult,
-                              Model model,
-                              HttpServletRequest request
-                              ) {
-
+    public String saveDetails(@ModelAttribute("flightApplicationForm") FlightApplicationForm flightApplicationForm, BindingResult bindingResult, Model model, HttpServletRequest request) {
         flightFormValidator.validate(flightApplicationForm, bindingResult);
-
         if (bindingResult.hasErrors()) {
             return "flightapplication";
         }
         try {
-            FlightFormEntity flightForm = new FlightFormEntity();
+            FlightFormEntity data = new FlightFormEntity();
+            data = populateFlightForm(flightApplicationForm);
+            if (data != null) {
+                FlightFormEntity savedData = flightFormService.saveUser(data);
+                //Setting the table
+                if (!flightApplicationForm.getAvailedServiceListForm().isEmpty()) {
+                    //Check if there is value or not inside the list
+                    List<userFormDataPreviousServiceEntity> availedServices = new ArrayList<>();
+                    userFormDataPreviousServiceEntity datax = null;
+                    for (int i = 0; i < flightApplicationForm.getAvailedServiceListForm().size(); i++) {
+                        datax = new userFormDataPreviousServiceEntity();
+                        if (!flightApplicationForm.getAvailedServiceListForm().get(i).getDateTravelled().equalsIgnoreCase("")
+                                && flightApplicationForm.getAvailedServiceListForm().get(i).getDateTravelled() != null
+                                && !flightApplicationForm.getAvailedServiceListForm().get(i).getHelipadDistrict().equalsIgnoreCase("0")
+                                && !flightApplicationForm.getAvailedServiceListForm().get(i).getHelipadName().equalsIgnoreCase("0")) {
 
+                            datax.setDate(flightApplicationForm.getAvailedServiceListForm().get(i).getDateTravelled());
+                            datax.setDistrictId(Integer.parseInt(flightApplicationForm.getAvailedServiceListForm().get(i).getHelipadDistrict()));
+                            datax.setHelipadId(Integer.parseInt(flightApplicationForm.getAvailedServiceListForm().get(i).getHelipadName()));
+                            datax.setUserId(savedData.getUserId());
+                            datax.setActive(true);
+                            availedServices.add(datax);
+
+                        }
+                    }
+                    userFormDataPreviousServices.saveData(availedServices);
+                }
+
+                request.getSession().setAttribute("successMessage", savedData.getFullName() + "  Successfully Saved. ID is:- " + savedData.getUserId());
+                return "paymentpage";
+            } else {
+                request.getSession().setAttribute("successMessage", "Unable to Save the Data. Please try again");
+                return "flightapplication";
+            }
+        } catch (Exception ex) {
+            model.addAttribute("serverError", ex.toString());
+            return "flightapplication";
+        }
+
+    }
+
+    private FlightFormEntity populateFlightForm(FlightApplicationForm flightApplicationForm) {
+
+        FlightFormEntity flightForm = new FlightFormEntity();
+
+        try {
             flightForm.setActive(true);
-           // flightForm.setMobileNumber(Long.valueOf(flightApplicationForm.getMobileNumber()));
             flightForm.setCategory(Integer.parseInt(flightApplicationForm.getCategory()));
             flightForm.setRegistrationType(Integer.parseInt(flightApplicationForm.getRegistrationType()));
             flightForm.setRelationPrifix(Integer.parseInt(flightApplicationForm.getRelationPrifix()));
@@ -152,61 +210,62 @@ public class HomeController {
             flightForm.setEarlierFlightServiceEmergency(flightApplicationForm.getEarlierFlightServiceEmergency());
             flightForm.setDeclerationUser(flightApplicationForm.getDeclerationUser());
             flightForm.setEarlierService(flightApplicationForm.getEarlierService());
-
-
             flightForm.setComments(flightApplicationForm.getComments());
-            flightForm.setApplicaionStatus("P");
+            flightForm.setApplicaionStatus(Constants.PENDING);
 
-            if( !flightApplicationForm.getAadhaar_doc().getOriginalFilename().isEmpty()){
-                flightForm.setAadhaar_doc(flightApplicationForm.getAadhaar_doc().getOriginalFilename());
-                fileStorageService.storeFile(flightApplicationForm.getAadhaar_doc());
-            }else {
+            if (!flightApplicationForm.getAadhaar_doc().getOriginalFilename().isEmpty()) {
+                String fileName = StringUtils.cleanPath(flightApplicationForm.getAadhaar_doc().getOriginalFilename());
+                fileName = fileName.toLowerCase().replaceAll(" ", "_");
+                fileName = DateUtilities.getDateTime() + "__" + fileName;
+                flightForm.setAadhaar_doc(fileName);
+                fileStorageService.storeFile(flightApplicationForm.getAadhaar_doc(), fileName);
+            } else {
                 flightForm.setAadhaar_doc("");
             }
 
-            if( !flightApplicationForm.getMedicalDoc().getOriginalFilename().isEmpty()){
-                flightForm.setMedicalDoc(flightApplicationForm.getMedicalDoc().getOriginalFilename());
-                fileStorageService.storeFile(flightApplicationForm.getMedicalDoc());
-            }else {
+            if (!flightApplicationForm.getMedicalDoc().getOriginalFilename().isEmpty()) {
+                String fileName = StringUtils.cleanPath(flightApplicationForm.getMedicalDoc().getOriginalFilename());
+                fileName = fileName.toLowerCase().replaceAll(" ", "_");
+                fileName = DateUtilities.getDateTime() + "__" + fileName;
+                flightForm.setMedicalDoc(fileName);
+                fileStorageService.storeFile(flightApplicationForm.getMedicalDoc(), fileName);
+            } else {
                 flightForm.setMedicalDoc("");
             }
 
-            if(!flightApplicationForm.getOtherDoc().getOriginalFilename().isEmpty()){
-                flightForm.setOtherDoc(flightApplicationForm.getOtherDoc().getOriginalFilename());
-                fileStorageService.storeFile(flightApplicationForm.getOtherDoc());
-            }else {
+            if (!flightApplicationForm.getOtherDoc().getOriginalFilename().isEmpty()) {
+                String fileName = StringUtils.cleanPath(flightApplicationForm.getOtherDoc().getOriginalFilename());
+                fileName = fileName.toLowerCase().replaceAll(" ", "_");
+                fileName = DateUtilities.getDateTime() + "__" + fileName;
+                flightForm.setMedicalDoc(fileName);
+                fileStorageService.storeFile(flightApplicationForm.getOtherDoc(), fileName);
+            } else {
                 flightForm.setOtherDoc("");
             }
 
-            if(!flightApplicationForm.getOfficeCardDoc().getOriginalFilename().isEmpty()){
-                flightForm.setOfficeCardDoc(flightApplicationForm.getOfficeCardDoc().getOriginalFilename());
-                fileStorageService.storeFile(flightApplicationForm.getOfficeCardDoc());
-            }else {
+            if (!flightApplicationForm.getOfficeCardDoc().getOriginalFilename().isEmpty()) {
+                String fileName = StringUtils.cleanPath(flightApplicationForm.getOfficeCardDoc().getOriginalFilename());
+                fileName = fileName.toLowerCase().replaceAll(" ", "_");
+                fileName = DateUtilities.getDateTime() + "__" + fileName;
+                flightForm.setMedicalDoc(fileName);
+                fileStorageService.storeFile(flightApplicationForm.getOfficeCardDoc(), fileName);
+            } else {
                 flightForm.setOfficeCardDoc("");
             }
 
 
-
-
-
             Optional<RolesEntity> role = Optional.ofNullable(roleService.checkRoleName("Admin"));
             //if (role.get() != null) {
-                flightForm.setApplicationForwardedToRole(Math.toIntExact(role.get().getRoleId()));
-                FlightFormEntity savedData = flightFormService.saveUser(flightForm);
+            flightForm.setApplicationForwardedToRole(Math.toIntExact(role.get().getRoleId()));
 
-                request.getSession().setAttribute("successMessage", savedData.getFullName() + "  Successfully Saved. ID is" + savedData.getUserId());
-
-                return "flightapplication";
-            //}
 
         } catch (Exception ex) {
-
-            model.addAttribute("serverError", ex.toString());
-            return "flightapplication";
+            flightForm = null;
         }
 
-    }
+        return flightForm;
 
+    }
 
 
     @RequestMapping(value = "/saveuser", method = RequestMethod.POST)
@@ -295,6 +354,31 @@ public class HomeController {
             model.addAttribute("serverError", ex.toString());
             return "createrole";
         }
+    }
+
+
+    @GetMapping("/downloadFile/{fileName:.+}")
+    public ResponseEntity<Resource> downloadFile(@PathVariable String fileName, HttpServletRequest request) {
+        // Load file as Resource
+        Resource resource = fileStorageService.loadFileAsResource(fileName);
+
+        // Try to determine file's content type
+        String contentType = null;
+        try {
+            contentType = request.getServletContext().getMimeType(resource.getFile().getAbsolutePath());
+        } catch (IOException ex) {
+            logger.info("Could not determine file type.");
+        }
+
+        // Fallback to the default content type if type could not be determined
+        if (contentType == null) {
+            contentType = "application/octet-stream";
+        }
+
+        return ResponseEntity.ok()
+                .contentType(MediaType.parseMediaType(contentType))
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"")
+                .body(resource);
     }
 
 //    @RequestMapping(value = "/showIdCards", method = RequestMethod.GET)

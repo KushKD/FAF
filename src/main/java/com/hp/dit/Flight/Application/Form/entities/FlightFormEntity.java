@@ -1,8 +1,5 @@
 package com.hp.dit.Flight.Application.Form.entities;
 
-import com.hp.dit.Flight.Application.Form.modal.AvailedServices;
-import org.springframework.web.multipart.MultipartFile;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -107,6 +104,27 @@ public class FlightFormEntity implements Serializable {
     @Column(name = "application_status")
     private String applicaionStatus;
 
+    @Column(name = "concerned_authority_comments")
+    private String concernedAuthorityComments;
+
+//    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+//    List<userFormDataPreviousServiceEntity> userFormDataPreviousServiceEntities;
+//
+//    public List<userFormDataPreviousServiceEntity> getUserFormDataPreviousServiceEntities() {
+//        return userFormDataPreviousServiceEntities;
+//    }
+//
+//    public void setUserFormDataPreviousServiceEntities(List<userFormDataPreviousServiceEntity> userFormDataPreviousServiceEntities) {
+//        this.userFormDataPreviousServiceEntities = userFormDataPreviousServiceEntities;
+//    }
+
+    public String getConcernedAuthorityComments() {
+        return concernedAuthorityComments;
+    }
+
+    public void setConcernedAuthorityComments(String concernedAuthorityComments) {
+        this.concernedAuthorityComments = concernedAuthorityComments;
+    }
 
     public Integer getUserId() {
         return userId;
@@ -374,6 +392,7 @@ public class FlightFormEntity implements Serializable {
                 ", createdDate=" + createdDate +
                 ", applicationForwardedToRole=" + applicationForwardedToRole +
                 ", applicaionStatus='" + applicaionStatus + '\'' +
+                ", concernedAuthorityComments='" + concernedAuthorityComments + '\'' +
                 '}';
     }
 }
