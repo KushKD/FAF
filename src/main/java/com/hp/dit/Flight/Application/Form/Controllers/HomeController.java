@@ -1,10 +1,7 @@
 package com.hp.dit.Flight.Application.Form.Controllers;
 
 
-import com.hp.dit.Flight.Application.Form.entities.FlightFormEntity;
-import com.hp.dit.Flight.Application.Form.entities.RolesEntity;
-import com.hp.dit.Flight.Application.Form.entities.UserEntity;
-import com.hp.dit.Flight.Application.Form.entities.userFormDataPreviousServiceEntity;
+import com.hp.dit.Flight.Application.Form.entities.*;
 import com.hp.dit.Flight.Application.Form.form.FlightApplicationForm;
 import com.hp.dit.Flight.Application.Form.form.RegisterUser;
 import com.hp.dit.Flight.Application.Form.form.RolesForm;
@@ -188,12 +185,25 @@ public class HomeController {
     private FlightFormEntity populateFlightForm(FlightApplicationForm flightApplicationForm) {
 
         FlightFormEntity flightForm = new FlightFormEntity();
+        UserType userType = new UserType();
+        RegistrationType reservationType = new RegistrationType();
+        ReasonAvailingFlight reason_availing_flight = new ReasonAvailingFlight();
+        RelationshipPrefix prefix = new RelationshipPrefix();
+        District district = new District();
+        Helipad helipad = new Helipad();
 
         try {
+
             flightForm.setActive(true);
-            flightForm.setCategory(Integer.parseInt(flightApplicationForm.getCategory()));
-            flightForm.setRegistrationType(Integer.parseInt(flightApplicationForm.getRegistrationType()));
-            flightForm.setRelationPrifix(Integer.parseInt(flightApplicationForm.getRelationPrifix()));
+
+            userType.setUserTypeId(Integer.parseInt(flightApplicationForm.getCategory()));
+            flightForm.setCategory(userType);
+
+            reservationType.setReservationTypeId(Integer.parseInt(flightApplicationForm.getRegistrationType()));
+            flightForm.setRegistrationType(reservationType);
+
+            prefix.setRelationshipPrifixId(Integer.parseInt(flightApplicationForm.getRelationPrifix()));
+            flightForm.setRelationPrifix(prefix);
             flightForm.setFullName(flightApplicationForm.getFullName());
             flightForm.setRelationName(flightApplicationForm.getRelationName());
             flightForm.setMobileNumber(Long.parseLong(flightApplicationForm.getMobileNumber()));
@@ -202,10 +212,16 @@ public class HomeController {
             flightForm.setLuggageWeight(Integer.parseInt(flightApplicationForm.getLuggageWeight()));
             flightForm.setCorrespondenceAddress(flightApplicationForm.getCorrespondenceAddress());
             flightForm.setPermanentAddress(flightApplicationForm.getPermanentAddress());
-            flightForm.setReasonAvailingFlightService(Integer.parseInt(flightApplicationForm.getReasonAvailingFlightService()));
+
+            reason_availing_flight.setReasonAvailingFlightId(Integer.parseInt(flightApplicationForm.getReasonAvailingFlightService()));
+            flightForm.setReasonAvailingFlightService(reason_availing_flight);
             flightForm.setTentitiveFlightDate(flightApplicationForm.getTentitiveFlightDate());
-            flightForm.setFlightDistrictToGoFrom(Integer.parseInt(flightApplicationForm.getFlightDistrictToGoFrom()));
-            flightForm.setFlightHelipadNameToGoFrom(Integer.parseInt(flightApplicationForm.getFlightHelipadNameToGoFrom()));
+
+            district.setDistrictId(Integer.parseInt(flightApplicationForm.getFlightDistrictToGoFrom()));
+            flightForm.setFlightDistrictToGoFrom(district);
+
+            helipad.setHelipadId(Integer.parseInt(flightApplicationForm.getFlightHelipadNameToGoFrom()));
+            flightForm.setFlightHelipadNameToGoFrom(helipad);
             flightForm.setAvailedFlightBefore15(flightApplicationForm.getAvailedFlightBefore15());
             flightForm.setEarlierFlightServiceEmergency(flightApplicationForm.getEarlierFlightServiceEmergency());
             flightForm.setDeclerationUser(flightApplicationForm.getDeclerationUser());
@@ -256,7 +272,7 @@ public class HomeController {
 
             Optional<RolesEntity> role = Optional.ofNullable(roleService.checkRoleName("Admin"));
             //if (role.get() != null) {
-            flightForm.setApplicationForwardedToRole(Math.toIntExact(role.get().getRoleId()));
+            flightForm.setApplicationForwardedToRole(role.get());
 
 
         } catch (Exception ex) {

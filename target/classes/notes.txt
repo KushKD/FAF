@@ -216,8 +216,8 @@ CREATE TABLE userFormData (
     active boolean DEFAULT true NOT NULL,
     createddate timestamp with time zone DEFAULT ('now'::text)::date ,
     lastmodifieddate timestamp without time zone,
-    FOREIGN KEY (user_type) REFERENCES mst_category(category_id),
-    FOREIGN KEY (registration_type) REFERENCES mst_typeuser(user_type_id),
+    FOREIGN KEY (user_type) REFERENCES mst_typeuser(user_type_id),
+    FOREIGN KEY (registration_type) REFERENCES mst_reservationtype(reservationtype_id),
     FOREIGN KEY (relation_prifix) REFERENCES mst_relationshipprefix(relationshipprifix_id),
     FOREIGN KEY (reason_availing_flight_service	) REFERENCES mst_reasonavailing_flight(reasonavailing_flight_id),
     FOREIGN KEY (flight_district_to_go_from) REFERENCES mst_district(district_id),
@@ -225,19 +225,22 @@ CREATE TABLE userFormData (
     FOREIGN KEY (application_forwarded_to_role_id) REFERENCES roles(role_id)
 );
 
+ALTER TABLE  userFormData ADD COLUMN concerned_authority_comments character varying (255);
 
 
--- Vehicle User photo Byte
-CREATE TABLE mst_vehicle_owner_documents (
-    doc_id serial PRIMARY KEY  NOT NULL,
-    vehicle_owner_id INTEGER NOT NULL,
-    vehicle_image_owner bytea NOT NULL,
-    uploaded_by INTEGER NOT NULL,
+-- userFormData_previousService
+CREATE TABLE userFormData_previousService (
+    id serial PRIMARY KEY  NOT NULL,
+    user_id INTEGER NOT NULL,
+    date character varying(100) ,
+    district_id INTEGER NOT NULL,
+    helipad_id INTEGER NOT NULL,
     active boolean DEFAULT true NOT NULL,
     createddate timestamp without time zone DEFAULT ('now'::text)::date NOT NULL,
     lastmodifieddate timestamp without time zone,
-    FOREIGN KEY (vehicle_owner_id) REFERENCES mst_vehicle_owner_entries(vehicle_owner_id),
-    FOREIGN KEY (uploaded_by) REFERENCES users(user_id)
+    FOREIGN KEY (user_id) REFERENCES userformdata(user_id),
+    FOREIGN KEY (district_id) REFERENCES mst_district(district_id),
+    FOREIGN KEY (helipad_id) REFERENCES mst_helipad(helipad_id)
 );
 
 

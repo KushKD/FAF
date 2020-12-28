@@ -32,11 +32,15 @@
 <section>
 <form:form method="POST" onsubmit="return submit_form()" modelAttribute="flightApplicationForm" action="${pageContext.request.contextPath}/saveDetails" enctype="multipart/form-data" class="form-signin">
 <c:if test="${not empty successMessage}">
-         <div id="serverError" class="successMessage">${successMessage}</div>
+         <div class="row">
+         <div id="serverError" style="color:#77332F; display: block ;" class="text-center successMessage col-lg-12 breadcrumb">${successMessage}</div>
+         </div>
       </c:if>
       <br>
       <c:if test="${not empty serverError}">
-         <div id="serverError" class="plErroMessage">${serverError}</div>
+         <div class="row">
+         <div id="serverError" style="color:#77332F; display: block ;" class="plErroMessage text-center  col-lg-12 breadcrumb">${serverError}</div>
+         </div>
       </c:if>
    <div class="container" style="padding-top:10px;" >
       <h2 class="form-signin-heading">

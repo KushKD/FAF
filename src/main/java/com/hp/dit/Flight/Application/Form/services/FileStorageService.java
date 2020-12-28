@@ -3,6 +3,7 @@ package com.hp.dit.Flight.Application.Form.services;
 import com.hp.dit.Flight.Application.Form.exception.FileStorageException;
 import com.hp.dit.Flight.Application.Form.exception.MyFileNotFoundException;
 import com.hp.dit.Flight.Application.Form.property.FileStorageProperties;
+import com.hp.dit.Flight.Application.Form.utilities.DateUtilities;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -40,12 +41,18 @@ public class FileStorageService {
     public String storeFile(MultipartFile file) {
         // Normalize file name
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+        fileName = fileName.toLowerCase().replaceAll(" ", "_");
+        fileName = DateUtilities.getDateTime()+"__"+fileName;
+
+
+
 
         try {
             // Check if the file's name contains invalid characters
             if(fileName.contains("..")) {
                 throw new FileStorageException("Sorry! Filename contains invalid path sequence " + fileName);
             }
+
 
             // Copy file to the target location (Replacing existing file with the same name)
             Path targetLocation = this.fileStorageLocation.resolve(fileName);
@@ -54,6 +61,26 @@ public class FileStorageService {
             return fileName;
         } catch (IOException ex) {
             throw new FileStorageException("Could not store file " + fileName + ". Please try again!", ex);
+        }
+    }
+
+
+    public String storeFile(MultipartFile file,String filename) {
+
+        try {
+            // Check if the file's name contains invalid characters
+            if(filename.contains("..")) {
+                throw new FileStorageException("Sorry! Filename contains invalid path sequence " + filename);
+            }
+
+
+            // Copy file to the target location (Replacing existing file with the same name)
+            Path targetLocation = this.fileStorageLocation.resolve(filename);
+            Files.copy(file.getInputStream(), targetLocation, StandardCopyOption.REPLACE_EXISTING);
+
+            return filename;
+        } catch (IOException ex) {
+            throw new FileStorageException("Could not store file " + filename + ". Please try again!", ex);
         }
     }
 

@@ -1,5 +1,8 @@
 package com.hp.dit.Flight.Application.Form.entities;
 
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -15,14 +18,18 @@ public class FlightFormEntity implements Serializable {
     @Column(name = "user_id")
     private Integer userId;
 
-    @Column(name = "user_type")
-    private Integer category;
 
-    @Column(name = "registration_type")
-    private Integer registrationType;
+    @OneToOne
+    @JoinColumn(name="user_type_id")
+    private UserType category;
 
-    @Column(name = "relation_prifix")
-    private Integer relationPrifix;
+    @OneToOne
+    @JoinColumn(name="reservationtype_id")
+    private RegistrationType registrationType;
+
+    @OneToOne
+    @JoinColumn(name="relationshipprifix_id")
+    private RelationshipPrefix relationPrifix;
 
     @Column(name = "full_name")
     private String fullName;
@@ -48,8 +55,9 @@ public class FlightFormEntity implements Serializable {
     @Column(name = "c_address")
     private String correspondenceAddress;
 
-    @Column(name = "reason_availing_flight_service")
-    private Integer reasonAvailingFlightService;
+    @OneToOne
+    @JoinColumn(name = "reasonavailing_flight_id")
+    private ReasonAvailingFlight reasonAvailingFlightService;
 
     @Column(name = "comments")
     public String comments;
@@ -67,11 +75,13 @@ public class FlightFormEntity implements Serializable {
     private String declerationUser;
 
 
-    @Column(name = "flight_district_to_go_from")
-    private Integer flightDistrictToGoFrom;
+    @OneToOne
+    @JoinColumn(name="district_id")
+    private District flightDistrictToGoFrom;
 
-    @Column(name = "flight_helipad_name_to_go_from")
-    private Integer flightHelipadNameToGoFrom;
+    @OneToOne
+    @JoinColumn(name="helipad_id")
+    private Helipad flightHelipadNameToGoFrom;
 
 
     @Column(name = "earlierservice")
@@ -96,8 +106,10 @@ public class FlightFormEntity implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private java.util.Date createdDate;
 
-    @Column(name = "application_forwarded_to_role_id")
-    private Integer applicationForwardedToRole;
+
+    @OneToOne
+    @JoinColumn(name="role_id")
+    private RolesEntity applicationForwardedToRole;
 
 
 
@@ -107,16 +119,17 @@ public class FlightFormEntity implements Serializable {
     @Column(name = "concerned_authority_comments")
     private String concernedAuthorityComments;
 
-//    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-//    List<userFormDataPreviousServiceEntity> userFormDataPreviousServiceEntities;
-//
-//    public List<userFormDataPreviousServiceEntity> getUserFormDataPreviousServiceEntities() {
-//        return userFormDataPreviousServiceEntities;
-//    }
-//
-//    public void setUserFormDataPreviousServiceEntities(List<userFormDataPreviousServiceEntity> userFormDataPreviousServiceEntities) {
-//        this.userFormDataPreviousServiceEntities = userFormDataPreviousServiceEntities;
-//    }
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY,targetEntity = userFormDataPreviousServiceEntity.class)
+    @JoinColumn(name="user_id")
+    List<userFormDataPreviousServiceEntity> userFormDataPreviousServiceEntities;
+
+    public List<userFormDataPreviousServiceEntity> getUserFormDataPreviousServiceEntities() {
+        return userFormDataPreviousServiceEntities;
+    }
+
+    public void setUserFormDataPreviousServiceEntities(List<userFormDataPreviousServiceEntity> userFormDataPreviousServiceEntities) {
+        this.userFormDataPreviousServiceEntities = userFormDataPreviousServiceEntities;
+    }
 
     public String getConcernedAuthorityComments() {
         return concernedAuthorityComments;
@@ -134,27 +147,27 @@ public class FlightFormEntity implements Serializable {
         this.userId = userId;
     }
 
-    public Integer getCategory() {
+    public UserType getCategory() {
         return category;
     }
 
-    public void setCategory(Integer category) {
+    public void setCategory(UserType category) {
         this.category = category;
     }
 
-    public Integer getRegistrationType() {
+    public RegistrationType getRegistrationType() {
         return registrationType;
     }
 
-    public void setRegistrationType(Integer registrationType) {
+    public void setRegistrationType(RegistrationType registrationType) {
         this.registrationType = registrationType;
     }
 
-    public Integer getRelationPrifix() {
+    public RelationshipPrefix getRelationPrifix() {
         return relationPrifix;
     }
 
-    public void setRelationPrifix(Integer relationPrifix) {
+    public void setRelationPrifix(RelationshipPrefix relationPrifix) {
         this.relationPrifix = relationPrifix;
     }
 
@@ -222,11 +235,11 @@ public class FlightFormEntity implements Serializable {
         this.correspondenceAddress = correspondenceAddress;
     }
 
-    public Integer getReasonAvailingFlightService() {
+    public ReasonAvailingFlight getReasonAvailingFlightService() {
         return reasonAvailingFlightService;
     }
 
-    public void setReasonAvailingFlightService(Integer reasonAvailingFlightService) {
+    public void setReasonAvailingFlightService(ReasonAvailingFlight reasonAvailingFlightService) {
         this.reasonAvailingFlightService = reasonAvailingFlightService;
     }
 
@@ -270,21 +283,6 @@ public class FlightFormEntity implements Serializable {
         this.declerationUser = declerationUser;
     }
 
-    public Integer getFlightDistrictToGoFrom() {
-        return flightDistrictToGoFrom;
-    }
-
-    public void setFlightDistrictToGoFrom(Integer flightDistrictToGoFrom) {
-        this.flightDistrictToGoFrom = flightDistrictToGoFrom;
-    }
-
-    public Integer getFlightHelipadNameToGoFrom() {
-        return flightHelipadNameToGoFrom;
-    }
-
-    public void setFlightHelipadNameToGoFrom(Integer flightHelipadNameToGoFrom) {
-        this.flightHelipadNameToGoFrom = flightHelipadNameToGoFrom;
-    }
 
     public String getEarlierService() {
         return earlierService;
@@ -342,22 +340,36 @@ public class FlightFormEntity implements Serializable {
         this.createdDate = createdDate;
     }
 
-    public Integer getApplicationForwardedToRole() {
-        return applicationForwardedToRole;
-    }
-
-    public void setApplicationForwardedToRole(Integer applicationForwardedToRole) {
-        this.applicationForwardedToRole = applicationForwardedToRole;
-    }
-
-
-
     public String getApplicaionStatus() {
         return applicaionStatus;
     }
 
     public void setApplicaionStatus(String applicaionStatus) {
         this.applicaionStatus = applicaionStatus;
+    }
+
+    public District getFlightDistrictToGoFrom() {
+        return flightDistrictToGoFrom;
+    }
+
+    public void setFlightDistrictToGoFrom(District flightDistrictToGoFrom) {
+        this.flightDistrictToGoFrom = flightDistrictToGoFrom;
+    }
+
+    public Helipad getFlightHelipadNameToGoFrom() {
+        return flightHelipadNameToGoFrom;
+    }
+
+    public void setFlightHelipadNameToGoFrom(Helipad flightHelipadNameToGoFrom) {
+        this.flightHelipadNameToGoFrom = flightHelipadNameToGoFrom;
+    }
+
+    public RolesEntity getApplicationForwardedToRole() {
+        return applicationForwardedToRole;
+    }
+
+    public void setApplicationForwardedToRole(RolesEntity applicationForwardedToRole) {
+        this.applicationForwardedToRole = applicationForwardedToRole;
     }
 
     @Override
@@ -393,6 +405,7 @@ public class FlightFormEntity implements Serializable {
                 ", applicationForwardedToRole=" + applicationForwardedToRole +
                 ", applicaionStatus='" + applicaionStatus + '\'' +
                 ", concernedAuthorityComments='" + concernedAuthorityComments + '\'' +
+                ", userFormDataPreviousServiceEntities=" + userFormDataPreviousServiceEntities +
                 '}';
     }
 }

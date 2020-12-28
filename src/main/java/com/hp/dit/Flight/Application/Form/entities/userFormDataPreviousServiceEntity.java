@@ -36,18 +36,20 @@ public class userFormDataPreviousServiceEntity implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private java.util.Date createdDate;
 
-//    @ManyToOne(optional = false,targetEntity = FlightFormEntity.class,  cascade = CascadeType.ALL)
-//    @JoinColumn(name = "user_id", insertable = true)
+//    @ManyToOne(targetEntity = FlightFormEntity.class,  cascade = CascadeType.ALL)
+//    @JoinColumn(name = "user_id", insertable = false, updatable = false)
 //    private FlightFormEntity userformdata;
-
+//
+//
+//
 //    public FlightFormEntity getUserformdata() {
 //        return userformdata;
 //    }
 //
 //    public void setUserformdata(FlightFormEntity userformdata) {
 //        this.userformdata = userformdata;
-
-
+//
+//
 //    }
 
 

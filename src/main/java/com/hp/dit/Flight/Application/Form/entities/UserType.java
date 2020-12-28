@@ -11,6 +11,7 @@ public class UserType implements Serializable {
     @Id
     @GeneratedValue(generator = "mst_typeuser_user_type_id_seq", strategy = GenerationType.AUTO)
     @SequenceGenerator(name = "mst_typeuser_user_type_id_seq", sequenceName = "public.mst_typeuser_user_type_id_seq", initialValue = 1, allocationSize = 1)
+
     @Column(name="user_type_id")
     private Integer userTypeId;
 

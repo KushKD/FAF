@@ -525,6 +525,7 @@
                   <li><a href="https://cmsankalp.hp.gov.in/" target="_blank">Grievance</a></li>
                   <li><a href="#">Gallery</a></li>
                   <li><a href="${pageContext.request.contextPath}/applicationform">Flight Application Form</a></li>
+                  <li><a href="${pageContext.request.contextPath}/checkStatus">Check Application Status</a></li>
                </ul>
             </div>
             <div class="topnav">
@@ -536,6 +537,7 @@
                   <li><a href="https://cmsankalp.hp.gov.in/" target="_blank">Grievance</a></li>
                   <li><a href="#">Gallery</a></li>
                   <li><a href="${pageContext.request.contextPath}/applicationform">Flight Application Form</a></li>
+                  <li><a href="${pageContext.request.contextPath}/checkStatus">Check Application Status</a></li>
                </div>
                <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
                <a href="javascript:void(0);" class="icon" onclick="myFunction()">
