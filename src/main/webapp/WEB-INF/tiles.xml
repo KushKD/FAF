@@ -62,8 +62,8 @@
         <put-attribute name="content" value="/WEB-INF/jsp/rolesmaster.jsp" />
     </definition>
 
-    <definition name="showidcards" extends="baselayoutdashboard">
-        <put-attribute name="content" value="/WEB-INF/jsp/showidcardlist.jsp" />
+    <definition name="applications" extends="baselayoutdashboard">
+        <put-attribute name="content" value="/WEB-INF/jsp/applications.jsp" />
     </definition>
 
 
@@ -74,6 +74,8 @@
     <definition name="verifylogin" extends="baselayoutdashboardnonav">
         <put-attribute name="content" value="/WEB-INF/jsp/verifylogin.jsp" />
     </definition>
+
+
 
 
 

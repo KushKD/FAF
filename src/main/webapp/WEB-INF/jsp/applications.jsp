@@ -6,6 +6,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/plugins/bootstrap-datepicker.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/plugins/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/plugins/dataTables.bootstrap.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/flight_application_form.js"></script>
 <main class="app-content">
 	<!-- Modal -->
 	<div class="modal fade" id="empModal" role="dialog">
@@ -24,8 +25,8 @@
 		</div>
 	</div>
 	<!-- Modal Pop Up Closed -->
-	<form:form method="POST" id="form" modelAttribute="showIdCardList" action="${pageContext.request.contextPath}/getIdCards" class="form-signin">
-		<h2 class="form-signin-heading">Generate ID Card List</h2>
+	<form:form method="POST" id="form" modelAttribute="viewApplications" action="${pageContext.request.contextPath}/filterApplications" class="form-signin">
+		<h2 class="form-signin-heading">View Applications</h2>
 		<c:if test="${not empty successMessage}">
 			<div id="serverError" class="successMessage">${successMessage}</div>
 		</c:if>
@@ -34,25 +35,25 @@
 				<div id="serverError" class="plErroMessage">${serverError}</div>
 			</c:if>
 			<div class="row">
-				<spring:bind path="district_id">
+				<spring:bind path="location">
 					<div class="col-md-4 form-group  ${status.error ? 'has-error' : ''}">
-						<form:label path="district_id" for="roles">District</form:label>
-						<form:select path="district_id" name="district_id" class="form-control" id="districts" onchange="getBarriers(this.value)"></form:select>
-						<form:errors  path="district_id"></form:errors>
+						<form:label path="location" for="roles">Location</form:label>
+						<form:select path="location" name="location" class="form-control" id="district" onchange="getHelipadList(this.value)"></form:select>
+						<form:errors  path="location"></form:errors>
 					</div>
 				</spring:bind>
-				<spring:bind path="barrier_id">
+				<spring:bind path="helipadName">
 					<div class="col-md-4 form-group  ${status.error ? 'has-error' : ''}">
-						<form:label path="barrier_id" for="roles"> Barrier</form:label>
-						<form:select path="barrier_id" name="barrier_id" class="form-control" id="barriers" ></form:select>
-						<form:errors  path="barrier_id"></form:errors>
+						<form:label path="helipadName" for="roles"> Helipad Name</form:label>
+						<form:select path="helipadName" name="helipadName" class="form-control" id="helipad" ></form:select>
+						<form:errors  path="helipadName"></form:errors>
 					</div>
 				</spring:bind>
-				<spring:bind path="date">
+				<spring:bind path="Date">
 					<div class="col-md-4 form-group  ${status.error ? 'has-error' : ''}">
-						<form:label path="date" >Select Date</form:label>
-						<form:input class="form-control" path="date" id="demoDate" type="text" placeholder="Select Date" />
-						<form:errors  path="date"></form:errors>
+						<form:label path="Date" >Select Date</form:label>
+						<form:input class="form-control" path="Date" id="demoDate" type="text" placeholder="Select Date" />
+						<form:errors  path="Date"></form:errors>
 					</div>
 				</spring:bind>
 				<button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
@@ -60,13 +61,13 @@
 			</div>
 		</form:form>
 	</div>
-	<c:if test="${not empty barrierid}">
-		<input class="form-control col-md-6"  id="bid" type="hidden" value="${barrierid}"  />
+	<c:if test="${not empty helipadName}">
+		<input class="form-control col-md-6"  id="hid" type="hidden" value="${helipadName}"  />
 	</c:if>
-	<c:if test="${not empty districtid}">
-		<input class="form-control col-md-6"  id="did" type="hidden" value="${districtid}"  />
+	<c:if test="${not empty location}">
+		<input class="form-control col-md-6"  id="lid" type="hidden" value="${location}"  />
 	</c:if>
-	<c:if test="${not empty vehicledata}">
+	<c:if test="${not empty applications}">
 		<div class="row">
 			<div class="col-md-12">
 				<div class="tile">
@@ -76,32 +77,27 @@
 								<thead>
 									<tr>
 										<th>S.No</th>
-										<th>Owner Name</th>
-										<th>Owner Mobile</th>
-										<th>ID Card Number</th>
-										<th>Valid From</th>
-										<th>Valid Upto</th>
-										<th>Generate Id Card</th>
+										<th>Full Name</th>
+										<th>Mobile Number</th>
+										<th>Payment Status</th>
+										<th>Application Status</th>
 										<th>View Details</th>
 
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach items="${vehicledata}" var="vehicledata" varStatus="loopCounter">
+									<c:forEach items="${applications}" var="application" varStatus="loopCounter">
 										<tr>
 											<td>
 												<c:out value="${loopCounter.count}"/>
 											</td>
-											<td>${vehicledata.vehicleOwnerName}</td>
-											<td>${vehicledata.vehicleOwnerMobileNumber}</td>
-											<td>${vehicledata.idCardNumber}</td>
-											<td>${vehicledata.isValidFrom}</td>
-											<td>${vehicledata.isValidUpto}</td>
+											<td>${application.fullName}</td>
+											<td>${application.mobileNumber}</td>
+											<td>--</td>
+											<td>${application.applicaionStatus}</td>
+
 											<td>
-												<a class="button button-warning" href="${pageContext.request.contextPath}/generateId/${vehicledata.vehicleOwnerId}" target="blank_" >Generate ID</a>
-											</td>
-											<td>
-												<a href="#" class="button button-success" onclick="getData('${vehicledata.vehicleOwnerId}')";>View Details</a>
+												<a href="#" class="button button-success" onclick="getData('${application.userId}')";>View Details</a>
 											</td>
 
 										</tr>
@@ -117,14 +113,14 @@
 		<script type="text/javascript">
 
   function getBarriersOnLoad(){
-  if(document.getElementById('did') != null && document.getElementById('did').value  != null ){
-          loadBarriers(document.getElementById('did').value);
+  if(document.getElementById('lid') != null && document.getElementById('lid').value  != null ){
+          loadhelipads(document.getElementById('lid').value);
           }
       }
 
-        function getBarriers(data){
+        function getHelipadList(data){
 
-                loadBarriers(data);
+                loadhelipads(data);
 
             }
 
@@ -135,7 +131,7 @@
         	todayHighlight: true
         });
 
-      getdistricts();
+      getLocations();
       getBarriersOnLoad();
 
   });
@@ -144,24 +140,5 @@
 <script type="text/javascript">
    $('#sampleTable').DataTable();
 
-/*
-
-   $( document ).ajaxComplete(function() {
-      var did =  document.getElementById("did").value;
-        if(did != undefined || did != null){
-           alert(did);
-            $('#districts select').first().find(':selected').removeAttr('selected');
-             alert(did  + 2);
-
-             $('#districts > option').each(function() {
-                 alert(this.text + ' ' + this.value);
-                //  alert($(this).val());
-             });
-
-}
-                      alert(did  + 3);
-   });
-
-*/
 
    </script>

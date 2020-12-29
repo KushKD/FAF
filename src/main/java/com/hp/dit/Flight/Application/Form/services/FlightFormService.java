@@ -5,6 +5,8 @@ import com.hp.dit.Flight.Application.Form.repositories.FlightFormRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class FlightFormService {
 
@@ -23,5 +25,9 @@ public class FlightFormService {
     public FlightFormEntity saveUser(FlightFormEntity entity) {
         return flightFormRepository.save(entity);
 
+    }
+
+    public List<FlightFormEntity> getDataViaLocationBarrier(int location, int helipad, String date) {
+        return  flightFormRepository.getDataViaLocationBarrier(location,helipad,date);
     }
 }

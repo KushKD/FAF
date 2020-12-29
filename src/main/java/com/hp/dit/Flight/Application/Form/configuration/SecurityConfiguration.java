@@ -85,10 +85,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/verifyotp/**").permitAll()
                 .antMatchers("/downloadFile/**").permitAll()
                 .antMatchers("/resources/**").permitAll()
-                .antMatchers("/admin/**").hasAnyRole("ADMIN")
-                .antMatchers("/createuser/**").hasAnyRole("ADMIN")
-                .antMatchers("/saveuser/").hasAnyRole("ADMIN")
-                .antMatchers("/createrole/").hasAnyRole("ADMIN")
+                .antMatchers("/admin/**").hasAnyRole("Admin")
+                .antMatchers("/createuser/**").hasAnyRole("Admin")
+                .antMatchers("/saveuser/").hasAnyRole("Admin")
+                .antMatchers("/createrole/").hasAnyRole("Admin")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -98,7 +98,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login")
                 .clearAuthentication(true).invalidateHttpSession(true).deleteCookies("JSESSIONID")
-                .and().sessionManagement().maximumSessions(1);
+                .and().sessionManagement().maximumSessions(1).and().invalidSessionUrl("/login");
 
 
     }

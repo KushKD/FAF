@@ -29,8 +29,8 @@ window.addEventListener('popstate', function(event) {
         <div class="col-md-6 col-lg-3">
           <div class="widget-small primary coloured-icon"><i class="icon fa fa-id-badge fa-3x"></i>
             <div class="info">
-            <a href="${pageContext.request.contextPath}/showIdCards" style=" text-decoration: none !important;">
-                          <h4>View ID Card List</h4></a>
+            <a href="${pageContext.request.contextPath}/applications" style=" text-decoration: none !important;">
+                          <h4>View Applications</h4></a>
 
             </div>
           </div>

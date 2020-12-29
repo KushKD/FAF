@@ -113,6 +113,33 @@ function getFlightDistrictToGoFrom() {
     });
 }
 
+function getLocations() {
+    $.ajax({
+        type: "GET",
+        url: formURL + "/ajax/flightDistrictToGoFrom",
+        success: function(data) {
+            console.log(data.RESPONSE)
+            var selectRole = $('#district'); // the state select element
+            selectRole.find('option').remove();
+           selectRole.append("<option value=" + 0 + " >" + "---Select Location---" + "</option>")
+            for (i = 0; i < data.RESPONSE.length; i++) {
+            if(document.getElementById('lid') != null && document.getElementById('lid').value == data.RESPONSE[i].districtId ){
+                selectRole.append("<option selected value=" + data.RESPONSE[i].districtId + " >" + data.RESPONSE[i].districtName + "</option>")
+            }else {
+                selectRole.append("<option value=" + data.RESPONSE[i].districtId + " >" + data.RESPONSE[i].districtName + "</option>")
+            }
+            }
+
+        },
+        error: function(data) {
+            console.log(data)
+        }
+
+    });
+
+
+}
+
 //flightHelipadNameToGoFrom
 function getFlightHelipadNameToGoFrom(id) {
     $.ajax({
@@ -132,6 +159,38 @@ function getFlightHelipadNameToGoFrom(id) {
                 } else {
                     selectRole.append("<option value=" + data.RESPONSE[i].helipadId + " >" + data.RESPONSE[i].helipadName + "</option>")
                 }
+
+            };
+
+        },
+        error: function(data) {
+            console.log(data)
+        }
+
+    });
+
+
+}
+
+//loadhelipads
+function loadhelipads(id) {
+    $.ajax({
+        type: "GET",
+        url: formURL + "/ajax/flightHelipadNameToGoFrom",
+        data: {
+            "id": id
+        },
+        success: function(data) {
+            console.log(data.RESPONSE)
+            var selectRole = $('#helipad'); // the state select element
+            selectRole.find('option').remove();
+            selectRole.append("<option value=" + 0 + " >" + "---Select Helipad ---" + "</option>")
+            for (i = 0; i < data.RESPONSE.length; i++) {
+            if(document.getElementById('hid') != null && document.getElementById('hid').value == data.RESPONSE[i].helipadId ){
+                            selectRole.append("<option selected value=" + data.RESPONSE[i].helipadId + " >" + data.RESPONSE[i].helipadName + "</option>")
+                        }else {
+                            selectRole.append("<option value=" + data.RESPONSE[i].helipadId + " >" + data.RESPONSE[i].helipadName + "</option>")
+                        }
 
             };
 

@@ -5,6 +5,7 @@ import com.hp.dit.Flight.Application.Form.entities.*;
 import com.hp.dit.Flight.Application.Form.form.FlightApplicationForm;
 import com.hp.dit.Flight.Application.Form.form.RegisterUser;
 import com.hp.dit.Flight.Application.Form.form.RolesForm;
+import com.hp.dit.Flight.Application.Form.form.ViewApplications;
 import com.hp.dit.Flight.Application.Form.modal.AvailedServices;
 import com.hp.dit.Flight.Application.Form.services.*;
 import com.hp.dit.Flight.Application.Form.utilities.Constants;
@@ -12,6 +13,7 @@ import com.hp.dit.Flight.Application.Form.utilities.DateUtilities;
 import com.hp.dit.Flight.Application.Form.validators.FlightFormValidator;
 import com.hp.dit.Flight.Application.Form.validators.RoleValidator;
 import com.hp.dit.Flight.Application.Form.validators.UserValidator;
+import com.hp.dit.Flight.Application.Form.validators.ViewApplicationsValidator;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.pdf.qrcode.WriterException;
 import com.sun.tools.javac.comp.Todo;
@@ -46,6 +48,7 @@ import javax.transaction.Transactional;
 //import javax.transaction.Transactional;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.util.*;
 
 @Controller
@@ -75,6 +78,9 @@ public class HomeController {
 
     @Autowired
     private RoleService roleService;
+
+    @Autowired
+    private ViewApplicationsValidator viewApplicationsValidator;
 
 
     private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
@@ -228,6 +234,9 @@ public class HomeController {
             flightForm.setEarlierService(flightApplicationForm.getEarlierService());
             flightForm.setComments(flightApplicationForm.getComments());
             flightForm.setApplicaionStatus(Constants.PENDING);
+            Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+            Date date = new Date(timestamp.getTime());
+            flightForm.setCreatedDate(date);
 
             if (!flightApplicationForm.getAadhaar_doc().getOriginalFilename().isEmpty()) {
                 String fileName = StringUtils.cleanPath(flightApplicationForm.getAadhaar_doc().getOriginalFilename());
@@ -397,11 +406,11 @@ public class HomeController {
                 .body(resource);
     }
 
-//    @RequestMapping(value = "/showIdCards", method = RequestMethod.GET)
-//    public String showIdCardList(Model model) {
-//        model.addAttribute("showIdCardList", new showIdCardList());
-//        return "showidcards";
-//    }
+    @RequestMapping(value = "/applications", method = RequestMethod.GET)
+    public String showIdCardList(Model model) {
+        model.addAttribute("viewApplications", new ViewApplications());
+        return "applications";
+    }
 //
 //    @RequestMapping(value = "/searchId", method = RequestMethod.GET)
 //    public String searchIdCard(Model model) {
@@ -443,45 +452,47 @@ public class HomeController {
 //    }
 
 
-//    @RequestMapping(value = "/getIdCards", method = RequestMethod.POST)
-//    public String getIdCardList(@ModelAttribute("showIdCardList") showIdCardList idcard, BindingResult bindingResult, Model model, HttpServletRequest request) {
-//        generateIdCardValidator.validate(idcard, bindingResult);
-//
-//        if (bindingResult.hasErrors()) {
-//            return "showidcards";
-//        }
-//        try {
-//            List<VehicleOwnerEntries> data = vehicleOwnerEntriesService.getDataViaDistrictBarrier(Integer.parseInt(idcard.getDistrict_id()),
-//                    Integer.parseInt(idcard.getBarrier_id()), idcard.getDate().trim());
-//            if (!data.isEmpty()) {
-//                request.getSession().setAttribute("successMessage", "Data found Successfully");
-//                model.addAttribute("vehicledata", data);
-//                model.addAttribute("barrierid", idcard.getBarrier_id());
-//                model.addAttribute("districtid", idcard.getDistrict_id());
-//                idcard.setDate(idcard.getDate());
-//                idcard.setBarrier_id(idcard.getBarrier_id());
-//                idcard.setDistrict_id(idcard.getDistrict_id());
-//                return "showidcards";
-//            } else {
-//                model.addAttribute("barrierid", idcard.getBarrier_id());
-//                model.addAttribute("districtid", idcard.getDistrict_id());
-//                idcard.setDate(idcard.getDate());
-//                idcard.setBarrier_id(idcard.getBarrier_id());
-//                idcard.setDistrict_id(idcard.getDistrict_id());
-//                model.addAttribute("serverError", "No Data available for the current District and Barrier");
-//                return "showidcards";
-//            }
-//
-//
-//        } catch (Exception ex) {
-//            idcard.setDate("");
-//            idcard.setBarrier_id("0");
-//            idcard.setDistrict_id("0");
-//            model.addAttribute("serverError", ex.toString());
-//            return "showidcards";
-//        }
-//
-//    }
+    @RequestMapping(value = "/filterApplications", method = RequestMethod.POST)
+    public String getIdCardList(@ModelAttribute("viewApplications") ViewApplications applications, BindingResult bindingResult, Model model, HttpServletRequest request) {
+        viewApplicationsValidator.validate(applications, bindingResult);
+
+        if (bindingResult.hasErrors()) {
+            return "applications";
+        }
+        try {
+            List<FlightFormEntity> data = flightFormService.getDataViaLocationBarrier(Integer.parseInt(applications.getLocation()),
+                    Integer.parseInt(applications.getHelipadName()), applications.getDate().trim());
+            if (!data.isEmpty()) {
+                request.getSession().setAttribute("successMessage", "Data found Successfully");
+                model.addAttribute("applications", data);
+                model.addAttribute("helipadName", applications.getHelipadName());
+                model.addAttribute("location", applications.getLocation());
+                applications.setDate(applications.getDate());
+                applications.setHelipadName(applications.getHelipadName());
+                applications.setLocation(applications.getLocation());
+                return "applications";
+            } else {
+                model.addAttribute("helipadName", applications.getHelipadName());
+                model.addAttribute("location", applications.getLocation());
+                applications.setDate(applications.getDate());
+                applications.setHelipadName(applications.getHelipadName());
+                applications.setLocation(applications.getLocation());
+                model.addAttribute("serverError", "No Data available for the current District and Barrier");
+                return "applications";
+            }
+
+
+        } catch (Exception ex) {
+            applications.setDate("");
+            applications.setHelipadName("");
+            applications.setLocation("");
+            model.addAttribute("serverError", ex.toString());
+            return "applications";
+        }
+
+
+
+    }
 
 
 //    @RequestMapping(value = "/generateId/{id}", method = RequestMethod.GET,
