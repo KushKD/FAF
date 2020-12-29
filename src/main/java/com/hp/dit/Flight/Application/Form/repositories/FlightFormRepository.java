@@ -10,6 +10,6 @@ import java.util.List;
 @Repository
 public interface FlightFormRepository extends CrudRepository<FlightFormEntity,Integer> {
 
-    @Query(value = "select * from public.userformdata where  district_id=:location AND helipad_id=:helipad AND active = true AND  to_char(createddate, 'DD/MM/YYYY') = :selectedDate order by createddate desc", nativeQuery = true)
-    List<FlightFormEntity> getDataViaLocationBarrier(int location, int helipad, String selectedDate);
+    @Query(value = "select * from public.userformdata where  district_id=:location AND helipad_id=:helipad AND active = true AND application_status= :status  AND  to_char(createddate, 'DD/MM/YYYY') = :selectedDate order by createddate desc", nativeQuery = true)
+    List<FlightFormEntity> fetchApplications(int location, int helipad, String selectedDate, String status);
 }

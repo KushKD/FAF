@@ -27,7 +27,7 @@ public class FlightFormService {
 
     }
 
-    public List<FlightFormEntity> getDataViaLocationBarrier(int location, int helipad, String date) {
-        return  flightFormRepository.getDataViaLocationBarrier(location,helipad,date);
+    public List<FlightFormEntity> getApplications(int location, int helipad, String date, String status) {
+        return  flightFormRepository.fetchApplications(location,helipad,date, status);
     }
 }

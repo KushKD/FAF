@@ -156,16 +156,23 @@ public class HomeController {
                     //Check if there is value or not inside the list
                     List<userFormDataPreviousServiceEntity> availedServices = new ArrayList<>();
                     userFormDataPreviousServiceEntity datax = null;
+                    District district = null;
+                    Helipad helipad = null;
                     for (int i = 0; i < flightApplicationForm.getAvailedServiceListForm().size(); i++) {
                         datax = new userFormDataPreviousServiceEntity();
+                        district = new District();
+                        helipad = new Helipad();
+
                         if (!flightApplicationForm.getAvailedServiceListForm().get(i).getDateTravelled().equalsIgnoreCase("")
                                 && flightApplicationForm.getAvailedServiceListForm().get(i).getDateTravelled() != null
                                 && !flightApplicationForm.getAvailedServiceListForm().get(i).getHelipadDistrict().equalsIgnoreCase("0")
                                 && !flightApplicationForm.getAvailedServiceListForm().get(i).getHelipadName().equalsIgnoreCase("0")) {
 
                             datax.setDate(flightApplicationForm.getAvailedServiceListForm().get(i).getDateTravelled());
-                            datax.setDistrictId(Integer.parseInt(flightApplicationForm.getAvailedServiceListForm().get(i).getHelipadDistrict()));
-                            datax.setHelipadId(Integer.parseInt(flightApplicationForm.getAvailedServiceListForm().get(i).getHelipadName()));
+                            district.setDistrictId(Integer.parseInt(flightApplicationForm.getAvailedServiceListForm().get(i).getHelipadDistrict()));
+                            datax.setDistrictId(district);
+                            helipad.setHelipadId(Integer.parseInt(flightApplicationForm.getAvailedServiceListForm().get(i).getHelipadName()));
+                            datax.setHelipadId(helipad);
                             datax.setUserId(savedData.getUserId());
                             datax.setActive(true);
                             availedServices.add(datax);
@@ -460,8 +467,8 @@ public class HomeController {
             return "applications";
         }
         try {
-            List<FlightFormEntity> data = flightFormService.getDataViaLocationBarrier(Integer.parseInt(applications.getLocation()),
-                    Integer.parseInt(applications.getHelipadName()), applications.getDate().trim());
+            List<FlightFormEntity> data = flightFormService.getApplications(Integer.parseInt(applications.getLocation()),
+                    Integer.parseInt(applications.getHelipadName()), applications.getDate().trim(),Constants.PENDING);
             if (!data.isEmpty()) {
                 request.getSession().setAttribute("successMessage", "Data found Successfully");
                 model.addAttribute("applications", data);

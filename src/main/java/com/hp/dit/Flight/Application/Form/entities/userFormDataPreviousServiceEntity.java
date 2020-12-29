@@ -23,11 +23,13 @@ public class userFormDataPreviousServiceEntity implements Serializable {
     @Column(name="user_id")
     private Integer userId;
 
-    @Column(name="district_id")
-    private Integer districtId;
+    @OneToOne
+    @JoinColumn(name="district_id")
+    private District districtId;
 
-    @Column(name="helipad_id")
-    private Integer helipadId;
+    @OneToOne
+    @JoinColumn(name="helipad_id")
+    private Helipad helipadId;
 
     @Column(name="active")
     private Boolean active;
@@ -79,19 +81,19 @@ public class userFormDataPreviousServiceEntity implements Serializable {
         this.date = date;
     }
 
-    public Integer getDistrictId() {
+    public District getDistrictId() {
         return districtId;
     }
 
-    public void setDistrictId(Integer districtId) {
+    public void setDistrictId(District districtId) {
         this.districtId = districtId;
     }
 
-    public Integer getHelipadId() {
+    public Helipad getHelipadId() {
         return helipadId;
     }
 
-    public void setHelipadId(Integer helipadId) {
+    public void setHelipadId(Helipad helipadId) {
         this.helipadId = helipadId;
     }
 
