@@ -18,7 +18,7 @@ window.addEventListener('popstate', function(event) {
       <div class="app-title">
         <div>
           <h1><i class="fa fa-dashboard"></i> Dashboard</h1>
-          <p>Himachal Police Transport ID Card Panel</p>
+          <p>Lahaul and Spiti Flight Service</p>
         </div>
         <ul class="app-breadcrumb breadcrumb">
           <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
@@ -35,15 +35,7 @@ window.addEventListener('popstate', function(event) {
             </div>
           </div>
         </div>
-        <div class="col-md-6 col-lg-3">
-          <div class="widget-small info coloured-icon"><i class="icon fa fa-search fa-3x"></i>
-            <div class="info">
-             <a href="${pageContext.request.contextPath}/searchId" style=" text-decoration: none !important;">
-                           <h4>Search ID Card</h4></a>
 
-            </div>
-          </div>
-        </div>
          <sec:authorize access="hasAuthority('Admin')">
            <div class="col-md-6 col-lg-3">
                   <div class="widget-small warning coloured-icon"><i class="icon fa fa-user fa-3x"></i>
@@ -67,32 +59,7 @@ window.addEventListener('popstate', function(event) {
         </div>
  </sec:authorize>
 
-<!--
- <sec:authorize access="hasAuthority('Admin')">
-    <div class="col-md-6 col-lg-3">
-           <div class="widget-small warning coloured-icon"><i class="icon fa fa-bus fa-3x"></i>
-             <div class="info">
-              <a href="${pageContext.request.contextPath}/vahanService" style=" text-decoration: none !important;">
-                            <h4>VAHAN Service</h4></a>
 
-             </div>
-           </div>
-         </div>
-  </sec:authorize>
-
-  <sec:authorize access="hasAuthority('Admin')">
-      <div class="col-md-6 col-lg-3">
-             <div class="widget-small danger coloured-icon"><i class="icon fa fa-id-card fa-3x"></i>
-               <div class="info">
-                <a href="${pageContext.request.contextPath}/saarthiService" style=" text-decoration: none !important;">
-                              <h4>Driving Licence Service</h4></a>
-
-               </div>
-             </div>
-           </div>
-    </sec:authorize>
-
--->
 
 
       </div>
