@@ -67,6 +67,11 @@
     </definition>
 
 
+    <definition name="userdetails" extends="baselayoutdashboard">
+        <put-attribute name="content" value="/WEB-INF/jsp/userDetails.jsp" />
+    </definition>
+
+
     <definition name="login" extends="main">
         <put-attribute name="content" value="/WEB-INF/jsp/login.jsp" />
     </definition>

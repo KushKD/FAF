@@ -2,11 +2,8 @@ package com.hp.dit.Flight.Application.Form.Controllers;
 
 
 import com.hp.dit.Flight.Application.Form.entities.*;
-import com.hp.dit.Flight.Application.Form.form.FlightApplicationForm;
-import com.hp.dit.Flight.Application.Form.form.RegisterUser;
-import com.hp.dit.Flight.Application.Form.form.RolesForm;
-import com.hp.dit.Flight.Application.Form.form.ViewApplications;
-import com.hp.dit.Flight.Application.Form.modal.AvailedServices;
+import com.hp.dit.Flight.Application.Form.form.*;
+import com.hp.dit.Flight.Application.Form.projections.FormDataListProjection;
 import com.hp.dit.Flight.Application.Form.services.*;
 import com.hp.dit.Flight.Application.Form.utilities.Constants;
 import com.hp.dit.Flight.Application.Form.utilities.DateUtilities;
@@ -14,20 +11,13 @@ import com.hp.dit.Flight.Application.Form.validators.FlightFormValidator;
 import com.hp.dit.Flight.Application.Form.validators.RoleValidator;
 import com.hp.dit.Flight.Application.Form.validators.UserValidator;
 import com.hp.dit.Flight.Application.Form.validators.ViewApplicationsValidator;
-import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.pdf.qrcode.WriterException;
-import com.sun.tools.javac.comp.Todo;
-import org.apache.poi.util.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -38,16 +28,12 @@ import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.transaction.Transactional;
 //import javax.transaction.Transactional;
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.math.BigInteger;
 import java.sql.Timestamp;
 import java.util.*;
 
@@ -418,45 +404,8 @@ public class HomeController {
         model.addAttribute("viewApplications", new ViewApplications());
         return "applications";
     }
-//
-//    @RequestMapping(value = "/searchId", method = RequestMethod.GET)
-//    public String searchIdCard(Model model) {
-//        model.addAttribute("searchId", new SearchID());
-//        return "searchid";
-//    }
 
-//    @RequestMapping(value = "/getIdCardsSearch", method = RequestMethod.POST)
-//    public String getIdCardListSearch(@ModelAttribute("searchId") SearchID idcard, BindingResult bindingResult, Model model, HttpServletRequest request) {
-//        searchIdCardValidator.validate(idcard, bindingResult);
-//
-//        if (bindingResult.hasErrors()) {
-//            return "searchid";
-//        }
-//        try {
-//            List<VehicleOwnerEntries> data = vehicleOwnerEntriesService.searchIdentityList(Long.valueOf(idcard.getMobileNumber()), idcard.getVehicleNumber());
-//
-//            if (!data.isEmpty()) {
-//                request.getSession().setAttribute("successMessage", "Data found Successfully");
-//                model.addAttribute("vehicledata", data);
-//                idcard.setMobileNumber(idcard.getMobileNumber());
-//                idcard.setVehicleNumber(idcard.getVehicleNumber());
-//                return "searchid";
-//            } else {
-//                idcard.setMobileNumber("");
-//                idcard.setVehicleNumber("");
-//                model.addAttribute("serverError", "No Data available for the current Vehicle Number and Mobile Number");
-//                return "searchid";
-//            }
-//
-//
-//        } catch (Exception ex) {
-//            idcard.setMobileNumber("");
-//            idcard.setVehicleNumber("");
-//            model.addAttribute("serverError", ex.toString());
-//            return "searchid";
-//        }
-//
-//    }
+
 
 
     @RequestMapping(value = "/filterApplications", method = RequestMethod.POST)
@@ -467,11 +416,26 @@ public class HomeController {
             return "applications";
         }
         try {
-            List<FlightFormEntity> data = flightFormService.getApplications(Integer.parseInt(applications.getLocation()),
+            List<Object[]> data = flightFormService.getProjectionApplicationList(Integer.parseInt(applications.getLocation()),
                     Integer.parseInt(applications.getHelipadName()), applications.getDate().trim(),Constants.PENDING);
             if (!data.isEmpty()) {
+
+                List<FormDataListProjection> projectionData = new ArrayList<>();
+
+
+                for (Object[] result : data) {
+                    FormDataListProjection pojo = new FormDataListProjection();
+                    pojo.setUserId((Integer) result[0]);
+                    pojo.setFullName((String) result[1]);
+                    pojo.setMobileNumber((BigInteger) result[2]);
+                    pojo.setApplicationStatus((String) result[3]);
+                    projectionData.add(pojo);
+                }
+
+
+
                 request.getSession().setAttribute("successMessage", "Data found Successfully");
-                model.addAttribute("applications", data);
+                model.addAttribute("applications", projectionData);
                 model.addAttribute("helipadName", applications.getHelipadName());
                 model.addAttribute("location", applications.getLocation());
                 applications.setDate(applications.getDate());
@@ -501,58 +465,72 @@ public class HomeController {
 
     }
 
+    //getUserDetails
 
-//    @RequestMapping(value = "/generateId/{id}", method = RequestMethod.GET,
-//            produces = MediaType.APPLICATION_PDF_VALUE)
-//    public @ResponseBody
-//    ResponseEntity<InputStreamResource> printId(@PathVariable("id") String id) throws IOException, WriterException, DocumentException {
-//
-//        Optional<VehicleOwnerEntries> vehicleOwnerEntries = vehicleOwnerEntriesService.getOwnerDetails(Long.valueOf(id));
-//        ByteArrayInputStream bis = GeneratePdfReport.generateIdCard(vehicleOwnerEntries.get());
-//        HttpHeaders headers = new HttpHeaders();
-//        headers.add("Content-Disposition", "inline; filename=" + vehicleOwnerEntries.get().getIdCardNumber() + ".pdf");
-//
-//
-//        return ResponseEntity
-//                .ok()
-//                .headers(headers)
-//                .contentType(MediaType.APPLICATION_PDF)
-//                .body(new InputStreamResource(bis));
-//
-//    }
+    @RequestMapping(value = "/getUserDetails/{id}", method=RequestMethod.GET)
+    public String getUserDetailComplete(@PathVariable("id")int id,Model model,HttpServletRequest request) {
 
-//    @RequestMapping(value = "/getVahanLogs", method = RequestMethod.GET)
-//    @ResponseStatus(value = HttpStatus.OK)
-//    public void getVahanLogs(Model model, HttpServletResponse response, HttpServletRequest request) {
-//
-//        try {
-//
-//            List<VahanLog> dataForReports = null;
-//            dataForReports = new ArrayList<>();
-//            dataForReports = (List<VahanLog>) vahanLogsRepository.findAll();
-//
-//
-//            if (!dataForReports.isEmpty()) {
-//                response.setContentType("application/octet-stream");
-//                response.setHeader("Content-Disposition", "attachment; filename=logs.xlsx");
-//                ByteArrayInputStream stream = ExcelFileExporter.getLogsExcel(dataForReports);
-//                IOUtils.copy(stream, response.getOutputStream());
-//                response.flushBuffer();
-//
-//            } else {
-//
-//                response.setContentType("application/octet-stream");
-//                response.setHeader("Content-Disposition", "attachment; filename=Report_id_card.xlsx");
-//                ByteArrayInputStream stream = ExcelFileExporter.getLogsExcel(dataForReports);
-//                IOUtils.copy(stream, response.getOutputStream());
-//                response.flushBuffer();
-//            }
-//
-//
-//        } catch (Exception ex) {
+
+        model.addAttribute("actionForm", new ActionForm());
+        FlightFormEntity user = new FlightFormEntity();
+        try {
+            user = flightFormService.getDataByUserID(id);
+            if (user != null) {
+                System.out.println(user.toString());
+                model.addAttribute("userdata", user);
+                request.getSession().setAttribute("successMessage", "Data found Successfully");
+                return "userdetails";
+            } else {
+                request.getSession().setAttribute("successMessage", "No Data Available.");
+                return "userdetails";
+            }
+
+        } catch (Exception ex) {
+            request.getSession().setAttribute("serverError", ex.getLocalizedMessage().toString());
+        }
+
+        return "userdetails";
+    }
+
+
+    @RequestMapping(value = "/updateApplication", method = RequestMethod.POST)
+    public String update_application(@ModelAttribute("actionForm") ActionForm actionForm, BindingResult bindingResult, Model model, HttpServletRequest request) {
+       // roleValidator.validate(roleForm, bindingResult);
+        System.out.println(actionForm.toString());
+
+//        if (bindingResult.hasErrors()) {
+//            return "createrole";
 //        }
-//
-//    }
+        try {
+            FlightFormEntity user = new FlightFormEntity();
+            user = flightFormService.getCompleteApplication(Integer.parseInt(actionForm.getUser_id()));
+            if(user!=null){
+              if(actionForm.getAction().equalsIgnoreCase("A")){
+                  user.setApplicaionStatus(Constants.APPROVED);
+              }else if(actionForm.getAction().equalsIgnoreCase("R")){
+                  user.setApplicaionStatus(Constants.REJECTED);
+              }else{
+                  user.setApplicaionStatus(Constants.PENDING);
+              }
+              user.setComments(actionForm.getComments());
+            }
+
+            FlightFormEntity savedData = flightFormService.saveUser(user);
+            model.addAttribute("userdata", savedData);
+            model.addAttribute("successMessage", "Application Updated");
+            return "userdetails";
+
+        } catch (Exception ex) {
+
+            model.addAttribute("serverError", ex.toString());
+            return "userdetails";
+        }
+
+
+    }
+
+
+
 
 
 }

@@ -93,12 +93,21 @@
 											</td>
 											<td>${application.fullName}</td>
 											<td>${application.mobileNumber}</td>
-											<td>--</td>
-											<td>${application.applicaionStatus}</td>
+											<td class="text-center" style="color:black;">--</td>
+											 <c:if test = "${application.applicationStatus == 'P'}">
+                                                     <td class="text-center btn-warning" style="color:white;">Pending</td>
+                                             </c:if>
+                                              <c:if test = "${application.applicationStatus == 'A'}">
+                                              <td class="text-center btn-primary" style="color:white;">Pending</td>
+                                               </c:if>
+                                              <c:if test = "${application.applicationStatus == 'R'}">
+                                               <td class="text-center btn-danger" style="color:white;">Pending</td>
+                                                </c:if>
 
-											<td>
-												<a href="#" class="button button-success" onclick="getData('${application.userId}')";>View Details</a>
-											</td>
+
+
+
+											<td class="text-center btn-primary" style="color:white;" > <a href="${pageContext.request.contextPath}/getUserDetails/${application.userId}" style="color:white; text-decoration:none;"> View Details </a> </td>
 
 										</tr>
 									</c:forEach>
