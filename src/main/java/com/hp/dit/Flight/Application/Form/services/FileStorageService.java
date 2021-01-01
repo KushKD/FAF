@@ -1,9 +1,12 @@
 package com.hp.dit.Flight.Application.Form.services;
 
+import com.hp.dit.Flight.Application.Form.Controllers.HomeController;
 import com.hp.dit.Flight.Application.Form.exception.FileStorageException;
 import com.hp.dit.Flight.Application.Form.exception.MyFileNotFoundException;
 import com.hp.dit.Flight.Application.Form.property.FileStorageProperties;
 import com.hp.dit.Flight.Application.Form.utilities.DateUtilities;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -25,6 +28,8 @@ import java.nio.file.StandardCopyOption;
 public class FileStorageService {
 
     private final Path fileStorageLocation;
+
+    private static final Logger logger = LoggerFactory.getLogger(FileStorageService.class);
 
     @Autowired
     public FileStorageService(FileStorageProperties fileStorageProperties) {
@@ -77,7 +82,8 @@ public class FileStorageService {
             // Copy file to the target location (Replacing existing file with the same name)
             Path targetLocation = this.fileStorageLocation.resolve(filename);
             Files.copy(file.getInputStream(), targetLocation, StandardCopyOption.REPLACE_EXISTING);
-
+            logger.info(filename);
+            logger.info(String.valueOf(file.getSize()));
             return filename;
         } catch (IOException ex) {
             throw new FileStorageException("Could not store file " + filename + ". Please try again!", ex);

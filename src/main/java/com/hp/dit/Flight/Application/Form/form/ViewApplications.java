@@ -7,6 +7,16 @@ public class ViewApplications implements Serializable {
     private String location;
     private String helipadName;
     private String Date;
+    private String appliactionStatus;
+
+
+    public String getAppliactionStatus() {
+        return appliactionStatus;
+    }
+
+    public void setAppliactionStatus(String appliactionStatus) {
+        this.appliactionStatus = appliactionStatus;
+    }
 
     public String getLocation() {
         return location;
@@ -38,6 +48,7 @@ public class ViewApplications implements Serializable {
                 "location='" + location + '\'' +
                 ", helipadName='" + helipadName + '\'' +
                 ", Date='" + Date + '\'' +
+                ", appliactionStatus='" + appliactionStatus + '\'' +
                 '}';
     }
 }

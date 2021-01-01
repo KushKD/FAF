@@ -136,40 +136,51 @@ public class HomeController {
             FlightFormEntity data = new FlightFormEntity();
             data = populateFlightForm(flightApplicationForm);
             if (data != null) {
-                FlightFormEntity savedData = flightFormService.saveUser(data);
-                //Setting the table
-                if (!flightApplicationForm.getAvailedServiceListForm().isEmpty()) {
-                    //Check if there is value or not inside the list
-                    List<userFormDataPreviousServiceEntity> availedServices = new ArrayList<>();
-                    userFormDataPreviousServiceEntity datax = null;
-                    District district = null;
-                    Helipad helipad = null;
-                    for (int i = 0; i < flightApplicationForm.getAvailedServiceListForm().size(); i++) {
-                        datax = new userFormDataPreviousServiceEntity();
-                        district = new District();
-                        helipad = new Helipad();
 
-                        if (!flightApplicationForm.getAvailedServiceListForm().get(i).getDateTravelled().equalsIgnoreCase("")
-                                && flightApplicationForm.getAvailedServiceListForm().get(i).getDateTravelled() != null
-                                && !flightApplicationForm.getAvailedServiceListForm().get(i).getHelipadDistrict().equalsIgnoreCase("0")
-                                && !flightApplicationForm.getAvailedServiceListForm().get(i).getHelipadName().equalsIgnoreCase("0")) {
+                try{
+                    FlightFormEntity savedData = flightFormService.saveUser(data);
+                    if (!flightApplicationForm.getAvailedServiceListForm().isEmpty()) {
+                        //Check if there is value or not inside the list
+                        List<userFormDataPreviousServiceEntity> availedServices = new ArrayList<>();
+                        userFormDataPreviousServiceEntity datax = null;
+                        District district = null;
+                        Helipad helipad = null;
+                        for (int i = 0; i < flightApplicationForm.getAvailedServiceListForm().size(); i++) {
+                            datax = new userFormDataPreviousServiceEntity();
+                            district = new District();
+                            helipad = new Helipad();
 
-                            datax.setDate(flightApplicationForm.getAvailedServiceListForm().get(i).getDateTravelled());
-                            district.setDistrictId(Integer.parseInt(flightApplicationForm.getAvailedServiceListForm().get(i).getHelipadDistrict()));
-                            datax.setDistrictId(district);
-                            helipad.setHelipadId(Integer.parseInt(flightApplicationForm.getAvailedServiceListForm().get(i).getHelipadName()));
-                            datax.setHelipadId(helipad);
-                            datax.setUserId(savedData.getUserId());
-                            datax.setActive(true);
-                            availedServices.add(datax);
+                            if (!flightApplicationForm.getAvailedServiceListForm().get(i).getDateTravelled().equalsIgnoreCase("")
+                                    && flightApplicationForm.getAvailedServiceListForm().get(i).getDateTravelled() != null
+                                    && !flightApplicationForm.getAvailedServiceListForm().get(i).getHelipadDistrict().equalsIgnoreCase("0")
+                                    && !flightApplicationForm.getAvailedServiceListForm().get(i).getHelipadName().equalsIgnoreCase("0")) {
 
+                                datax.setDate(flightApplicationForm.getAvailedServiceListForm().get(i).getDateTravelled());
+                                district.setDistrictId(Integer.parseInt(flightApplicationForm.getAvailedServiceListForm().get(i).getHelipadDistrict()));
+                                datax.setDistrictId(district);
+                                helipad.setHelipadId(Integer.parseInt(flightApplicationForm.getAvailedServiceListForm().get(i).getHelipadName()));
+                                datax.setHelipadId(helipad);
+                                datax.setUserId(savedData.getUserId());
+                                datax.setActive(true);
+                                availedServices.add(datax);
+
+                            }
                         }
+                        userFormDataPreviousServices.saveData(availedServices);
+
                     }
-                    userFormDataPreviousServices.saveData(availedServices);
+                    request.getSession().setAttribute("successMessage", savedData.getFullName() + "  Successfully Saved. ID is:- " + savedData.getUserId());
+
+                    return "paymentpage";
+                }catch(Exception ex){
+                    request.getSession().setAttribute("serverError",ex.getLocalizedMessage().toString());
+                    return "paymentpage";
                 }
 
-                request.getSession().setAttribute("successMessage", savedData.getFullName() + "  Successfully Saved. ID is:- " + savedData.getUserId());
-                return "paymentpage";
+
+
+
+
             } else {
                 request.getSession().setAttribute("successMessage", "Unable to Save the Data. Please try again");
                 return "flightapplication";
@@ -182,6 +193,8 @@ public class HomeController {
     }
 
     private FlightFormEntity populateFlightForm(FlightApplicationForm flightApplicationForm) {
+
+        logger.info("Inside Populate Function");
 
         FlightFormEntity flightForm = new FlightFormEntity();
         UserType userType = new UserType();
@@ -197,30 +210,41 @@ public class HomeController {
 
             userType.setUserTypeId(Integer.parseInt(flightApplicationForm.getCategory()));
             flightForm.setCategory(userType);
+            logger.info(userType.toString());
 
             reservationType.setReservationTypeId(Integer.parseInt(flightApplicationForm.getRegistrationType()));
             flightForm.setRegistrationType(reservationType);
+            logger.info(reservationType.toString());
 
             prefix.setRelationshipPrifixId(Integer.parseInt(flightApplicationForm.getRelationPrifix()));
             flightForm.setRelationPrifix(prefix);
+            logger.info(prefix.toString());
             flightForm.setFullName(flightApplicationForm.getFullName());
+            logger.info(flightForm.getFullName().toString());
             flightForm.setRelationName(flightApplicationForm.getRelationName());
+            logger.info(flightForm.getRelationName().toString());
             flightForm.setMobileNumber(Long.parseLong(flightApplicationForm.getMobileNumber()));
+            logger.info(flightForm.getMobileNumber().toString());
             flightForm.setAge(Integer.parseInt(flightApplicationForm.getAge()));
             flightForm.setWeight(Integer.parseInt(flightApplicationForm.getWeight()));
             flightForm.setLuggageWeight(Integer.parseInt(flightApplicationForm.getLuggageWeight()));
             flightForm.setCorrespondenceAddress(flightApplicationForm.getCorrespondenceAddress());
             flightForm.setPermanentAddress(flightApplicationForm.getPermanentAddress());
+            logger.info(flightForm.getPermanentAddress().toString());
 
             reason_availing_flight.setReasonAvailingFlightId(Integer.parseInt(flightApplicationForm.getReasonAvailingFlightService()));
             flightForm.setReasonAvailingFlightService(reason_availing_flight);
+            logger.info(reason_availing_flight.toString());
             flightForm.setTentitiveFlightDate(flightApplicationForm.getTentitiveFlightDate());
+            logger.info(flightApplicationForm.getTentitiveFlightDate());
 
             district.setDistrictId(Integer.parseInt(flightApplicationForm.getFlightDistrictToGoFrom()));
             flightForm.setFlightDistrictToGoFrom(district);
+            logger.info(district.toString());
 
             helipad.setHelipadId(Integer.parseInt(flightApplicationForm.getFlightHelipadNameToGoFrom()));
             flightForm.setFlightHelipadNameToGoFrom(helipad);
+            logger.info(helipad.toString());
             flightForm.setAvailedFlightBefore15(flightApplicationForm.getAvailedFlightBefore15());
             flightForm.setEarlierFlightServiceEmergency(flightApplicationForm.getEarlierFlightServiceEmergency());
             flightForm.setDeclerationUser(flightApplicationForm.getDeclerationUser());
@@ -234,7 +258,7 @@ public class HomeController {
             if (!flightApplicationForm.getAadhaar_doc().getOriginalFilename().isEmpty()) {
                 String fileName = StringUtils.cleanPath(flightApplicationForm.getAadhaar_doc().getOriginalFilename());
                 fileName = fileName.toLowerCase().replaceAll(" ", "_");
-                fileName = DateUtilities.getDateTime() + "__" + fileName;
+                fileName = System.currentTimeMillis() + "__" + fileName;
                 flightForm.setAadhaar_doc(fileName);
                 fileStorageService.storeFile(flightApplicationForm.getAadhaar_doc(), fileName);
             } else {
@@ -244,7 +268,7 @@ public class HomeController {
             if (!flightApplicationForm.getMedicalDoc().getOriginalFilename().isEmpty()) {
                 String fileName = StringUtils.cleanPath(flightApplicationForm.getMedicalDoc().getOriginalFilename());
                 fileName = fileName.toLowerCase().replaceAll(" ", "_");
-                fileName = DateUtilities.getDateTime() + "__" + fileName;
+                fileName = System.currentTimeMillis() + "__" + fileName;
                 flightForm.setMedicalDoc(fileName);
                 fileStorageService.storeFile(flightApplicationForm.getMedicalDoc(), fileName);
             } else {
@@ -254,7 +278,7 @@ public class HomeController {
             if (!flightApplicationForm.getOtherDoc().getOriginalFilename().isEmpty()) {
                 String fileName = StringUtils.cleanPath(flightApplicationForm.getOtherDoc().getOriginalFilename());
                 fileName = fileName.toLowerCase().replaceAll(" ", "_");
-                fileName = DateUtilities.getDateTime() + "__" + fileName;
+                fileName = System.currentTimeMillis() + "__" + fileName;
                 flightForm.setMedicalDoc(fileName);
                 fileStorageService.storeFile(flightApplicationForm.getOtherDoc(), fileName);
             } else {
@@ -264,7 +288,7 @@ public class HomeController {
             if (!flightApplicationForm.getOfficeCardDoc().getOriginalFilename().isEmpty()) {
                 String fileName = StringUtils.cleanPath(flightApplicationForm.getOfficeCardDoc().getOriginalFilename());
                 fileName = fileName.toLowerCase().replaceAll(" ", "_");
-                fileName = DateUtilities.getDateTime() + "__" + fileName;
+                fileName = System.currentTimeMillis() + "__" + fileName;
                 flightForm.setMedicalDoc(fileName);
                 fileStorageService.storeFile(flightApplicationForm.getOfficeCardDoc(), fileName);
             } else {
@@ -275,6 +299,7 @@ public class HomeController {
             Optional<RolesEntity> role = Optional.ofNullable(roleService.checkRoleName("Admin"));
             //if (role.get() != null) {
             flightForm.setApplicationForwardedToRole(role.get());
+            logger.info(role.get().toString());
 
 
         } catch (Exception ex) {
@@ -400,9 +425,42 @@ public class HomeController {
     }
 
     @RequestMapping(value = "/applications", method = RequestMethod.GET)
-    public String showIdCardList(Model model) {
+    public String applicationsFilter(Model model) {
         model.addAttribute("viewApplications", new ViewApplications());
         return "applications";
+    }
+
+    @RequestMapping(value = "/applications_all", method = RequestMethod.GET)
+    public String showIdCardList(Model model, HttpServletRequest request) {
+        List<Object[]> data = null;
+        data = flightFormService.getAllApplications();
+
+        if (!data.isEmpty()) {
+
+            List<FormDataListProjection> projectionData = new ArrayList<>();
+
+
+            for (Object[] result : data) {
+                FormDataListProjection pojo = new FormDataListProjection();
+                pojo.setUserId((Integer) result[0]);
+                pojo.setFullName((String) result[1]);
+                pojo.setMobileNumber((BigInteger) result[2]);
+                pojo.setApplicationStatus((String) result[3]);
+                projectionData.add(pojo);
+            }
+
+
+            request.getSession().setAttribute("successMessage", "Data found Successfully");
+            model.addAttribute("applications", projectionData);
+            return "applications_all";
+        }else{
+            model.addAttribute("serverError", "No Data available for the current District and Barrier");
+
+            return "applications_all";
+        }
+
+
+
     }
 
 
@@ -416,8 +474,20 @@ public class HomeController {
             return "applications";
         }
         try {
-            List<Object[]> data = flightFormService.getProjectionApplicationList(Integer.parseInt(applications.getLocation()),
-                    Integer.parseInt(applications.getHelipadName()), applications.getDate().trim(),Constants.PENDING);
+            List<Object[]> data = null;
+            if(applications.getAppliactionStatus().equalsIgnoreCase("A")){
+                  data = flightFormService.getProjectionApplicationList(Integer.parseInt(applications.getLocation()),
+                         Integer.parseInt(applications.getHelipadName()), applications.getDate().trim(),Constants.APPROVED);
+             }else if(applications.getAppliactionStatus().equalsIgnoreCase("P")){
+                data = flightFormService.getProjectionApplicationList(Integer.parseInt(applications.getLocation()),
+                        Integer.parseInt(applications.getHelipadName()), applications.getDate().trim(),Constants.PENDING);
+            }else if(applications.getAppliactionStatus().equalsIgnoreCase("R")){
+                data = flightFormService.getProjectionApplicationList(Integer.parseInt(applications.getLocation()),
+                        Integer.parseInt(applications.getHelipadName()), applications.getDate().trim(),Constants.REJECTED);
+            }else{
+                data = flightFormService.getProjectionApplicationList(Integer.parseInt(applications.getLocation()),
+                        Integer.parseInt(applications.getHelipadName()), applications.getDate().trim(),Constants.PENDING);
+            }
             if (!data.isEmpty()) {
 
                 List<FormDataListProjection> projectionData = new ArrayList<>();

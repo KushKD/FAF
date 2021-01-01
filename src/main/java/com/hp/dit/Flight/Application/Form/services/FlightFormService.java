@@ -40,6 +40,10 @@ public class FlightFormService {
         return flightFormRepository.getUserDetialsByID(id);
     }
 
+    public List<Object[]> getAllApplications(){
+         return flightFormRepository.getAllApplications();
+    }
+
     public FlightFormEntity getCompleteApplication(int id){
         return flightFormRepository.getApplicationViaUserID(id);
     }

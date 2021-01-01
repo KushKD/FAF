@@ -97,8 +97,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .and()
                 .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login")
-                .clearAuthentication(true).invalidateHttpSession(true).deleteCookies("JSESSIONID")
-                .and().sessionManagement().maximumSessions(1).and().invalidSessionUrl("/login");
+                .clearAuthentication(true)
+                .invalidateHttpSession(true)
+                .deleteCookies("JSESSIONID")
+                .and()
+                .sessionManagement()
+                .maximumSessions(1)
+
+                .and()
+                .invalidSessionUrl("/login");
 
 
     }
@@ -119,8 +126,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                     }
                 }
                 request.setCharacterEncoding("UTF-8");
-                response.setContentType("text/html; charset=UTF-8");
-                response.setCharacterEncoding("UTF-8");
+               // response.setContentType("text/html; charset=UTF-8");
+               // response.setHeader("pragma", "no-cache");
+               // response.setHeader("Cache-control", "no-cache, no-store, must-revalidate");
+              //  response.setHeader("Expires", "0");
+              //  response.setCharacterEncoding("UTF-8");
                 filterChain.doFilter(request, response);
             }
         };
@@ -129,6 +139,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     private CsrfTokenRepository csrfTokenRepository() {
         HttpSessionCsrfTokenRepository repository = new HttpSessionCsrfTokenRepository();
         repository.setHeaderName("X-XSRF-TOKEN");
+
         return repository;
     }
 }
