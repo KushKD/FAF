@@ -126,7 +126,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                     }
                 }
                 request.setCharacterEncoding("UTF-8");
-               // response.setContentType("text/html; charset=UTF-8");
+                response.setContentType("text/html; charset=UTF-8");
                // response.setHeader("pragma", "no-cache");
                // response.setHeader("Cache-control", "no-cache, no-store, must-revalidate");
               //  response.setHeader("Expires", "0");
