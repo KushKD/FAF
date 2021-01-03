@@ -19,6 +19,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
@@ -59,7 +60,8 @@ public class ApplicationFormContoller {
 
     @RequestMapping(value = "/saveDetails", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @Transactional
-    public String saveDetails(@ModelAttribute("flightApplicationForm") FlightApplicationForm flightApplicationForm, BindingResult bindingResult, Model model, HttpServletRequest request) {
+    public String saveDetails(@ModelAttribute("flightApplicationForm") FlightApplicationForm flightApplicationForm,
+                              BindingResult bindingResult, Model model, HttpServletRequest request, RedirectAttributes redirectAttributes) {
         flightFormValidator.validate(flightApplicationForm, bindingResult);
         if (bindingResult.hasErrors()) {
             return "flightapplication";
@@ -101,9 +103,11 @@ public class ApplicationFormContoller {
                         userFormDataPreviousServices.saveData(availedServices);
 
                     }
-                    request.getSession().setAttribute("successMessage", savedData.getFullName() + "  Successfully Saved. ID is:- " + savedData.getUserId());
-
-                    return "paymentpage";
+                    //Get User Data
+                    //request.getSession().setAttribute("successMessage", savedUSer.getFullName() + "  Successfully Saved. ID is:- " + savedUSer.getUserId());
+                   // model.addAttribute("user", savedUSer);
+                    redirectAttributes.addFlashAttribute("userID",savedData.getUserId());
+                    return "redirect:/paymentpage";
                 } catch (Exception ex) {
                     request.getSession().setAttribute("serverError", ex.getLocalizedMessage().toString());
                     return "paymentpage";
