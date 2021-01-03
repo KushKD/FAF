@@ -26,4 +26,8 @@ public interface FlightFormRepository extends CrudRepository<FlightFormEntity,In
     @Query(value = "SELECT user_id,full_name,mobile_number,application_status  from public.userformdata where active = true  order by createddate desc", nativeQuery = true)
     List<Object[]> getAllApplications();
 
+    @Query(value = "SELECT application_status, comments ,user_id from public.userformdata where active = true AND  user_id=:userId", nativeQuery = true)
+    List<Object[]> checkStatus(int userId);
+
+
 }

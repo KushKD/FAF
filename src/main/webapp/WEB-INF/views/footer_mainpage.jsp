@@ -34,17 +34,7 @@
                </ul>
             </div>
          </div>
-          <div class="container-fluid" style="background-color: #F2F2F2; margin: 0; padding: 0;">
-            <div class="row">
-                <div class="footer-bottom-wrapper">
-                <ul class="footer-bottom-wrapper-list">
-                    <li><a title="Copyright Policy " href="#">Disclaimer </a></li>
-                    <li><a title="Hyperlinking Policy " href="#">Hyperlinking Policy </a></li>
-                    <li><a title="Privacy Policy " href="#">Privacy Policy </a></li>
-                </ul>
-                </div>
-            </div>
-                                    </div>
+
       </div>
       <!-- Footer Ends -->
      <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.5.1.min.js"></script>

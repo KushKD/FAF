@@ -44,6 +44,8 @@ public class FlightFormService {
          return flightFormRepository.getAllApplications();
     }
 
+    public List<Object[]> checkApplicationStatus(int id) {return flightFormRepository.checkStatus(id);}
+
     public FlightFormEntity getCompleteApplication(int id){
         return flightFormRepository.getApplicationViaUserID(id);
     }
