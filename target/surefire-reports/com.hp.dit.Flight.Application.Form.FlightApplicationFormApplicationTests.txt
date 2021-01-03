@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: com.hp.dit.Flight.Application.Form.FlightApplicationFormApplicationTests
--------------------------------------------------------------------------------
-Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 42.199 s - in com.hp.dit.Flight.Application.Form.FlightApplicationFormApplicationTests
