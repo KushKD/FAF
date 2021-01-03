@@ -13,6 +13,9 @@ import org.slf4j.LoggerFactory;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -28,109 +31,44 @@ public class GeneratePdfReport {
 
         vehicleOwnerEntries = data;
         String postJson = objectMapper.writeValueAsString(vehicleOwnerEntries);
-        Document document = new Document(PageSize.A4, 1, 1, 1, 1);
+        Document document = new Document(PageSize.A4, 40 , 40, 40, 40);
         document.addTitle(String.valueOf(vehicleOwnerEntries.getUserId()));
-
-
         ByteArrayOutputStream out = new ByteArrayOutputStream();
-
-        Font boldFont = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.BOLD);
-        Font boldFont2 = new Font(Font.FontFamily.TIMES_ROMAN, 10);
+        Font boldFont = new Font(Font.FontFamily.TIMES_ROMAN, 14, Font.BOLD);
+        Font boldFont2 = new Font(Font.FontFamily.TIMES_ROMAN, 12);
 
         try {
 
-            PdfPTable parent = new PdfPTable(2);
-            float[] columnWidthsnestedparent = {50f, 50f};
+            PdfPTable parent = new PdfPTable(1);
+            float[] columnWidthsnestedparent = {100f};
             parent.setWidths(columnWidthsnestedparent);
             parent.setWidthPercentage(100);
 
-
-            // Create a Simple table
-            PdfPTable one = new PdfPTable(2);
-            float[] columnWidthsnested = {70f, 30f};
-            one.setWidths(columnWidthsnested);
-            one.getDefaultCell().setBorder(0);
-
-            PdfPCell cell = new PdfPCell(new Phrase("Lahaul & Spiti District Administration", boldFont));
-            cell.setColspan(2);
-            cell.setBorder(0);
-            cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
-            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-            one.addCell(cell);
-
-
-            cell = new PdfPCell(new Phrase("Flight Service Pass (Winter Season 2021)", boldFont));
-            cell.setColspan(2);
-            cell.setBorder(0);
-            cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
-            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-            one.addCell(cell);
-
-            cell = new PdfPCell(new Phrase(String.valueOf(vehicleOwnerEntries.getUserId()), boldFont));
-            cell.setColspan(2);
-            cell.setBorder(0);
-            cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
-            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-            one.addCell(cell);
-
+            //Zero
+            PdfPTable zero = new PdfPTable(1);
+            float[] columnWidthsnestedz = {100f};
+            zero.setWidths(columnWidthsnestedz);
+            zero.getDefaultCell().setBorder(0);
 
             // Create a new Table
-            PdfPTable childTable1 = new PdfPTable(2);
-            float[] y = {40f, 60f};
-            childTable1.setWidths(y);
-            // childTable1.addCell(new Phrase("Reg No:", boldFont2));
-            // childTable1.addCell(new Phrase(vehicleOwnerEntries.getIdCardNumber(), boldFont2));
+            PdfPTable childTable0 = new PdfPTable(6);
+            float[] z = {25f,25f, 25f,25f,25f,25f};
+            childTable0.setWidths(z);
+            childTable0.getDefaultCell().setBorder(0);
+
+            Image image = Image.getInstance(new URL(Utilities.getPhotoUrl("hp_logo.png")));
+           // image.setUseVariableBorders(false);
+            image.setBorder(Image.NO_BORDER);
+            childTable0.addCell(image);
+
+            PdfPCell cellheader = new PdfPCell(new Phrase("Flight Service Pass (Winter Season 2021)", boldFont));
+            cellheader.setColspan(4);
+            cellheader.setBorder(0);
+            cellheader.setVerticalAlignment(Element.ALIGN_MIDDLE);
+            cellheader.setHorizontalAlignment(Element.ALIGN_CENTER);
+            childTable0.addCell(cellheader);
 
 
-            childTable1.addCell(new Phrase("Name:", boldFont2));
-            childTable1.addCell(new Phrase(vehicleOwnerEntries.getFullName(), boldFont2));
-            childTable1.addCell(new Phrase("User Type:", boldFont2));
-            childTable1.addCell(new Phrase(vehicleOwnerEntries.getCategory().getUserTypeName(), boldFont2));
-            childTable1.addCell(new Phrase("Reservation Type:", boldFont2));
-            childTable1.addCell(new Phrase(vehicleOwnerEntries.getRegistrationType().getReservationTypeName(), boldFont2));
-            childTable1.addCell(new Phrase("Age:", boldFont2));
-            childTable1.addCell(new Phrase(String.valueOf(vehicleOwnerEntries.getAge()), boldFont2));
-            childTable1.addCell(new Phrase("Weight:", boldFont2));
-            childTable1.addCell(new Phrase(String.valueOf(vehicleOwnerEntries.getWeight()), boldFont2));
-            childTable1.addCell(new Phrase("Luggage Weight:", boldFont2));
-            childTable1.addCell(new Phrase(String.valueOf(vehicleOwnerEntries.getLuggageWeight()) + "KG", boldFont2));
-            childTable1.addCell(new Phrase("Mobile Number:", boldFont2));
-            childTable1.addCell(new Phrase(String.valueOf(vehicleOwnerEntries.getMobileNumber()), boldFont2));
-            childTable1.addCell(new Phrase("Relation Name:", boldFont2));
-            childTable1.addCell(new Phrase(vehicleOwnerEntries.getRelationPrifix().getRelationshipPrifixName()+"   "+vehicleOwnerEntries.getRelationName(), boldFont2));
-
-
-//            Image image = Image.getInstance(new URL(Utilities.getPhotoUrl(vehicleOwnerEntries.getVehicleOwnerImageName())));
-//            PdfPTable childTable2 = new PdfPTable(1);
-//            childTable2.addCell(image);
-
-            one.addCell(childTable1);
-        //    one.addCell(childTable2);
-
-            //One Ends
-
-            //Two
-            // Create a Simple table
-            PdfPTable two = new PdfPTable(2);
-            float[] columnWidthsnestedtwo = {70f, 30f};
-            two.setWidths(columnWidthsnestedtwo);
-            two.getDefaultCell().setBorder(0);
-
-
-            // Create a new Table
-            PdfPTable childTable1two = new PdfPTable(2);
-            float[] x = {40f, 60f};
-            childTable1two.setWidths(x);
-            childTable1two.addCell(new Phrase("Permanent Address:", boldFont2));
-            childTable1two.addCell(new Phrase(vehicleOwnerEntries.getPermanentAddress(), boldFont2));
-            childTable1two.addCell(new Phrase("Correspondence Address:", boldFont2));
-            childTable1two.addCell(new Phrase(vehicleOwnerEntries.getCorrespondenceAddress(), boldFont2));
-            childTable1two.addCell(new Phrase("From Location:", boldFont2));
-            childTable1two.addCell(new Phrase(vehicleOwnerEntries.getFlightDistrictToGoFrom().getDistrictName(), boldFont2));
-            childTable1two.addCell(new Phrase("From Helipad:", boldFont2));
-            childTable1two.addCell(new Phrase(vehicleOwnerEntries.getFlightHelipadNameToGoFrom().getHelipadName(), boldFont2));
-            childTable1two.addCell(new Phrase("Tentitive Flight Date:", boldFont2));
-            childTable1two.addCell(new Phrase(vehicleOwnerEntries.getTentitiveFlightDate(), boldFont2));
 
             JsonObject jsonObjecttwo = new JsonObject();
             jsonObjecttwo.addProperty("full_name", vehicleOwnerEntries.getFullName());
@@ -138,24 +76,80 @@ public class GeneratePdfReport {
             jsonObjecttwo.addProperty("user_id", vehicleOwnerEntries.getUserId());
 
             //postJson
-            BarcodeQRCode barcodeQRCodetwo = new BarcodeQRCode(jsonObjecttwo.toString(), 50, 50, null);
+            BarcodeQRCode barcodeQRCodetwo = new BarcodeQRCode(jsonObjecttwo.toString(), 60, 60, null);
             Image codeQrImagetwo = barcodeQRCodetwo.getImage();
-            PdfPTable childTable2two = new PdfPTable(1);
-            childTable2two.addCell(codeQrImagetwo);
+            childTable0.addCell(codeQrImagetwo);
 
-            two.addCell(childTable1two);
-            two.addCell(childTable2two);
-            //Two Ends
+            zero.addCell(childTable0);
 
-            cell = new PdfPCell(new Phrase("If found Please handover to DC Office Police", boldFont));
+
+            // Create a Simple table
+            PdfPTable one = new PdfPTable(1);
+            float[] columnWidthsnested = {100f};
+            one.setWidths(columnWidthsnested);
+            one.getDefaultCell().setBorder(0);
+
+            PdfPCell cell = new PdfPCell(new Phrase(vehicleOwnerEntries.getFullName(), boldFont));
             cell.setColspan(2);
             cell.setBorder(0);
+            cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+            cell.setHorizontalAlignment(Element.ALIGN_LEFT);
+            cell.setPadding(5);
+            one.addCell(cell);
+
+
+            // Create a new Table
+            PdfPTable childTable1 = new PdfPTable(2);
+            float[] y = {50f,50f};
+            childTable1.setWidths(y);
+
+
+
+            childTable1.addCell(getCell("Application ID:",boldFont2));
+            childTable1.addCell(getCell( String.valueOf(vehicleOwnerEntries.getUserId()),boldFont2));
+            childTable1.addCell(getCell("User Type:",boldFont2));
+            childTable1.addCell(getCell( vehicleOwnerEntries.getCategory().getUserTypeName(),boldFont2));
+            childTable1.addCell(getCell("Reservation Type:",boldFont2));
+            childTable1.addCell(getCell( vehicleOwnerEntries.getRegistrationType().getReservationTypeName(),boldFont2));
+            childTable1.addCell(getCell("Age:",boldFont2));
+            childTable1.addCell(getCell( String.valueOf(vehicleOwnerEntries.getAge()),boldFont2));
+            childTable1.addCell(getCell("Weight:",boldFont2));
+            childTable1.addCell(getCell( String.valueOf(vehicleOwnerEntries.getWeight())+" KG",boldFont2));
+            childTable1.addCell(getCell("Luggage Weight:",boldFont2));
+            childTable1.addCell(getCell( String.valueOf(vehicleOwnerEntries.getLuggageWeight()),boldFont2));
+            childTable1.addCell(getCell("Mobile Number:",boldFont2));
+            childTable1.addCell(getCell( String.valueOf(vehicleOwnerEntries.getMobileNumber()),boldFont2));
+            childTable1.addCell(getCell("Relation Name:",boldFont2));
+            childTable1.addCell(getCell( vehicleOwnerEntries.getRelationPrifix().getRelationshipPrifixName()+"   "+ vehicleOwnerEntries.getRelationName(),boldFont2));
+            childTable1.addCell(getCell("Permanent Address:",boldFont2));
+            childTable1.addCell(getCell( vehicleOwnerEntries.getPermanentAddress(),boldFont2));
+            childTable1.addCell(getCell("Correspondence Address:",boldFont2));
+            childTable1.addCell(getCell( vehicleOwnerEntries.getCorrespondenceAddress(),boldFont2));
+            childTable1.addCell(getCell("From Location:",boldFont2));
+            childTable1.addCell(getCell( vehicleOwnerEntries.getFlightDistrictToGoFrom().getDistrictName(),boldFont2));
+            childTable1.addCell(getCell("From Helipad:",boldFont2));
+            childTable1.addCell(getCell( vehicleOwnerEntries.getFlightHelipadNameToGoFrom().getHelipadName(),boldFont2));
+            childTable1.addCell(getCell("Tentitive Flying Date:",boldFont2));
+            childTable1.addCell(getCell( vehicleOwnerEntries.getTentitiveFlightDate(),boldFont2));
+
+
+
+            one.addCell(childTable1);
+
+
+
+            //Two Ends
+
+            cell = new PdfPCell(new Phrase("Instructions Goes Here", boldFont));
+            cell.setColspan(2);
+            cell.setBorder(0);
+            cell.setPadding(10);
             cell.setVerticalAlignment(Element.ALIGN_BOTTOM);
             cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-            two.addCell(cell);
+            one.addCell(cell);
 
+            parent.addCell(zero);
             parent.addCell(one);
-            parent.addCell(two);
 
 
             PdfWriter.getInstance(document, out);
@@ -165,11 +159,27 @@ public class GeneratePdfReport {
 
             document.close();
 
-        } catch (DocumentException ex) {
+        } catch (DocumentException | MalformedURLException ex) {
 
             Logger.getLogger(GeneratePdfReport.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
         return new ByteArrayInputStream(out.toByteArray());
+    }
+
+    private static PdfPCell getCell(String data, Font font){
+
+        PdfPCell cell = new PdfPCell(new Phrase(data, font));
+        cell.setBorderColorLeft(new BaseColor(242,242,242));
+        cell.setBorderColorRight(new BaseColor(242,242,242));
+        cell.setBorderColorTop(new BaseColor(242,242,242));
+        cell.setBorderColorBottom(new BaseColor(242,242,242));
+        cell.setPadding(5);
+        cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+        cell.setHorizontalAlignment(Element.ALIGN_LEFT);
+
+        return cell;
     }
 }
