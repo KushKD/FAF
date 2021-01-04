@@ -36,6 +36,7 @@ public class GeneratePdfReport {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         Font boldFont = new Font(Font.FontFamily.TIMES_ROMAN, 14, Font.BOLD);
         Font boldFont2 = new Font(Font.FontFamily.TIMES_ROMAN, 12);
+        Font boldFontIns = new Font(Font.FontFamily.TIMES_ROMAN, 10);
 
         try {
 
@@ -61,7 +62,7 @@ public class GeneratePdfReport {
             image.setBorder(Image.NO_BORDER);
             childTable0.addCell(image);
 
-            PdfPCell cellheader = new PdfPCell(new Phrase("Flight Service Pass (Winter Season 2021)", boldFont));
+            PdfPCell cellheader = new PdfPCell(new Phrase("Flight Service Pass (Lahaul & Spiti for Winter Season 2021)", boldFont));
             cellheader.setColspan(4);
             cellheader.setBorder(0);
             cellheader.setVerticalAlignment(Element.ALIGN_MIDDLE);
@@ -140,13 +141,12 @@ public class GeneratePdfReport {
 
             //Two Ends
 
-            cell = new PdfPCell(new Phrase("Instructions Goes Here", boldFont));
-            cell.setColspan(2);
-            cell.setBorder(0);
-            cell.setPadding(10);
-            cell.setVerticalAlignment(Element.ALIGN_BOTTOM);
-            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-            one.addCell(cell);
+
+            one.addCell(instructionCell("Instruction1",boldFontIns));
+            one.addCell(instructionCell("Instruction2",boldFontIns));
+            one.addCell(instructionCell("Instruction3",boldFontIns));
+            one.addCell(instructionCell("Instruction4",boldFontIns));
+            one.addCell(instructionCell("Instruction5",boldFontIns));
 
             parent.addCell(zero);
             parent.addCell(one);
@@ -177,6 +177,22 @@ public class GeneratePdfReport {
         cell.setBorderColorTop(new BaseColor(242,242,242));
         cell.setBorderColorBottom(new BaseColor(242,242,242));
         cell.setPadding(5);
+        cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+        cell.setHorizontalAlignment(Element.ALIGN_LEFT);
+
+        return cell;
+    }
+
+    private static PdfPCell instructionCell(String data, Font font){
+
+        PdfPCell cell = new PdfPCell(new Phrase(data, font));
+        cell.setColspan(2);
+        cell.setBorderColorLeft(new BaseColor(242,242,242));
+        cell.setBorderColorRight(new BaseColor(242,242,242));
+        cell.setBorderColorTop(new BaseColor(242,242,242));
+        cell.setBorderColorBottom(new BaseColor(242,242,242));
+        cell.setPadding(5);
+        cell.setBorder(0);
         cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
         cell.setHorizontalAlignment(Element.ALIGN_LEFT);
 
