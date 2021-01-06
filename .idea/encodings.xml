@@ -8,9 +8,9 @@
     <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/Controllers/DownloadFileController.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/Controllers/FilterApplications.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/Controllers/PaymentPageController.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/Controllers/RolesController.java" charset="US-ASCII" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/Controllers/UserController.java" charset="US-ASCII" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/Controllers/UserDetailsController.java" charset="US-ASCII" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/Controllers/RolesController.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/Controllers/UserController.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/Controllers/UserDetailsController.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/Controllers/ViewApplicationsController.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/entities/District.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/entities/FlightFormEntity.java" charset="UTF-8" />
@@ -21,38 +21,41 @@
     <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/entities/RolesEntity.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/entities/UserEntity.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/entities/UserType.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/entities/userFormDataPreviousServiceEntity.java" charset="US-ASCII" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/entities/userFormDataPreviousServiceEntity.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/form/ActionForm.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/form/CheckStatusForm.java" charset="US-ASCII" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/form/CheckStatusForm.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/form/FlightApplicationForm.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/form/PaymentForm.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/form/ViewApplications.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/modal/AvailedServices.java" charset="US-ASCII" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/projections/CheckStatusProjection.java" charset="US-ASCII" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/modal/AvailedServices.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/paymentutility/PaymentCallback.java" charset="US-ASCII" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/paymentutility/PaymentDetail.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/paymentutility/PaymentUtil.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/projections/CheckStatusProjection.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/projections/FormDataListProjection.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/repositories/DistrictRepository.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/repositories/FlightFormRepository.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/repositories/FormDataList.java" charset="US-ASCII" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/repositories/HelipadRepository.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/repositories/ReasonAvailingFlightRepository.java" charset="US-ASCII" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/repositories/RelationshipPrefixRepository.java" charset="US-ASCII" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/repositories/ReservationTypeRepository.java" charset="US-ASCII" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/repositories/ReasonAvailingFlightRepository.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/repositories/RelationshipPrefixRepository.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/repositories/ReservationTypeRepository.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/repositories/RolesRepository.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/repositories/UserRepository.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/repositories/UserTypeRepository.java" charset="US-ASCII" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/repositories/userFormDataPreviousServiceRepository.java" charset="US-ASCII" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/services/DistrictService.java" charset="US-ASCII" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/repositories/UserTypeRepository.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/repositories/userFormDataPreviousServiceRepository.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/services/DistrictService.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/services/FileStorageService.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/services/FlightFormService.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/services/HelipadService.java" charset="US-ASCII" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/services/ReasonAvailingFlightService.java" charset="US-ASCII" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/services/RelationshipPrefixService.java" charset="US-ASCII" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/services/ReservationTypeService.java" charset="US-ASCII" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/services/UserTypeService.java" charset="US-ASCII" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/services/userFormDataPreviousService.java" charset="US-ASCII" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/utilities/DateUtilities.java" charset="US-ASCII" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/services/HelipadService.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/services/ReasonAvailingFlightService.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/services/RelationshipPrefixService.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/services/ReservationTypeService.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/services/UserTypeService.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/services/userFormDataPreviousService.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/utilities/DateUtilities.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/utilities/GeneratePdfReport.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/utilities/Utilities.java" charset="US-ASCII" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/validators/CheckStatusValidator.java" charset="US-ASCII" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/utilities/Utilities.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/validators/CheckStatusValidator.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/validators/FlightFormValidator.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/validators/RoleValidator.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/validators/UserValidator.java" charset="UTF-8" />
@@ -61,7 +64,10 @@
     <file url="file://$PROJECT_DIR$/src/main/resources/static/js/flight_application_form.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources/static/js/preventBack.js" charset="US-ASCII" />
     <file url="file://$PROJECT_DIR$/src/main/resources/validation.properties" charset="US-ASCII" />
-    <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/checkStatus.jsp" charset="US-ASCII" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/checkStatus.jsp" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/paymentProceed.jsp" charset="US-ASCII" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/paymentResponsePage.jsp" charset="US-ASCII" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/postpayment.jsp" charset="US-ASCII" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/proceed_to_payment.jsp" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/userDetails.jsp" charset="UTF-8" />
   </component>

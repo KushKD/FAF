@@ -63,5 +63,15 @@ public class Constants {
     }
 
 
+    /**
+     *
+     * Merchant Name	DC L&S-HELICOPTER FLIGHT BOOKINGS
+     * Key	7rnFly
+     * Salt	pjVQAWpA
+     * Merchant Domain	WWW.STAGING12.HP.GOV.IN/FLIGHT
+     * SETUP TYPE	Hosted
+     */
+
+
 
 }

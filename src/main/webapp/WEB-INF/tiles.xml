@@ -40,7 +40,17 @@
     </definition>
 
     <definition name="paymentpage" extends="main">
-        <put-attribute name="content" value="/WEB-INF/jsp/proceed_to_payment.jsp" />
+        <put-attribute name="content" value="/WEB-INF/jsp/paymentProceed.jsp" />
+    </definition>
+
+
+    <definition name="postPayment" extends="main">
+        <put-attribute name="content" value="/WEB-INF/jsp/postpayment.jsp" />
+    </definition>
+
+
+    <definition name="paymentResponse" extends="main">
+        <put-attribute name="content" value="/WEB-INF/jsp/paymentResponsePage.jsp" />
     </definition>
 
     <definition name="mainpage" extends="main">
@@ -83,6 +93,8 @@
     <definition name="verifylogin" extends="baselayoutdashboardnonav">
         <put-attribute name="content" value="/WEB-INF/jsp/verifylogin.jsp" />
     </definition>
+
+
 
 
 

@@ -143,5 +143,9 @@
     <orderEntry type="library" name="Maven: org.apache.xmlbeans:xmlbeans:3.0.2" level="project" />
     <orderEntry type="library" name="Maven: org.apache.commons:commons-compress:1.18" level="project" />
     <orderEntry type="library" name="Maven: com.github.virtuald:curvesapi:1.05" level="project" />
+    <orderEntry type="library" name="Maven: com.captcha:botdetect-jsp20:4.0.beta3.7" level="project" />
+    <orderEntry type="library" name="Maven: com.captcha:botdetect-servlet:4.0.beta3.7" level="project" />
+    <orderEntry type="library" name="Maven: com.captcha:botdetect:4.0.beta3.7" level="project" />
+    <orderEntry type="library" name="Maven: org.hsqldb:hsqldb:2.5.0" level="project" />
   </component>
 </module>

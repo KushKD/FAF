@@ -8,6 +8,9 @@ import java.util.List;
 
 public class FlightApplicationForm implements Serializable {
 
+
+   // private String captchaCode, captchaCorrect, captchaIncorrect;
+
     private String category;
     private String registrationType;
     private String relationPrifix;
@@ -263,6 +266,30 @@ public class FlightApplicationForm implements Serializable {
         this.tentitiveFlightDate = tentitiveFlightDate;
     }
 
+
+//    public String getCaptchaCode() {
+//        return captchaCode;
+//    }
+//
+//    public void setCaptchaCode(String captchaCode) {
+//        this.captchaCode = captchaCode;
+//    }
+//
+//    public String getCaptchaCorrect() {
+//        return captchaCorrect;
+//    }
+//
+//    public void setCaptchaCorrect(String captchaCorrect) {
+//        this.captchaCorrect = captchaCorrect;
+//    }
+//
+//    public String getCaptchaIncorrect() {
+//        return captchaIncorrect;
+//    }
+//
+//    public void setCaptchaIncorrect(String captchaIncorrect) {
+//        this.captchaIncorrect = captchaIncorrect;
+//    }
 
     @Override
     public String toString() {

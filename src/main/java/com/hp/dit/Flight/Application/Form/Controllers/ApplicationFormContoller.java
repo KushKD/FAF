@@ -1,5 +1,6 @@
 package com.hp.dit.Flight.Application.Form.Controllers;
 
+import com.captcha.botdetect.web.servlet.Captcha;
 import com.hp.dit.Flight.Application.Form.entities.*;
 import com.hp.dit.Flight.Application.Form.form.FlightApplicationForm;
 import com.hp.dit.Flight.Application.Form.services.FileStorageService;
@@ -63,6 +64,14 @@ public class ApplicationFormContoller {
     public String saveDetails(@ModelAttribute("flightApplicationForm") FlightApplicationForm flightApplicationForm,
                               BindingResult bindingResult, Model model, HttpServletRequest request, RedirectAttributes redirectAttributes) {
         flightFormValidator.validate(flightApplicationForm, bindingResult);
+
+//        Captcha captcha = Captcha.load(request, "basicExample");
+//        boolean isHuman = captcha.validate(flightApplicationForm.getCaptchaCode());
+//
+//        System.out.println(isHuman);
+
+
+
         if (bindingResult.hasErrors()) {
             return "flightapplication";
         }
