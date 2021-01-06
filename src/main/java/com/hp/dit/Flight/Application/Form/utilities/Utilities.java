@@ -48,4 +48,12 @@ public class Utilities {
 
         return remoteAddr;
     }
+
+    public static boolean empty(String s)
+    {
+        if(s== null || s.trim().equals(""))
+            return true;
+        else
+            return false;
+    }
 }

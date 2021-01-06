@@ -202,6 +202,19 @@
          </div>
           </spring:bind>
 
+            <!-- Changes -->
+            <!-- Gallery Photo Ajay-->
+            <!-- Remove Schemes -->
+            <!-- Messages CM/DC Ajay-->
+            <!-- Contact Us  Ajay-->
+            <!-- PDF of Notifications Name eFlight Notification -->
+            <!-- Tentative Dates for availing flight to -->
+            <!-- Tentative Dates for availing flight From -->
+            <!-- Mandatory Feilds * aadhaar card -->
+            <!-- Add emergency in User Type --->
+            <!-- Add Perpose after user tiusertype and reservation type -->
+            <!-- Website name eVimana or eFlight  Ajay-->
+
            <spring:bind path="flightDistrictToGoFrom">
                    <div class="form-group col-lg-4 ${status.error ? 'has-error' : ''}">
                       <label for="locales">  <spring:message code="form.togodistirct"  text="Select District" /> </label>
@@ -255,7 +268,7 @@
       <div class="row" style="margin-bottom:10px;">
          <div class="col-lg-12"><hr><strong><spring:message code="form.documentry.proff" text="Flight Details" /></strong><hr></div>
          <div  id="aadhaar_div" class="form-group col-lg-4">
-            <label for="aadhaar_doc" class="form-label"><spring:message code="form.documentry.aadhaar" text="Aadhaar Card" /> </label>
+            <label for="aadhaar_doc" class="form-label"><spring:message code="form.documentry.aadhaar" text="Aadhaar Card" /> *</label>
             <form:input class="form-control" type="file" id="aadhaar_doc" path="aadhaar_doc" name="aadhaar_doc" />
          </div>
          <div id="official_div" class="form-group col-lg-4">

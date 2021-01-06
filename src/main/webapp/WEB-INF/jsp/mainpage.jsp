@@ -42,17 +42,19 @@
                         Hon'ble Chief Minister, Himachal Pradesh <br> <a class="read_more" href="">Read Message</a>
                      </div>
                   </div>
-                  <div class="cm col-xl-12 col-lg-4 col-md-4 col-sm-12">
-                     <div class="pic"><img src="${pageContext.request.contextPath}/resources/images/DC_Lahual.jpg" class="img-thumbnail" style="height:100%; width:100%;"></div>
-                     <div class="name"><strong>Sh. Pankaj Rai </strong><br>
-                        DC Lahaul and Spiti<br> <a class="read_more" href="">Read Message </a>
-                     </div>
-                  </div>
 
-                   <div class="cm col-xl-12 col-lg-4 col-md-4 col-sm-12">
-                                       <div class="pic"><img src="${pageContext.request.contextPath}/resources/images/digital_india.png" class="img-thumbnail" style="height:100%; width:100%;"></div>
-                                       <div class="name"><strong> Digital India Transformation </strong>
-                                          <br> <a class="read_more" href="">Read Message </a>
+
+                  <div class="cm col-xl-12 col-lg-4 col-md-4 col-sm-12">
+                                       <div class="pic"><img src="${pageContext.request.contextPath}/resources/images/it_minister.jpg" class="img-thumbnail" style="height:100%; width:100%;"></div>
+                                       <div class="name"><strong>Dr. Ram Lal Markanda </strong><br>
+                                          Hon'able IT Minister, Himachal Pradesh <br> <a class="read_more" href="">Read Message </a>
+                                       </div>
+                                    </div>
+
+                  <div class="cm col-xl-12 col-lg-4 col-md-4 col-sm-12">
+                                       <div class="pic"><img src="${pageContext.request.contextPath}/resources/images/DC_Lahual.jpg" class="img-thumbnail" style="height:100%; width:100%;"></div>
+                                       <div class="name"><strong>Sh. Pankaj Rai </strong><br>
+                                          DC Lahaul and Spiti<br> <a class="read_more" href="">Read Message </a>
                                        </div>
                                     </div>
 
@@ -197,7 +199,7 @@
                                <p class="queries_key_p" >General Queries</p>
                             </div>
                             <div class="queries_value">
-                               <p class="queries_value_p">91XXXXXXXX</p>
+                               <p class="queries_value_p">Vinod Kumar 9459744047</p>
                             </div>
                          </div>
 
@@ -207,7 +209,7 @@
                                        <p class="queries_key_p" >Technical Support</p>
                                     </div>
                                     <div class="queries_value">
-                                       <p class="queries_value_p">91XXXXXXXX,91XXXXXXXX</p>
+                                       <p class="queries_value_p">Ajay Sharma 9418944320</p>
                                     </div>
                              </div>
 

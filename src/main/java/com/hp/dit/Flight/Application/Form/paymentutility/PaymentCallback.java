@@ -1,14 +1,97 @@
 package com.hp.dit.Flight.Application.Form.paymentutility;
 
+import com.hp.dit.Flight.Application.Form.enums.PaymentMode;
+
 import java.io.Serializable;
 
 public class PaymentCallback implements Serializable {
 
     private String txnid;
     private String mihpayid;
-   // private PaymentMode mode;
+    private PaymentMode mode;
     private String status;
     private String hash;
+    private String key;
+    private String amount;
+    private String productinfo;
+    private String firstname;
+    private String email;
+    private String phone;
+    private String error;
+    private String bank_ref_num;
+
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
+
+    public String getAmount() {
+        return amount;
+    }
+
+    public void setAmount(String amount) {
+        this.amount = amount;
+    }
+
+    public String getProductinfo() {
+        return productinfo;
+    }
+
+    public void setProductinfo(String productinfo) {
+        this.productinfo = productinfo;
+    }
+
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getError() {
+        return error;
+    }
+
+    public void setError(String error) {
+        this.error = error;
+    }
+
+    public String getBank_ref_num() {
+        return bank_ref_num;
+    }
+
+    public void setBank_ref_num(String bank_ref_num) {
+        this.bank_ref_num = bank_ref_num;
+    }
+
+    public PaymentMode getMode() {
+        return mode;
+    }
+
+    public void setMode(PaymentMode mode) {
+        this.mode = mode;
+    }
 
     public String getTxnid() {
         return txnid;
@@ -47,8 +130,17 @@ public class PaymentCallback implements Serializable {
         return "PaymentCallback{" +
                 "txnid='" + txnid + '\'' +
                 ", mihpayid='" + mihpayid + '\'' +
+                ", mode=" + mode +
                 ", status='" + status + '\'' +
                 ", hash='" + hash + '\'' +
+                ", key='" + key + '\'' +
+                ", amount='" + amount + '\'' +
+                ", productinfo='" + productinfo + '\'' +
+                ", firstname='" + firstname + '\'' +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", error='" + error + '\'' +
+                ", bank_ref_num='" + bank_ref_num + '\'' +
                 '}';
     }
 }

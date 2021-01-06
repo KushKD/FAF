@@ -1,12 +1,15 @@
 package com.hp.dit.Flight.Application.Form.Controllers;
 
 import com.hp.dit.Flight.Application.Form.entities.FlightFormEntity;
+import com.hp.dit.Flight.Application.Form.enums.PaymentMode;
+import com.hp.dit.Flight.Application.Form.enums.PaymentStatus;
 import com.hp.dit.Flight.Application.Form.form.FlightApplicationForm;
 import com.hp.dit.Flight.Application.Form.form.PaymentForm;
 import com.hp.dit.Flight.Application.Form.paymentutility.PaymentCallback;
 import com.hp.dit.Flight.Application.Form.paymentutility.PaymentDetail;
 import com.hp.dit.Flight.Application.Form.paymentutility.PaymentUtil;
 import com.hp.dit.Flight.Application.Form.services.FlightFormService;
+import com.hp.dit.Flight.Application.Form.utilities.Utilities;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -88,19 +91,112 @@ public class PaymentPageController {
 
 
     @RequestMapping(value = "/paymentResponse", method = RequestMethod.POST)
-    public String paymentResponse(Model model, HttpServletRequest request) {
+    public String paymentResponse(Model model, HttpServletRequest request,
+                                  @RequestParam String mihpayid,
+                                  @RequestParam String status,
+                                  @RequestParam String txnid,
+                                  @RequestParam PaymentMode mode,
+                                  @RequestParam String hash,
+                                  @RequestParam String key,
+                                  @RequestParam String amount,
+                                  @RequestParam String productinfo,
+                                  @RequestParam String firstname,
+                                  @RequestParam String email,
+                                  @RequestParam String phone,
+                                  @RequestParam String error,
+                                  @RequestParam String bank_ref_num) {
         try {
 
+            PaymentCallback paymentCallback = new PaymentCallback();
+            if(Utilities.empty(amount)){
+                paymentCallback.setAmount("");
+            }else{
+                paymentCallback.setAmount(amount);
+            }
 
-            System.out.println(request.getSession().getAttribute("status"));
-            System.out.println(request.getSession().getAttribute("hash"));
+            if(Utilities.empty(mihpayid)){
+                paymentCallback.setMihpayid("");
+            }else{
+                paymentCallback.setMihpayid(mihpayid);
+            }
+
+            if(Utilities.empty(status)){
+                paymentCallback.setStatus(PaymentStatus.Failed.toString());
+            }else{
+                paymentCallback.setStatus(status);
+            }
+
+            if(Utilities.empty(txnid)){
+                paymentCallback.setTxnid("");
+            }else{
+                paymentCallback.setTxnid(txnid);
+            }
+
+            if(Utilities.empty(hash)){
+                paymentCallback.setHash("");
+            }else{
+                paymentCallback.setHash(hash);
+            }
+
+            if(Utilities.empty(key)){
+                paymentCallback.setKey("");
+            }else{
+                paymentCallback.setKey(key);
+            }
+
+            if(Utilities.empty(productinfo)){
+                paymentCallback.setProductinfo("");
+            }else{
+                paymentCallback.setProductinfo(productinfo);
+            }
+
+            if(Utilities.empty(firstname)){
+                paymentCallback.setFirstname("");
+            }else{
+                paymentCallback.setFirstname(firstname);
+            }
+
+            if(Utilities.empty(email)){
+                paymentCallback.setEmail("");
+            }else{
+                paymentCallback.setEmail(email);
+            }
+
+            if(Utilities.empty(phone)){
+                paymentCallback.setPhone("");
+            }else{
+                paymentCallback.setPhone(phone);
+            }
+
+            if(Utilities.empty(error)){
+                paymentCallback.setError(error);
+            }else{
+                paymentCallback.setError(error);
+            }
+
+            if(Utilities.empty(bank_ref_num)){
+                paymentCallback.setBank_ref_num("");
+            }else{
+                paymentCallback.setBank_ref_num(bank_ref_num);
+            }
 
 
-            return null;
+           //Verify the Payment and then save to Database
+
+            if(PaymentUtil.verifyPayment(paymentCallback)){
+
+                System.out.println("Return Success Page");
+                return "paymentResponse";
+            }else{
+                System.out.println("Return Fail Page");
+                return "paymentResponse";
+            }
+
+
 
         } catch (Exception ex) {
             // request.getSession().setAttribute("serverError", ex.getLocalizedMessage().toString());
-            return null;
+            return "paymentResponse";
         }
 
 

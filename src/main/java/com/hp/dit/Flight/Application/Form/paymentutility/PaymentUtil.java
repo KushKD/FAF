@@ -17,12 +17,6 @@ public class PaymentUtil {
 
     public static PaymentDetail populatePaymentDetail(PaymentDetail paymentDetail){
         String hashString = "";
-
-
-
-
-
-
         Random rand = new Random();
         String rndm = Integer.toString(rand.nextInt()) + (System.currentTimeMillis() / 1000L);
         String txnId =  hashCal("SHA-256", rndm).substring(0, 12);
@@ -31,7 +25,6 @@ public class PaymentUtil {
         //String otherPostParamSeq = "phone|surl|furl|lastname|curl|address1|address2|city|state|country|zipcode|pg";
         String hashSequence = "key|txnid|amount|productinfo|firstname|email|||||||||||";
         hashString = hashSequence.concat(paymentSalt);
-        System.out.println(hashString);
         hashString = hashString.replace("key", paymentKey);
         hashString = hashString.replace("txnid", txnId);
         hashString = hashString.replace("amount", Double.toString(paymentDetail.getAmount()));
@@ -66,6 +59,39 @@ public class PaymentUtil {
         } catch (NoSuchAlgorithmException nsae) {
         }
         return hexString.toString();
+    }
+
+    public static boolean verifyPayment(PaymentCallback paymentCallback){
+        String hashString="";
+        String hash;
+            String hashSequence = paymentSalt+"|"+paymentCallback.getStatus()+"||||||||||||||||"+paymentCallback.getEmail()+"|"+paymentCallback.getStatus()+"|"+paymentCallback.getProductinfo()+"|"+paymentCallback.getAmount()+"|"+paymentCallback.getTxnid()+"|";
+            hashString=hashSequence.concat(paymentCallback.getKey());
+            System.out.println(hashString);
+            hash=hashCal("SHA-512",hashString);
+            //out.println(hash);
+            if(paymentCallback.getHash().equals(hash)){
+                System.out.println("Payment successfull (No Additional Charges) - "+"<br />");
+                System.out.println("Amount:"+paymentCallback.getAmount()+"<br />");
+                System.out.println("Status of Transaction:"+paymentCallback.getStatus()+"<br />");
+                return true;
+                //Do success order processing here...
+                //Additional step - Use verify payment api to double check payment.
+//                if(verifyPayment(key,salt,txnid)){
+//                    out.println("<h2>Payment Verified...</h2><br />");
+//                }
+//                else {
+//                    out.println("<h1>Payment Not Verified...</h1><br />");
+//                }
+
+            }
+            else{
+                System.out.println("Hash Mismatch");
+                return false;
+            }
+
+
+
+
     }
 
 }
