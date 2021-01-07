@@ -43,6 +43,7 @@
     <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/repositories/ReservationTypeRepository.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/repositories/RolesRepository.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/repositories/UserRepository.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/repositories/UserTranactionRepository.java" charset="US-ASCII" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/repositories/UserTypeRepository.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/repositories/userFormDataPreviousServiceRepository.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/services/DistrictService.java" charset="UTF-8" />
@@ -52,6 +53,7 @@
     <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/services/ReasonAvailingFlightService.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/services/RelationshipPrefixService.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/services/ReservationTypeService.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/services/UserTransactionService.java" charset="US-ASCII" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/services/UserTypeService.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/services/userFormDataPreviousService.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/utilities/DateUtilities.java" charset="UTF-8" />

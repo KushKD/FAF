@@ -64,7 +64,7 @@ public class PaymentUtil {
     public static boolean verifyPayment(PaymentCallback paymentCallback){
         String hashString="";
         String hash;
-            String hashSequence = paymentSalt+"|"+paymentCallback.getStatus()+"||||||||||||||||"+paymentCallback.getEmail()+"|"+paymentCallback.getStatus()+"|"+paymentCallback.getProductinfo()+"|"+paymentCallback.getAmount()+"|"+paymentCallback.getTxnid()+"|";
+            String hashSequence = paymentSalt+"|"+paymentCallback.getStatus()+"|||||||||||"+paymentCallback.getEmail()+"|"+paymentCallback.getFirstname()+"|"+paymentCallback.getProductinfo()+"|"+paymentCallback.getAmount()+"|"+paymentCallback.getTxnid()+"|";
             hashString=hashSequence.concat(paymentCallback.getKey());
             System.out.println(hashString);
             hash=hashCal("SHA-512",hashString);
