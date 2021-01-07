@@ -253,7 +253,7 @@ CREATE TABLE user_transaction (
     amount character varying(10),
     payment_Status character varying(10),
     transaction_id character varying(100),
-    mihpayId character varying (100),
+    mihpay_id character varying (100),
     payment_mode character varying (10),
     bank_ref_number character varying(100),
     error character varying(255),

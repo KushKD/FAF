@@ -186,6 +186,14 @@ public class PaymentPageController {
             }
 
 
+            if (Utilities.empty(mode.toString())) {
+
+                paymentCallback.setMode(PaymentMode.NA);
+            } else {
+                paymentCallback.setMode(mode);
+            }
+
+
             //Verify the Payment and then save to Database
 
             if (PaymentUtil.verifyPayment(paymentCallback)) {
@@ -200,7 +208,7 @@ public class PaymentPageController {
                 entity.setError(paymentCallback.getError());
                 entity.setMihpayId(paymentCallback.getMihpayid());
                 entity.setName(paymentCallback.getFirstname());
-                entity.setPaymentMode(paymentCallback.getMode().name());
+                entity.setPaymentMode(paymentCallback.getMode().toString());
                 entity.setPaymentStatus(paymentCallback.getStatus());
                 entity.setTransactionId(paymentCallback.getTxnid());
                 entity.setUserId(Integer.parseInt(paymentCallback.getProductinfo()));
@@ -209,15 +217,34 @@ public class PaymentPageController {
                 Date date = new Date(timestamp.getTime());
                 entity.setCreatedDate(date);
                 userTransactionService.saveTransaction(entity);
+                model.addAttribute("paymnetdetails", paymentCallback);
                 return "paymentResponse";
             } else {
                 System.out.println("Return Fail Page");
+                UserTranactionEntity entity = new UserTranactionEntity();
+                entity.setActive(true);
+                entity.setAmount(paymentCallback.getAmount());
+                entity.setBankRefNumber(paymentCallback.getBank_ref_num());
+                entity.setEmail(paymentCallback.getEmail());
+                entity.setError(paymentCallback.getError());
+                entity.setMihpayId(paymentCallback.getMihpayid());
+                entity.setName(paymentCallback.getFirstname());
+                entity.setPaymentMode(paymentCallback.getMode().toString());
+                entity.setPaymentStatus(paymentCallback.getStatus());
+                entity.setTransactionId(paymentCallback.getTxnid());
+                entity.setUserId(Integer.parseInt(paymentCallback.getProductinfo()));
+                entity.setPhone(paymentCallback.getPhone());
+                Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+                Date date = new Date(timestamp.getTime());
+                entity.setCreatedDate(date);
+                userTransactionService.saveTransaction(entity);
+                model.addAttribute("paymnetdetails", paymentCallback);
                 return "paymentResponse";
             }
 
 
         } catch (Exception ex) {
-            // request.getSession().setAttribute("serverError", ex.getLocalizedMessage().toString());
+            request.getSession().setAttribute("serverError", ex.getLocalizedMessage().toString());
             return "paymentResponse";
         }
 

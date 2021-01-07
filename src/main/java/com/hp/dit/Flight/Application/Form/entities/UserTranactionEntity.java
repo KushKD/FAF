@@ -36,7 +36,7 @@ public class UserTranactionEntity implements Serializable {
     @Column(name = "transaction_id")
     private String transactionId;
 
-    @Column(name = "mihpayId")
+    @Column(name = "mihpay_id")
     private String mihpayId;
 
     @Column(name = "payment_mode")

@@ -50,7 +50,7 @@
 
 
     <definition name="paymentResponse" extends="main">
-        <put-attribute name="content" value="/WEB-INF/jsp/paymentResponsePage.jsp" />
+        <put-attribute name="content" value="/WEB-INF/jsp/paymentresponse.jsp" />
     </definition>
 
     <definition name="mainpage" extends="main">
