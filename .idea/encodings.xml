@@ -69,6 +69,7 @@
     <file url="file://$PROJECT_DIR$/src/main/resources/static/js/preventBack.js" charset="US-ASCII" />
     <file url="file://$PROJECT_DIR$/src/main/resources/validation.properties" charset="US-ASCII" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/checkStatus.jsp" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/gallery.jsp" charset="US-ASCII" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/paymentProceed.jsp" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/paymentresponse.jsp" charset="US-ASCII" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/postpayment.jsp" charset="UTF-8" />

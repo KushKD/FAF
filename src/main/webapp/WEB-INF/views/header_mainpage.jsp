@@ -66,378 +66,33 @@
                      <li>
                         <a href="#"> <img src="${pageContext.request.contextPath}/resources/images/vector/information.svg" class="icon_mega_menu"><span class="parent-menga-menu">Information</span></a>
                         <div class="mega-menu">
-                           <!-- <div class="header">
-                              <h2>Mega Menu</h2>
-                              </div>  -->
+
                            <div class="row">
                               <!-- First Row-->
                               <div  class="col-lg-4" style="float:left">
-                                 <div><span class="mega-menu-header">Section 1 </span></div>
+                                 <div><span class="mega-menu-header"> Important Notifications </span></div>
                                  <ul >
                                     <li>
-                                       <a href="#">
+                                       <a href="${pageContext.request.contextPath}/resources/pdf/Regarding_Term_and_condition_of_winter_helicopter.pdf" target="_blank">
                                           <div class="mega-menu-div-design">
                                              <i class="fa fa-caret-right mega-menu-div-design-fa-icon" aria-hidden="true"></i>
-                                             <span class="mega-menu-div-design-span"> -- </span>
+                                             <span class="mega-menu-div-design-span"> Terms and Condition for Winter Helicopter Service </span>
                                           </div>
                                        </a>
                                     </li>
-                                    <li>
-                                       <a href="#">
-                                          <div class="mega-menu-div-design">
-                                             <i class="fa fa-caret-right mega-menu-div-design-fa-icon" aria-hidden="true"></i>
-                                             <span class="mega-menu-div-design-span"> -- </span>
-                                          </div>
-                                       </a>
-                                    </li>
-                                    <li>
-                                       <a href="#">
-                                          <div class="mega-menu-div-design">
-                                             <i class="fa fa-caret-right mega-menu-div-design-fa-icon" aria-hidden="true"></i>
-                                             <span class="mega-menu-div-design-span"> -- </span>
-                                          </div>
-                                       </a>
-                                    </li>
-                                    <li>
-                                       <a href="#">
-                                          <div class="mega-menu-div-design">
-                                             <i class="fa fa-caret-right mega-menu-div-design-fa-icon" aria-hidden="true"></i>
-                                             <span class="mega-menu-div-design-span"> -- </span>
-                                          </div>
-                                       </a>
-                                    </li>
-                                    <li>
-                                       <a href="#">
-                                          <div class="mega-menu-div-design">
-                                             <i class="fa fa-caret-right mega-menu-div-design-fa-icon" aria-hidden="true"></i>
-                                             <span class="mega-menu-div-design-span"> --  </span>
-                                          </div>
-                                       </a>
-                                    </li>
-                                    <li>
-                                       <a href="#">
-                                          <div class="mega-menu-div-design">
-                                             <i class="fa fa-caret-right mega-menu-div-design-fa-icon" aria-hidden="true"></i>
-                                             <span class="mega-menu-div-design-span"> --</span>
-                                          </div>
-                                       </a>
-                                    </li>
-                                    <li>
-                                       <a href="#">
-                                          <div class="mega-menu-div-design">
-                                             <i class="fa fa-caret-right mega-menu-div-design-fa-icon" aria-hidden="true"></i>
-                                             <span class="mega-menu-div-design-span"> -- </span>
-                                          </div>
-                                       </a>
-                                    </li>
-                                    <li>
-                                       <a href="#">
-                                          <div class="mega-menu-div-design">
-                                             <i class="fa fa-caret-right mega-menu-div-design-fa-icon" aria-hidden="true"></i>
-                                             <span class="mega-menu-div-design-span"> -- </span>
-                                          </div>
-                                       </a>
-                                    </li>
-                                    <li>
-                                       <a href="#">
-                                          <div class="mega-menu-div-design">
-                                             <i class="fa fa-caret-right mega-menu-div-design-fa-icon" aria-hidden="true"></i>
-                                             <span class="mega-menu-div-design-span"> -- </span>
-                                          </div>
-                                       </a>
-                                    </li>
-                                    <li>
-                                       <a href="#">
-                                          <div class="mega-menu-div-design">
-                                             <i class="fa fa-caret-right mega-menu-div-design-fa-icon" aria-hidden="true"></i>
-                                             <span class="mega-menu-div-design-span"> -- </span>
-                                          </div>
-                                       </a>
-                                    </li>
+
+
+
                                  </ul>
                               </div>
                               <!-- First Row Ends-->
-                              <!-- Second Row Starts-->
-                              <div class="col-lg-4">
-                                 <div><span class="mega-menu-header">Section 2</span></div>
-                                 <ul >
-                                    <li>
-                                       <a href="#">
-                                          <div class="mega-menu-div-design">
-                                             <i class="fa fa-caret-right mega-menu-div-design-fa-icon" aria-hidden="true"></i>
-                                             <span class="mega-menu-div-design-span"> -- </span>
-                                          </div>
-                                       </a>
-                                    </li>
-                                    <li>
-                                       <a href="#">
-                                          <div class="mega-menu-div-design">
-                                             <i class="fa fa-caret-right mega-menu-div-design-fa-icon" aria-hidden="true"></i>
-                                             <span class="mega-menu-div-design-span"> -- </span>
-                                          </div>
-                                       </a>
-                                    </li>
-                                    <li>
-                                       <a href="#">
-                                          <div class="mega-menu-div-design">
-                                             <i class="fa fa-caret-right mega-menu-div-design-fa-icon" aria-hidden="true"></i>
-                                             <span class="mega-menu-div-design-span text-left"> -- </span>
-                                          </div>
-                                       </a>
-                                    </li>
-                                    <li>
-                                       <a href="#">
-                                          <div class="mega-menu-div-design">
-                                             <i class="fa fa-caret-right mega-menu-div-design-fa-icon" aria-hidden="true"></i>
-                                             <span class="mega-menu-div-design-span"> -- </span>
-                                          </div>
-                                       </a>
-                                    </li>
-                                 </ul>
-                              </div>
-                              <!--Second Row Ends-->
-                              <!--Third Row-->
-                              <div class="col-lg-4">
-                                 <div><span class="mega-menu-header">Section 3</span></div>
-                                 <ul >
-                                    <li>
-                                       <a href="#">
-                                          <div class="mega-menu-div-design">
-                                             <i class="fa fa-caret-right mega-menu-div-design-fa-icon" aria-hidden="true"></i>
-                                             <span class="mega-menu-div-design-span"> -- </span>
-                                          </div>
-                                       </a>
-                                    </li>
-                                    <li>
-                                       <a href="#">
-                                          <div class="mega-menu-div-design">
-                                             <i class="fa fa-caret-right mega-menu-div-design-fa-icon" aria-hidden="true"></i>
-                                             <span class="mega-menu-div-design-span"> -- </span>
-                                          </div>
-                                       </a>
-                                    </li>
-                                    <li>
-                                       <a href="#">
-                                          <div class="mega-menu-div-design">
-                                             <i class="fa fa-caret-right mega-menu-div-design-fa-icon" aria-hidden="true"></i>
-                                             <span class="mega-menu-div-design-span"> -- </span>
-                                          </div>
-                                       </a>
-                                    </li>
-                                    <li>
-                                       <a href="#">
-                                          <div class="mega-menu-div-design">
-                                             <i class="fa fa-caret-right mega-menu-div-design-fa-icon" aria-hidden="true"></i>
-                                             <span class="mega-menu-div-design-span"> -- </span>
-                                          </div>
-                                       </a>
-                                    </li>
-                                    <li>
-                                       <a href="#">
-                                          <div class="mega-menu-div-design">
-                                             <i class="fa fa-caret-right mega-menu-div-design-fa-icon" aria-hidden="true"></i>
-                                             <span class="mega-menu-div-design-span"> -- </span>
-                                          </div>
-                                       </a>
-                                    </li>
-                                    <!-- <li>
-                                       <a href="#">
-                                          <div class="mega-menu-div-design">
-                                             <i class="fa fa-caret-right mega-menu-div-design-fa-icon" aria-hidden="true"></i>
-                                             <span class="mega-menu-div-design-span"> -- </span>
-                                          </div>
-                                       </a>
-                                       </li> -->
-                                    <li>
-                                       <a href="#">
-                                          <div class="mega-menu-div-design">
-                                             <i class="fa fa-caret-right mega-menu-div-design-fa-icon" aria-hidden="true"></i>
-                                             <span class="mega-menu-div-design-span"> -- </span>
-                                          </div>
-                                       </a>
-                                    </li>
-                                    <li>
-                                       <a href="#">
-                                          <div class="mega-menu-div-design">
-                                             <i class="fa fa-caret-right mega-menu-div-design-fa-icon" aria-hidden="true"></i>
-                                             <span class="mega-menu-div-design-span"> -- </span>
-                                          </div>
-                                       </a>
-                                    </li>
-                                 </ul>
-                              </div>
-                              <!-- Third Row Ends-->
+
+
                            </div>
                         </div>
                      </li>
 
-                     <li style="display:none;">
-                        <a href="#"><img src="${pageContext.request.contextPath}/resources/images/vector/act_and_rules.svg" class="icon_mega_menu"><span class="parent-menga-menu">Acts & Rules</span></a>
-                        <div class="mega-menu">
-                           <!-- <div class="header">
-                              <h2>Mega Menu</h2>
-                              </div>  -->
-                           <div class="row">
-                              <!-- First Row-->
-                              <div class="col-lg-4">
-                                 <div><span class="mega-menu-header">Information </span></div>
-                                 <ul >
-                                    <li>
-                                       <a href="#">
-                                          <div class="mega-menu-div-design">
-                                             <i class="fa fa-caret-right mega-menu-div-design-fa-icon" aria-hidden="true"></i>
-                                             <span class="mega-menu-div-design-span">  Draft Single Window Act </span>
-                                          </div>
-                                       </a>
-                                    </li>
-                                    <li>
-                                       <a href="#">
-                                          <div class="mega-menu-div-design">
-                                             <i class="fa fa-caret-right mega-menu-div-design-fa-icon" aria-hidden="true"></i>
-                                             <span class="mega-menu-div-design-span"> Single Window Act</span>
-                                          </div>
-                                       </a>
-                                    </li>
-                                    <li>
-                                       <a href="#">
-                                          <div class="mega-menu-div-design">
-                                             <i class="fa fa-caret-right mega-menu-div-design-fa-icon" aria-hidden="true"></i>
-                                             <span class="mega-menu-div-design-span"> MSME Development Act 2006 </span>
-                                          </div>
-                                       </a>
-                                    </li>
-                                    <li>
-                                       <a href="#">
-                                          <div class="mega-menu-div-design">
-                                             <i class="fa fa-caret-right mega-menu-div-design-fa-icon" aria-hidden="true"></i>
-                                             <span class="mega-menu-div-design-span">  Rules For Purchase of Status</span>
-                                          </div>
-                                       </a>
-                                    </li>
-                                    <li>
-                                       <a href="#">
-                                          <div class="mega-menu-div-design">
-                                             <i class="fa fa-caret-right mega-menu-div-design-fa-icon" aria-hidden="true"></i>
-                                             <span class="mega-menu-div-design-span">  Public Service Guarantee (PSG) </span>
-                                          </div>
-                                       </a>
-                                    </li>
-                                    <li>
-                                       <a href="#">
-                                          <div class="mega-menu-div-design">
-                                             <i class="fa fa-caret-right mega-menu-div-design-fa-icon" aria-hidden="true"></i>
-                                             <span class="mega-menu-div-design-span">Corrigendum</span>
-                                          </div>
-                                       </a>
-                                    </li>
-                                    <li>
-                                       <a href="#">
-                                          <div class="mega-menu-div-design">
-                                             <i class="fa fa-caret-right mega-menu-div-design-fa-icon" aria-hidden="true"></i>
-                                             <span class="mega-menu-div-design-span">Rules</span>
-                                          </div>
-                                       </a>
-                                    </li>
-                                    <!-- <li>
-                                       <a href="#">
-                                          <div class="mega-menu-div-design">
-                                             <i class="fa fa-caret-right mega-menu-div-design-fa-icon" aria-hidden="true"></i>
-                                             <span class="mega-menu-div-design-span"> HPPSG Act Grievance Application Redressal</span>
-                                          </div>
-                                       </a>
-                                       </li>
-                                       <li>
-                                       <a href="#">
-                                          <div class="mega-menu-div-design">
-                                             <i class="fa fa-caret-right mega-menu-div-design-fa-icon" aria-hidden="true"></i>
-                                             <span class="mega-menu-div-design-span"> H.P. Tenancy & Land Reforms Acts,1972</span>
-                                          </div>
-                                       </a>
-                                       </li>
-                                       <li>
-                                       <a href="#">
-                                          <div class="mega-menu-div-design">
-                                             <i class="fa fa-caret-right mega-menu-div-design-fa-icon" aria-hidden="true"></i>
-                                             <span class="mega-menu-div-design-span"> Himachal Pradesh Public Money Recovery of Dues Act 2000</span>
-                                          </div>
-                                       </a>
-                                       </li> -->
-                                 </ul>
-                              </div>
-                              <!-- First Row Ends-->
-                              <!-- Extra Row Starts-->
-                              <div class="col-lg-4">
-                                 <div><span class="mega-menu-header">&nbsp; </span></div>
-                                 <ul >
-                                    <li>
-                                       <a href="#">
-                                          <div class="mega-menu-div-design">
-                                             <i class="fa fa-caret-right mega-menu-div-design-fa-icon" aria-hidden="true"></i>
-                                             <span class="mega-menu-div-design-span">Land Acquisition Act</span>
-                                          </div>
-                                       </a>
-                                    </li>
-                                    <li>
-                                       <a href="#">
-                                          <div class="mega-menu-div-design">
-                                             <i class="fa fa-caret-right mega-menu-div-design-fa-icon" aria-hidden="true"></i>
-                                             <span class="mega-menu-div-design-span">The Partnership Act, 1932</span>
-                                          </div>
-                                       </a>
-                                    </li>
-                                    <li>
-                                       <a href="#">
-                                          <div class="mega-menu-div-design">
-                                             <i class="fa fa-caret-right mega-menu-div-design-fa-icon" aria-hidden="true"></i>
-                                             <span class="mega-menu-div-design-span">Forest(Conservation) Act, 1980</span>
-                                          </div>
-                                       </a>
-                                    </li>
-                                    <li>
-                                       <a href="#">
-                                          <div class="mega-menu-div-design">
-                                             <i class="fa fa-caret-right mega-menu-div-design-fa-icon" aria-hidden="true"></i>
-                                             <span class="mega-menu-div-design-span">  The Indian BOILERS Act,1923</span>
-                                          </div>
-                                       </a>
-                                    </li>
-                                    <li>
-                                       <a href="#">
-                                          <div class="mega-menu-div-design">
-                                             <i class="fa fa-caret-right mega-menu-div-design-fa-icon" aria-hidden="true"></i>
-                                             <span class="mega-menu-div-design-span">  Incentives Given Under PSG Act</span>
-                                          </div>
-                                       </a>
-                                    </li>
-                                 </ul>
-                              </div>
-                              <!--Extra Row Ends-->
-                              <!-- Second Row Starts-->
-                              <div class="col-lg-4">
-                                 <div><span class="mega-menu-header">RTI Act & Rules</span></div>
-                                 <ul >
-                                    <li>
-                                       <a href="#">
-                                          <div class="mega-menu-div-design">
-                                             <i class="fa fa-caret-right mega-menu-div-design-fa-icon" aria-hidden="true"></i>
-                                             <span class="mega-menu-div-design-span">RTI Act 2005</span>
-                                          </div>
-                                       </a>
-                                    </li>
-                                    <li>
-                                       <a href="#">
-                                          <div class="mega-menu-div-design">
-                                             <i class="fa fa-caret-right mega-menu-div-design-fa-icon" aria-hidden="true"></i>
-                                             <span class="mega-menu-div-design-span">RTI Rules of H.P.</span>
-                                          </div>
-                                       </a>
-                                    </li>
-                                 </ul>
-                              </div>
-                              <!--Second Row Ends-->
-                           </div>
-                        </div>
-                     </li>
+
                   </ul>
                </nav>
             </div>
@@ -451,7 +106,7 @@
                   <li><a href="${pageContext.request.contextPath}/">Home</a></li>
                   <li><a href="#">Contact Us</a></li>
                   <li><a href="https://cmsankalp.hp.gov.in/" target="_blank">Grievance</a></li>
-                  <li><a href="#">Gallery</a></li>
+                  <li><a href="${pageContext.request.contextPath}/gallery">Gallery</a></li>
                   <li><a href="${pageContext.request.contextPath}/applicationform">Flight Application Form</a></li>
                   <li><a href="${pageContext.request.contextPath}/checkStatus">Check Application Status</a></li>
                </ul>
@@ -463,7 +118,7 @@
                   <li><a href="${pageContext.request.contextPath}/">Home</a></li>
                   <li><a href="#">Contact Us</a></li>
                   <li><a href="https://cmsankalp.hp.gov.in/" target="_blank">Grievance</a></li>
-                  <li><a href="#">Gallery</a></li>
+                  <li><a href="${pageContext.request.contextPath}/gallery">Gallery</a></li>
                   <li><a href="${pageContext.request.contextPath}/applicationform">Flight Application Form</a></li>
                   <li><a href="${pageContext.request.contextPath}/checkStatus">Check Application Status</a></li>
                </div>

@@ -46,5 +46,10 @@ public class HomeController {
         return "homepage_new";
     }
 
+    @RequestMapping(value = "/gallery", method = RequestMethod.GET)
+    public String gallery(Model model) {
+        return "gallery";
+    }
+
 
 }
