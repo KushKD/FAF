@@ -39,6 +39,7 @@ public class ViewApplicationsController {
                 pojo.setFullName((String) result[1]);
                 pojo.setMobileNumber((BigInteger) result[2]);
                 pojo.setApplicationStatus((String) result[3]);
+                pojo.setPaymentStatus((String) result[4]);
                 projectionData.add(pojo);
             }
 

@@ -41,7 +41,7 @@ public class FlightFormService {
     }
 
     public List<Object[]> getAllApplications(){
-         return flightFormRepository.getAllApplications();
+         return flightFormRepository.getApplicationProjectionNoDate();
     }
 
     public List<Object[]> checkApplicationStatus(int id) {return flightFormRepository.checkStatus(id);}

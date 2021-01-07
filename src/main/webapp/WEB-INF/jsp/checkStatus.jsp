@@ -39,10 +39,10 @@
    </form:form>
    </div>
    <c:if test="${not empty applicationData}">
-     <div class="container" style="background-color:#E6E6E6">
+     <div class="container">
       <div class="row">
-      <div class="col-lg-3">&nbsp; </div>
-      <div class="col-lg-6">
+      <div class="col-lg-1">&nbsp; </div>
+      <div class="col-lg-10">
       <hr>
       <div class="tile">
          <div class="tile-body">
@@ -79,7 +79,7 @@
             </div>
          </div>
          <div>
-         <div class="col-lg-3">&nbsp; </div>
+         <div class="col-lg-1">&nbsp; </div>
          </div>
       </div>
       </div>

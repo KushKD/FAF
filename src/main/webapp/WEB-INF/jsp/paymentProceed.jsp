@@ -32,7 +32,7 @@
                         <td class="text-center" >
                            <spring:bind path="user_id_transaction_id">
                               <div class="form-group  ${status.error ? 'has-error' : ''}">
-                                 <form:input type="text" path="user_id_transaction_id"   class="form-control" value="${user.userId}" readonly="true"  name="user_id_transaction_id" ></form:input>
+                                 <form:input type="text" path="user_id_transaction_id"   class="form-control text-center" value="${user.userId}" readonly="true"  name="user_id_transaction_id" ></form:input>
                                  <form:errors  path="user_id_transaction_id"></form:errors>
                               </div>
                            </spring:bind>
@@ -43,7 +43,7 @@
                         <td class="text-center" >
                            <spring:bind path="name">
                               <div class="form-group  ${status.error ? 'has-error' : ''}">
-                                 <form:input type="text" path="name"   class="form-control" value="${user.fullName}" name="name" readonly="true" ></form:input>
+                                 <form:input type="text" path="name"   class="form-control text-center" value="${user.fullName}" name="name" readonly="true" ></form:input>
                                  <form:errors  path="name"></form:errors>
                               </div>
                            </spring:bind>
@@ -78,7 +78,7 @@
                         <td class="text-center" >
                            <spring:bind path="phone">
                               <div class="form-group  ${status.error ? 'has-error' : ''}">
-                                 <form:input type="text" path="phone"   class="form-control" value="${user.mobileNumber}"  name="phone" readonly="true" ></form:input>
+                                 <form:input type="text" path="phone"   class="form-control text-center" value="${user.mobileNumber}"  name="phone" readonly="true" ></form:input>
                                  <form:errors  path="phone"></form:errors>
                               </div>
                            </spring:bind>
@@ -98,7 +98,7 @@
                      <c:if test="${user.category.userTypeName == 'Other' && user.age>9 }">
                         <spring:bind path="amount">
                            <div class="form-group  ${status.error ? 'has-error' : ''}">
-                              <form:input  type="text" path="amount" readonly="true"   class="form-control"  name="amount" value="7000" ></form:input>
+                              <form:input  type="text" path="amount" readonly="true"   class="form-control text-center"  name="amount" value="7000" ></form:input>
                               <form:errors  path="amount"></form:errors>
                            </div>
                         </spring:bind>
@@ -107,7 +107,7 @@
                         <td class="text-center" >
                            <spring:bind path="amount">
                               <div class="form-group  ${status.error ? 'has-error' : ''}">
-                                 <form:input  type="text" path="amount" readonly="true"   class="form-control"  name="amount" value="1500" ></form:input>
+                                 <form:input  type="text" path="amount" readonly="true"   class="form-control text-center"  name="amount" value="1500" ></form:input>
                                  <form:errors  path="amount"></form:errors>
                               </div>
                            </spring:bind>
@@ -117,7 +117,7 @@
                       <td class="text-center" >
                         <spring:bind path="amount">
                            <div class="form-group  ${status.error ? 'has-error' : ''}">
-                              <form:input  type="text" path="amount"  readonly="true"  class="form-control"  name="amount" value="1500" ></form:input>
+                              <form:input  type="text" path="amount"  readonly="true"  class="form-control text-center"  name="amount" value="1500" ></form:input>
                               <form:errors  path="amount"></form:errors>
                            </div>
                         </spring:bind>
@@ -127,7 +127,7 @@
                       <td class="text-center" >
                         <spring:bind path="amount">
                            <div class="form-group  ${status.error ? 'has-error' : ''}">
-                              <form:input  type="text" path="amount" readonly="true"    class="form-control"  name="amount" value="750" ></form:input>
+                              <form:input  type="text" path="amount" readonly="true"    class="form-control text-center"  name="amount" value="750" ></form:input>
                               <form:errors  path="amount"></form:errors>
                            </div>
                         </spring:bind>
@@ -137,7 +137,7 @@
                       <td class="text-center" >
                         <spring:bind path="amount">
                            <div class="form-group  ${status.error ? 'has-error' : ''}">
-                              <form:input  type="text" path="amount" readonly="true"   class="form-control"  name="amount" value="750" ></form:input>
+                              <form:input  type="text" path="amount" readonly="true"   class="form-control text-center"  name="amount" value="750" ></form:input>
                               <form:errors  path="amount"></form:errors>
                            </div>
                         </spring:bind>
@@ -147,7 +147,7 @@
                      <td>
                         <spring:bind path="amount">
                            <div class="form-group  ${status.error ? 'has-error' : ''}">
-                              <form:input  type="text" path="amount" readonly="true"   class="form-control"  name="amount" value="750" ></form:input>
+                              <form:input  type="text" path="amount" readonly="true"   class="form-control text-center"  name="amount" value="750" ></form:input>
                               <form:errors  path="amount"></form:errors>
                            </div>
                         </spring:bind>

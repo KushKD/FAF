@@ -24,11 +24,11 @@ public class FlightFormEntity implements Serializable {
     private UserType category;
 
     @OneToOne
-    @JoinColumn(name="reservationtype_id")
+    @JoinColumn(name="reservationtype_id" )
     private RegistrationType registrationType;
 
     @OneToOne
-    @JoinColumn(name="relationshipprifix_id")
+    @JoinColumn(name="relationshipprifix_id" )
     private RelationshipPrefix relationPrifix;
 
     @Column(name = "full_name")
@@ -56,7 +56,7 @@ public class FlightFormEntity implements Serializable {
     private String correspondenceAddress;
 
     @OneToOne
-    @JoinColumn(name = "reasonavailing_flight_id")
+    @JoinColumn(name = "reasonavailing_flight_id" )
     private ReasonAvailingFlight reasonAvailingFlightService;
 
     @Column(name = "comments")
@@ -122,6 +122,18 @@ public class FlightFormEntity implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY,targetEntity = userFormDataPreviousServiceEntity.class)
     @JoinColumn(name="user_id")
     List<userFormDataPreviousServiceEntity> userFormDataPreviousServiceEntities;
+
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER,targetEntity = UserTranactionEntity.class)
+    @JoinColumn(name="user_id")
+    UserTranactionEntity userTransaction;
+
+    public UserTranactionEntity getUserTransaction() {
+        return userTransaction;
+    }
+
+    public void setUserTransaction(UserTranactionEntity userTransaction) {
+        this.userTransaction = userTransaction;
+    }
 
     public List<userFormDataPreviousServiceEntity> getUserFormDataPreviousServiceEntities() {
         return userFormDataPreviousServiceEntities;
@@ -406,6 +418,7 @@ public class FlightFormEntity implements Serializable {
                 ", applicaionStatus='" + applicaionStatus + '\'' +
                 ", concernedAuthorityComments='" + concernedAuthorityComments + '\'' +
                 ", userFormDataPreviousServiceEntities=" + userFormDataPreviousServiceEntities +
+                ", userTransaction=" + userTransaction +
                 '}';
     }
 }

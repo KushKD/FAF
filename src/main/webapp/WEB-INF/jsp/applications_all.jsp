@@ -42,7 +42,7 @@
 											</td>
 											<td>${application.fullName}</td>
 											<td>${application.mobileNumber}</td>
-											<td class="text-center" style="color:black;">--</td>
+											<td class="text-center" style="color:black;">${application.paymentStatus}</td>
 											 <c:if test = "${application.applicationStatus == 'P'}">
                                                      <td class="text-center btn-warning" style="color:white;">Pending</td>
                                              </c:if>

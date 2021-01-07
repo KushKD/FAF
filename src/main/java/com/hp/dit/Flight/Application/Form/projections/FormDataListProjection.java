@@ -11,6 +11,15 @@ public class FormDataListProjection implements Serializable {
     String fullName;
     BigInteger mobileNumber;
     String applicationStatus;
+    String paymentStatus;
+
+    public String getPaymentStatus() {
+        return paymentStatus;
+    }
+
+    public void setPaymentStatus(String paymentStatus) {
+        this.paymentStatus = paymentStatus;
+    }
 
     public Integer getUserId() {
         return userId;
@@ -45,14 +54,14 @@ public class FormDataListProjection implements Serializable {
     }
 
 
-
     @Override
     public String toString() {
         return "FormDataListProjection{" +
-                "userId='" + userId + '\'' +
+                "userId=" + userId +
                 ", fullName='" + fullName + '\'' +
-                ", mobileNumber='" + mobileNumber + '\'' +
+                ", mobileNumber=" + mobileNumber +
                 ", applicationStatus='" + applicationStatus + '\'' +
+                ", paymentStatus='" + paymentStatus + '\'' +
                 '}';
     }
 }
