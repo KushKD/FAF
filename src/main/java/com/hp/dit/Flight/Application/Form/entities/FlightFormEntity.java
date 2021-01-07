@@ -121,19 +121,9 @@ public class FlightFormEntity implements Serializable {
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY,targetEntity = userFormDataPreviousServiceEntity.class)
     @JoinColumn(name="user_id")
-    List<userFormDataPreviousServiceEntity> userFormDataPreviousServiceEntities;
+    private List<userFormDataPreviousServiceEntity> userFormDataPreviousServiceEntities;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER,targetEntity = UserTranactionEntity.class)
-    @JoinColumn(name="user_id")
-    UserTranactionEntity userTransaction;
 
-    public UserTranactionEntity getUserTransaction() {
-        return userTransaction;
-    }
-
-    public void setUserTransaction(UserTranactionEntity userTransaction) {
-        this.userTransaction = userTransaction;
-    }
 
     public List<userFormDataPreviousServiceEntity> getUserFormDataPreviousServiceEntities() {
         return userFormDataPreviousServiceEntities;
@@ -418,7 +408,6 @@ public class FlightFormEntity implements Serializable {
                 ", applicaionStatus='" + applicaionStatus + '\'' +
                 ", concernedAuthorityComments='" + concernedAuthorityComments + '\'' +
                 ", userFormDataPreviousServiceEntities=" + userFormDataPreviousServiceEntities +
-                ", userTransaction=" + userTransaction +
                 '}';
     }
 }

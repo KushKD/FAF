@@ -1,8 +1,10 @@
 package com.hp.dit.Flight.Application.Form.Controllers;
 
 import com.hp.dit.Flight.Application.Form.entities.FlightFormEntity;
+import com.hp.dit.Flight.Application.Form.entities.UserTranactionEntity;
 import com.hp.dit.Flight.Application.Form.form.ActionForm;
 import com.hp.dit.Flight.Application.Form.services.FlightFormService;
+import com.hp.dit.Flight.Application.Form.services.UserTransactionService;
 import com.hp.dit.Flight.Application.Form.utilities.Constants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,17 +27,24 @@ public class UserDetailsController {
     @Autowired
     private FlightFormService flightFormService;
 
+    @Autowired
+    private UserTransactionService userTransactionService;
+
     @RequestMapping(value = "/getUserDetails/{id}", method= RequestMethod.GET)
     public String getUserDetailComplete(@PathVariable("id")int id, Model model, HttpServletRequest request) {
 
 
         model.addAttribute("actionForm", new ActionForm());
         FlightFormEntity user = new FlightFormEntity();
+        UserTranactionEntity transactionUser = new UserTranactionEntity();
         try {
             user = flightFormService.getDataByUserID(id);
             if (user != null) {
                 System.out.println(user.toString());
+                System.out.println(transactionUser.toString());
+                transactionUser =userTransactionService.getUserTransaction(user.getUserId());
                 model.addAttribute("userdata", user);
+                model.addAttribute("transactionUser", transactionUser);
                 request.getSession().setAttribute("successMessage", "Data found Successfully");
                 return "userdetails";
             } else {
@@ -70,7 +79,7 @@ public class UserDetailsController {
                 }else{
                     user.setApplicaionStatus(Constants.PENDING);
                 }
-                user.setComments(actionForm.getComments());
+                user.setConcernedAuthorityComments(actionForm.getComments());
             }
 
             FlightFormEntity savedData = flightFormService.saveUser(user);

@@ -24,4 +24,8 @@ public class UserTransactionService {
     public UserTranactionEntity saveTransaction(UserTranactionEntity data){
         return userTranactionRepository.save(data);
     }
+
+    public UserTranactionEntity getUserTransaction(int user_id){
+        return userTranactionRepository.getUserTransactions(user_id);
+    }
 }

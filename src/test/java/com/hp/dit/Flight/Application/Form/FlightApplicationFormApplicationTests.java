@@ -19,53 +19,53 @@ import java.util.Optional;
 @SpringBootTest
 class FlightApplicationFormApplicationTests {
 
-	@Autowired
-	RolesRepository rolesRepository;
-
-
-    @Autowired
-	UserRepository userRepository;
-
-    @Test
-    @Transactional
-    @Rollback(value = false)
-    void createUser(){
-
-        UserEntity user1 = new UserEntity();
-        PasswordEncoder encoder = new BCryptPasswordEncoder();
-        user1.setUsername("kush");
-        user1.setEmail("kushkumardhawan@gmail.com");
-        user1.setGender("M");
-        user1.setIs_deleted(false);
-        user1.setPassword(encoder.encode("Demo@123"));
-        user1.setMobileNumber(9459619235L);
-        user1.setActive(true);
-
-        Optional<RolesEntity> role = rolesRepository.findById(2L);
-		List<RolesEntity> list = new ArrayList<>();
-		list.add(role.get());
-        user1.setRoles(list);
-
-
-	 userRepository.save(user1);
-	}
-
-
-    @Test
-    @Transactional
-    @Rollback(value = false)
-    void createRoles() {
-
-        RolesEntity roles = new RolesEntity();
-        roles.setRoleName("Admin");
-        roles.setRoleDescription("Super Admin of the Website");
-        roles.setActive(true);
-
-
-
-        rolesRepository.save(roles);
-
-    }
+//	@Autowired
+//	RolesRepository rolesRepository;
+//
+//
+//    @Autowired
+//	UserRepository userRepository;
+//
+//    @Test
+//    @Transactional
+//    @Rollback(value = false)
+//    void createUser(){
+//
+//        UserEntity user1 = new UserEntity();
+//        PasswordEncoder encoder = new BCryptPasswordEncoder();
+//        user1.setUsername("kush");
+//        user1.setEmail("kushkumardhawan@gmail.com");
+//        user1.setGender("M");
+//        user1.setIs_deleted(false);
+//        user1.setPassword(encoder.encode("Demo@123"));
+//        user1.setMobileNumber(9459619235L);
+//        user1.setActive(true);
+//
+//        Optional<RolesEntity> role = rolesRepository.findById(2L);
+//		List<RolesEntity> list = new ArrayList<>();
+//		list.add(role.get());
+//        user1.setRoles(list);
+//
+//
+//	 userRepository.save(user1);
+//	}
+//
+//
+//    @Test
+//    @Transactional
+//    @Rollback(value = false)
+//    void createRoles() {
+//
+//        RolesEntity roles = new RolesEntity();
+//        roles.setRoleName("Admin");
+//        roles.setRoleDescription("Super Admin of the Website");
+//        roles.setActive(true);
+//
+//
+//
+//        rolesRepository.save(roles);
+//
+//    }
 ////
 //    @Test
 //    void bCryptPassword(){

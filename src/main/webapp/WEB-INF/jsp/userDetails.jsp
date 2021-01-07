@@ -252,6 +252,64 @@
       </div>
       <!-- Section Four Ends -->
 
+
+
+
+
+
+
+      <!-- Section Payment transactionUser -->
+       <c:if test="${not empty transactionUser}">
+       <div class="row user">
+            <div class="col-md-12">
+               <div class="tab-content">
+                  <div id="user-timeline">
+                     <div class="timeline-post">
+                        <h2>Transaction Details</h2>
+                        <hr>
+                        <div class="row">
+                           <div class="col-lg-4">
+                              <label> Transaction Status </label>
+                              <label>${transactionUser.paymentStatus}</label>
+                           </div>
+                           <div class="col-lg-4">
+                              <label> Transaction ID  </label>
+                              <label>${transactionUser.transactionId}</label>
+                           </div>
+                           <div class="col-lg-4">
+                              <label> Bank Reference Number: </label>
+                              <label>${transactionUser.bankRefNumber}</label>
+                           </div>
+                        </div>
+                        <div class="row">
+                           <div class="clearfix"></div>
+                           <div class="col-md-4">
+                              <label> Phone Number: </label>
+                              <label>${transactionUser.phone}</label>
+                           </div>
+                           <div class="clearfix"></div>
+                           <div class="col-md-12">
+                              <label> Email </label>
+                              <label>${transactionUser.email}</label>
+                           </div>
+
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         </div>
+         </c:if>
+       <!-- Section Payment Ends -->
+
+
+
+
+
+
+
+
       <!-- Section Five -->
       <c:if test="${userdata.applicaionStatus == 'P'}">
          <div class="row user">

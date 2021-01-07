@@ -71,7 +71,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.csrf()
                 .csrfTokenRepository(csrfTokenRepository()).and()
                 .addFilterAfter(csrfHeaderFilter(), CsrfFilter.class);
-        http.csrf().ignoringAntMatchers("/nocsrf", "/api/**");
         http.csrf().ignoringAntMatchers("/nocsrf", "/ajax/**");
         http.csrf().ignoringAntMatchers("/nocsrf", "/paymentResponse/**");
         
@@ -80,16 +79,25 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/**").permitAll()
                 .antMatchers("?**").permitAll()
-                .antMatchers("/api/**").permitAll()
                 .antMatchers("/ajax/**").permitAll()
-                 .antMatchers("/api/getotp/**").permitAll()
-                .antMatchers("/api/verifyotp/**").permitAll()
                 .antMatchers("/downloadFile/**").permitAll()
                 .antMatchers("/resources/**").permitAll()
+                .antMatchers("/paymentpage/**").permitAll()
+                .antMatchers("/paymentpagepost/**").permitAll()
+                .antMatchers("/paymentResponse/**").permitAll()
                 .antMatchers("/admin/**").hasAnyRole("Admin")
                 .antMatchers("/createuser/**").hasAnyRole("Admin")
                 .antMatchers("/saveuser/").hasAnyRole("Admin")
                 .antMatchers("/createrole/").hasAnyRole("Admin")
+                .antMatchers("/filterApplications/").hasAnyRole("Admin")
+                .antMatchers("/applications/").hasAnyRole("Admin")
+                .antMatchers("/getUserDetails/**").hasAnyRole("Admin")
+                .antMatchers("/updateApplication/**").hasAnyRole("Admin")
+                .antMatchers("/applications_all/**").hasAnyRole("Admin")
+
+
+
+
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
