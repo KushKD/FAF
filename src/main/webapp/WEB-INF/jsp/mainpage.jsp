@@ -76,9 +76,9 @@
       <!-- Investment Count-->
       <!-- INVESTMENT COUNTS -->
       <section>
-         <div class="container" style="padding: 20px 0; margin-top:10px; margin-bottom:10px;">
-            <a href="${pageContext.request.contextPath}/applicationform" style="color: #5B3560 !important;text-align: center;text-decoration: none;text-transform: uppercase;" title="LIVE :: Departmental Statistics">
-               <h1 style="font-size: 25px;"><i class="fa fa-pie-chart"> &nbsp; </i>Flight Application Form for Patients/ Locals/ Others</h1>
+         <div class="container breadcrumb" style="padding: 20px 0; margin-top:10px; margin-bottom:10px;">
+            <a class="col-lg-12" href="${pageContext.request.contextPath}/applicationform" style="color: #5B3560 !important;text-decoration: none;" title="LIVE :: Apply Here">
+               <h1 class="col-lg-12 text-center" style="font-size: 25px;"><i class="fa fa-pie-chart"> &nbsp; </i>Flight Application Form for Patients/ Locals/ Others</h1>
                  <h4 class="count text-center">Apply Now</h4>
             </a>
 
@@ -86,105 +86,9 @@
          </div>
       </section>
       <!--Investment Count Ends Here-->
-      <!-- News and Events -->
-      <!-- Section Marqie-->
-      <!-- <section class="container-fluid marquee_con" >
-         <div class="row">
-             <div class="col-lg-12">
-                 <a href="#" style="color: #FFF !important;text-align: center;text-decoration: none;" title="LIVE :: Departmental Statistics">
-                     <h1 style="font-size: 20px;">News, Highlights and More</h1>
-                  </a>
-             </div>
-               </div>
-               </section> -->
+
       <!-- Section Marquee-->
-      <section>
-         <div class="container-fluid">
-            <div class="row">
-               <!-- Tabs-->
-               <div class="col-xl-6 col-lg-12 col-md-12 back_pg"   >
-                  <p style="font-size: 20px; text-align: center; color: #FFF; background-color: #114368; ">News, Highlights and More</p>
-                  <div class="project-tab">
-                     <nav>
-                        <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
-                           <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Latest News</a>
-                           <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Events</a>
-                           <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Additions to the Portal</a>
-                        </div>
-                     </nav>
-                     <div class="tab-content" id="nav-tabContent">
-                        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                           <div>
-                              <marquee direction="up" onmouseover="this.stop();" onmouseout="this.start();">
-                                 <ul class="news_list">
-                                    <li><a href="#">News1</a></li>
-                                    <li><a href="#">News2</a></li>
-                                    <li><a href="#">News3</a></li>
-                                    <li><a href="#">News4</a></li>
-                                    <li><a href="#">News5</a></li>
-                                 </ul>
-                              </marquee>
-                              <div  class="col-lg-12 text-right" ><a class="text_decorate_two" href="#">Read More</a> </div>
-                           </div>
-                        </div>
-                        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                           <div>
-                              <ul class="events_list">
-                                 <li><a href="#">Event1</a></li>
-                                 <li><a href="#">Event2</a></li>
-                                 <li><a href="#">Event3</a></li>
-                                 <li><a href="#">Event4</a></li>
-                                 <li><a href="#">Event5</a></li>
-                              </ul>
-                              <div  class="col-lg-12 text-right" ><a class="text_decorate_two" href="#">Read More</a> </div>
-                           </div>
-                        </div>
-                        <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
-                           <div>
-                              <ul class="portal_ammendments">
-                                 <li><a href="#">Addition1</a></li>
-                                 <li><a href="#">Addition2</a></li>
-                                 <li><a href="#">Addition3</a></li>
-                                 <li><a href="#">Addition4</a></li>
-                                 <li><a href="#">Addition5</a></li>
-                              </ul>
-                              <div  class="col-lg-12 text-right" ><a class="text_decorate_two" href="#">Read More</a> </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-               <!-- Tabs End-->
-               <!-- Statistics Start-->
-               <div class="col-xl-3 col-lg-6 col-md-6">
-                  <p style="font-size: 20px; text-align: center; color: #FFF; background-color: #114368; "> <i class="fa fa-pie-chart"></i> &nbsp;Live Statistics</p>
 
-                  <div  class="stats_live">
-                     <div class="stats_key" >
-                        <p class="stats_key_p" >Total Registrations Till Date</p>
-                     </div>
-                     <div class="stats_value">
-                        <p class="stats_value_p">34,454</p>
-                     </div>
-                  </div>
-
-                  <div  class="col-lg-12 text-right" ><a class="text_decorate_two" href="#">Read More</a> </div>
-               </div>
-                  <!-- Statistics End-->
-
-
-                  <div class="col-xl-3 col-lg-6 col-md-6 back_pg">
-                      <p style="font-size: 20px; text-align: center; color: #FFF; background-color: #114368; ">Quick Links</p>
-                      <ul class="menu_" style="margin-left: -40px; margin-top: 20px; ">
-
-                          <li class="last leaf"><a href="#">Quick Link 1</a></li>
-                          <li class="last leaf"><a href='#'>Quick link 2</a></li>
-                          </ul>
-                  </div>
-               <!-- Other Stuff To think Ends-->
-            </div>
-         </div>
-      </section>
       <!-- News and Events ends-->
       <!-- Queries-->
       <!-- General Queries, Mining Queries and Technical Queries-->

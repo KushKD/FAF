@@ -51,5 +51,12 @@ public class HomeController {
         return "gallery";
     }
 
+    @RequestMapping(value = "/contactus", method = RequestMethod.GET)
+    public String contactus(Model model) {
+        return "contactus";
+    }
+
+
+
 
 }

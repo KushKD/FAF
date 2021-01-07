@@ -23,7 +23,7 @@
             <div class="col-xl-7 top_bar_col1 ">&nbsp;</div>
             <div class="col-xl-5 top_bar_col2" style="margin-top:10px" >
                <div class="flex_style">
-                  <ul class="accessibility">
+                  <ul style="display:none;" class="accessibility">
                      <li > <a  href="#">A<sub>-</sub></a></li>
                      <li> <a  href="#">A</a></li>
                      <li > <a   href="#">A<sub>+</sub></a></li>
@@ -83,6 +83,7 @@
 
 
 
+
                                  </ul>
                               </div>
                               <!-- First Row Ends-->
@@ -104,7 +105,7 @@
             <div class="hide_unhide">
                <ul class="secondary_menu">
                   <li><a href="${pageContext.request.contextPath}/">Home</a></li>
-                  <li><a href="#">Contact Us</a></li>
+                  <li><a href="${pageContext.request.contextPath}/contactus">Contact Us</a></li>
                   <li><a href="https://cmsankalp.hp.gov.in/" target="_blank">Grievance</a></li>
                   <li><a href="${pageContext.request.contextPath}/gallery">Gallery</a></li>
                   <li><a href="${pageContext.request.contextPath}/applicationform">Flight Application Form</a></li>
@@ -116,7 +117,7 @@
                <!-- Navigation links (hidden by default) -->
                <div id="myLinks">
                   <li><a href="${pageContext.request.contextPath}/">Home</a></li>
-                  <li><a href="#">Contact Us</a></li>
+                  <li><a href="${pageContext.request.contextPath}/contactus">Contact Us</a></li>
                   <li><a href="https://cmsankalp.hp.gov.in/" target="_blank">Grievance</a></li>
                   <li><a href="${pageContext.request.contextPath}/gallery">Gallery</a></li>
                   <li><a href="${pageContext.request.contextPath}/applicationform">Flight Application Form</a></li>
