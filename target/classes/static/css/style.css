@@ -19,7 +19,7 @@ html { background-color: #FFF; color: #555; font-family: 'Open Sans',sans-serif;
 .text_decorate:hover {text-decoration: none !important; color: #FFF;}
 .text_decorate_two {text-decoration: none !important; color: #114368;}
 .text_decorate_two:hover {text-decoration: none !important; color: #DAB62E;}
-.text_logo_one{color: #77332F; margin-top:40px; display: block; font-weight: bold; font-size: 20px;}
+.text_logo_one{color: #77332F; margin-top:15px; display: block; font-weight: bold; font-size: 20px;}
 .text_logo_two{color: #77332F; margin-top: -20px; display:block; font-weight: bold; font-size: 19px;}
 .logo_hp{width:100px; height: 90px;margin-top: 10px; }
 .slider_height{height:450px;}
@@ -163,7 +163,7 @@ html { background-color: #FFF; color: #555; font-family: 'Open Sans',sans-serif;
   .text_decorate:hover {text-decoration: none !important; color: #FFF;}
   .text_decorate_two {text-decoration: none !important; color: #114368;}
   .text_decorate_two:hover {text-decoration: none !important; color: #DAB62E;}
-  .text_logo_one{color: #77332F; margin-top:20px; display: block; font-weight: bold; font-size: 18px;}
+  .text_logo_one{color: #77332F; margin-top:5px; display: block; font-weight: bold; font-size: 18px;}
   .text_logo_two{color: #77332F; margin-top: -20px; display:block; font-weight: bold; font-size: 15px;}
   .logo_hp{width:100px; height: 100px; margin-top: 10px; }
   .accessibility{ margin:0; padding: 0;}
@@ -174,7 +174,7 @@ html { background-color: #FFF; color: #555; font-family: 'Open Sans',sans-serif;
 .top_bar_col1{display:none;}
 .top_bar_col2{  margin-left: 350px; }
 .logo_hp{width:100px; height: 80px;margin-top: 10px; margin-left: -40px; }
-.text_logo_one{color: #77332F; margin-top:30px; display: block; font-weight: bold; font-size: 20px;}
+.text_logo_one{color: #77332F; margin-top:5px; display: block; font-weight: bold; font-size: 20px;}
 .text_logo_two{color: #77332F; margin-top: -20px; display:block; font-weight: bold; font-size: 16px;}
 
 /*navbar_ and MEgaMenu Both
@@ -308,7 +308,7 @@ html { background-color: #FFF; color: #555; font-family: 'Open Sans',sans-serif;
 .top_bar_col1{display:none;}
 .top_bar_col2{  margin-left: 150px; }
 .logo_hp{width:100px; height: 80px;margin-top: 10px; margin-left: -30px; }
-.text_logo_one{color: #77332F; margin-top:30px; display: block; font-weight: bold; font-size: 20px;}
+.text_logo_one{color: #77332F; margin-top:5px; display: block; font-weight: bold; font-size: 20px;}
 .text_logo_two{color: #77332F; margin-top: -20px; display:block; font-weight: bold; font-size: 20px;}
 .padding_{margin-left: 10px;}
 /*navbar_ and MEgaMenu Both
@@ -444,7 +444,7 @@ html { background-color: #FFF; color: #555; font-family: 'Open Sans',sans-serif;
 .top_bar_col1{display:none;}
 .top_bar_col2{  margin-left: 50px; }
 .logo_hp{width:100px; height: 80px;margin-top: 10px; margin-left: -30px; }
-.text_logo_one{color: #77332F; margin-top:30px; display: block; font-weight: bold; font-size: 20px;}
+.text_logo_one{color: #77332F; margin-top:5px; display: block; font-weight: bold; font-size: 20px;}
 .text_logo_two{color: #77332F; margin-top: -20px; display:block; font-weight: bold; font-size: 20px;}
 .padding_{margin-left: 25px;}
 /*navbar_ and MEgaMenu Both

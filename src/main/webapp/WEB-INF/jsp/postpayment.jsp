@@ -1,6 +1,6 @@
 
 
-<body onload="bodyOnloadHandler()" style="min-height:300px;">
+<body  style="min-height:300px;">
 <div class="container">
 <div class= "row">
    <form action="https://test.payu.in/_payment" method="post" name="payuForm">
@@ -14,16 +14,17 @@
        <input type="hidden" name="productinfo" value="<%= session.getAttribute("productinfo") %>" />
       <input type="hidden" name="surl" value="<%= session.getAttribute("surl") %>" size="64" />
       <input type="hidden" name="furl" value="<%= session.getAttribute("furl") %>" size="64" />
-     <input class="col-lg-12 btn-success" type="submit" value="Proceed to payment gateway." />
+     <input class="col-lg-12 btn-success" name="submit" type="submit" value="Proceed to payment gateway." />
 
    </form>
    </div>
    </div>
 
 <script type="text/javascript">
-    function bodyOnloadHandler() {
-                console.log("body onload");
-            }
+alert("script running");
+    window.onload = function(){
+      document.forms['payuForm'].submit();
+    }
 </script>
 
    </body>

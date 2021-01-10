@@ -11,6 +11,7 @@ import com.hp.dit.Flight.Application.Form.paymentutility.PaymentDetail;
 import com.hp.dit.Flight.Application.Form.paymentutility.PaymentUtil;
 import com.hp.dit.Flight.Application.Form.services.FlightFormService;
 import com.hp.dit.Flight.Application.Form.services.UserTransactionService;
+import com.hp.dit.Flight.Application.Form.utilities.CalculateAmount;
 import com.hp.dit.Flight.Application.Form.utilities.Utilities;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,62 +38,89 @@ public class PaymentPageController {
     private static final Logger logger = LoggerFactory.getLogger(PaymentPageController.class);
 
     @RequestMapping(value = "/paymentpage", method = RequestMethod.GET)
-    public String paymentpage(Model model) {
+    public String paymentpage(Model model, HttpServletRequest request) {
         model.addAttribute("paymentForm", new PaymentForm());
         Integer userId = (Integer) model.asMap().get("userID");
         System.out.println(userId);
         FlightFormEntity user = new FlightFormEntity();
+        request.getSession().setAttribute("merchant_key", "");
+        request.getSession().setAttribute("hash", "");
+        request.getSession().setAttribute("txnid", "");
+        request.getSession().setAttribute("amount", "");
+        request.getSession().setAttribute("firstname", "");
+        request.getSession().setAttribute("email", "");
+        request.getSession().setAttribute("phone", "");
+        request.getSession().setAttribute("productinfo", "");
+        request.getSession().setAttribute("surl", "");
+        request.getSession().setAttribute("furl", "");
         try {
             user = flightFormService.getDataByUserID(userId);
             if (user != null) {
                 System.out.println(user.toString());
+                PaymentDetail paymentDetail = new PaymentDetail();
+                //Calculate Amount
+                paymentDetail.setAmount(Double.parseDouble(CalculateAmount.calculateAmount(user)));
+                paymentDetail.setName(user.getFullName());
+                paymentDetail.setProductInfo(Integer.toString(user.getUserId()));
+                paymentDetail.setPhone(String.valueOf(user.getMobileNumber()));
+                paymentDetail.setEmail("kushkumardhawan@gmail.com");
+
+                paymentDetail = PaymentUtil.populatePaymentDetail(paymentDetail);
+                request.getSession().setAttribute("merchant_key", paymentDetail.getKey());
+                request.getSession().setAttribute("hash", paymentDetail.getHash());
+                request.getSession().setAttribute("txnid", paymentDetail.getTxnId());
+                request.getSession().setAttribute("amount", paymentDetail.getAmount());
+                request.getSession().setAttribute("firstname", paymentDetail.getName());
+                request.getSession().setAttribute("email", paymentDetail.getEmail());
+                request.getSession().setAttribute("phone", paymentDetail.getPhone());
+                request.getSession().setAttribute("productinfo", paymentDetail.getProductInfo());
+                request.getSession().setAttribute("surl", paymentDetail.getsUrl());
+                request.getSession().setAttribute("furl", paymentDetail.getfUrl());
                 model.addAttribute("user", user);
                 return "paymentpage";
             } else {
-                //request.getSession().setAttribute("successMessage", "No Data Available.");
-                return "paymentpage";
+                return "applicationform";
             }
         } catch (Exception ex) {
-            // request.getSession().setAttribute("serverError", ex.getLocalizedMessage().toString());
         }
 
-        return "paymentpage";
+        return "applicationform";
     }
 
-    @RequestMapping(value = "/paymentpagepost", method = RequestMethod.POST)
-    public String postpaymentPage(@ModelAttribute("paymentForm") PaymentForm paymentForm,
-                                  BindingResult bindingResult, Model model, HttpServletRequest request) {
-        try {
-            PaymentDetail paymentDetail = new PaymentDetail();
-            paymentDetail.setAmount(paymentForm.getAmount());
-            paymentDetail.setName(paymentForm.getName());
-            paymentDetail.setProductInfo(paymentForm.getUser_id_transaction_id());
-            paymentDetail.setPhone(paymentForm.getPhone());
-            paymentDetail.setEmail("kushkumardhawan@gmail.com");
-
-            paymentDetail = PaymentUtil.populatePaymentDetail(paymentDetail);
-
-            request.getSession().setAttribute("merchant_key", paymentDetail.getKey());
-            request.getSession().setAttribute("hash", paymentDetail.getHash());
-            request.getSession().setAttribute("txnid", paymentDetail.getTxnId());
-            request.getSession().setAttribute("amount", paymentDetail.getAmount());
-            request.getSession().setAttribute("firstname", paymentDetail.getName());
-            request.getSession().setAttribute("email", paymentDetail.getEmail());
-            request.getSession().setAttribute("phone", paymentDetail.getPhone());
-            request.getSession().setAttribute("productinfo", paymentDetail.getProductInfo());
-            request.getSession().setAttribute("surl", paymentDetail.getsUrl());
-            request.getSession().setAttribute("furl", paymentDetail.getfUrl());
-
-
-            return "postPayment";
-
-        } catch (Exception ex) {
-            // request.getSession().setAttribute("serverError", ex.getLocalizedMessage().toString());
-            return "paymentpage";
-        }
-
-
-    }
+//    @RequestMapping(value = "/paymentpagepost", method = RequestMethod.POST)
+//    public String postpaymentPage(@ModelAttribute("paymentForm") PaymentForm paymentForm,
+//                                  BindingResult bindingResult, Model model, HttpServletRequest request) {
+//        try {
+//            PaymentDetail paymentDetail = new PaymentDetail();
+//            paymentDetail.setAmount(paymentForm.getAmount());
+//            paymentDetail.setName(paymentForm.getName());
+//            paymentDetail.setProductInfo(paymentForm.getUser_id_transaction_id());
+//            paymentDetail.setPhone(paymentForm.getPhone());
+//            paymentDetail.setEmail("kushkumardhawan@gmail.com");
+//
+//            paymentDetail = PaymentUtil.populatePaymentDetail(paymentDetail);
+//
+//            request.getSession().setAttribute("merchant_key", paymentDetail.getKey());
+//            request.getSession().setAttribute("hash", paymentDetail.getHash());
+//            request.getSession().setAttribute("txnid", paymentDetail.getTxnId());
+//            request.getSession().setAttribute("amount", paymentDetail.getAmount());
+//            request.getSession().setAttribute("firstname", paymentDetail.getName());
+//            request.getSession().setAttribute("email", paymentDetail.getEmail());
+//            request.getSession().setAttribute("phone", paymentDetail.getPhone());
+//            request.getSession().setAttribute("productinfo", paymentDetail.getProductInfo());
+//            request.getSession().setAttribute("surl", paymentDetail.getsUrl());
+//            request.getSession().setAttribute("furl", paymentDetail.getfUrl());
+//
+//
+//            return "postPayment";
+//
+//        } catch (Exception ex) {
+//            // request.getSession().setAttribute("serverError", ex.getLocalizedMessage().toString());
+//            return "paymentpage";
+//        }
+//
+//
+//    }
 
 
     @RequestMapping(value = "/paymentResponse", method = RequestMethod.POST)
