@@ -29,12 +29,12 @@ public class LoginController {
 
     @GetMapping("/login")
     public String login(Model model, String error, String logout) {
-        System.out.println("This is Login Controller");
+ //       System.out.println("This is Login Controller");
 
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication == null || authentication instanceof AnonymousAuthenticationToken) {
-            return "login";
-        }
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//        if (authentication == null || authentication instanceof AnonymousAuthenticationToken) {
+//            return "login";
+//        }
 
         if (error != null)
             model.addAttribute("error", "Your username and password is invalid.");
@@ -46,28 +46,6 @@ public class LoginController {
     }
 
 
-  //      @RequestMapping(value = "/verifylogin", method = RequestMethod.POST)
-//        public String homePagev(@RequestBody LoginForm data_, HttpServletResponse response, HttpServletRequest request) {
-//            System.out.println("#@#@#@#@#@#"+data_);
-//           // if(captchaResponse!=null ){
-//
-//             //   String url = "https://www.google.com/recaptcha/api/siteverify";
-//               // String params = "?secret=6LeFwKwZAAAAAH65Ik0Cp-h4hY8T0Z7HEwCyntIt&response="+captchaResponse;
-//               // ReCaptchaResponse reCaptchaResponse = restTemplate.exchange(url+params, HttpMethod.POST, null, ReCaptchaResponse.class).getBody();
-//               // if(reCaptchaResponse.isSuccess()) {
-//
-//                 //   System.out.println("Valid");
-//                  //  return "index";
-//                //}else{
-//                  //  System.out.println("Captcha Invalid");
-//                   // return "login";
-//               // }
-//            //}else{
-//                return "login";
-//            //}
-//
-//
-//        }
 
 
 

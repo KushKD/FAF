@@ -7,7 +7,7 @@
    <head>
       <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <title>Flight Application Form</title>
+      <title>ePushpak</title>
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <!-- Main CSS-->
@@ -53,10 +53,10 @@
             <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1" style="margin-left: 50px;"> <img src="${pageContext.request.contextPath}/resources/images/logo_gov_hp.png"  class="logo_hp"   alt="Himachal Pradesh Government"></div>
             <div class="col-xl-5 col-lg-5 col-md-10 col-sm-9 col-9 padding_">
                <div>
-                  <p class="text-left text_logo_one">DEPARTMENT OF INFORMATION TECHNOLOGY</p>
+                  <p class="text-left text_logo_one">ePushpak (V1.0)</p>
                </div>
                <div>
-                  <p class="text_logo_two">GOVERNMENT OF HIMACHAL PRADESH </p>
+                  <p class="text_logo_two">Department of Information Technology, Government of Himachal Pradesh  </p>
                </div>
             </div>
             <div class="col-xl-5 col-lg-5 col-md-12">

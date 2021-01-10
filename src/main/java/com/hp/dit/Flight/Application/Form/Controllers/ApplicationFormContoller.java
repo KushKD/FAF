@@ -8,6 +8,7 @@ import com.hp.dit.Flight.Application.Form.services.FlightFormService;
 import com.hp.dit.Flight.Application.Form.services.RoleService;
 import com.hp.dit.Flight.Application.Form.services.userFormDataPreviousService;
 import com.hp.dit.Flight.Application.Form.utilities.Constants;
+import com.hp.dit.Flight.Application.Form.utilities.DateUtilities;
 import com.hp.dit.Flight.Application.Form.validators.FlightFormValidator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -177,8 +178,11 @@ public class ApplicationFormContoller {
             reason_availing_flight.setReasonAvailingFlightId(Integer.parseInt(flightApplicationForm.getReasonAvailingFlightService()));
             flightForm.setReasonAvailingFlightService(reason_availing_flight);
             logger.info(reason_availing_flight.toString());
-            flightForm.setTentitiveFlightDate(flightApplicationForm.getTentitiveFlightDate());
-            logger.info(flightApplicationForm.getTentitiveFlightDate());
+            flightForm.setTentitiveFlightDate(DateUtilities.convertDate(flightApplicationForm.getTentitiveFlightDate()));
+            logger.info(DateUtilities.convertDate(flightApplicationForm.getTentitiveFlightDate()));
+
+            flightForm.setTentitiveFlightDateTo(DateUtilities.convertDate(flightApplicationForm.getServiceavailingDateto()));
+            logger.info(DateUtilities.convertDate(flightApplicationForm.getServiceavailingDateto()));
 
             district.setDistrictId(Integer.parseInt(flightApplicationForm.getFlightDistrictToGoFrom()));
             flightForm.setFlightDistrictToGoFrom(district);

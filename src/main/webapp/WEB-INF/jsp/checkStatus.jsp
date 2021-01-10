@@ -12,7 +12,7 @@
       <div class="container" style="padding:10px; margin-top:20px; margin:bottom:20px;">
          <h4 class="text-center">Check Application Status</h4>
          <ol class="breadcrumb">
-            <li> Instructions Goes Here </li>
+            <li> &nbsp; </li>
          </ol>
          <c:if test="${not empty successMessage}">
             <div id="serverError" class="successMessage">${successMessage}</div>

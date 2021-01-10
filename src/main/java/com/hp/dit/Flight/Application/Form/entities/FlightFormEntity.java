@@ -65,6 +65,9 @@ public class FlightFormEntity implements Serializable {
     @Column(name = "tentitive_flight_date")
     private String tentitiveFlightDate;
 
+    @Column(name = "tentitive_flight_date_to")
+    private String tentitiveFlightDateTo;
+
     @Column(name = "availed_flight_befor15")
     private String availedFlightBefore15;
 
@@ -123,7 +126,13 @@ public class FlightFormEntity implements Serializable {
     @JoinColumn(name="user_id")
     private List<userFormDataPreviousServiceEntity> userFormDataPreviousServiceEntities;
 
+    public String getTentitiveFlightDateTo() {
+        return tentitiveFlightDateTo;
+    }
 
+    public void setTentitiveFlightDateTo(String tentitiveFlightDateTo) {
+        this.tentitiveFlightDateTo = tentitiveFlightDateTo;
+    }
 
     public List<userFormDataPreviousServiceEntity> getUserFormDataPreviousServiceEntities() {
         return userFormDataPreviousServiceEntities;
@@ -392,6 +401,7 @@ public class FlightFormEntity implements Serializable {
                 ", reasonAvailingFlightService=" + reasonAvailingFlightService +
                 ", comments='" + comments + '\'' +
                 ", tentitiveFlightDate='" + tentitiveFlightDate + '\'' +
+                ", tentitiveFlightDateTo='" + tentitiveFlightDateTo + '\'' +
                 ", availedFlightBefore15='" + availedFlightBefore15 + '\'' +
                 ", earlierFlightServiceEmergency='" + earlierFlightServiceEmergency + '\'' +
                 ", declerationUser='" + declerationUser + '\'' +

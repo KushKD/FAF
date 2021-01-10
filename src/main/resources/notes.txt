@@ -265,4 +265,6 @@ CREATE TABLE user_transaction (
 );
 
 
-
+-- Updated Queries
+UPDATE mst_reasonavailing_flight SET reasonavailing_flight_name = 'Official' WHERE reasonavailing_flight_name = 'Offlicial';
+ALTER TABLE userformdata ADD COLUMN tentitive_flight_date_to character varying(20);

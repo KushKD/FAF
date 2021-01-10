@@ -143,7 +143,7 @@
          <spring:bind path="luggageWeight">
          <div class="form-group col-lg-4 ${status.error ? 'has-error' : ''}" >
             <label for="luggage_weight"> <spring:message code="form.estimated.luggage.weight" text="Luggage Weight (KG)" /> </label>
-            <form:input type="number"  onKeyPress="if(this.value.length>=4) return false;" path="luggageWeight" id="luggageWeight" class="form-control"  />
+            <form:input type="number"  onKeyPress="if(this.value.length>=4) return false;" path="luggageWeight" id="luggageWeight" value="0" class="form-control"  />
             <form:errors maxlength="4" style="color:red;" path="luggageWeight"></form:errors>
          </div>
           </spring:bind>
@@ -202,18 +202,22 @@
          </div>
           </spring:bind>
 
+           <spring:bind path="serviceavailingDateto">
+                   <div class="form-group col-lg-4 ${status.error ? 'has-error' : ''}">
+                      <label for="serviceavailingDateto"> <spring:message code="to.serviceavailingDate"  text="Tentative Date to availing flight Service" /> </label>
+                      <form:input maxlength="10"  path="serviceavailingDateto" id="serviceavailingDateto" type="date" class="form-control input-sm" />
+                      <form:errors  style="color:red;" path="serviceavailingDateto"></form:errors>
+                   </div>
+                    </spring:bind>
+
             <!-- Changes -->
-            <!-- Gallery Photo Ajay-->
-            <!-- Remove Schemes -->
+
+
             <!-- Messages CM/DC Ajay-->
-            <!-- Contact Us  Ajay-->
-            <!-- PDF of Notifications Name eFlight Notification -->
-            <!-- Tentative Dates for availing flight to -->
-            <!-- Tentative Dates for availing flight From -->
-            <!-- Mandatory Feilds * aadhaar card -->
+
             <!-- Add emergency in User Type --->
             <!-- Add Perpose after user tiusertype and reservation type -->
-            <!-- Website name eVimana or eFlight  Ajay-->
+
 
            <spring:bind path="flightDistrictToGoFrom">
                    <div class="form-group col-lg-4 ${status.error ? 'has-error' : ''}">

@@ -25,6 +25,7 @@ public class FlightApplicationForm implements Serializable {
     private String reasonAvailingFlightService;
     public String comments;
     private String tentitiveFlightDate;
+    private String serviceavailingDateto;
     private String availedFlightBefore15;
     private String earlierFlightServiceEmergency;
     private String declerationUser;
@@ -41,6 +42,14 @@ public class FlightApplicationForm implements Serializable {
     private MultipartFile medicalDoc;
     private MultipartFile otherDoc;
 
+
+    public String getServiceavailingDateto() {
+        return serviceavailingDateto;
+    }
+
+    public void setServiceavailingDateto(String serviceavailingDateto) {
+        this.serviceavailingDateto = serviceavailingDateto;
+    }
 
     public String getEarlierService() {
         return earlierService;
@@ -291,6 +300,7 @@ public class FlightApplicationForm implements Serializable {
 //        this.captchaIncorrect = captchaIncorrect;
 //    }
 
+
     @Override
     public String toString() {
         return "FlightApplicationForm{" +
@@ -308,6 +318,7 @@ public class FlightApplicationForm implements Serializable {
                 ", reasonAvailingFlightService='" + reasonAvailingFlightService + '\'' +
                 ", comments='" + comments + '\'' +
                 ", tentitiveFlightDate='" + tentitiveFlightDate + '\'' +
+                ", serviceavailingDateto='" + serviceavailingDateto + '\'' +
                 ", availedFlightBefore15='" + availedFlightBefore15 + '\'' +
                 ", earlierFlightServiceEmergency='" + earlierFlightServiceEmergency + '\'' +
                 ", declerationUser='" + declerationUser + '\'' +

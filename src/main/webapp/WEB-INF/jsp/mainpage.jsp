@@ -78,7 +78,7 @@
       <section>
          <div class="container breadcrumb" style="padding: 20px 0; margin-top:10px; margin-bottom:10px;">
             <a class="col-lg-12" href="${pageContext.request.contextPath}/applicationform" style="color: #5B3560 !important;text-decoration: none;" title="LIVE :: Apply Here">
-               <h1 class="col-lg-12 text-center" style="font-size: 25px;"><i class="fa fa-pie-chart"> &nbsp; </i>Flight Application Form for Patients/ Locals/ Others</h1>
+               <h1 class="col-lg-12 text-center" style="font-size: 25px;"><i class="fa fa-plane"> &nbsp; </i>Flight Application Form for Patients/ Locals/ Others</h1>
                  <h4 class="count text-center">Apply Now</h4>
             </a>
 
