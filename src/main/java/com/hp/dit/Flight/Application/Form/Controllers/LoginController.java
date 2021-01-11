@@ -31,18 +31,18 @@ public class LoginController {
     public String login(Model model, String error, String logout) {
  //       System.out.println("This is Login Controller");
 
-//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//        if (authentication == null || authentication instanceof AnonymousAuthenticationToken) {
-//            return "login";
-//        }
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication == null || authentication instanceof AnonymousAuthenticationToken) {
+            return "login";
+        } else {
+            if (error != null)
+                model.addAttribute("error", "Your username and password is invalid.");
 
-        if (error != null)
-            model.addAttribute("error", "Your username and password is invalid.");
+            if (logout != null)
+                model.addAttribute("message", "You have been logged out successfully.");
 
-        if (logout != null)
-            model.addAttribute("message", "You have been logged out successfully.");
-
-        return "login";
+            return "login";
+        }
     }
 
 

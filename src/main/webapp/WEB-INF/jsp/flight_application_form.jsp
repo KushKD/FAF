@@ -46,13 +46,15 @@
       <h2 class="form-signin-heading">
          <spring:message code="instructions.head" text="Instructions Heading"/>
       </h2>
-      <ol class="breadcrumb">
+      <div class="breadcrumb">
+      <ul>
          <li> <spring:message code="instructions.head.one" text="Instructions Heading One"/> </li>
          <li> <spring:message code="instructions.head.two" text="Instructions Heading Two"/>  </li>
          <li> <spring:message code="instructions.head.three" text="Instructions Heading Three"/> </li>
          <li> <spring:message code="instructions.head.four" text="Instructions Heading Four"/> </li>
          <li> <spring:message code="instructions.head.five" text="Instructions Heading Five"/> </li>
-      </ol>
+      </ul>
+      </div>
 
 
       <div class="row">

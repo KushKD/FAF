@@ -8,11 +8,10 @@
         <!-- The javascript plugin to display page loading on top-->
         <script src="${pageContext.request.contextPath}/resources/js/plugins/pace.min.js"></script>
         <!-- Page specific javascripts-->
-        <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/plugins/chart.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/plugins/select2.min.js"></script>
             <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/plugins/dropzone.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/plugins/bootstrap-datepicker.min.js"></script>
-              <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/preventBack.js"></script>
+
 
         <script type="text/javascript">
           var data = {
@@ -55,5 +54,9 @@
           	}
           ]
 
+  function disableBack() {window.history.forward()}
+
+    window.onload = disableBack();
+    window.onpageshow = function (evt) {if (evt.persisted) disableBack()}
 
         </script>

@@ -9,6 +9,9 @@ import com.hp.dit.Flight.Application.Form.utilities.Constants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -34,29 +37,36 @@ public class UserDetailsController {
     public String getUserDetailComplete(@PathVariable("id")int id, Model model, HttpServletRequest request) {
 
 
-        model.addAttribute("actionForm", new ActionForm());
-        FlightFormEntity user = new FlightFormEntity();
-        UserTranactionEntity transactionUser = new UserTranactionEntity();
-        try {
-            user = flightFormService.getDataByUserID(id);
-            if (user != null) {
-                System.out.println(user.toString());
-                System.out.println(transactionUser.toString());
-                transactionUser =userTransactionService.getUserTransaction(user.getUserId());
-                model.addAttribute("userdata", user);
-                model.addAttribute("transactionUser", transactionUser);
-                request.getSession().setAttribute("successMessage", "Data found Successfully");
-                return "userdetails";
-            } else {
-                request.getSession().setAttribute("successMessage", "No Data Available.");
-                return "userdetails";
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication == null || authentication instanceof AnonymousAuthenticationToken) {
+            return "login";
+        } else {
+            model.addAttribute("actionForm", new ActionForm());
+            FlightFormEntity user = new FlightFormEntity();
+            UserTranactionEntity transactionUser = new UserTranactionEntity();
+            try {
+                user = flightFormService.getDataByUserID(id);
+                if (user != null) {
+                    System.out.println(user.toString());
+                    System.out.println(transactionUser.toString());
+                    transactionUser =userTransactionService.getUserTransaction(user.getUserId());
+                    model.addAttribute("userdata", user);
+                    model.addAttribute("transactionUser", transactionUser);
+                    request.getSession().setAttribute("successMessage", "Data found Successfully");
+                    return "userdetails";
+                } else {
+                    request.getSession().setAttribute("successMessage", "No Data Available.");
+                    return "userdetails";
+                }
+
+            } catch (Exception ex) {
+                request.getSession().setAttribute("serverError", ex.getLocalizedMessage().toString());
             }
 
-        } catch (Exception ex) {
-            request.getSession().setAttribute("serverError", ex.getLocalizedMessage().toString());
+            return "userdetails";
         }
 
-        return "userdetails";
     }
 
 
@@ -65,32 +75,34 @@ public class UserDetailsController {
         // roleValidator.validate(roleForm, bindingResult);
         System.out.println(actionForm.toString());
 
-//        if (bindingResult.hasErrors()) {
-//            return "createrole";
-//        }
-        try {
-            FlightFormEntity user = new FlightFormEntity();
-            user = flightFormService.getCompleteApplication(Integer.parseInt(actionForm.getUser_id()));
-            if(user!=null){
-                if(actionForm.getAction().equalsIgnoreCase("A")){
-                    user.setApplicaionStatus(Constants.APPROVED);
-                }else if(actionForm.getAction().equalsIgnoreCase("R")){
-                    user.setApplicaionStatus(Constants.REJECTED);
-                }else{
-                    user.setApplicaionStatus(Constants.PENDING);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication == null || authentication instanceof AnonymousAuthenticationToken) {
+            return "login";
+        } else {
+            try {
+                FlightFormEntity user = new FlightFormEntity();
+                user = flightFormService.getCompleteApplication(Integer.parseInt(actionForm.getUser_id()));
+                if (user != null) {
+                    if (actionForm.getAction().equalsIgnoreCase("A")) {
+                        user.setApplicaionStatus(Constants.APPROVED);
+                    } else if (actionForm.getAction().equalsIgnoreCase("R")) {
+                        user.setApplicaionStatus(Constants.REJECTED);
+                    } else {
+                        user.setApplicaionStatus(Constants.PENDING);
+                    }
+                    user.setConcernedAuthorityComments(actionForm.getComments());
                 }
-                user.setConcernedAuthorityComments(actionForm.getComments());
+
+                FlightFormEntity savedData = flightFormService.saveUser(user);
+                model.addAttribute("userdata", savedData);
+                model.addAttribute("successMessage", "Application Updated");
+                return "userdetails";
+
+            } catch (Exception ex) {
+
+                model.addAttribute("serverError", ex.toString());
+                return "userdetails";
             }
-
-            FlightFormEntity savedData = flightFormService.saveUser(user);
-            model.addAttribute("userdata", savedData);
-            model.addAttribute("successMessage", "Application Updated");
-            return "userdetails";
-
-        } catch (Exception ex) {
-
-            model.addAttribute("serverError", ex.toString());
-            return "userdetails";
         }
 
 

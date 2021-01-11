@@ -66,13 +66,6 @@ public class ApplicationFormContoller {
                               BindingResult bindingResult, Model model, HttpServletRequest request, RedirectAttributes redirectAttributes) {
         flightFormValidator.validate(flightApplicationForm, bindingResult);
 
-//        Captcha captcha = Captcha.load(request, "basicExample");
-//        boolean isHuman = captcha.validate(flightApplicationForm.getCaptchaCode());
-//
-//        System.out.println(isHuman);
-
-
-
         if (bindingResult.hasErrors()) {
             return "flightapplication";
         }

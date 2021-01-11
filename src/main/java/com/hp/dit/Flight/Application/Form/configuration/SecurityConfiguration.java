@@ -71,20 +71,16 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.csrf()
                 .csrfTokenRepository(csrfTokenRepository()).and()
                 .addFilterAfter(csrfHeaderFilter(), CsrfFilter.class);
-        http.csrf().ignoringAntMatchers("/nocsrf", "/ajax/**");
         http.csrf().ignoringAntMatchers("/nocsrf", "/paymentResponse/**");
-        http.csrf().ignoringAntMatchers("/nocsrf", "/paymentpagepost/**");
+        http.csrf().ignoringAntMatchers("/nocsrf", "/ajax/**");
         
          //.anonymous()
           //.and()
         http.authorizeRequests()
                 .antMatchers("/**").permitAll()
-                .antMatchers("?**").permitAll()
-                .antMatchers("/ajax/**").permitAll()
                 .antMatchers("/downloadFile/**").permitAll()
                 .antMatchers("/gallery/**").permitAll()
                 .antMatchers("/contactus/**").permitAll()
-                .antMatchers("/resources/**").permitAll()
                 .antMatchers("/paymentpage/**").permitAll()
                 .antMatchers("/paymentResponse/**").permitAll()
                 .antMatchers("/admin/**").hasAnyRole("Admin")
@@ -96,12 +92,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/getUserDetails/**").hasAnyRole("Admin")
                 .antMatchers("/updateApplication/**").hasAnyRole("Admin")
                 .antMatchers("/applications_all/**").hasAnyRole("Admin")
-                .antMatchers("/applications_all/**").hasAnyRole("checkpayment")
-
-
-
-
-
+                .antMatchers("/checkpayment/**").hasAnyRole("Admin")
+                .antMatchers("/index/**").hasAnyRole("Admin")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -109,14 +101,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .defaultSuccessUrl("/index")
                 .permitAll()
                 .and()
-                .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login")
+                .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .logoutSuccessUrl("/login")
                 .clearAuthentication(true)
                 .invalidateHttpSession(true)
                 .deleteCookies("JSESSIONID")
                 .and()
                 .sessionManagement()
                 .maximumSessions(1)
-
                 .and()
                 .invalidSessionUrl("/login");
 
@@ -135,6 +127,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                     if (cookie == null || token != null && !token.equals(cookie.getValue())) {
                         cookie = new Cookie("XSRF-TOKEN", token);
                         cookie.setPath("/");
+                        cookie.setSecure(true);
+                        cookie.setHttpOnly(true);
                         response.addCookie(cookie);
                     }
                 }
@@ -142,7 +136,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 response.setContentType("text/html; charset=UTF-8");
                 response.setHeader("pragma", "no-cache");
                 response.setHeader("Cache-control", "no-cache, no-store, must-revalidate");
-              //  response.setHeader("Expires", "0");
                 filterChain.doFilter(request, response);
             }
         };
@@ -151,6 +144,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     private CsrfTokenRepository csrfTokenRepository() {
         HttpSessionCsrfTokenRepository repository = new HttpSessionCsrfTokenRepository();
         repository.setHeaderName("X-XSRF-TOKEN");
+
 
         return repository;
     }

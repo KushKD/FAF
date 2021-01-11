@@ -6,7 +6,11 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/plugins/bootstrap-datepicker.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/plugins/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/plugins/dataTables.bootstrap.min.js"></script>
+
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/flight_application_form.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/script.js"></script>
+
+
 <main class="app-content">
 	<!-- Modal -->
 	<div class="modal fade" id="empModal" role="dialog">

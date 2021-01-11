@@ -9,6 +9,9 @@ import com.hp.dit.Flight.Application.Form.validators.UserValidator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -40,8 +43,13 @@ public class UserController {
 
     @RequestMapping(value = "/createUser", method = RequestMethod.GET)
     public String createUser(Model model) {
-        model.addAttribute("registerUser", new RegisterUser());
-        return "createuser";
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication == null || authentication instanceof AnonymousAuthenticationToken) {
+            return "login";
+        } else {
+            model.addAttribute("registerUser", new RegisterUser());
+            return "createuser";
+        }
     }
 
     @RequestMapping(value = "/saveuser", method = RequestMethod.POST)
@@ -49,54 +57,58 @@ public class UserController {
     public String saveUser(@ModelAttribute("registerUser") RegisterUser registerUser, BindingResult bindingResult, Model model, HttpServletRequest request) {
         userValidator.validate(registerUser, bindingResult);
 
-        if (bindingResult.hasErrors()) {
-            return "createuser";
-        }
-        try {
-            UserEntity user = new UserEntity();
-            PasswordEncoder encoder = new BCryptPasswordEncoder();
-            user.setActive(true);
-            user.setIs_deleted(false);
-            user.setMobileNumber(Long.valueOf(registerUser.getMobileNumber()));
-            user.setUsername(registerUser.getUsername());
-            user.setPassword(encoder.encode(registerUser.getPassword()));
-            String roleIid = registerUser.getRoleId();
-            user.setEmail(registerUser.getEmailAddress());
-            user.setGender(registerUser.getGender());
-
-            Optional<RolesEntity> role = roleService.getRoleDetails(roleIid);
-            if (role.get() != null) {
-                List<RolesEntity> list = new ArrayList<RolesEntity>();
-                list.add(role.get());
-                user.setRoles(list);
-                UserEntity savedData = userservice.saveUser(user);
-
-                request.getSession().setAttribute("successMessage", savedData.getUsername() + "  Successfully Saved. ID is" + savedData.getUserId());
-                registerUser.setMobileNumber("");
-                registerUser.setPasswordConfirm("");
-                registerUser.setPassword("");
-                registerUser.setUsername("");
-                registerUser.setRoleId("0");
-                return "createuser";
-            } else {
-                registerUser.setMobileNumber("");
-                registerUser.setPasswordConfirm("");
-                registerUser.setPassword("");
-                registerUser.setUsername("");
-                registerUser.setRoleId("0");
-                model.addAttribute("serverError", "No Role Name and Role Description Exist with this ID");
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication == null || authentication instanceof AnonymousAuthenticationToken) {
+            return "login";
+        } else {
+            if (bindingResult.hasErrors()) {
                 return "createuser";
             }
+            try {
+                UserEntity user = new UserEntity();
+                PasswordEncoder encoder = new BCryptPasswordEncoder();
+                user.setActive(true);
+                user.setIs_deleted(false);
+                user.setMobileNumber(Long.valueOf(registerUser.getMobileNumber()));
+                user.setUsername(registerUser.getUsername());
+                user.setPassword(encoder.encode(registerUser.getPassword()));
+                String roleIid = registerUser.getRoleId();
+                user.setEmail(registerUser.getEmailAddress());
+                user.setGender(registerUser.getGender());
 
-        } catch (Exception ex) {
-            registerUser.setMobileNumber("");
-            registerUser.setPasswordConfirm("");
-            registerUser.setUsername("");
-            registerUser.setPassword("");
-            model.addAttribute("serverError", ex.toString());
-            return "createuser";
+                Optional<RolesEntity> role = roleService.getRoleDetails(roleIid);
+                if (role.get() != null) {
+                    List<RolesEntity> list = new ArrayList<RolesEntity>();
+                    list.add(role.get());
+                    user.setRoles(list);
+                    UserEntity savedData = userservice.saveUser(user);
+
+                    request.getSession().setAttribute("successMessage", savedData.getUsername() + "  Successfully Saved. ID is" + savedData.getUserId());
+                    registerUser.setMobileNumber("");
+                    registerUser.setPasswordConfirm("");
+                    registerUser.setPassword("");
+                    registerUser.setUsername("");
+                    registerUser.setRoleId("0");
+                    return "createuser";
+                } else {
+                    registerUser.setMobileNumber("");
+                    registerUser.setPasswordConfirm("");
+                    registerUser.setPassword("");
+                    registerUser.setUsername("");
+                    registerUser.setRoleId("0");
+                    model.addAttribute("serverError", "No Role Name and Role Description Exist with this ID");
+                    return "createuser";
+                }
+
+            } catch (Exception ex) {
+                registerUser.setMobileNumber("");
+                registerUser.setPasswordConfirm("");
+                registerUser.setUsername("");
+                registerUser.setPassword("");
+                model.addAttribute("serverError", ex.toString());
+                return "createuser";
+            }
         }
-
     }
 
 }
