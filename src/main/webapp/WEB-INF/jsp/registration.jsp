@@ -21,14 +21,14 @@
       </c:if>
       <spring:bind path="username">
          <div class="form-group ${status.error ? 'has-error' : ''}">
-            <form:input type="text" path="username" class="form-control" placeholder="Username"
+            <form:input type="text" onkeypress="return alpha(event)"  path="username" class="form-control" placeholder="Username"
                autofocus="true"></form:input>
             <form:errors  path="username"></form:errors>
          </div>
       </spring:bind>
       <spring:bind path="mobileNumber">
          <div class="form-group  ${status.error ? 'has-error' : ''}">
-            <form:input type="text"  required="required" path="mobileNumber" maxlength="10" minlength="10"  class="form-control"  name="mobileNumber" placeholder="Mobile Number" ></form:input>
+            <form:input type="text"  required="required" path="mobileNumber" maxlength="10" minlength="10"  class="form-control" onKeyPress="return isNumber(event)"  name="mobileNumber" placeholder="Mobile Number" ></form:input>
             <form:errors  path="mobileNumber"></form:errors>
          </div>
       </spring:bind>

@@ -91,7 +91,7 @@
           <spring:bind path="fullName">
          <div class="form-group col-lg-4 ${status.error ? 'has-error' : ''}">
             <form:label  path="fullName" for="fullname"> <spring:message code="form.fullname"   text="Full Name" /> </form:label>
-             <form:input type="text" path="fullName" id="fullName" class="form-control" placeholder="Username" autofocus="true" ></form:input>
+             <form:input type="text" path="fullName" id="fullName" class="form-control" placeholder="Username" autofocus="true" onkeypress="return alpha(event)" maxlength="30"  ></form:input>
            <form:errors style="color:red;"  path="fullName"></form:errors>
          </div>
           </spring:bind>
@@ -111,7 +111,7 @@
           <spring:bind path="relationName">
          <div class="form-group col-lg-4 ${status.error ? 'has-error' : ''}">
             <form:label path="relationName" for="parentname">  <spring:message code="form.parentname.relation.name"   text="Parent Name"  /> </form:label>
-            <form:input type="text" path="relationName" id="relationName" class="form-control"  />
+            <form:input type="text" onkeypress="return alpha(event)" maxlength="30" path="relationName" id="relationName" class="form-control"  />
             <form:errors style="color:red;"  path="relationName"></form:errors>
          </div>
           </spring:bind>
@@ -120,7 +120,7 @@
            <spring:bind path="mobileNumber">
          <div class="form-group col-lg-4 ${status.error ? 'has-error' : ''}">
             <form:label path="mobileNumber" for="mobilenumber"> <spring:message code="form.mobilenumber"  text="Mobile Number" /> </form:label>
-            <form:input type="number" path="mobileNumber" onKeyPress="if(this.value.length==10) return false;"  id="mobileNumber" class="form-control"  />
+            <form:input type="number" path="mobileNumber" onKeyPress="if(this.value.length==10) return false; return isNumber(event)"  id="mobileNumber" class="form-control"  />
             <form:errors style="color:red;"  path="mobileNumber"></form:errors>
          </div>
          </spring:bind>
@@ -129,7 +129,7 @@
           <spring:bind path="age" >
          <div class="form-group col-lg-4 ${status.error ? 'has-error' : ''}">
             <form:label path="age" for="age"> <spring:message code="form.age" text="Age" /> </form:label>
-            <form:input type="number" onKeyPress="if(this.value.length>=3) return false;" path="age" id="age" class="form-control" />
+            <form:input type="number" onKeyPress="if(this.value.length>=3) return false; return isNumber(event)" path="age" id="age" class="form-control" />
             <form:errors style="color:red;"  path="age"></form:errors>
          </div>
          </spring:bind>
@@ -137,7 +137,7 @@
          <spring:bind path="weight">
          <div class="form-group col-lg-4 ${status.error ? 'has-error' : ''}">
             <form:label  path="weight"  for="weight"> <spring:message code="form.weight" text="Weight" /> </form:label>
-            <form:input type="number" onKeyPress="if(this.value.length>=3) return false;"  path="weight"  id="weight" class="form-control" />
+            <form:input type="number" onKeyPress="if(this.value.length>=3) return false; return isNumber(event)"  path="weight"  id="weight" class="form-control" />
              <form:errors  style="color:red;" path="weight"></form:errors>
          </div>
          </spring:bind>
@@ -145,7 +145,7 @@
          <spring:bind path="luggageWeight">
          <div class="form-group col-lg-4 ${status.error ? 'has-error' : ''}" >
             <label for="luggage_weight"> <spring:message code="form.estimated.luggage.weight" text="Luggage Weight (KG)" /> </label>
-            <form:input type="number"  onKeyPress="if(this.value.length>=4) return false;" path="luggageWeight" id="luggageWeight" value="0" class="form-control"  />
+            <form:input type="number"  onKeyPress="if(this.value.length>=4) return false; return isNumber(event)" path="luggageWeight" id="luggageWeight" value="0" class="form-control"  />
             <form:errors maxlength="4" style="color:red;" path="luggageWeight"></form:errors>
          </div>
           </spring:bind>
@@ -154,7 +154,7 @@
           <spring:bind path="permanentAddress">
          <div class="form-group col-lg-4 ${status.error ? 'has-error' : ''}">
             <label for="address"> <spring:message code="form.address"  text="Address" /> </label>
-            <form:textarea rows="4" path="permanentAddress" id="permanentAddress" class="form-control"  />
+            <form:textarea rows="4" path="permanentAddress" id="permanentAddress" onkeypress="return alpha(event)" maxlength="30" class="form-control"  />
              <form:errors style="color:red;"  path="permanentAddress"></form:errors>
          </div>
           </spring:bind>
@@ -162,7 +162,7 @@
          <spring:bind path="correspondenceAddress">
          <div class="form-group col-lg-4 ${status.error ? 'has-error' : ''}">
             <label for="correspondence_address">  <spring:message code="form.correspondence.address"  text="Correspondence Address" /> </label>
-            <form:textarea rows="4"  path="correspondenceAddress" class="form-control" id="correspondenceAddress" />
+            <form:textarea rows="4"  path="correspondenceAddress" class="form-control" onkeypress="return alpha(event)" maxlength="30" id="correspondenceAddress" />
             <form:errors style="color:red;" path="correspondenceAddress"></form:errors>
          </div>
          </spring:bind>
@@ -190,7 +190,7 @@
          <spring:bind path="comments">
                   <div id="comments" class="form-group col-lg-4 ${status.error ? 'has-error' : ''}" style="display:none;">
                      <label for="comments">  <spring:message code="form.comments"  text="Comments" /> </label>
-                     <form:textarea rows="4"  path="comments" class="form-control" id="comments_Text" />
+                     <form:textarea rows="4"  path="comments" onkeypress="return alpha(event)" maxlength="30" class="form-control" id="comments_Text" />
                      <form:errors style="color:red;" path="comments"></form:errors>
                   </div>
                   </spring:bind>

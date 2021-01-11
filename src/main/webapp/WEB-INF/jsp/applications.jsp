@@ -72,7 +72,7 @@
 				<spring:bind path="Date">
 					<div class="col-md-3 form-group  ${status.error ? 'has-error' : ''}">
 						<form:label path="Date" >Select Date</form:label>
-						<form:input class="form-control" path="Date" id="demoDate" type="text" placeholder="Select Date" />
+						<form:input onkeypress="return alpha(event)"  class="form-control" path="Date" id="demoDate" type="text" placeholder="Select Date" />
 						<form:errors  path="Date"></form:errors>
 					</div>
 				</spring:bind>
@@ -168,6 +168,8 @@
 
 <script type="text/javascript">
    $('#sampleTable').DataTable();
+
+
 
 
    </script>

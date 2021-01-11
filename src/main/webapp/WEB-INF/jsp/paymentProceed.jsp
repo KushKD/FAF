@@ -2,11 +2,7 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<script src="${pageContext.request.contextPath}/resources/js/jquery-3.5.1.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/internationalization.js"></script>
-<section>
-   <body>
-      <form method="POST" name="payuForm"  action="https://test.payu.in/_payment"  >
+      <form method="POST" name="payuForm"  action="https://test.payu.in/_payment">
       <c:if test="${not empty successMessage}">
          <div class="row">
             <div id="serverError" style="color:#77332F; display: block ;" class="text-center successMessage col-lg-12 breadcrumb">${successMessage}</div>
@@ -133,4 +129,3 @@
       </div>
       <!-- Section Three Ends -->
       </form>
-</section>

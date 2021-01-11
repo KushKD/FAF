@@ -16,7 +16,7 @@
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
    </head>
    <head>
-   <body >
+   <body oncontextmenu="return false">
       <!--Top Bar Starts-->
       <section class="container-fluid top_bar"  >
          <div class="row">

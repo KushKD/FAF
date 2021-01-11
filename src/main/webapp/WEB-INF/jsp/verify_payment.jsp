@@ -4,11 +4,8 @@
 
 <script src="${pageContext.request.contextPath}/resources/js/jquery-3.3.1.min.js"></script>
         <script src="${pageContext.request.contextPath}/resources/js/bootstrapd.min.js"></script>
-         <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/script.js"></script>
-        <script src="${pageContext.request.contextPath}/resources/js/plugins/pace.min.js"></script>
-        <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/plugins/bootstrap-datepicker.min.js"></script>
- <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/plugins/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/plugins/dataTables.bootstrap.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/flight_application_form.js"></script>
+
 
 
 
@@ -31,7 +28,7 @@
 
                           <spring:bind path="application_id">
                           <div class="col-md-4 form-group  ${status.error ? 'has-error' : ''}">
-                            <form:input path="application_id" name="application_id" class="form-control" type="text" placeholder="Enter Application Id" required="required"  />
+                            <form:input path="application_id" onkeypress="return alpha(event)"  size="10" name="application_id" class="form-control" type="text" placeholder="Enter Application Id" required="required"  />
                               <form:errors  path="application_id"></form:errors>
                             </div>
                              </spring:bind>

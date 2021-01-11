@@ -2,6 +2,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
  <script src="${pageContext.request.contextPath}/resources/js/jquery-3.5.1.min.js"></script>
+ <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/flight_application_form.js"></script>
+
 
 
 
@@ -18,7 +20,7 @@
                 </c:if>
             <spring:bind path="roleName">
                 <div class="form-group ${status.error ? 'has-error' : ''}">
-                    <form:input type="text" path="roleName" class="form-control" placeholder="Role Name"
+                    <form:input type="text" path="roleName" onkeypress="return alpha(event)"  class="form-control" placeholder="Role Name"
                                 autofocus="true"></form:input>
                     <form:errors  path="roleName"></form:errors>
                 </div>
@@ -26,7 +28,7 @@
 
              <spring:bind path="roleDescription">
                             <div class="form-group  ${status.error ? 'has-error' : ''}">
-                                <form:input type="text" path="roleDescription"   class="form-control"  name="roleDescription" placeholder="Role Description" ></form:input>
+                                <form:input type="text" path="roleDescription" onkeypress="return alpha(event)"    class="form-control"  name="roleDescription" placeholder="Role Description" ></form:input>
                                 <form:errors  path="roleDescription"></form:errors>
                             </div>
                         </spring:bind>
