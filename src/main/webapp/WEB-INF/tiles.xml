@@ -82,6 +82,10 @@
         <put-attribute name="content" value="/WEB-INF/views/home_dashboard.jsp" />
     </definition>
 
+    <definition name="checkpayment" extends="baselayoutdashboard">
+        <put-attribute name="content" value="/WEB-INF/jsp/verify_payment.jsp" />
+    </definition>
+
 
 
     <definition name="createuser" extends="baselayoutdashboard">

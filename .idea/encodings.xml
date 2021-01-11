@@ -4,6 +4,7 @@
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/Controllers/ApplicationFormContoller.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/Controllers/CheckPaymentController.java" charset="US-ASCII" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/Controllers/CheckStatusController.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/Controllers/DownloadFileController.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/Controllers/FilterApplications.java" charset="UTF-8" />
@@ -25,6 +26,7 @@
     <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/enums/PaymentMode.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/enums/PaymentStatus.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/form/ActionForm.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/form/CheckPayment.java" charset="US-ASCII" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/form/CheckStatusForm.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/form/FlightApplicationForm.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/form/PaymentForm.java" charset="UTF-8" />
@@ -79,5 +81,6 @@
     <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/refund.jsp" charset="US-ASCII" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/termsandconditions.jsp" charset="US-ASCII" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/userDetails.jsp" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/verify_payment.jsp" charset="US-ASCII" />
   </component>
 </project>

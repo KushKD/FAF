@@ -96,6 +96,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/getUserDetails/**").hasAnyRole("Admin")
                 .antMatchers("/updateApplication/**").hasAnyRole("Admin")
                 .antMatchers("/applications_all/**").hasAnyRole("Admin")
+                .antMatchers("/applications_all/**").hasAnyRole("checkpayment")
+
 
 
 

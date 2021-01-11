@@ -65,6 +65,10 @@
         <li><a class="app-menu__item" href="${pageContext.request.contextPath}/applications"><i class="app-menu__icon fa fa-pie-chart"></i><span class="app-menu__label">Filter Applications</span></a></li>
         </sec:authorize>
 
+        <sec:authorize access="hasAuthority('Admin')">
+                <li><a class="app-menu__item" href="${pageContext.request.contextPath}/checkpayment"><i class="app-menu__icon fa fa-pie-chart"></i><span class="app-menu__label">Check Payment Status</span></a></li>
+                </sec:authorize>
+
 
 
 
