@@ -57,13 +57,15 @@
           </ul>
         </li>
         </sec:authorize>
+
+         <sec:authorize access="hasAuthority('Admin')">
         <li><a class="app-menu__item" href="${pageContext.request.contextPath}/applications_all"><i class="app-menu__icon fa fa-pie-chart"></i><span class="app-menu__label">View Applications</span></a></li>
+        </sec:authorize>
+        <sec:authorize access="hasAuthority('Admin')">
         <li><a class="app-menu__item" href="${pageContext.request.contextPath}/applications"><i class="app-menu__icon fa fa-pie-chart"></i><span class="app-menu__label">Filter Applications</span></a></li>
+        </sec:authorize>
 
 
-     <sec:authorize access="hasAuthority('ADMIN')">
-     <li><a class="app-menu__item" href="${pageContext.request.contextPath}/generateReport"><i class="app-menu__icon fa fa-file-excel-o"></i><span class="app-menu__label">Reports</span></a></li>
- </sec:authorize>
 
 
 

@@ -11,6 +11,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="simplecaptcha-1.2" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-actuator:2.2.7.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter:2.2.7.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot:2.2.7.RELEASE" level="project" />
@@ -147,6 +148,5 @@
     <orderEntry type="library" name="Maven: com.captcha:botdetect-servlet:4.0.beta3.7" level="project" />
     <orderEntry type="library" name="Maven: com.captcha:botdetect:4.0.beta3.7" level="project" />
     <orderEntry type="library" name="Maven: org.hsqldb:hsqldb:2.5.0" level="project" />
-    <orderEntry type="library" name="simplecaptcha-1.2" level="project" />
   </component>
 </module>

@@ -20,6 +20,7 @@
         </ul>
       </div>
       <div class="row">
+       <sec:authorize access="hasAuthority('Admin')">
         <div class="col-md-6 col-lg-3">
           <div class="widget-small primary coloured-icon"><i class="icon fa fa-id-badge fa-3x"></i>
             <div class="info">
@@ -29,7 +30,9 @@
             </div>
           </div>
         </div>
+         </sec:authorize>
 
+ <sec:authorize access="hasAuthority('Admin')">
          <div class="col-md-6 col-lg-3">
                   <div class="widget-small primary coloured-icon"><i class="icon fa fa-id-badge fa-3x"></i>
                     <div class="info">
@@ -39,6 +42,7 @@
                     </div>
                   </div>
                 </div>
+                 </sec:authorize>
 
          <sec:authorize access="hasAuthority('Admin')">
            <div class="col-md-6 col-lg-3">

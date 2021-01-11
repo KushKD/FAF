@@ -27,7 +27,7 @@
 
 
 
-    <definition name="error" extends="baselayoutdashboard">
+    <definition name="error" extends="main">
         <put-attribute name="content" value="/WEB-INF/jsp/errorpage.jsp" />
     </definition>
 
