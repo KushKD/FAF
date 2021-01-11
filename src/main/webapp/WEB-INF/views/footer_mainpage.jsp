@@ -11,27 +11,24 @@
             <div class="col-lg-4">
                <h3 style="margin-top:0; padding-top:20px; padding-bottom:10px; padding-left:30px; color:#FFF;">Other Department Links</h3>
                <ul class="footer_list">
-                  <li ><a href="#">Link 1</a></li>
-                  <li ><a href="#">Link 2 </a></li>
-                  <li ><a href="#">Tourism</a></li>
+                  <li ><a href="https://www.himachal.nic.in/en-IN/" target="_blank">Government of Himachal Pradesh</a></li>
+                  <li ><a href="https://cmsankalp.hp.gov.in/" target="_blank">CM Helpline</a></li>
+                  <li ><a href="http://cmhimachal.nic.in/" target="_blank">CM Relief Refund</a></li>
 
                </ul>
             </div>
             <div class="col-lg-4">
                <h3 style="margin-top:0; padding-top:20px; padding-bottom:10px; padding-left:30px; color:#FFF;">Important Schemes</h3>
                <ul class="footer_list">
-                  <li><a title="Copyright Policy " href="#">Copyright Policy </a></li>
-                  <li><a title="Hyperlinking Policy " href="#">Hyperlinking Policy </a></li>
+                  <li><a title="Terms and Conditions"  href="${pageContext.request.contextPath}/termsandconditions">Terms and Conditions </a></li>
+                  <li><a title="Privacy Policy" href="${pageContext.request.contextPath}/privacypolicy">Privacy Policy </a></li>
+                   <li><a title="Refund Policy" href="${pageContext.request.contextPath}/refundpage">Refund Policy </a></li>
 
                </ul>
             </div>
             <div class="col-lg-4">
-               <h3 style="margin-top:0; padding-top:20px; padding-bottom:10px; padding-left:30px; color:#FFF;">About the Government</h3>
-               <ul class="footer_list">
-                  <li><a title=" " href="#">Government Link 1</a></li>
-                  <li><a title=" " href="#"> Government Link 2 </a></li>
-
-               </ul>
+               <h3 style="margin-top:0; padding-top:20px; padding-bottom:10px; padding-left:30px; color:#FFF;">&nbsp;</h3>
+                &nbsp;
             </div>
          </div>
 

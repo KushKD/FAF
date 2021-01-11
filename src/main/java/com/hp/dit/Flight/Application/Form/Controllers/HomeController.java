@@ -56,6 +56,29 @@ public class HomeController {
         return "contactus";
     }
 
+    @RequestMapping(value = "/refundpage", method = RequestMethod.GET)
+    public String refundpage(Model model) {
+        return "refundpage";
+    }
+
+    @RequestMapping(value = "/privacypolicy", method = RequestMethod.GET)
+    public String privacypolicy(Model model) {
+        return "privacypolicy";
+    }
+
+    @RequestMapping(value = "/termsandconditions", method = RequestMethod.GET)
+    public String termsandconditions(Model model) {
+        return "termsandconditions";
+    }
+
+
+
+
+
+
+
+
+
 
 
 

@@ -39,7 +39,7 @@
                   <div class="cm col-xl-12 col-lg-4 col-md-4 col-sm-12">
                      <div class="pic"><img src="${pageContext.request.contextPath}/resources/images/CM.jpg" class="img-thumbnail" style="height:100%; width:100%;"></div>
                      <div class="name"><strong> Sh. Jai Ram Thakur </strong> <br>
-                        Hon'ble Chief Minister, Himachal Pradesh <br> <a class="read_more" href="">Read Message</a>
+                        Hon'ble Chief Minister, Himachal Pradesh
                      </div>
                   </div>
 
@@ -47,14 +47,14 @@
                   <div class="cm col-xl-12 col-lg-4 col-md-4 col-sm-12">
                                        <div class="pic"><img src="${pageContext.request.contextPath}/resources/images/it_minister.jpg" class="img-thumbnail" style="height:100%; width:100%;"></div>
                                        <div class="name"><strong>Dr. Ram Lal Markanda </strong><br>
-                                          Hon'able IT Minister, Himachal Pradesh <br> <a class="read_more" href="">Read Message </a>
+                                          Hon'able IT Minister, Himachal Pradesh
                                        </div>
                                     </div>
 
                   <div class="cm col-xl-12 col-lg-4 col-md-4 col-sm-12">
                                        <div class="pic"><img src="${pageContext.request.contextPath}/resources/images/DC_Lahual.jpg" class="img-thumbnail" style="height:100%; width:100%;"></div>
                                        <div class="name"><strong>Sh. Pankaj Rai </strong><br>
-                                          DC Lahaul and Spiti<br> <a class="read_more" href="">Read Message </a>
+                                          DC Lahaul and Spiti, Himachal Pradesh
                                        </div>
                                     </div>
 

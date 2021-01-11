@@ -51,6 +51,19 @@
         <put-attribute name="content" value="/WEB-INF/jsp/contactus.jsp" />
     </definition>
 
+    <definition name="refundpage" extends="main">
+        <put-attribute name="content" value="/WEB-INF/jsp/refund.jsp" />
+    </definition>
+
+    <definition name="privacypolicy" extends="main">
+        <put-attribute name="content" value="/WEB-INF/jsp/privacypolicy.jsp" />
+    </definition>
+
+    <definition name="termsandconditions" extends="main">
+        <put-attribute name="content" value="/WEB-INF/jsp/termsandconditions.jsp" />
+    </definition>
+
+
 
     <definition name="postPayment" extends="main">
         <put-attribute name="content" value="/WEB-INF/jsp/postpayment.jsp" />
