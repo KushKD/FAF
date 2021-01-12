@@ -399,7 +399,7 @@
 <table >
 <tbody>
 <tr>
-					<td>Enter Text</td>
+
 					<td>
 						<div>
 							<img id="captcha_id" name="imgCaptcha" src="captcha.jpg">
@@ -409,15 +409,16 @@
 					<td align="left"><a href="javascript:;"
 						title="change captcha text"
 						onclick="document.getElementById('captcha_id').src = 'captcha.jpg?' + Math.random();  return false">
-							<img src="images/refresh.png" />
+							<i class="fa fa-refresh"></i>
 					</a></td>
 
 				</tr>
 
 
 				<tr>
-					<td>Enter above Image text#</td>
-					<td><input path="captcha" /></td>
+					<td>Enter Image Text</td>
+					<td><form:input path="captcha" onkeypress="return alpha(event)" id="captcha" name="captcha" /></td>
+					 <form:errors style="color:red;" path="captcha"></form:errors>
 				</tr>
 				</tbody>
 				</table>

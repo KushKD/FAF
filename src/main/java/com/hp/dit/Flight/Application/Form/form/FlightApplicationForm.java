@@ -11,6 +11,7 @@ public class FlightApplicationForm implements Serializable {
 
    // private String captchaCode, captchaCorrect, captchaIncorrect;
 
+    private String captcha;
     private String category;
     private String registrationType;
     private String relationPrifix;
@@ -42,6 +43,13 @@ public class FlightApplicationForm implements Serializable {
     private MultipartFile medicalDoc;
     private MultipartFile otherDoc;
 
+    public String getCaptcha() {
+        return captcha;
+    }
+
+    public void setCaptcha(String captcha) {
+        this.captcha = captcha;
+    }
 
     public String getServiceavailingDateto() {
         return serviceavailingDateto;
@@ -276,35 +284,11 @@ public class FlightApplicationForm implements Serializable {
     }
 
 
-//    public String getCaptchaCode() {
-//        return captchaCode;
-//    }
-//
-//    public void setCaptchaCode(String captchaCode) {
-//        this.captchaCode = captchaCode;
-//    }
-//
-//    public String getCaptchaCorrect() {
-//        return captchaCorrect;
-//    }
-//
-//    public void setCaptchaCorrect(String captchaCorrect) {
-//        this.captchaCorrect = captchaCorrect;
-//    }
-//
-//    public String getCaptchaIncorrect() {
-//        return captchaIncorrect;
-//    }
-//
-//    public void setCaptchaIncorrect(String captchaIncorrect) {
-//        this.captchaIncorrect = captchaIncorrect;
-//    }
-
-
     @Override
     public String toString() {
         return "FlightApplicationForm{" +
-                "category='" + category + '\'' +
+                "captcha='" + captcha + '\'' +
+                ", category='" + category + '\'' +
                 ", registrationType='" + registrationType + '\'' +
                 ", relationPrifix='" + relationPrifix + '\'' +
                 ", fullName='" + fullName + '\'' +

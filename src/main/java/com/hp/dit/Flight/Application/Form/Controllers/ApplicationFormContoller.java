@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -62,67 +63,74 @@ public class ApplicationFormContoller {
     @RequestMapping(value = "/saveDetails", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @Transactional
     public String saveDetails(@ModelAttribute("flightApplicationForm") FlightApplicationForm flightApplicationForm,
-                              BindingResult bindingResult, Model model, HttpServletRequest request, RedirectAttributes redirectAttributes) {
-        flightFormValidator.validate(flightApplicationForm, bindingResult);
+                              BindingResult bindingResult, Model model, HttpServletRequest request, HttpSession session, RedirectAttributes redirectAttributes) {
 
-        if (bindingResult.hasErrors()) {
+        String captcha=(String)session.getAttribute("CAPTCHA");
+        if(captcha==null || (captcha!=null && !captcha.equals(flightApplicationForm.getCaptcha()))){
+            flightApplicationForm.setCaptcha("");
+            model.addAttribute("serverError", "Captcha Mismatch");
             return "flightapplication";
-        }
-        try {
-            FlightFormEntity data = new FlightFormEntity();
-            data = populateFlightForm(flightApplicationForm);
-            if (data != null) {
-
-                try {
-                    FlightFormEntity savedData = flightFormService.saveUser(data);
-                    if (!flightApplicationForm.getAvailedServiceListForm().isEmpty()) {
-                        //Check if there is value or not inside the list
-                        List<userFormDataPreviousServiceEntity> availedServices = new ArrayList<>();
-                        userFormDataPreviousServiceEntity datax = null;
-                        District district = null;
-                        Helipad helipad = null;
-                        for (int i = 0; i < flightApplicationForm.getAvailedServiceListForm().size(); i++) {
-                            datax = new userFormDataPreviousServiceEntity();
-                            district = new District();
-                            helipad = new Helipad();
-
-                            if (!flightApplicationForm.getAvailedServiceListForm().get(i).getDateTravelled().equalsIgnoreCase("")
-                                    && flightApplicationForm.getAvailedServiceListForm().get(i).getDateTravelled() != null
-                                    && !flightApplicationForm.getAvailedServiceListForm().get(i).getHelipadDistrict().equalsIgnoreCase("0")
-                                    && !flightApplicationForm.getAvailedServiceListForm().get(i).getHelipadName().equalsIgnoreCase("0")) {
-
-                                datax.setDate(flightApplicationForm.getAvailedServiceListForm().get(i).getDateTravelled());
-                                district.setDistrictId(Integer.parseInt(flightApplicationForm.getAvailedServiceListForm().get(i).getHelipadDistrict()));
-                                datax.setDistrictId(district);
-                                helipad.setHelipadId(Integer.parseInt(flightApplicationForm.getAvailedServiceListForm().get(i).getHelipadName()));
-                                datax.setHelipadId(helipad);
-                                datax.setUserId(savedData.getUserId());
-                                datax.setActive(true);
-                                availedServices.add(datax);
-
-                            }
-                        }
-                        userFormDataPreviousServices.saveData(availedServices);
-
-                    }
-                    //Get User Data
-                    //request.getSession().setAttribute("successMessage", savedUSer.getFullName() + "  Successfully Saved. ID is:- " + savedUSer.getUserId());
-                   // model.addAttribute("user", savedUSer);
-                    redirectAttributes.addFlashAttribute("userID",savedData.getUserId());
-                    return "redirect:/paymentpage";
-                } catch (Exception ex) {
-                    request.getSession().setAttribute("serverError", ex.getLocalizedMessage().toString());
-                    return "paymentpage";
-                }
-
-
-            } else {
-                request.getSession().setAttribute("successMessage", "Unable to Save the Data. Please try again");
+        }else {
+            flightFormValidator.validate(flightApplicationForm, bindingResult);
+            if (bindingResult.hasErrors()) {
                 return "flightapplication";
             }
-        } catch (Exception ex) {
-            model.addAttribute("serverError", ex.toString());
-            return "flightapplication";
+            try {
+                FlightFormEntity data = new FlightFormEntity();
+                data = populateFlightForm(flightApplicationForm);
+                if (data != null) {
+
+                    try {
+                        FlightFormEntity savedData = flightFormService.saveUser(data);
+                        if (!flightApplicationForm.getAvailedServiceListForm().isEmpty()) {
+                            //Check if there is value or not inside the list
+                            List<userFormDataPreviousServiceEntity> availedServices = new ArrayList<>();
+                            userFormDataPreviousServiceEntity datax = null;
+                            District district = null;
+                            Helipad helipad = null;
+                            for (int i = 0; i < flightApplicationForm.getAvailedServiceListForm().size(); i++) {
+                                datax = new userFormDataPreviousServiceEntity();
+                                district = new District();
+                                helipad = new Helipad();
+
+                                if (!flightApplicationForm.getAvailedServiceListForm().get(i).getDateTravelled().equalsIgnoreCase("")
+                                        && flightApplicationForm.getAvailedServiceListForm().get(i).getDateTravelled() != null
+                                        && !flightApplicationForm.getAvailedServiceListForm().get(i).getHelipadDistrict().equalsIgnoreCase("0")
+                                        && !flightApplicationForm.getAvailedServiceListForm().get(i).getHelipadName().equalsIgnoreCase("0")) {
+
+                                    datax.setDate(flightApplicationForm.getAvailedServiceListForm().get(i).getDateTravelled());
+                                    district.setDistrictId(Integer.parseInt(flightApplicationForm.getAvailedServiceListForm().get(i).getHelipadDistrict()));
+                                    datax.setDistrictId(district);
+                                    helipad.setHelipadId(Integer.parseInt(flightApplicationForm.getAvailedServiceListForm().get(i).getHelipadName()));
+                                    datax.setHelipadId(helipad);
+                                    datax.setUserId(savedData.getUserId());
+                                    datax.setActive(true);
+                                    availedServices.add(datax);
+
+                                }
+                            }
+                            userFormDataPreviousServices.saveData(availedServices);
+
+                        }
+                        //Get User Data
+                        //request.getSession().setAttribute("successMessage", savedUSer.getFullName() + "  Successfully Saved. ID is:- " + savedUSer.getUserId());
+                        // model.addAttribute("user", savedUSer);
+                        redirectAttributes.addFlashAttribute("userID", savedData.getUserId());
+                        return "redirect:/paymentpage";
+                    } catch (Exception ex) {
+                        request.getSession().setAttribute("serverError", ex.getLocalizedMessage().toString());
+                        return "paymentpage";
+                    }
+
+
+                } else {
+                    request.getSession().setAttribute("successMessage", "Unable to Save the Data. Please try again");
+                    return "flightapplication";
+                }
+            } catch (Exception ex) {
+                model.addAttribute("serverError", ex.toString());
+                return "flightapplication";
+            }
         }
 
     }
