@@ -1,6 +1,6 @@
 package com.hp.dit.Flight.Application.Form;
 
-import com.captcha.botdetect.web.servlet.CaptchaServlet;
+import com.hp.dit.Flight.Application.Form.captcha.CaptchaGenServlet;
 import com.hp.dit.Flight.Application.Form.property.FileStorageProperties;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -22,12 +22,14 @@ public class FlightApplicationFormApplication {
 
 	}
 
-//	@Bean
-//	ServletRegistrationBean captchaServletRegistration () {
-//		ServletRegistrationBean srb = new ServletRegistrationBean();
-//		srb.setServlet(new CaptchaServlet());
-//		srb.addUrlMappings("/botdetectcaptcha");
-//		return srb;
-//	}
+
+		@Bean
+	ServletRegistrationBean captchaServletRegistration () {
+		ServletRegistrationBean srb = new ServletRegistrationBean();
+		srb.setName("CaptchaServlet");
+		srb.setServlet(new CaptchaGenServlet());
+		srb.addUrlMappings("/captcha.jpg");
+		return srb;
+	}
 
 }

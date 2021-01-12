@@ -1,6 +1,5 @@
 package com.hp.dit.Flight.Application.Form.Controllers;
 
-import com.captcha.botdetect.web.servlet.Captcha;
 import com.hp.dit.Flight.Application.Form.entities.*;
 import com.hp.dit.Flight.Application.Form.form.FlightApplicationForm;
 import com.hp.dit.Flight.Application.Form.services.FileStorageService;

@@ -72,7 +72,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .csrfTokenRepository(csrfTokenRepository()).and()
                 .addFilterAfter(csrfHeaderFilter(), CsrfFilter.class);
         http.csrf().ignoringAntMatchers("/nocsrf", "/paymentResponse/**");
-        http.csrf().ignoringAntMatchers("/nocsrf", "/ajax/**");
+      //  http.csrf().ignoringAntMatchers("/nocsrf", "/ajax/**");
         
          //.anonymous()
           //.and()
@@ -83,6 +83,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/contactus/**").permitAll()
                 .antMatchers("/paymentpage/**").permitAll()
                 .antMatchers("/paymentResponse/**").permitAll()
+                .antMatchers("/resources/**").permitAll()
+                //.antMatchers("/ajax/**").denyAll()
                 .antMatchers("/admin/**").hasAnyRole("Admin")
                 .antMatchers("/createuser/**").hasAnyRole("Admin")
                 .antMatchers("/saveuser/").hasAnyRole("Admin")

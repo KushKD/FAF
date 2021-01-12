@@ -2,7 +2,6 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@taglib prefix="botDetect" uri="https://captcha.com/java/jsp"%>
 
 <script src="${pageContext.request.contextPath}/resources/js/jquery-3.5.1.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/script.js"></script>
@@ -397,7 +396,31 @@
                         <!-- Declaration End -->
 
 <!-- Captcha -->
+<table >
+<tbody>
+<tr>
+					<td>Enter Text</td>
+					<td>
+						<div>
+							<img id="captcha_id" name="imgCaptcha" src="captcha.jpg">
+						</div>
+					</td>
 
+					<td align="left"><a href="javascript:;"
+						title="change captcha text"
+						onclick="document.getElementById('captcha_id').src = 'captcha.jpg?' + Math.random();  return false">
+							<img src="images/refresh.png" />
+					</a></td>
+
+				</tr>
+
+
+				<tr>
+					<td>Enter above Image text#</td>
+					<td><input path="captcha" /></td>
+				</tr>
+				</tbody>
+				</table>
 <!-- Captcha -->
 
 

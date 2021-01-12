@@ -4,7 +4,7 @@
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/Controllers/ApplicationFormContoller.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/Controllers/CheckPaymentController.java" charset="US-ASCII" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/Controllers/CheckPaymentController.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/Controllers/CheckStatusController.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/Controllers/DownloadFileController.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/Controllers/FilterApplications.java" charset="UTF-8" />
@@ -13,6 +13,9 @@
     <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/Controllers/UserController.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/Controllers/UserDetailsController.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/Controllers/ViewApplicationsController.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/captcha.java" charset="US-ASCII" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/captcha/CaptchaGenServlet.java" charset="US-ASCII" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/captcha/Util.java" charset="US-ASCII" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/entities/District.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/entities/FlightFormEntity.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/entities/Helipad.java" charset="UTF-8" />
@@ -26,7 +29,7 @@
     <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/enums/PaymentMode.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/enums/PaymentStatus.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/form/ActionForm.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/form/CheckPayment.java" charset="US-ASCII" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/form/CheckPayment.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/form/CheckStatusForm.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/form/FlightApplicationForm.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/form/PaymentForm.java" charset="UTF-8" />
@@ -69,14 +72,12 @@
     <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/validators/ViewApplicationsValidator.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources/static/js/common.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources/static/js/flight_application_form.js" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/resources/static/js/preventBack.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources/validation.properties" charset="US-ASCII" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/checkStatus.jsp" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/contactus.jsp" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/gallery.jsp" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/paymentProceed.jsp" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/paymentresponse.jsp" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/postpayment.jsp" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/privacypolicy.jsp" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/refund.jsp" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/termsandconditions.jsp" charset="UTF-8" />
