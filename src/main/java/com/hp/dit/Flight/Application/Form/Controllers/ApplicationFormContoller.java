@@ -145,7 +145,9 @@ public class ApplicationFormContoller {
         ReasonAvailingFlight reason_availing_flight = new ReasonAvailingFlight();
         RelationshipPrefix prefix = new RelationshipPrefix();
         District district = new District();
+        DistrictDest district_dest = new DistrictDest();
         Helipad helipad = new Helipad();
+        HelipadDest helipad_dest = new HelipadDest();
 
         try {
 
@@ -191,6 +193,16 @@ public class ApplicationFormContoller {
             helipad.setHelipadId(Integer.parseInt(flightApplicationForm.getFlightHelipadNameToGoFrom()));
             flightForm.setFlightHelipadNameToGoFrom(helipad);
             logger.info(helipad.toString());
+
+            district_dest.setDistrictId(Integer.parseInt(flightApplicationForm.getFlightDistrictToGoFrom_dest()));
+            flightForm.setDistrict_id_dest(district_dest);
+            logger.info(district_dest.toString());
+
+            helipad_dest.setHelipadId(Integer.parseInt(flightApplicationForm.getFlightHelipadNameToGoFrom_dest()));
+            flightForm.setHelipad_id_dest(helipad_dest);
+            logger.info(helipad_dest.toString());
+
+
             flightForm.setAvailedFlightBefore15(flightApplicationForm.getAvailedFlightBefore15());
             flightForm.setEarlierFlightServiceEmergency(flightApplicationForm.getEarlierFlightServiceEmergency());
             flightForm.setDeclerationUser(flightApplicationForm.getDeclerationUser());

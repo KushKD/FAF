@@ -126,10 +126,17 @@ public class GeneratePdfReport {
             childTable1.addCell(getCell( vehicleOwnerEntries.getPermanentAddress(),boldFont2));
             childTable1.addCell(getCell("Correspondence Address:",boldFont2));
             childTable1.addCell(getCell( vehicleOwnerEntries.getCorrespondenceAddress(),boldFont2));
-            childTable1.addCell(getCell("From Location:",boldFont2));
+            childTable1.addCell(getCell("Boarding Location:",boldFont2));
             childTable1.addCell(getCell( vehicleOwnerEntries.getFlightDistrictToGoFrom().getDistrictName(),boldFont2));
-            childTable1.addCell(getCell("From Helipad:",boldFont2));
+            childTable1.addCell(getCell("Boarding Helipad:",boldFont2));
             childTable1.addCell(getCell( vehicleOwnerEntries.getFlightHelipadNameToGoFrom().getHelipadName(),boldFont2));
+
+            childTable1.addCell(getCell("Destination Location:",boldFont2));
+            childTable1.addCell(getCell( vehicleOwnerEntries.getDistrict_id_dest().getDistrictName(),boldFont2));
+            childTable1.addCell(getCell("Destination Helipad:",boldFont2));
+            childTable1.addCell(getCell( vehicleOwnerEntries.getHelipad_id_dest().getHelipadName(),boldFont2));
+
+
             childTable1.addCell(getCell("Tentitive Flying Date:",boldFont2));
             childTable1.addCell(getCell( vehicleOwnerEntries.getTentitiveFlightDate(),boldFont2));
 

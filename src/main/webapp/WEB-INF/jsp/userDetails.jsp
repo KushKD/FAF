@@ -101,14 +101,14 @@
                         <label>${userdata.tentitiveFlightDate}</label>
                      </div>
                      <div class="col-lg-4">
-                        <label> From District </label>
+                        <label> Boarding Location </label>
                         <label>${userdata.flightDistrictToGoFrom.districtName}</label>
                      </div>
                   </div>
                   <div class="row">
                      <div class="clearfix"></div>
                      <div class="col-md-4">
-                        <label> From Helipad: </label>
+                        <label> Boarding Helipad: </label>
                         <label>${userdata.flightHelipadNameToGoFrom.helipadName}</label>
                      </div>
                      <div class="clearfix"></div>
@@ -120,6 +120,19 @@
                         <label> Has the earlier flight service been availed in Emergency Situation : </label>
                         <label>${userdata.earlierFlightServiceEmergency}</label>
                      </div>
+                  </div>
+
+                  <div class="row">
+                   <div class="clearfix"></div>
+                    <div class="col-lg-4">
+                                           <label> Destination Location </label>
+                                           <label>${userdata.district_id_dest.districtName}</label>
+                                        </div>
+                                       <div class="col-md-4">
+                                          <label> Destination Helipad: </label>
+                                          <label>${userdata.helipad_id_dest.helipadName}</label>
+                                       </div>
+
                   </div>
                </div>
             </div>

@@ -151,6 +151,18 @@ INSERT INTO mst_district ( district_name, active) VALUES ('Spiti' ,true);
 INSERT INTO mst_district ( district_name, active) VALUES ('Kullu' ,true);
 
 
+CREATE TABLE mst_district_dest (
+    district_id_dest serial PRIMARY KEY  NOT NULL,
+    district_name_dest character varying(50) NOT NULL,
+    active boolean DEFAULT true NOT NULL,
+    createddate timestamp without time zone DEFAULT ('now'::text)::date NOT NULL,
+    lastmodifieddate timestamp without time zone
+);
+INSERT INTO mst_district_dest ( district_name_dest, active) VALUES ('Lahaul' ,true);
+INSERT INTO mst_district_dest ( district_name_dest, active) VALUES ('Spiti' ,true);
+INSERT INTO mst_district_dest ( district_name_dest, active) VALUES ('Kullu' ,true);
+
+
 
 
 CREATE TABLE mst_helipad (
@@ -185,15 +197,56 @@ INSERT INTO mst_helipad ( helipad_name,district_id, active) VALUES ('Bhuntar',3,
 
 
 
+CREATE TABLE mst_district_dest (
+    district_id_dest serial PRIMARY KEY  NOT NULL,
+    district_name_dest character varying(50) NOT NULL,
+    active boolean DEFAULT true NOT NULL,
+    createddate timestamp without time zone DEFAULT ('now'::text)::date NOT NULL,
+    lastmodifieddate timestamp without time zone
+);
+INSERT INTO mst_district_dest ( district_name_dest, active) VALUES ('Lahaul' ,true);
+INSERT INTO mst_district_dest ( district_name_dest, active) VALUES ('Spiti' ,true);
+INSERT INTO mst_district_dest ( district_name_dest, active) VALUES ('Kullu' ,true);
+
+
+CREATE TABLE mst_helipad_dest (
+    helipad_id_dest serial PRIMARY KEY  NOT NULL,
+    helipad_name_dest character varying(50) NOT NULL,
+    district_id_dest INTEGER NOT NULL,
+    active boolean DEFAULT true NOT NULL,
+    createddate timestamp without time zone DEFAULT ('now'::text)::date NOT NULL,
+    lastmodifieddate timestamp without time zone,
+    FOREIGN KEY (district_id_dest) REFERENCES mst_district_dest(district_id_dest)
+);
+INSERT INTO mst_helipad_dest ( helipad_name_dest,district_id_dest, active) VALUES ('Tindi',1,true);
+INSERT INTO mst_helipad_dest ( helipad_name_dest,district_id_dest, active) VALUES ('Tingret',1,true);
+INSERT INTO mst_helipad_dest ( helipad_name_dest,district_id_dest, active) VALUES ('Udaipur',1,true);
+INSERT INTO mst_helipad_dest ( helipad_name_dest,district_id_dest, active) VALUES ('Barring',1,true);
+INSERT INTO mst_helipad_dest ( helipad_name_dest,district_id_dest, active) VALUES ('Rawa',1,true);
+INSERT INTO mst_helipad_dest ( helipad_name_dest,district_id_dest, active) VALUES ('Tandi (DIET)',1,true);
+INSERT INTO mst_helipad_dest ( helipad_name_dest,district_id_dest, active) VALUES ('Stingri',1,true);
+INSERT INTO mst_helipad_dest ( helipad_name_dest,district_id_dest, active) VALUES ('Jispa',1,true);
+INSERT INTO mst_helipad_dest ( helipad_name_dest,district_id_dest, active) VALUES ('Gondhla',1,true);
+INSERT INTO mst_helipad_dest ( helipad_name_dest,district_id_dest, active) VALUES ('Sissu',1,true);
+INSERT INTO mst_helipad_dest ( helipad_name_dest,district_id_dest, active) VALUES ('Chokhang',1,true);
+
+INSERT INTO mst_helipad_dest ( helipad_name_dest,district_id_dest, active) VALUES ('Tabo',2,true);
+INSERT INTO mst_helipad_dest ( helipad_name_dest,district_id_dest, active) VALUES ('Sagnam',2,true);
+INSERT INTO mst_helipad_dest ( helipad_name_dest,district_id_dest, active) VALUES ('Lossar',2,true);
+INSERT INTO mst_helipad_dest ( helipad_name_dest,district_id_dest, active) VALUES ('Kaza',2,true);
+INSERT INTO mst_helipad_dest ( helipad_name_dest,district_id_dest, active) VALUES ('Dhanker',2,true);
+
+INSERT INTO mst_helipad_dest ( helipad_name_dest,district_id_dest, active) VALUES ('Bhuntar',3,true);
+
 
 
 -- User Form Data
 CREATE TABLE userFormData (
     user_id serial PRIMARY KEY  NOT NULL,
-    user_type INTEGER NOT NULL,
-    registration_type INTEGER NOT NULL,
+    user_type_id INTEGER NOT NULL,
+    reservationtype_id INTEGER NOT NULL,
     full_name character varying(50) NOT NULL,
-    relation_prifix INTEGER NOT NULL,
+    relationshipprifix_id INTEGER NOT NULL,
     relation_name character varying(50) NOT NULL,
     mobile_number INTEGER NOT NULL,
     age INTEGER NOT NULL,
@@ -201,31 +254,40 @@ CREATE TABLE userFormData (
     luggage_weight INTEGER NOT NULL,
     p_address character varying(255) NOT NULL,
     c_address character varying(255) ,
-    reason_availing_flight_service INTEGER NOT NULL,
-    comments character varying(255) ,
+    reasonavailing_flight_id INTEGER NOT NULL,
+    comments character varying(255),
     tentitive_flight_date character varying(10) NOT NULL ,
     availed_flight_befor15 character varying(2) NOT NULL ,
     earlier_flight_service_emergency character varying(2) NOT NULL ,
     decleration_user character varying(2) NOT NULL ,
-    flight_district_to_go_from INTEGER NOT NULL,
-    flight_helipad_name_to_go_from INTEGER NOT NULL,
+    district_id INTEGER NOT NULL,
+    helipad_id INTEGER NOT NULL,
+	district_id_dest INTEGER NOT NULL,
+    helipad_id_dest INTEGER NOT NULL,
     earlierService character varying(2) NOT NULL,
     aadhaar_doc_name character varying(100),
     office_card_coc_name character varying(100),
     medical_doc_name character varying(100),
     other_doc character varying(100),
-    application_forwarded_to_role_id INTEGER NOT NULL,
+    role_id INTEGER NOT NULL,
     application_status character varying(2) NOT NULL,
+    concerned_authority_comments character varying(255),
+    is_boarded character varying(10),
+    boarded_comments character varying(255),
+    tentitive_flight_date_to character varying(25),
     active boolean DEFAULT true NOT NULL,
     createddate timestamp with time zone DEFAULT ('now'::text)::date ,
     lastmodifieddate timestamp without time zone,
-    FOREIGN KEY (user_type) REFERENCES mst_typeuser(user_type_id),
-    FOREIGN KEY (registration_type) REFERENCES mst_reservationtype(reservationtype_id),
-    FOREIGN KEY (relation_prifix) REFERENCES mst_relationshipprefix(relationshipprifix_id),
-    FOREIGN KEY (reason_availing_flight_service	) REFERENCES mst_reasonavailing_flight(reasonavailing_flight_id),
-    FOREIGN KEY (flight_district_to_go_from) REFERENCES mst_district(district_id),
-    FOREIGN KEY (flight_helipad_name_to_go_from) REFERENCES mst_helipad(helipad_id),
-    FOREIGN KEY (application_forwarded_to_role_id) REFERENCES roles(role_id)
+    FOREIGN KEY (user_type_id) REFERENCES mst_typeuser(user_type_id),
+    FOREIGN KEY (reservationtype_id) REFERENCES mst_reservationtype(reservationtype_id),
+    FOREIGN KEY (relationshipprifix_id) REFERENCES mst_relationshipprefix(relationshipprifix_id),
+    FOREIGN KEY (reasonavailing_flight_id) REFERENCES mst_reasonavailing_flight(reasonavailing_flight_id),
+    FOREIGN KEY (district_id) REFERENCES mst_district(district_id),
+    FOREIGN KEY (helipad_id) REFERENCES mst_helipad(helipad_id),
+    FOREIGN KEY (role_id) REFERENCES roles(role_id),
+	FOREIGN KEY (district_id_dest) REFERENCES mst_district_dest(district_id_dest),
+    FOREIGN KEY (helipad_id_dest) REFERENCES mst_helipad_dest(helipad_id_dest)
+
 );
 
 ALTER TABLE  userFormData ADD COLUMN concerned_authority_comments character varying (255);

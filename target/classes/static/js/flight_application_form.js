@@ -209,7 +209,7 @@ function getFlightHelipadNameToGoFrom_dest(id) {
             for (i = 0; i < data.RESPONSE.length; i++) {
 
                     selectRole.append("<option value=" + data.RESPONSE[i].helipadId + " >" + data.RESPONSE[i].helipadName + "</option>")
-              
+
 
             };
 
