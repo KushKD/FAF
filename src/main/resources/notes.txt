@@ -148,6 +148,7 @@ CREATE TABLE mst_district (
 );
 INSERT INTO mst_district ( district_name, active) VALUES ('Lahaul' ,true);
 INSERT INTO mst_district ( district_name, active) VALUES ('Spiti' ,true);
+INSERT INTO mst_district ( district_name, active) VALUES ('Kullu' ,true);
 
 
 
@@ -178,6 +179,8 @@ INSERT INTO mst_helipad ( helipad_name,district_id, active) VALUES ('Sagnam',2,t
 INSERT INTO mst_helipad ( helipad_name,district_id, active) VALUES ('Lossar',2,true);
 INSERT INTO mst_helipad ( helipad_name,district_id, active) VALUES ('Kaza',2,true);
 INSERT INTO mst_helipad ( helipad_name,district_id, active) VALUES ('Dhanker',2,true);
+
+INSERT INTO mst_helipad ( helipad_name,district_id, active) VALUES ('Bhuntar',3,true);
 
 
 

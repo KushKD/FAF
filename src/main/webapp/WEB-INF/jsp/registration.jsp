@@ -3,6 +3,8 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <script src="${pageContext.request.contextPath}/resources/js/jquery-3.5.1.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/script.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/flight_application_form.js"></script>
+
 <script type="text/javascript">
    $( document ).ready(function() {
        getroles();
@@ -21,20 +23,20 @@
       </c:if>
       <spring:bind path="username">
          <div class="form-group ${status.error ? 'has-error' : ''}">
-            <form:input type="text" onkeypress="return alpha(event)"  path="username" class="form-control" placeholder="Username"
+            <form:input type="text" onkeypress="return alpha(event)" oncopy="return false" onpaste="return false"  path="username" class="form-control" placeholder="Username"
                autofocus="true"></form:input>
             <form:errors  path="username"></form:errors>
          </div>
       </spring:bind>
       <spring:bind path="mobileNumber">
          <div class="form-group  ${status.error ? 'has-error' : ''}">
-            <form:input type="text"  required="required" path="mobileNumber" maxlength="10" minlength="10"  class="form-control" onKeyPress="return isNumber(event)"  name="mobileNumber" placeholder="Mobile Number" ></form:input>
+            <form:input type="text"  required="required" oncopy="return false" onpaste="return false" path="mobileNumber" maxlength="10" minlength="10"  class="form-control" onKeyPress="return isNumber(event)"  name="mobileNumber" placeholder="Mobile Number" ></form:input>
             <form:errors  path="mobileNumber"></form:errors>
          </div>
       </spring:bind>
       <spring:bind path="emailAddress">
          <div class="form-group  ${status.error ? 'has-error' : ''}">
-            <form:input type="text"  required="required" path="emailAddress" maxlength="40" minlength="10"  class="form-control"  name="emailAddress" placeholder="Email Address" ></form:input>
+            <form:input type="text"  required="required" oncopy="return false" onpaste="return false" path="emailAddress" maxlength="40" minlength="10"  class="form-control"  name="emailAddress" placeholder="Email Address" ></form:input>
             <form:errors  path="emailAddress"></form:errors>
          </div>
       </spring:bind>
@@ -60,13 +62,13 @@
       </spring:bind>
       <spring:bind path="password">
          <div class="form-group ${status.error ? 'has-error' : ''}">
-            <form:input type="password" path="password" class="form-control" placeholder="Password"></form:input>
+            <form:input type="password" path="password" oncopy="return false" onpaste="return false" class="form-control" placeholder="Password"></form:input>
             <form:errors path="password"></form:errors>
          </div>
       </spring:bind>
       <spring:bind path="passwordConfirm">
          <div class="form-group ${status.error ? 'has-error' : ''}">
-            <form:input type="password" path="passwordConfirm" class="form-control"
+            <form:input type="password" oncopy="return false" onpaste="return false" path="passwordConfirm" class="form-control"
                placeholder="Confirm your password"></form:input>
             <form:errors path="passwordConfirm"></form:errors>
          </div>

@@ -90,7 +90,7 @@
           <spring:bind path="fullName">
          <div class="form-group col-lg-4 ${status.error ? 'has-error' : ''}">
             <form:label  path="fullName" for="fullname"> <spring:message code="form.fullname"   text="Full Name" /> </form:label>
-             <form:input type="text" path="fullName" id="fullName" class="form-control" placeholder="Username" autofocus="true" onkeypress="return alpha(event)" maxlength="30"  ></form:input>
+             <form:input type="text" path="fullName" id="fullName" class="form-control" placeholder="Username" autofocus="true" onkeypress="return alpha(event)" oncopy="return false" onpaste="return false" maxlength="30"  ></form:input>
            <form:errors style="color:red;"  path="fullName"></form:errors>
          </div>
           </spring:bind>
@@ -110,7 +110,7 @@
           <spring:bind path="relationName">
          <div class="form-group col-lg-4 ${status.error ? 'has-error' : ''}">
             <form:label path="relationName" for="parentname">  <spring:message code="form.parentname.relation.name"   text="Parent Name"  /> </form:label>
-            <form:input type="text" onkeypress="return alpha(event)" maxlength="30" path="relationName" id="relationName" class="form-control"  />
+            <form:input type="text" onkeypress="return alpha(event)" maxlength="30" path="relationName" oncopy="return false" onpaste="return false" id="relationName" class="form-control"  />
             <form:errors style="color:red;"  path="relationName"></form:errors>
          </div>
           </spring:bind>
@@ -119,7 +119,7 @@
            <spring:bind path="mobileNumber">
          <div class="form-group col-lg-4 ${status.error ? 'has-error' : ''}">
             <form:label path="mobileNumber" for="mobilenumber"> <spring:message code="form.mobilenumber"  text="Mobile Number" /> </form:label>
-            <form:input type="number" path="mobileNumber" onKeyPress="if(this.value.length==10) return false; return isNumber(event)"  id="mobileNumber" class="form-control"  />
+            <form:input type="number" path="mobileNumber" onKeyPress="if(this.value.length==10) return false; return isNumber(event)" oncopy="return false" onpaste="return false"  id="mobileNumber" class="form-control"  />
             <form:errors style="color:red;"  path="mobileNumber"></form:errors>
          </div>
          </spring:bind>
@@ -128,7 +128,7 @@
           <spring:bind path="age" >
          <div class="form-group col-lg-4 ${status.error ? 'has-error' : ''}">
             <form:label path="age" for="age"> <spring:message code="form.age" text="Age" /> </form:label>
-            <form:input type="number" onKeyPress="if(this.value.length>=3) return false; return isNumber(event)" path="age" id="age" class="form-control" />
+            <form:input type="number" onKeyPress="if(this.value.length>=3) return false; return isNumber(event)" path="age" id="age" oncopy="return false" onpaste="return false" class="form-control" />
             <form:errors style="color:red;"  path="age"></form:errors>
          </div>
          </spring:bind>
@@ -136,7 +136,7 @@
          <spring:bind path="weight">
          <div class="form-group col-lg-4 ${status.error ? 'has-error' : ''}">
             <form:label  path="weight"  for="weight"> <spring:message code="form.weight" text="Weight" /> </form:label>
-            <form:input type="number" onKeyPress="if(this.value.length>=3) return false; return isNumber(event)"  path="weight"  id="weight" class="form-control" />
+            <form:input type="number" onKeyPress="if(this.value.length>=3) return false; return isNumber(event)"  path="weight" oncopy="return false" onpaste="return false"  id="weight" class="form-control" />
              <form:errors  style="color:red;" path="weight"></form:errors>
          </div>
          </spring:bind>
@@ -144,7 +144,7 @@
          <spring:bind path="luggageWeight">
          <div class="form-group col-lg-4 ${status.error ? 'has-error' : ''}" >
             <label for="luggage_weight"> <spring:message code="form.estimated.luggage.weight" text="Luggage Weight (KG)" /> </label>
-            <form:input type="number"  onKeyPress="if(this.value.length>=4) return false; return isNumber(event)" path="luggageWeight" id="luggageWeight" value="0" class="form-control"  />
+            <form:input type="number"  onKeyPress="if(this.value.length>=4) return false; return isNumber(event)" oncopy="return false" onpaste="return false" path="luggageWeight" id="luggageWeight" value="0" class="form-control"  />
             <form:errors maxlength="4" style="color:red;" path="luggageWeight"></form:errors>
          </div>
           </spring:bind>
@@ -153,7 +153,7 @@
           <spring:bind path="permanentAddress">
          <div class="form-group col-lg-4 ${status.error ? 'has-error' : ''}">
             <label for="address"> <spring:message code="form.address"  text="Address" /> </label>
-            <form:textarea rows="4" path="permanentAddress" id="permanentAddress" onkeypress="return alpha(event)" maxlength="30" class="form-control"  />
+            <form:textarea rows="4" path="permanentAddress" id="permanentAddress" onkeypress="return alpha(event)" oncopy="return false" onpaste="return false"  maxlength="30" class="form-control"  />
              <form:errors style="color:red;"  path="permanentAddress"></form:errors>
          </div>
           </spring:bind>
@@ -161,7 +161,7 @@
          <spring:bind path="correspondenceAddress">
          <div class="form-group col-lg-4 ${status.error ? 'has-error' : ''}">
             <label for="correspondence_address">  <spring:message code="form.correspondence.address"  text="Correspondence Address" /> </label>
-            <form:textarea rows="4"  path="correspondenceAddress" class="form-control" onkeypress="return alpha(event)" maxlength="30" id="correspondenceAddress" />
+            <form:textarea rows="4"  path="correspondenceAddress" class="form-control" onkeypress="return alpha(event)" oncopy="return false" onpaste="return false" maxlength="30" id="correspondenceAddress" />
             <form:errors style="color:red;" path="correspondenceAddress"></form:errors>
          </div>
          </spring:bind>
@@ -189,7 +189,7 @@
          <spring:bind path="comments">
                   <div id="comments" class="form-group col-lg-4 ${status.error ? 'has-error' : ''}" style="display:none;">
                      <label for="comments">  <spring:message code="form.comments"  text="Comments" /> </label>
-                     <form:textarea rows="4"  path="comments" onkeypress="return alpha(event)" maxlength="30" class="form-control" id="comments_Text" />
+                     <form:textarea rows="4"  path="comments" onkeypress="return alpha(event)" oncopy="return false" onpaste="return false" maxlength="30" class="form-control" id="comments_Text" />
                      <form:errors style="color:red;" path="comments"></form:errors>
                   </div>
                   </spring:bind>
@@ -198,7 +198,7 @@
          <spring:bind path="tentitiveFlightDate">
          <div class="form-group col-lg-4 ${status.error ? 'has-error' : ''}">
             <label for="serviceavailingDate"> <spring:message code="form.serviceavailingDate"  text="Tentative Date for availing flight Service" /> </label>
-            <form:input maxlength="10"  path="tentitiveFlightDate" id="tentitiveFlightDate" type="date" class="form-control input-sm" />
+            <form:input maxlength="10"  path="tentitiveFlightDate" id="tentitiveFlightDate" oncopy="return false" onpaste="return false" type="date" class="form-control input-sm" />
             <form:errors  style="color:red;" path="tentitiveFlightDate"></form:errors>
          </div>
           </spring:bind>
@@ -206,18 +206,12 @@
            <spring:bind path="serviceavailingDateto">
                    <div class="form-group col-lg-4 ${status.error ? 'has-error' : ''}">
                       <label for="serviceavailingDateto"> <spring:message code="to.serviceavailingDate"  text="Tentative Date to availing flight Service" /> </label>
-                      <form:input maxlength="10"  path="serviceavailingDateto" id="serviceavailingDateto" type="date" class="form-control input-sm" />
+                      <form:input maxlength="10"  path="serviceavailingDateto" oncopy="return false" onpaste="return false" id="serviceavailingDateto" type="date" class="form-control input-sm" />
                       <form:errors  style="color:red;" path="serviceavailingDateto"></form:errors>
                    </div>
                     </spring:bind>
 
-            <!-- Changes -->
 
-
-            <!-- Messages CM/DC Ajay-->
-
-            <!-- Add emergency in User Type --->
-            <!-- Add Perpose after user tiusertype and reservation type -->
 
 
            <spring:bind path="flightDistrictToGoFrom">
@@ -274,19 +268,23 @@
          <div class="col-lg-12"><hr><strong><spring:message code="form.documentry.proff" text="Flight Details" /></strong><hr></div>
          <div  id="aadhaar_div" class="form-group col-lg-4">
             <label for="aadhaar_doc" class="form-label"><spring:message code="form.documentry.aadhaar" text="Aadhaar Card" /> *</label>
-            <form:input class="form-control" type="file" id="aadhaar_doc" path="aadhaar_doc" name="aadhaar_doc" />
+            <form:input class="form-control" oncopy="return false" onpaste="return false" type="file" id="aadhaar_doc" path="aadhaar_doc" name="aadhaar_doc" />
+            <form:errors style="color:red;" path="aadhaar_doc"></form:errors>
          </div>
          <div id="official_div" class="form-group col-lg-4">
             <label for="officeCardDoc" class="form-label"><spring:message code="form.documentry.officeid" text="Office Card" /></label>
-            <form:input class="form-control" type="file" path="officeCardDoc" id="officeCardDoc" name="officeCardDoc"  />
+            <form:input class="form-control" oncopy="return false" onpaste="return false" type="file" path="officeCardDoc" id="officeCardDoc" name="officeCardDoc"/>
+            <form:errors style="color:red;" path="officeCardDoc"></form:errors>
          </div>
          <div id="medical_div" class="form-group col-lg-4">
             <label for="medicalDoc" class="form-label"><spring:message code="form.documentry.medial" text="Medical Report" /> </label>
-            <form:input class="form-control" type="file" path="medicalDoc" id="medicalDoc" name="medicalDoc"  />
+            <form:input class="form-control" oncopy="return false" onpaste="return false" type="file" path="medicalDoc" id="medicalDoc" name="medicalDoc"/>
+            <form:errors style="color:red;" path="medicalDoc"></form:errors>
          </div>
          <div id="other_div" class="form-group col-lg-4">
             <label for="otherDoc" class="form-label"><spring:message code="form.documentry.other" text="Any Other Document" /></label>
-            <form:input class="form-control" type="file" id="otherDoc" path="otherDoc" name="otherDoc"  />
+            <form:input class="form-control" oncopy="return false" onpaste="return false" type="file" id="otherDoc" path="otherDoc" name="otherDoc"/>
+            <form:errors style="color:red;" path="otherDoc"></form:errors>
          </div>
 
 
@@ -330,7 +328,7 @@
             <div class="form-group">
                <form:label path="dateTravel" for="dateTravel" class="field-label"/>
                   <spring:message code="form.date.travell" text="Date of Travel" />
-               <form:input path="availedServiceListForm[0].dateTravelled" maxlength="10"  type="date" class="form-control input-sm" />
+               <form:input path="availedServiceListForm[0].dateTravelled" maxlength="10"  type="date" oncopy="return false" onpaste="return false" class="form-control input-sm" />
                <form:errors style="color:red;" path="availedServiceListForm[0].dateTravelled"></form:errors>
             </div>
          </div>
@@ -417,7 +415,7 @@
 
 				<tr>
 					<td>Enter Image Text</td>
-					<td><form:input path="captcha" onkeypress="return alpha(event)" id="captcha" name="captcha" /></td>
+					<td><form:input onkeypress="return alpha(event)" oncopy="return false" onpaste="return false" path="captcha" id="captcha" name="captcha" /></td>
 					 <form:errors style="color:red;" path="captcha"></form:errors>
 				</tr>
 				</tbody>
@@ -446,7 +444,7 @@
    {
    gethalipadDistrictadd(add);
    	var row ='<div class="row " id="id'+add+'">'
-   	+'<div class="col-lg-4"><div class="form-group"><input maxlength="10" path="availedServiceListForm['+add+'].dateTravelled" name="availedServiceListForm['+add+'].dateTravelled" type="date"   class="form-control" placeholder="Date"  /></div></div>'
+   	+'<div class="col-lg-4"><div class="form-group"><input oncopy="return false" onpaste="return false" maxlength="10" path="availedServiceListForm['+add+'].dateTravelled" name="availedServiceListForm['+add+'].dateTravelled" type="date"   class="form-control" placeholder="Date"  /></div></div>'
    	+'<div class="col-lg-4"><div class="form-group"><select maxlength="10" path="availedServiceListForm['+add+'].dateTravelled" name="availedServiceListForm['+add+'].helipadDistrict" id="helipadDistrict'+add+'"   class="form-control" placeholder="District"  onchange="gethalipadLocationadd(this.value ,'+add+')" ></select></div></div>'
     +'<div class="col-md-4"><div class="form-group"><select path="availedServiceListForm['+add+'].helipadName" name="availedServiceListForm['+add+'].helipadName" id="halipadLocation'+add+'" class="form-control input-sm"  data-width="100%"></select></div></div>'
     +'</div>'

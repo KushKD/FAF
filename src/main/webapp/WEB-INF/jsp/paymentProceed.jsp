@@ -32,15 +32,12 @@
                <tbody>
                   <tr>
                      <td class="text-center">Application No.</td>
-                     <td class="text-center" >
-                        <input type="text"  class="form-control text-center"  readonly="true" value="${user.userId}"  ></input>
+                     <td class="text-center" >${user.userId}
                      </td>
                   </tr>
                   <tr>
                      <td class="text-center">User Full Name:</td>
-                     <td class="text-center" >
-                        <input type="text"  class="form-control text-center" value="${user.fullName}" readonly="true" >
-                        </input>
+                     <td class="text-center" >${user.fullName}
                      </td>
                   </tr>
                   <tr>
@@ -69,42 +66,35 @@
                   </tr>
                   <tr>
                      <td class="text-center">Mobile Number</td>
-                     <td class="text-center" >
-                        <input type="text" class="form-control text-center" value="${user.mobileNumber}"  name="phone" readonly="true" ></input>
+                     <td class="text-center" >${user.mobileNumber}</input>
                      </td>
                   </tr>
                   <td class="text-center">Amount to Pay</td>
                   <c:if test="${user.category.userTypeName == 'Patient' && user.age>9 }">
-                     <td class="text-center" >
-                        <input  type="text"  readonly="true"   class="form-control"  value="750" ></input>
-                     </td>
+                     <td class="text-center" >750/-</td>
                   </c:if>
                   <c:if test="${user.category.userTypeName == 'Other' && user.age>9 }">
-                     <input  type="text"  readonly="true"   class="form-control text-center"   value="7000" ></input>
+                  <td class="text-center" >7000/-</td>
                   </c:if>
                   <c:if test="${user.category.userTypeName == 'Local' && user.age>9 }">
-                     <td class="text-center" >
-                        <input  type="text"  readonly="true"   class="form-control text-center"   value="1500" ></input>
+                     <td class="text-center" >1500/-
                      </td>
                   </c:if>
                   <c:if test="${user.category.userTypeName == 'Official' && user.age>9 }">
-                     <td class="text-center" >
-                        <input  type="text"   readonly="true"  class="form-control text-center"  value="1500" ></input>
+                     <td class="text-center" > 1500/-
                      </td>
                   </c:if>
                   <c:if test="${user.category.userTypeName == 'Patient' && user.age<=9 }">
                      <td class="text-center" >
-                        <input  type="text"  readonly="true"    class="form-control text-center"   value="750" ></input>
+                     750/-
                      </td>
                   </c:if>
                   <c:if test="${user.category.userTypeName == 'Other' && user.age<=9 }">
-                     <td class="text-center" >
-                        <input  type="text"  readonly="true"   class="form-control text-center"   value="750" ></input>
+                     <td class="text-center" >750/-
                      </td>
                   </c:if>
                   <c:if test="${user.category.userTypeName == 'Local' && user.age<=9 }">
-                     <td>
-                        <input  type="text"  readonly="true"   class="form-control text-center"   value="750" ></input>
+                     <td> 750/-
                      </td>
                   </c:if>
                   </tr>

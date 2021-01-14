@@ -338,7 +338,7 @@
       <spring:bind path="comments">
               <div class="form-group col-lg-12 ${status.error ? 'has-error' : ''}">
                  <label for="comments"> <spring:message code="form.addressss"  text="Comments" /> </label>
-                 <form:textarea rows="4" path="comments" id="comments" class="form-control"  />
+                 <form:textarea rows="4" path="comments" id="comments" class="form-control" onkeypress="return alpha(event)"  oncopy="return false" onpaste="return false" />
                   <form:errors style="color:red;"  path="comments"></form:errors>
               </div>
                </spring:bind>

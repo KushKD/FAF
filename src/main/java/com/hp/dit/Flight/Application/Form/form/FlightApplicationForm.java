@@ -9,8 +9,6 @@ import java.util.List;
 public class FlightApplicationForm implements Serializable {
 
 
-   // private String captchaCode, captchaCorrect, captchaIncorrect;
-
     private String captcha;
     private String category;
     private String registrationType;

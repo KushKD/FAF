@@ -138,7 +138,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 response.setContentType("text/html; charset=UTF-8");
                 response.setHeader("pragma", "no-cache");
                 response.setHeader("Cache-control", "no-cache, no-store, must-revalidate");
-                filterChain.doFilter(request, response);
+              //  response.setHeader("Set-Cookie", "locale=de;  SameSite=same-origin");  //HttpOnly;
+                 filterChain.doFilter(request, response);
             }
         };
     }

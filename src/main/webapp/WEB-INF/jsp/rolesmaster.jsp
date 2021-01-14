@@ -20,7 +20,7 @@
                 </c:if>
             <spring:bind path="roleName">
                 <div class="form-group ${status.error ? 'has-error' : ''}">
-                    <form:input type="text" path="roleName" onkeypress="return alpha(event)"  class="form-control" placeholder="Role Name"
+                    <form:input type="text" path="roleName" onkeypress="return alpha(event) "  oncopy="return false" onpaste="return false" class="form-control" placeholder="Role Name"
                                 autofocus="true"></form:input>
                     <form:errors  path="roleName"></form:errors>
                 </div>
@@ -28,7 +28,7 @@
 
              <spring:bind path="roleDescription">
                             <div class="form-group  ${status.error ? 'has-error' : ''}">
-                                <form:input type="text" path="roleDescription" onkeypress="return alpha(event)"    class="form-control"  name="roleDescription" placeholder="Role Description" ></form:input>
+                                <form:input type="text" path="roleDescription" onkeypress="return alpha(event)" oncopy="return false" onpaste="return false"   class="form-control"  name="roleDescription" placeholder="Role Description" ></form:input>
                                 <form:errors  path="roleDescription"></form:errors>
                             </div>
                         </spring:bind>

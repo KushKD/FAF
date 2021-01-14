@@ -26,7 +26,7 @@
          <spring:bind path="applicationId">
             <label class="col-lg-3 col-md-3 col-xs-12 col-sm-12" for="id1"><strong>Check Application Status</strong></label>
             <div class="col-lg-3 col-md-3 col-xs-12 col-sm-12 ${status.error ? 'has-error' : ''}">
-               <form:input onkeypress="return alpha(event)" maxlength="10" class="form-control " path="applicationId" name="applicationId" type="text" id="applicationId" />
+               <form:input onkeypress="return alpha(event)" oncopy="return false" onpaste="return false" maxlength="10" class="form-control " path="applicationId" name="applicationId" type="text" id="applicationId" />
                <form:errors  path="applicationId"></form:errors>
             </div>
             </spring:bind>

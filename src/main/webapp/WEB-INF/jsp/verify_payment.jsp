@@ -28,7 +28,7 @@
 
                           <spring:bind path="application_id">
                           <div class="col-md-4 form-group  ${status.error ? 'has-error' : ''}">
-                            <form:input path="application_id" onkeypress="return alpha(event)"  size="10" name="application_id" class="form-control" type="text" placeholder="Enter Application Id" required="required"  />
+                            <form:input path="application_id" onkeypress="return alpha(event)" oncopy="return false" onpaste="return false"  size="10" name="application_id" class="form-control" type="text" placeholder="Enter Application Id" required="required"  />
                               <form:errors  path="application_id"></form:errors>
                             </div>
                              </spring:bind>

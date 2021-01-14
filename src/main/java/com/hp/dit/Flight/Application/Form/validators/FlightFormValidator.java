@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
+import org.springframework.web.multipart.MultipartFile;
 
 @Component
 public class FlightFormValidator implements Validator {
@@ -101,7 +102,43 @@ public class FlightFormValidator implements Validator {
         }
 
 
+        if(flightForm.getAadhaar_doc().getSize()!=0){
+
+            if(getFileSizeMb(flightForm.getAadhaar_doc().getSize())>5){
+                errors.rejectValue("aadhaar_doc", "Size.flightApplicationForm.aadhaar_doc");
+            }
+        }
+
+        if(flightForm.getMedicalDoc().getSize()!=0){
+
+            if(getFileSizeMb(flightForm.getMedicalDoc().getSize())>5){
+                errors.rejectValue("medicalDoc", "Size.flightApplicationForm.medicalDoc");
+            }
+        }
+
+        if(flightForm.getOfficeCardDoc().getSize()!=0){
+
+            if(getFileSizeMb(flightForm.getOfficeCardDoc().getSize())>5){
+                errors.rejectValue("officeCardDoc", "Size.flightApplicationForm.officeCardDoc");
+            }
+        }
+
+        if(flightForm.getOtherDoc().getSize()!=0){
+
+            if(getFileSizeMb(flightForm.getOtherDoc().getSize())>5){
+                errors.rejectValue("otherDoc", "Size.flightApplicationForm.otherDoc");
+            }
+        }
 
 
+
+
+
+    }
+
+    private long getFileSizeMb(long size){
+        long fileSizeInKB = size / 1024;
+        long fileSizeInMB = fileSizeInKB / 1024;
+        return fileSizeInMB;
     }
 }
