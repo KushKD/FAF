@@ -32,14 +32,31 @@ public class FlightApplicationForm implements Serializable {
     private String halipadLocation;
     private String halipadDistrict;
     private String flightDistrictToGoFrom;
+    private String flightDistrictToGoFrom_dest;
+    private String flightHelipadNameToGoFrom_dest;
     private String flightHelipadNameToGoFrom;
     private List<AvailedServices>  availedServiceListForm;
     private String earlierService;
-
     private MultipartFile aadhaar_doc;
     private MultipartFile officeCardDoc;
     private MultipartFile medicalDoc;
     private MultipartFile otherDoc;
+
+    public String getFlightDistrictToGoFrom_dest() {
+        return flightDistrictToGoFrom_dest;
+    }
+
+    public void setFlightDistrictToGoFrom_dest(String flightDistrictToGoFrom_dest) {
+        this.flightDistrictToGoFrom_dest = flightDistrictToGoFrom_dest;
+    }
+
+    public String getFlightHelipadNameToGoFrom_dest() {
+        return flightHelipadNameToGoFrom_dest;
+    }
+
+    public void setFlightHelipadNameToGoFrom_dest(String flightHelipadNameToGoFrom_dest) {
+        this.flightHelipadNameToGoFrom_dest = flightHelipadNameToGoFrom_dest;
+    }
 
     public String getCaptcha() {
         return captcha;
@@ -308,6 +325,8 @@ public class FlightApplicationForm implements Serializable {
                 ", halipadLocation='" + halipadLocation + '\'' +
                 ", halipadDistrict='" + halipadDistrict + '\'' +
                 ", flightDistrictToGoFrom='" + flightDistrictToGoFrom + '\'' +
+                ", flightDistrictToGoFrom_dest='" + flightDistrictToGoFrom_dest + '\'' +
+                ", flightHelipadNameToGoFrom_dest='" + flightHelipadNameToGoFrom_dest + '\'' +
                 ", flightHelipadNameToGoFrom='" + flightHelipadNameToGoFrom + '\'' +
                 ", availedServiceListForm=" + availedServiceListForm +
                 ", earlierService='" + earlierService + '\'' +

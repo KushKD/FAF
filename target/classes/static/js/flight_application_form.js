@@ -113,6 +113,28 @@ function getFlightDistrictToGoFrom() {
     });
 }
 
+function getFlightDistrictToGoFrom_dest() {
+
+    $.ajax({
+        type: "GET",
+        url: formURL + "/ajax/flightDistrictToGoFrom",
+        success: function(data) {
+            console.log(data.RESPONSE)
+            var selectRole = $('#flightDistrictToGoFrom_dest'); // the state select element
+            selectRole.find('option').remove();
+            selectRole.append("<option value=" + 0 + " >" + "---Please Select---" + "</option>")
+            for (i = 0; i < data.RESPONSE.length; i++) {
+                selectRole.append("<option value=" + data.RESPONSE[i].districtId + " >" + data.RESPONSE[i].districtName + "</option>")
+            }
+
+        },
+        error: function(data) {
+            console.log(data)
+        }
+
+    });
+}
+
 function getLocations() {
     $.ajax({
         type: "GET",
@@ -159,6 +181,35 @@ function getFlightHelipadNameToGoFrom(id) {
                 } else {
                     selectRole.append("<option value=" + data.RESPONSE[i].helipadId + " >" + data.RESPONSE[i].helipadName + "</option>")
                 }
+
+            };
+
+        },
+        error: function(data) {
+            console.log(data)
+        }
+
+    });
+
+
+}
+
+function getFlightHelipadNameToGoFrom_dest(id) {
+    $.ajax({
+        type: "GET",
+        url: formURL + "/ajax/flightHelipadNameToGoFrom",
+        data: {
+            "id": id
+        },
+        success: function(data) {
+            console.log(data.RESPONSE)
+            var selectRole = $('#flightHelipadNameToGoFrom_dest'); // the state select element
+            selectRole.find('option').remove();
+            selectRole.append("<option value=" + 0 + " >" + "--- Select ---" + "</option>")
+            for (i = 0; i < data.RESPONSE.length; i++) {
+
+                    selectRole.append("<option value=" + data.RESPONSE[i].helipadId + " >" + data.RESPONSE[i].helipadName + "</option>")
+              
 
             };
 
@@ -227,6 +278,8 @@ function gethalipadDistrict() {
 
     });
 }
+
+
 
 function gethalipadDistrictadd(add) {
     $.ajax({
