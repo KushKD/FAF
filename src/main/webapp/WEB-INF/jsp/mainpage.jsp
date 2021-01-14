@@ -39,7 +39,7 @@
                   <div class="cm col-xl-12 col-lg-4 col-md-4 col-sm-12">
                      <div class="pic"><img src="${pageContext.request.contextPath}/resources/images/CM.jpg" class="img-thumbnail" style="height:100%; width:100%;"></div>
                      <div class="name"><strong> Sh. Jai Ram Thakur </strong> <br>
-                        Hon'ble Chief Minister, Himachal Pradesh
+                        Hon'able Chief Minister, Himachal Pradesh
                      </div>
                   </div>
 

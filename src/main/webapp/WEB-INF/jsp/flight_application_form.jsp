@@ -224,7 +224,7 @@
                <div class="col-lg-12">
                   <hr>
                   <strong>
-                     <spring:message code="form.boading.location" text="Boarding Location" />
+                     <spring:message code="form.boardlocation" text="Boarding Location" />
                   </strong>
                </div>
                <hr>
@@ -253,7 +253,8 @@
                <div class="col-lg-12">
                   <hr>
                   <strong>
-                     <spring:message code="form.destination.proff" text="Destination Location" />
+
+                     <spring:message code=" form.destinationlocation" text="Destination Location" />
                   </strong>
                </div>
                <hr>
