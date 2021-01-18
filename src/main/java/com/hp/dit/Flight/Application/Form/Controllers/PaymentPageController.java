@@ -42,17 +42,17 @@ public class PaymentPageController {
         model.addAttribute("paymentForm", new PaymentForm());
         Integer userId = (Integer) model.asMap().get("userID");
         System.out.println(userId);
-        FlightFormEntity user = new FlightFormEntity();
-        request.getSession().setAttribute("merchant_key", "");
-        request.getSession().setAttribute("hash", "");
-        request.getSession().setAttribute("txnid", "");
-        request.getSession().setAttribute("amount", "");
-        request.getSession().setAttribute("firstname", "");
-        request.getSession().setAttribute("email", "");
-        request.getSession().setAttribute("phone", "");
-        request.getSession().setAttribute("productinfo", "");
-        request.getSession().setAttribute("surl", "");
-        request.getSession().setAttribute("furl", "");
+        FlightFormEntity user = null;
+//        request.getSession().setAttribute("merchant_key", "");
+//        request.getSession().setAttribute("hash", "");
+//        request.getSession().setAttribute("txnid", "");
+//        request.getSession().setAttribute("amount", "");
+//        request.getSession().setAttribute("firstname", "");
+//        request.getSession().setAttribute("email", "");
+//        request.getSession().setAttribute("phone", "");
+//        request.getSession().setAttribute("productinfo", "");
+//        request.getSession().setAttribute("surl", "");
+//        request.getSession().setAttribute("furl", "");
         try {
             user = flightFormService.getDataByUserID(userId);
             if (user != null) {
@@ -138,9 +138,10 @@ public class PaymentPageController {
                                   @RequestParam String phone,
                                   @RequestParam String error,
                                   @RequestParam String bank_ref_num) {
+        PaymentCallback paymentCallback = new PaymentCallback();
         try {
 
-            PaymentCallback paymentCallback = new PaymentCallback();
+
             if (Utilities.empty(amount)) {
                 paymentCallback.setAmount("");
             } else {
@@ -221,33 +222,55 @@ public class PaymentPageController {
                 paymentCallback.setMode(mode);
             }
 
+            System.out.println(request.getSession().getAttribute("txnid"));
+            if(paymentCallback.getTxnid().equalsIgnoreCase(request.getSession().getAttribute("txnid").toString())){
+                //Verify the Payment and then save to Database
+                if (PaymentUtil.verifyPayment(paymentCallback)) {
 
-            //Verify the Payment and then save to Database
-
-            if (PaymentUtil.verifyPayment(paymentCallback)) {
-
-                System.out.println("Return Success Page");
-                //Save data to Database
-                UserTranactionEntity entity = new UserTranactionEntity();
-                entity.setActive(true);
-                entity.setAmount(paymentCallback.getAmount());
-                entity.setBankRefNumber(paymentCallback.getBank_ref_num());
-                entity.setEmail(paymentCallback.getEmail());
-                entity.setError(paymentCallback.getError());
-                entity.setMihpayId(paymentCallback.getMihpayid());
-                entity.setName(paymentCallback.getFirstname());
-                entity.setPaymentMode(paymentCallback.getMode().toString());
-                entity.setPaymentStatus(paymentCallback.getStatus());
-                entity.setTransactionId(paymentCallback.getTxnid());
-                entity.setUserId(Integer.parseInt(paymentCallback.getProductinfo()));
-                entity.setPhone(paymentCallback.getPhone());
-                Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-                Date date = new Date(timestamp.getTime());
-                entity.setCreatedDate(date);
-                userTransactionService.saveTransaction(entity);
-                model.addAttribute("paymnetdetails", paymentCallback);
-                return "paymentResponse";
-            } else {
+                    System.out.println("Return Success Page");
+                    //Save data to Database
+                    UserTranactionEntity entity = new UserTranactionEntity();
+                    entity.setActive(true);
+                    entity.setAmount(paymentCallback.getAmount());
+                    entity.setBankRefNumber(paymentCallback.getBank_ref_num());
+                    entity.setEmail(paymentCallback.getEmail());
+                    entity.setError(paymentCallback.getError());
+                    entity.setMihpayId(paymentCallback.getMihpayid());
+                    entity.setName(paymentCallback.getFirstname());
+                    entity.setPaymentMode(paymentCallback.getMode().toString());
+                    entity.setPaymentStatus(paymentCallback.getStatus());
+                    entity.setTransactionId(paymentCallback.getTxnid());
+                    entity.setUserId(Integer.parseInt(paymentCallback.getProductinfo()));
+                    entity.setPhone(paymentCallback.getPhone());
+                    Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+                    Date date = new Date(timestamp.getTime());
+                    entity.setCreatedDate(date);
+                    userTransactionService.saveTransaction(entity);
+                    model.addAttribute("paymnetdetails", paymentCallback);
+                    return "paymentResponse";
+                } else {
+                    System.out.println("Return Fail Page");
+                    UserTranactionEntity entity = new UserTranactionEntity();
+                    entity.setActive(true);
+                    entity.setAmount(paymentCallback.getAmount());
+                    entity.setBankRefNumber(paymentCallback.getBank_ref_num());
+                    entity.setEmail(paymentCallback.getEmail());
+                    entity.setError(paymentCallback.getError());
+                    entity.setMihpayId(paymentCallback.getMihpayid());
+                    entity.setName(paymentCallback.getFirstname());
+                    entity.setPaymentMode(paymentCallback.getMode().toString());
+                    entity.setPaymentStatus(paymentCallback.getStatus());
+                    entity.setTransactionId(paymentCallback.getTxnid());
+                    entity.setUserId(Integer.parseInt(paymentCallback.getProductinfo()));
+                    entity.setPhone(paymentCallback.getPhone());
+                    Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+                    Date date = new Date(timestamp.getTime());
+                    entity.setCreatedDate(date);
+                    userTransactionService.saveTransaction(entity);
+                    model.addAttribute("paymnetdetails", paymentCallback);
+                    return "paymentResponse";
+                }
+            }else{
                 System.out.println("Return Fail Page");
                 UserTranactionEntity entity = new UserTranactionEntity();
                 entity.setActive(true);
@@ -271,7 +294,27 @@ public class PaymentPageController {
             }
 
 
+
+
         } catch (Exception ex) {
+            System.out.println("Return Fail Page");
+            UserTranactionEntity entity = new UserTranactionEntity();
+            entity.setActive(true);
+            entity.setAmount(paymentCallback.getAmount());
+            entity.setBankRefNumber(paymentCallback.getBank_ref_num());
+            entity.setEmail(paymentCallback.getEmail());
+            entity.setError(paymentCallback.getError());
+            entity.setMihpayId(paymentCallback.getMihpayid());
+            entity.setName(paymentCallback.getFirstname());
+            entity.setPaymentMode(paymentCallback.getMode().toString());
+            entity.setPaymentStatus(paymentCallback.getStatus());
+            entity.setTransactionId(paymentCallback.getTxnid());
+            entity.setUserId(Integer.parseInt(paymentCallback.getProductinfo()));
+            entity.setPhone(paymentCallback.getPhone());
+            Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+            Date date = new Date(timestamp.getTime());
+            entity.setCreatedDate(date);
+            userTransactionService.saveTransaction(entity);
             request.getSession().setAttribute("serverError", ex.getLocalizedMessage().toString());
             return "paymentResponse";
         }

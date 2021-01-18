@@ -30,53 +30,43 @@
                      <tr>
                         <td class="text-center"> Payment Status</td>
                         <td class="text-center" >
-                           <div class="form-group">
-                              <input type="text"   class="form-control text-center" value="${paymnetdetails.status}" readonly="true"  ></input>
-                           </div>
+                           ${paymnetdetails.status}
                         </td>
                      </tr>
                      <tr>
                         <td class="text-center">Transaction Id</td>
                         <td class="text-center" >
-                           <div class="form-group">
-                              <input type="text"   class="form-control text-center" value="${paymnetdetails.txnid}" readonly="true" ></input>
-                           </div>
+                           ${paymnetdetails.txnid}
                         </td>
                      </tr>
                      <tr>
                         <td class="text-center">Amount</td>
                         <td class="text-center" >
-                        <div class="form-group">
-                           <input type="text"   class="form-control text-center" value="${paymnetdetails.amount}" readonly="true" ></input>
-                        </div></td>
+                        ${paymnetdetails.amount}
+                        </td>
                      </tr>
                      <tr>
                         <td class="text-center">Application ID</td>
                         <td class="text-center" >
-                        <div class="form-group">
-                           <input type="text"   class="form-control text-center" value="${paymnetdetails.productinfo}" readonly="true" ></input>
-                        </div></td>
+                        ${paymnetdetails.productinfo}
+                        </td>
                      </tr>
                      <tr>
                         <td class="text-center">Name</td>
                         <td class="text-center" >
-                        <div class="form-group">
-                           <input type="text"   class="form-control text-center" value="${paymnetdetails.firstname}" readonly="true" ></input>
-                        </div></td>
+                        ${paymnetdetails.firstname}
+                        </td>
                      </tr>
                      <tr>
                         <td class="text-center">Mobile Number</td>
                         <td class="text-center" >
-                        <div class="form-group">
-                           <input type="text"   class="form-control text-center" value="${paymnetdetails.phone}" readonly="true" ></input>
-                        </div></td>
+                        ${paymnetdetails.phone}
+                        </td>
                      </tr>
                      <tr>
                         <td class="text-center">Email</td>
                         <td class="text-center" >
-                        <div class="form-group">
-                           <input type="text"   class="form-control text-center" value="${paymnetdetails.email}" readonly="true" ></input>
-                        </div></td>
+                        ${paymnetdetails.email} </td>
                      </tr>
                   </tbody>
                </table>

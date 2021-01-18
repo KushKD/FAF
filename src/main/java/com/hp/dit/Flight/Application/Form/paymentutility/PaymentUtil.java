@@ -78,29 +78,61 @@ public class PaymentUtil {
     public static boolean verifyPayment(PaymentCallback paymentCallback) {
         String hashString = "";
         String hash;
-        String hashSequence = paymentSalt + "|" + paymentCallback.getStatus() + "|||||||||||" + paymentCallback.getEmail() + "|" + paymentCallback.getFirstname() + "|" + paymentCallback.getProductinfo() + "|" + paymentCallback.getAmount() + "|" + paymentCallback.getTxnid() + "|";
-        hashString = hashSequence.concat(paymentCallback.getKey());
-        System.out.println(hashString);
-        hash = hashCal("SHA-512", hashString);
-        //out.println(hash);
-        if (paymentCallback.getHash().equals(hash)) {
-            System.out.println("Payment successfull (No Additional Charges) - " + "<br />");
-            System.out.println("Amount:" + paymentCallback.getAmount() + "<br />");
-            System.out.println("Status of Transaction:" + paymentCallback.getStatus() + "<br />");
-            return true;
-            //Do success order processing here...
-            //Additional step - Use verify payment api to double check payment.
-//                if(verifyPayment(key,salt,txnid)){
-//                    out.println("<h2>Payment Verified...</h2><br />");
-//                }
-//                else {
-//                    out.println("<h1>Payment Not Verified...</h1><br />");
-//                }
 
-        } else {
-            System.out.println("Hash Mismatch");
-            return false;
+        if(paymentCallback.getStatus().equalsIgnoreCase("success")){
+            String hashSequence = paymentSalt + "|" + paymentCallback.getStatus() + "|||||||||||" + paymentCallback.getEmail() + "|" + paymentCallback.getFirstname() + "|" + paymentCallback.getProductinfo() + "|" + paymentCallback.getAmount() + "|" + paymentCallback.getTxnid() + "|";
+            hashString = hashSequence.concat(paymentCallback.getKey());
+            System.out.println(hashString);
+            hash = hashCal("SHA-512", hashString);
+            System.out.println(hash);
+            System.out.println(paymentCallback.getHash());
+            if (paymentCallback.getHash().equals(hash)) {
+                System.out.println("Payment successfull (No Additional Charges) - " + "<br />");
+                System.out.println("Amount:" + paymentCallback.getAmount() + "<br />");
+                System.out.println("Status of Transaction:" + paymentCallback.getStatus() + "<br />");
+                if(verifyPaymentcheck(paymentCallback.getTxnid())){
+                    System.out.println("<h2>Payment Verifing...</h2><br />");
+                    return true;
+                }
+                else {
+                    System.out.println("<h1>Payment Not Verified...</h1><br />");
+                    return false;
+                }
+
+            } else {
+                System.out.println("Hash Mismatch");
+                return false;
+            }
+        }else{
+            String hashSequence = paymentSalt + "|" + paymentCallback.getStatus() + "|||||||||||" + paymentCallback.getEmail() + "|" + paymentCallback.getFirstname() + "|" + paymentCallback.getProductinfo() + "|" + paymentCallback.getAmount() + "|" + paymentCallback.getTxnid() + "|";
+            hashString = hashSequence.concat(paymentCallback.getKey());
+            System.out.println(hashString);
+            hash = hashCal("SHA-512", hashString);
+            System.out.println(hash);
+            System.out.println(paymentCallback.getHash());
+            if (paymentCallback.getHash().equals(hash)) {
+                System.out.println("Payment Failure" + "<br />");
+                System.out.println("Amount:" + paymentCallback.getAmount() + "<br />");
+                System.out.println("Status of Transaction:" + paymentCallback.getStatus() + "<br />");
+                if(verifyPaymentcheck(paymentCallback.getTxnid())){
+                    System.out.println("<h2>Payment Verifing...</h2><br />");
+                    return true;
+                }
+                else {
+                    System.out.println("<h1>Payment Not Verified...</h1><br />");
+                    return false;
+                }
+
+            } else {
+                System.out.println("Hash Mismatch");
+                return false;
+            }
         }
+
+
+
+
+
 
 
     }
@@ -160,6 +192,62 @@ public class PaymentUtil {
             return resp;
         else
             return resp;
+
+    }
+
+    public static boolean verifyPaymentcheck(String txnid) {
+        String command = "verify_payment";
+        String hashstr = paymentKey + "|" + command + "|" + txnid + "|" + paymentSalt;
+
+        String hash = hashCal("SHA-512", hashstr);
+
+        StringBuilder response = new StringBuilder();
+
+        try {
+            //for production
+            //String wsUrl = "https://info.payu.in/merchant/postservice.php?form=1";
+
+            //for test
+            URL wsUrl = new URL("https://test.payu.in/merchant/postservice.php?form=2");
+
+            Map<String, Object> params = new LinkedHashMap<>();
+            params.put("key", paymentKey);
+            params.put("hash", hash);
+            params.put("var1", txnid);
+            params.put("command", command);
+
+            StringBuilder postData = new StringBuilder();
+            for (Map.Entry<String, Object> param : params.entrySet()) {
+                if (postData.length() != 0) postData.append('&');
+                postData.append(URLEncoder.encode(param.getKey(), "UTF-8"));
+                postData.append('=');
+                postData.append(URLEncoder.encode(String.valueOf(param.getValue()), "UTF-8"));
+            }
+            byte[] postDataBytes = postData.toString().getBytes("UTF-8");
+
+            HttpURLConnection conn = (HttpURLConnection) wsUrl.openConnection();
+            conn.setRequestMethod("POST");
+            conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+            conn.setRequestProperty("Content-Length", String.valueOf(postDataBytes.length));
+            conn.setDoOutput(true);
+            conn.getOutputStream().write(postDataBytes);
+
+            Reader in = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
+
+
+            for (int c; (c = in.read()) >= 0; ) {
+                response.append((char) c);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        String resp = response.toString();
+        System.out.println(resp.toString());
+
+        if (resp.indexOf("\"status\":\"success\"") > 1)
+            return true;
+        else
+            return false;
 
     }
 
