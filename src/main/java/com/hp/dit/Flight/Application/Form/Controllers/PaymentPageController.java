@@ -28,14 +28,15 @@ import java.util.Date;
 @Controller
 public class PaymentPageController {
 
+    private static final Logger logger = LoggerFactory.getLogger(PaymentPageController.class);
+    @Autowired
+    UserTransactionService userTransactionService;
     @Autowired
     private FlightFormService flightFormService;
 
-    @Autowired
-    UserTransactionService userTransactionService;
 
 
-    private static final Logger logger = LoggerFactory.getLogger(PaymentPageController.class);
+
 
     @RequestMapping(value = "/paymentpage", method = RequestMethod.GET)
     public String paymentpage(Model model, HttpServletRequest request) {
@@ -43,16 +44,7 @@ public class PaymentPageController {
         Integer userId = (Integer) model.asMap().get("userID");
         System.out.println(userId);
         FlightFormEntity user = null;
-//        request.getSession().setAttribute("merchant_key", "");
-//        request.getSession().setAttribute("hash", "");
-//        request.getSession().setAttribute("txnid", "");
-//        request.getSession().setAttribute("amount", "");
-//        request.getSession().setAttribute("firstname", "");
-//        request.getSession().setAttribute("email", "");
-//        request.getSession().setAttribute("phone", "");
-//        request.getSession().setAttribute("productinfo", "");
-//        request.getSession().setAttribute("surl", "");
-//        request.getSession().setAttribute("furl", "");
+
         try {
             user = flightFormService.getDataByUserID(userId);
             if (user != null) {
@@ -66,6 +58,24 @@ public class PaymentPageController {
                 paymentDetail.setEmail("kushkumardhawan@gmail.com");
 
                 paymentDetail = PaymentUtil.populatePaymentDetail(paymentDetail);
+
+                //Save Data to Entity
+                UserTranactionEntity transactionEntity = new UserTranactionEntity();
+                transactionEntity.setUserId(user.getUserId());
+                transactionEntity.setEmail("kushkumardhawan@gmail.com");
+                transactionEntity.setName(user.getFullName());
+                transactionEntity.setPhone(String.valueOf(user.getMobileNumber()));
+                transactionEntity.setAmount(CalculateAmount.calculateAmount(user));
+                transactionEntity.setPaymentStatus("");
+                transactionEntity.setTransactionId(paymentDetail.getTxnId());
+                transactionEntity.setActive(true);
+                Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+                Date date = new Date(timestamp.getTime());
+                transactionEntity.setCreatedDate(date);
+                transactionEntity.setPaymentdateresponse(date);
+                userTransactionService.saveTransaction(transactionEntity);
+
+
                 request.getSession().setAttribute("merchant_key", paymentDetail.getKey());
                 request.getSession().setAttribute("hash", paymentDetail.getHash());
                 request.getSession().setAttribute("txnid", paymentDetail.getTxnId());
@@ -87,40 +97,7 @@ public class PaymentPageController {
         return "applicationform";
     }
 
-//    @RequestMapping(value = "/paymentpagepost", method = RequestMethod.POST)
-//    public String postpaymentPage(@ModelAttribute("paymentForm") PaymentForm paymentForm,
-//                                  BindingResult bindingResult, Model model, HttpServletRequest request) {
-//        try {
-//            PaymentDetail paymentDetail = new PaymentDetail();
-//            paymentDetail.setAmount(paymentForm.getAmount());
-//            paymentDetail.setName(paymentForm.getName());
-//            paymentDetail.setProductInfo(paymentForm.getUser_id_transaction_id());
-//            paymentDetail.setPhone(paymentForm.getPhone());
-//            paymentDetail.setEmail("kushkumardhawan@gmail.com");
-//
-//            paymentDetail = PaymentUtil.populatePaymentDetail(paymentDetail);
-//
-//            request.getSession().setAttribute("merchant_key", paymentDetail.getKey());
-//            request.getSession().setAttribute("hash", paymentDetail.getHash());
-//            request.getSession().setAttribute("txnid", paymentDetail.getTxnId());
-//            request.getSession().setAttribute("amount", paymentDetail.getAmount());
-//            request.getSession().setAttribute("firstname", paymentDetail.getName());
-//            request.getSession().setAttribute("email", paymentDetail.getEmail());
-//            request.getSession().setAttribute("phone", paymentDetail.getPhone());
-//            request.getSession().setAttribute("productinfo", paymentDetail.getProductInfo());
-//            request.getSession().setAttribute("surl", paymentDetail.getsUrl());
-//            request.getSession().setAttribute("furl", paymentDetail.getfUrl());
-//
-//
-//            return "postPayment";
-//
-//        } catch (Exception ex) {
-//            // request.getSession().setAttribute("serverError", ex.getLocalizedMessage().toString());
-//            return "paymentpage";
-//        }
-//
-//
-//    }
+
 
 
     @RequestMapping(value = "/paymentResponse", method = RequestMethod.POST)
@@ -137,16 +114,29 @@ public class PaymentPageController {
                                   @RequestParam String email,
                                   @RequestParam String phone,
                                   @RequestParam String error,
-                                  @RequestParam String bank_ref_num) {
+                                  @RequestParam String bank_ref_num,
+                                  @RequestParam String addedon,
+                                  @RequestParam (value = "additionalCharges", required = false, defaultValue = "") String additionalCharges
+                                 ) {
         PaymentCallback paymentCallback = new PaymentCallback();
+        UserTranactionEntity entity_ = null;
+
         try {
 
+
+
+            if (Utilities.empty(additionalCharges)) {
+                paymentCallback.setAdditionalCharges("");
+            } else {
+                paymentCallback.setAdditionalCharges(additionalCharges);
+            }
 
             if (Utilities.empty(amount)) {
                 paymentCallback.setAmount("");
             } else {
                 paymentCallback.setAmount(amount);
             }
+
 
             if (Utilities.empty(mihpayid)) {
                 paymentCallback.setMihpayid("");
@@ -222,104 +212,156 @@ public class PaymentPageController {
                 paymentCallback.setMode(mode);
             }
 
-            System.out.println(request.getSession().getAttribute("txnid"));
-            if(paymentCallback.getTxnid().equalsIgnoreCase(request.getSession().getAttribute("txnid").toString())){
-                //Verify the Payment and then save to Database
-                if (PaymentUtil.verifyPayment(paymentCallback)) {
+             entity_ = userTransactionService.getUserTransaction(Integer.parseInt(productinfo));
+            if(entity_!=null){
+                //Check if the transaction ID is Same
+                if(!entity_.getTransactionId().equalsIgnoreCase(txnid) && Utilities.empty(txnid)){
+                    //Payment False
+                    entity_.setPaymentStatus(status);
+                    entity_.setBankRefNumber(bank_ref_num);
+                    entity_.setPaymentMode(mode.toString());
+                    entity_.setError("Transaction ID Null");
+                    entity_.setMihpayId(mihpayid);
+                    request.getSession().setAttribute("paymentStatus", "Failed");
+                    request.getSession().setAttribute("TransactionId", entity_.getTransactionId());
+                    request.getSession().setAttribute("Amount", entity_.getAmount());
+                    request.getSession().setAttribute("ApplicationId", entity_.getUserId());
+                    request.getSession().setAttribute("Name", entity_.getName());
+                    request.getSession().setAttribute("MobileNumber", entity_.getPhone());
+                    request.getSession().setAttribute("email", entity_.getEmail());
+                    userTransactionService.saveTransaction(entity_);
+                    return "paymentResponse";
+                }else{
+                    //Check Hash
+                    if(hash.equalsIgnoreCase(PaymentUtil.verifyHash(paymentCallback))){
+                       if(status.equalsIgnoreCase("success")){
+                           entity_.setPaymentStatus("Success");
+                           entity_.setBankRefNumber(bank_ref_num);
+                           entity_.setPaymentMode(mode.toString());
+                           entity_.setMihpayId(mihpayid);
+                           entity_.setError("");
+                           request.getSession().setAttribute("paymentStatus", "Success");
+                           request.getSession().setAttribute("TransactionId", entity_.getTransactionId());
+                           request.getSession().setAttribute("Amount", entity_.getAmount());
+                           request.getSession().setAttribute("ApplicationId", entity_.getUserId());
+                           request.getSession().setAttribute("Name", entity_.getName());
+                           request.getSession().setAttribute("MobileNumber", entity_.getPhone());
+                           request.getSession().setAttribute("email", entity_.getEmail());
+                           userTransactionService.saveTransaction(entity_);
+                           return "paymentResponse";
+                       }else{
+                           entity_.setPaymentStatus("Faliure");
+                           entity_.setBankRefNumber(bank_ref_num);
+                           entity_.setPaymentMode(mode.toString());
+                           entity_.setMihpayId(mihpayid);
+                           entity_.setError("PAyment Failed . Please contact Admin.");
+                           request.getSession().setAttribute("paymentStatus", "Failed");
+                           request.getSession().setAttribute("TransactionId", entity_.getTransactionId());
+                           request.getSession().setAttribute("Amount", entity_.getAmount());
+                           request.getSession().setAttribute("ApplicationId", entity_.getUserId());
+                           request.getSession().setAttribute("Name", entity_.getName());
+                           request.getSession().setAttribute("MobileNumber", entity_.getPhone());
+                           request.getSession().setAttribute("email", entity_.getEmail());
+                           userTransactionService.saveTransaction(entity_);
+                           return "paymentResponse";
+                       }
+                    }else{
+                        entity_.setPaymentStatus("Faliure");
+                        entity_.setBankRefNumber(bank_ref_num);
+                        entity_.setPaymentMode(mode.toString());
+                        entity_.setMihpayId(mihpayid);
+                        entity_.setError("Hash Mismatched");
+                        request.getSession().setAttribute("paymentStatus", "Failed, Hash Mismatched");
+                        request.getSession().setAttribute("TransactionId", entity_.getTransactionId());
+                        request.getSession().setAttribute("Amount", entity_.getAmount());
+                        request.getSession().setAttribute("ApplicationId", entity_.getUserId());
+                        request.getSession().setAttribute("Name", entity_.getName());
+                        request.getSession().setAttribute("MobileNumber", entity_.getPhone());
+                        request.getSession().setAttribute("email", entity_.getEmail());
+                        userTransactionService.saveTransaction(entity_);
+                        return "paymentResponse";
+                    }
 
-                    System.out.println("Return Success Page");
-                    //Save data to Database
-                    UserTranactionEntity entity = new UserTranactionEntity();
-                    entity.setActive(true);
-                    entity.setAmount(paymentCallback.getAmount());
-                    entity.setBankRefNumber(paymentCallback.getBank_ref_num());
-                    entity.setEmail(paymentCallback.getEmail());
-                    entity.setError(paymentCallback.getError());
-                    entity.setMihpayId(paymentCallback.getMihpayid());
-                    entity.setName(paymentCallback.getFirstname());
-                    entity.setPaymentMode(paymentCallback.getMode().toString());
-                    entity.setPaymentStatus(paymentCallback.getStatus());
-                    entity.setTransactionId(paymentCallback.getTxnid());
-                    entity.setUserId(Integer.parseInt(paymentCallback.getProductinfo()));
-                    entity.setPhone(paymentCallback.getPhone());
-                    Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-                    Date date = new Date(timestamp.getTime());
-                    entity.setCreatedDate(date);
-                    userTransactionService.saveTransaction(entity);
-                    model.addAttribute("paymnetdetails", paymentCallback);
-                    return "paymentResponse";
-                } else {
-                    System.out.println("Return Fail Page");
-                    UserTranactionEntity entity = new UserTranactionEntity();
-                    entity.setActive(true);
-                    entity.setAmount(paymentCallback.getAmount());
-                    entity.setBankRefNumber(paymentCallback.getBank_ref_num());
-                    entity.setEmail(paymentCallback.getEmail());
-                    entity.setError(paymentCallback.getError());
-                    entity.setMihpayId(paymentCallback.getMihpayid());
-                    entity.setName(paymentCallback.getFirstname());
-                    entity.setPaymentMode(paymentCallback.getMode().toString());
-                    entity.setPaymentStatus(paymentCallback.getStatus());
-                    entity.setTransactionId(paymentCallback.getTxnid());
-                    entity.setUserId(Integer.parseInt(paymentCallback.getProductinfo()));
-                    entity.setPhone(paymentCallback.getPhone());
-                    Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-                    Date date = new Date(timestamp.getTime());
-                    entity.setCreatedDate(date);
-                    userTransactionService.saveTransaction(entity);
-                    model.addAttribute("paymnetdetails", paymentCallback);
-                    return "paymentResponse";
                 }
             }else{
-                System.out.println("Return Fail Page");
-                UserTranactionEntity entity = new UserTranactionEntity();
-                entity.setActive(true);
-                entity.setAmount(paymentCallback.getAmount());
-                entity.setBankRefNumber(paymentCallback.getBank_ref_num());
-                entity.setEmail(paymentCallback.getEmail());
-                entity.setError(paymentCallback.getError());
-                entity.setMihpayId(paymentCallback.getMihpayid());
-                entity.setName(paymentCallback.getFirstname());
-                entity.setPaymentMode(paymentCallback.getMode().toString());
-                entity.setPaymentStatus(paymentCallback.getStatus());
-                entity.setTransactionId(paymentCallback.getTxnid());
-                entity.setUserId(Integer.parseInt(paymentCallback.getProductinfo()));
-                entity.setPhone(paymentCallback.getPhone());
-                Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-                Date date = new Date(timestamp.getTime());
-                entity.setCreatedDate(date);
-                userTransactionService.saveTransaction(entity);
-                model.addAttribute("paymnetdetails", paymentCallback);
+                entity_.setPaymentStatus("Faliure");
+                entity_.setBankRefNumber(bank_ref_num);
+                entity_.setPaymentMode(mode.toString());
+                entity_.setMihpayId(mihpayid);
+                entity_.setError("No data Found for the corresponding Application ID");
+                request.getSession().setAttribute("paymentStatus", "Failed, Hash Mismatched");
+                request.getSession().setAttribute("TransactionId", entity_.getTransactionId());
+                request.getSession().setAttribute("Amount", entity_.getAmount());
+                request.getSession().setAttribute("ApplicationId", entity_.getUserId());
+                request.getSession().setAttribute("Name", entity_.getName());
+                request.getSession().setAttribute("MobileNumber", entity_.getPhone());
+                request.getSession().setAttribute("email", entity_.getEmail());
+                userTransactionService.saveTransaction(entity_);
                 return "paymentResponse";
             }
 
 
 
-
         } catch (Exception ex) {
-            System.out.println("Return Fail Page");
-            UserTranactionEntity entity = new UserTranactionEntity();
-            entity.setActive(true);
-            entity.setAmount(paymentCallback.getAmount());
-            entity.setBankRefNumber(paymentCallback.getBank_ref_num());
-            entity.setEmail(paymentCallback.getEmail());
-            entity.setError(paymentCallback.getError());
-            entity.setMihpayId(paymentCallback.getMihpayid());
-            entity.setName(paymentCallback.getFirstname());
-            entity.setPaymentMode(paymentCallback.getMode().toString());
-            entity.setPaymentStatus(paymentCallback.getStatus());
-            entity.setTransactionId(paymentCallback.getTxnid());
-            entity.setUserId(Integer.parseInt(paymentCallback.getProductinfo()));
-            entity.setPhone(paymentCallback.getPhone());
-            Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-            Date date = new Date(timestamp.getTime());
-            entity.setCreatedDate(date);
-            userTransactionService.saveTransaction(entity);
-            request.getSession().setAttribute("serverError", ex.getLocalizedMessage().toString());
+            entity_.setPaymentStatus("Faliure");
+            entity_.setBankRefNumber(bank_ref_num);
+            entity_.setPaymentMode(mode.toString());
+            entity_.setMihpayId(mihpayid);
+            entity_.setError("Unexpected Error Occured!");
+            request.getSession().setAttribute("paymentStatus", "Failed, Hash Mismatched");
+            request.getSession().setAttribute("TransactionId", entity_.getTransactionId());
+            request.getSession().setAttribute("Amount", entity_.getAmount());
+            request.getSession().setAttribute("ApplicationId", entity_.getUserId());
+            request.getSession().setAttribute("Name", entity_.getName());
+            request.getSession().setAttribute("MobileNumber", entity_.getPhone());
+            request.getSession().setAttribute("email", entity_.getEmail());
+            userTransactionService.saveTransaction(entity_);
             return "paymentResponse";
         }
 
 
+    }
+
+    private UserTranactionEntity saveEntity(PaymentCallback paymentCallback){
+        UserTranactionEntity entity = new UserTranactionEntity();
+        entity.setActive(true);
+        entity.setAmount(paymentCallback.getAmount());
+        entity.setBankRefNumber(paymentCallback.getBank_ref_num());
+        entity.setEmail(paymentCallback.getEmail());
+        entity.setError(paymentCallback.getError());
+        entity.setMihpayId(paymentCallback.getMihpayid());
+        entity.setName(paymentCallback.getFirstname());
+        entity.setPaymentMode(paymentCallback.getMode().toString());
+        entity.setPaymentStatus("Failed");
+        entity.setTransactionId(paymentCallback.getTxnid());
+        entity.setUserId(Integer.parseInt(paymentCallback.getProductinfo()));
+        entity.setPhone(paymentCallback.getPhone());
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        Date date = new Date(timestamp.getTime());
+        entity.setCreatedDate(date);
+        UserTranactionEntity transactionDB = userTransactionService.saveTransaction(entity);
+        return transactionDB;
+    }
+
+    private UserTranactionEntity saveEntitySuccess(PaymentCallback paymentCallback){
+        UserTranactionEntity entity = new UserTranactionEntity();
+        entity.setActive(true);
+        entity.setAmount(paymentCallback.getAmount());
+        entity.setBankRefNumber(paymentCallback.getBank_ref_num());
+        entity.setEmail(paymentCallback.getEmail());
+        entity.setError(paymentCallback.getError());
+        entity.setMihpayId(paymentCallback.getMihpayid());
+        entity.setName(paymentCallback.getFirstname());
+        entity.setPaymentMode(paymentCallback.getMode().toString());
+        entity.setPaymentStatus("success");
+        entity.setTransactionId(paymentCallback.getTxnid());
+        entity.setUserId(Integer.parseInt(paymentCallback.getProductinfo()));
+        entity.setPhone(paymentCallback.getPhone());
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        Date date = new Date(timestamp.getTime());
+        entity.setCreatedDate(date);
+        UserTranactionEntity transactionDB = userTransactionService.saveTransaction(entity);
+        return transactionDB;
     }
 
 

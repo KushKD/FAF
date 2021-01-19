@@ -19,7 +19,24 @@ public class PaymentCallback implements Serializable {
     private String phone;
     private String error;
     private String bank_ref_num;
+    private String additionalCharges;
+    private String addedon;
 
+    public String getAddedon() {
+        return addedon;
+    }
+
+    public void setAddedon(String addedon) {
+        this.addedon = addedon;
+    }
+
+    public String getAdditionalCharges() {
+        return additionalCharges;
+    }
+
+    public void setAdditionalCharges(String additionalCharges) {
+        this.additionalCharges = additionalCharges;
+    }
 
     public String getKey() {
         return key;
@@ -141,6 +158,8 @@ public class PaymentCallback implements Serializable {
                 ", phone='" + phone + '\'' +
                 ", error='" + error + '\'' +
                 ", bank_ref_num='" + bank_ref_num + '\'' +
+                ", additionalCharges='" + additionalCharges + '\'' +
+                ", addedon='" + addedon + '\'' +
                 '}';
     }
 }

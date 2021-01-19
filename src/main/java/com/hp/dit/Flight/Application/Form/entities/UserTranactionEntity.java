@@ -51,9 +51,13 @@ public class UserTranactionEntity implements Serializable {
     @Column(name = "active")
     private Boolean active;
 
-    @Column(name = "createddate")
+    @Column(name = "paymentdate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdDate;
+
+    @Column(name = "paymentdateresponse")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date paymentdateresponse;
 
     public Integer getId() {
         return id;
@@ -167,6 +171,14 @@ public class UserTranactionEntity implements Serializable {
         this.createdDate = createdDate;
     }
 
+    public Date getPaymentdateresponse() {
+        return paymentdateresponse;
+    }
+
+    public void setPaymentdateresponse(Date paymentdateresponse) {
+        this.paymentdateresponse = paymentdateresponse;
+    }
+
     @Override
     public String toString() {
         return "UserTranactionEntity{" +
@@ -184,6 +196,7 @@ public class UserTranactionEntity implements Serializable {
                 ", error='" + error + '\'' +
                 ", active=" + active +
                 ", createdDate=" + createdDate +
+                ", paymentdateresponse=" + paymentdateresponse +
                 '}';
     }
 }

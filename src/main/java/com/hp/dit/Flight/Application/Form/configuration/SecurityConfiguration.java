@@ -82,7 +82,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/gallery/**").permitAll()
                 .antMatchers("/contactus/**").permitAll()
                 .antMatchers("/paymentpage/**").permitAll()
-                .antMatchers("/paymentResponse/**").permitAll()
+                //.antMatchers("/paymentResponse/**").permitAll()
                 .antMatchers("/resources/**").permitAll()
                 //.antMatchers("/ajax/**").denyAll()
                 .antMatchers("/admin/**").hasAnyRole("Admin")

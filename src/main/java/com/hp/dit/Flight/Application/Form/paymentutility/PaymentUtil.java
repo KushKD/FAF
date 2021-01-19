@@ -75,64 +75,30 @@ public class PaymentUtil {
         return hexString.toString();
     }
 
-    public static boolean verifyPayment(PaymentCallback paymentCallback) {
+    public static String verifyHash(PaymentCallback paymentCallback) {
         String hashString = "";
+        String hashSequence = null;
         String hash;
+        //sha512(SALT|status||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amount|txni d|key)
 
-        if(paymentCallback.getStatus().equalsIgnoreCase("success")){
-            String hashSequence = paymentSalt + "|" + paymentCallback.getStatus() + "|||||||||||" + paymentCallback.getEmail() + "|" + paymentCallback.getFirstname() + "|" + paymentCallback.getProductinfo() + "|" + paymentCallback.getAmount() + "|" + paymentCallback.getTxnid() + "|";
-            hashString = hashSequence.concat(paymentCallback.getKey());
-            System.out.println(hashString);
-            hash = hashCal("SHA-512", hashString);
-            System.out.println(hash);
-            System.out.println(paymentCallback.getHash());
-            if (paymentCallback.getHash().equals(hash)) {
-                System.out.println("Payment successfull (No Additional Charges) - " + "<br />");
-                System.out.println("Amount:" + paymentCallback.getAmount() + "<br />");
-                System.out.println("Status of Transaction:" + paymentCallback.getStatus() + "<br />");
-                if(verifyPaymentcheck(paymentCallback.getTxnid())){
-                    System.out.println("<h2>Payment Verifing...</h2><br />");
-                    return true;
-                }
-                else {
-                    System.out.println("<h1>Payment Not Verified...</h1><br />");
-                    return false;
-                }
 
-            } else {
-                System.out.println("Hash Mismatch");
-                return false;
-            }
+
+        if(paymentCallback.getAdditionalCharges().isEmpty()){
+            //sha512(SALT|status||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amount|txni d|key)
+            hashSequence = paymentSalt + "|" + paymentCallback.getStatus() + "|||||||||||" + paymentCallback.getEmail() + "|" + paymentCallback.getFirstname() + "|" + paymentCallback.getProductinfo() + "|" + paymentCallback.getAmount() + "|" + paymentCallback.getTxnid() + "|";
+
         }else{
-            String hashSequence = paymentSalt + "|" + paymentCallback.getStatus() + "|||||||||||" + paymentCallback.getEmail() + "|" + paymentCallback.getFirstname() + "|" + paymentCallback.getProductinfo() + "|" + paymentCallback.getAmount() + "|" + paymentCallback.getTxnid() + "|";
-            hashString = hashSequence.concat(paymentCallback.getKey());
-            System.out.println(hashString);
-            hash = hashCal("SHA-512", hashString);
-            System.out.println(hash);
-            System.out.println(paymentCallback.getHash());
-            if (paymentCallback.getHash().equals(hash)) {
-                System.out.println("Payment Failure" + "<br />");
-                System.out.println("Amount:" + paymentCallback.getAmount() + "<br />");
-                System.out.println("Status of Transaction:" + paymentCallback.getStatus() + "<br />");
-                if(verifyPaymentcheck(paymentCallback.getTxnid())){
-                    System.out.println("<h2>Payment Verifing...</h2><br />");
-                    return true;
-                }
-                else {
-                    System.out.println("<h1>Payment Not Verified...</h1><br />");
-                    return false;
-                }
+            //sha512(SALT|status||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amount|txni d|key)
+            hashSequence = paymentCallback.getAdditionalCharges()+"|"+paymentSalt + "|" + paymentCallback.getStatus() + "|||||||||||" + paymentCallback.getEmail() + "|" + paymentCallback.getFirstname() + "|" + paymentCallback.getProductinfo() + "|" + paymentCallback.getAmount() + "|" + paymentCallback.getTxnid() + "|";
 
-            } else {
-                System.out.println("Hash Mismatch");
-                return false;
-            }
         }
 
+         hashString = hashSequence.concat(paymentCallback.getKey());
+        System.out.println(hashString);
+        hash = hashCal("SHA-512", hashString);
+        System.out.println(hash);
 
-
-
-
+        return hash;
 
 
     }

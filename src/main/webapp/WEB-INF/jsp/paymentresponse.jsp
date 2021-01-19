@@ -30,43 +30,43 @@
                      <tr>
                         <td class="text-center"> Payment Status</td>
                         <td class="text-center" >
-                           ${paymnetdetails.status}
+                           <%= session.getAttribute("paymentStatus") %>
                         </td>
                      </tr>
                      <tr>
                         <td class="text-center">Transaction Id</td>
                         <td class="text-center" >
-                           ${paymnetdetails.txnid}
+                           <%= session.getAttribute("TransactionId") %>
                         </td>
                      </tr>
                      <tr>
                         <td class="text-center">Amount</td>
                         <td class="text-center" >
-                        ${paymnetdetails.amount}
+                         <%= session.getAttribute("Amount") %>
                         </td>
                      </tr>
                      <tr>
                         <td class="text-center">Application ID</td>
                         <td class="text-center" >
-                        ${paymnetdetails.productinfo}
+                        <%= session.getAttribute("ApplicationId") %>
                         </td>
                      </tr>
                      <tr>
                         <td class="text-center">Name</td>
                         <td class="text-center" >
-                        ${paymnetdetails.firstname}
+                        <%= session.getAttribute("Name") %>
                         </td>
                      </tr>
                      <tr>
                         <td class="text-center">Mobile Number</td>
                         <td class="text-center" >
-                        ${paymnetdetails.phone}
+                         <%= session.getAttribute("MobileNumber") %>
                         </td>
                      </tr>
                      <tr>
                         <td class="text-center">Email</td>
                         <td class="text-center" >
-                        ${paymnetdetails.email} </td>
+                         <%= session.getAttribute("email") %> </td>
                      </tr>
                   </tbody>
                </table>

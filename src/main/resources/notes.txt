@@ -317,17 +317,18 @@ CREATE TABLE user_transaction (
     phone character varying(100),
     amount character varying(10),
     payment_Status character varying(10),
-    transaction_id character varying(100),
+    transaction_id character varying(100) UNIQUE,
     mihpay_id character varying (100),
     payment_mode character varying (10),
     bank_ref_number character varying(100),
     error character varying(255),
     active boolean DEFAULT true NOT NULL,
-    createddate timestamp without time zone DEFAULT ('now'::text)::date NOT NULL,
-    lastmodifieddate timestamp without time zone,
-    FOREIGN KEY (user_id) REFERENCES userformdata(user_id)
+    paymentdate timestamp without time zone DEFAULT ('now'::text)::date NOT NULL,
+    paymentdateresponse timestamp without time zone DEFAULT ('now'::text)::date NOT NULL,
 
 );
+
+
 
 
 -- Updated Queries
