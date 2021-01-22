@@ -1,6 +1,9 @@
 package com.hp.dit.Flight.Application.Form;
 
 import com.hp.dit.Flight.Application.Form.captcha.CaptchaGenServlet;
+import com.hp.dit.Flight.Application.Form.captchasecurity.CaptchaDetailsSource;
+import com.hp.dit.Flight.Application.Form.captchasecurity.CaptchaGenerator;
+import com.hp.dit.Flight.Application.Form.listener.CounterApplicationListener;
 import com.hp.dit.Flight.Application.Form.property.FileStorageProperties;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -18,8 +21,6 @@ public class FlightApplicationFormApplication {
 
 	public static void main(String[] args) throws UnsupportedEncodingException { SpringApplication.run(FlightApplicationFormApplication.class, args);
 
-
-
 	}
 
 
@@ -30,6 +31,21 @@ public class FlightApplicationFormApplication {
 		srb.setServlet(new CaptchaGenServlet());
 		srb.addUrlMappings("/captcha.jpg");
 		return srb;
+	}
+
+	@Bean
+	public CaptchaGenerator getCaptchaGenerator() {
+		return new CaptchaGenerator();
+	}
+
+	@Bean
+	public CounterApplicationListener getCounterApplicationListener() {
+		return new CounterApplicationListener();
+	}
+
+	@Bean
+	public CaptchaDetailsSource getCaptchaDetailsSource() {
+		return new CaptchaDetailsSource();
 	}
 
 }

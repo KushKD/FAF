@@ -1,5 +1,7 @@
 package com.hp.dit.Flight.Application.Form.configuration;
 
+import com.hp.dit.Flight.Application.Form.captchasecurity.CaptchaAuthenticationProvider;
+import com.hp.dit.Flight.Application.Form.captchasecurity.CaptchaDetailsSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,12 +10,16 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import org.springframework.security.web.csrf.*;
 import org.springframework.security.web.header.writers.frameoptions.XFrameOptionsHeaderWriter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
@@ -28,37 +34,51 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 import java.io.IOException;
+import org.springframework.core.env.Environment;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
+
     @Autowired
-    private PasswordEncoder passwordEncoder;
+    private CaptchaAuthenticationProvider authenticationProvider;
+
+    @Autowired
+    private CaptchaDetailsSource detailsSource;
+
+
+//    @Autowired
+//    private PasswordEncoder passwordEncoder;
 
     @Autowired
     private DataSource dataSource;
 
-    @Qualifier("userDetailsServiceImpl")
-    @Autowired
-    private UserDetailsService userDetailsService;
+//    @Qualifier("userDetailsServiceImpl")
+//    @Autowired
+//    private UserDetailsService userDetailsService;
 
     private static final Logger logger = LoggerFactory.getLogger(SecurityConfiguration.class);
 
 
-    @Bean
-    PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+//    @Bean
+//    PasswordEncoder passwordEncoder() {
+//        return new BCryptPasswordEncoder();
+//    }
 
     @Bean
     public AuthenticationManager customAuthenticationManager() throws Exception {
         return authenticationManager();
     }
 
-    @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+//    @Autowired
+//    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+//        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+//    }
+
+    @Autowired  // configure //@Override
+    protected void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+        auth.authenticationProvider(authenticationProvider);
     }
 
     @Override
@@ -98,13 +118,16 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/index/**").hasAnyRole("Admin")
                 .anyRequest().authenticated()
                 .and()
-                .formLogin()
-                .loginPage("/login")
-                .defaultSuccessUrl("/index")
-                .permitAll()
-                .and()
-                .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/login")
+                .formLogin().loginPage("/login")
+               // .defaultSuccessUrl("/index")
+               // .permitAll()
+               // .and()
+                //.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                //.logoutSuccessUrl("/login")
+                .successHandler(loginSuccessHandler())
+                .failureHandler(loginFailureHandler())
+                .authenticationDetailsSource(detailsSource).permitAll().and()
+                .logout().logoutSuccessHandler(logoutSuccessHandler())
                 .clearAuthentication(true)
                 .invalidateHttpSession(true)
                 .deleteCookies("JSESSIONID")
@@ -150,5 +173,27 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 
         return repository;
+    }
+
+    @Autowired
+    private Environment environment;
+
+    private AuthenticationSuccessHandler loginSuccessHandler() {
+        return (request, response, authentication) -> response
+                .sendRedirect("/index");
+    }
+
+    private AuthenticationFailureHandler loginFailureHandler() {
+        return (request, response, exception) -> {
+            request.getSession().setAttribute("error", "Bad Credentials");
+            response.sendRedirect( "/login");
+        };
+    }
+
+    private LogoutSuccessHandler logoutSuccessHandler() {
+        return (request, response, authentication) -> {
+            request.getSession().setAttribute("message", "Logout Successful.");
+            response.sendRedirect("/login");
+        };
     }
 }
