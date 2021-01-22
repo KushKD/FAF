@@ -15,7 +15,6 @@ import org.springframework.stereotype.Component;
 
 import nl.captcha.Captcha;
 
-import javax.sql.DataSource;
 
 @Component
 public class CaptchaAuthenticationProvider extends DaoAuthenticationProvider {

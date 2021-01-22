@@ -91,6 +91,8 @@
     <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/termsandconditions.jsp" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/userDetails.jsp" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/verify_payment.jsp" charset="UTF-8" />
+    <file url="jar://$PROJECT_DIR$/lib/simplecaptcha-1.2.jar!/nl/captcha/backgrounds/BackgroundProducer.class" charset="GBK" />
+    <file url="jar://$PROJECT_DIR$/lib/simplecaptcha-1.2.jar!/nl/captcha/noise/NoiseProducer.class" charset="GBK" />
     <file url="jar://$PROJECT_DIR$/lib/simplecaptcha-1.2.jar!/nl/captcha/text/producer/TextProducer.class" charset="GBK" />
   </component>
 </project>

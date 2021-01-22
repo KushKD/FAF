@@ -10,8 +10,6 @@ import nl.captcha.Captcha;
 
 public class CaptchaDetails implements Serializable {
 
-    private static final long serialVersionUID = 8372386434886698719L;
-
     private final String answer;
     private final Captcha captcha;
 

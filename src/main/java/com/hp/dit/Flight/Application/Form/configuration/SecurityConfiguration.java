@@ -5,24 +5,21 @@ import com.hp.dit.Flight.Application.Form.captchasecurity.CaptchaDetailsSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
-import org.springframework.security.web.csrf.*;
+import org.springframework.security.web.csrf.CsrfFilter;
+import org.springframework.security.web.csrf.CsrfToken;
+import org.springframework.security.web.csrf.CsrfTokenRepository;
+import org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository;
 import org.springframework.security.web.header.writers.frameoptions.XFrameOptionsHeaderWriter;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.filter.OncePerRequestFilter;
 import org.springframework.web.util.WebUtils;
 
@@ -32,9 +29,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.sql.DataSource;
 import java.io.IOException;
-import org.springframework.core.env.Environment;
 
 @Configuration
 @EnableWebSecurity
@@ -47,36 +42,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     private CaptchaDetailsSource detailsSource;
 
-
-//    @Autowired
-//    private PasswordEncoder passwordEncoder;
-
-    @Autowired
-    private DataSource dataSource;
-
-//    @Qualifier("userDetailsServiceImpl")
-//    @Autowired
-//    private UserDetailsService userDetailsService;
-
     private static final Logger logger = LoggerFactory.getLogger(SecurityConfiguration.class);
-
-
-//    @Bean
-//    PasswordEncoder passwordEncoder() {
-//        return new BCryptPasswordEncoder();
-//    }
 
     @Bean
     public AuthenticationManager customAuthenticationManager() throws Exception {
         return authenticationManager();
     }
 
-//    @Autowired
-//    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-//        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
-//    }
-
-    @Autowired  // configure //@Override
+    @Autowired
     protected void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.authenticationProvider(authenticationProvider);
     }
@@ -85,26 +58,18 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
         http.headers().addHeaderWriter(new XFrameOptionsHeaderWriter(XFrameOptionsHeaderWriter.XFrameOptionsMode.SAMEORIGIN));
-         // http.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
-        // http.addFilterAfter(new CsrfTokenResponseHeaderBindingFilter(), CsrfFilter.class);
-        // http.csrf().disable();
         http.csrf()
                 .csrfTokenRepository(csrfTokenRepository()).and()
                 .addFilterAfter(csrfHeaderFilter(), CsrfFilter.class);
         http.csrf().ignoringAntMatchers("/nocsrf", "/paymentResponse/**");
-      //  http.csrf().ignoringAntMatchers("/nocsrf", "/ajax/**");
-        
-         //.anonymous()
-          //.and()
+
         http.authorizeRequests()
                 .antMatchers("/**").permitAll()
                 .antMatchers("/downloadFile/**").permitAll()
                 .antMatchers("/gallery/**").permitAll()
                 .antMatchers("/contactus/**").permitAll()
                 .antMatchers("/paymentpage/**").permitAll()
-                //.antMatchers("/paymentResponse/**").permitAll()
                 .antMatchers("/resources/**").permitAll()
-                //.antMatchers("/ajax/**").denyAll()
                 .antMatchers("/admin/**").hasAnyRole("Admin")
                 .antMatchers("/createuser/**").hasAnyRole("Admin")
                 .antMatchers("/saveuser/").hasAnyRole("Admin")
@@ -119,11 +84,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().loginPage("/login")
-               // .defaultSuccessUrl("/index")
-               // .permitAll()
-               // .and()
-                //.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                //.logoutSuccessUrl("/login")
                 .successHandler(loginSuccessHandler())
                 .failureHandler(loginFailureHandler())
                 .authenticationDetailsSource(detailsSource).permitAll().and()
@@ -174,9 +134,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
         return repository;
     }
-
-    @Autowired
-    private Environment environment;
 
     private AuthenticationSuccessHandler loginSuccessHandler() {
         return (request, response, authentication) -> response
