@@ -135,9 +135,9 @@ public class GeneratePdfReport {
             childTable1.addCell(getCell( vehicleOwnerEntries.getDistrict_id_dest().getDistrictName(),boldFont2));
             childTable1.addCell(getCell("Destination Helipad:",boldFont2));
             childTable1.addCell(getCell( vehicleOwnerEntries.getHelipad_id_dest().getHelipadName(),boldFont2));
-            childTable1.addCell(getCell("Tentitive Date for availing flight Service from:",boldFont2));
+            childTable1.addCell(getCell("Tentative Date for availing flight Service from:",boldFont2));
             childTable1.addCell(getCell( vehicleOwnerEntries.getTentitiveFlightDate(),boldFont2));
-            childTable1.addCell(getCell("Tentitive Date for availing flight Service to:",boldFont2));
+            childTable1.addCell(getCell("Tentative Date for availing flight Service to:",boldFont2));
             childTable1.addCell(getCell( vehicleOwnerEntries.getTentitiveFlightDateTo(),boldFont2));
 
 
