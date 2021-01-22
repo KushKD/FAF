@@ -44,7 +44,7 @@ public class LoginController {
     @GetMapping("/login")
     public String login(Model model, String error, String logout, HttpSession httpSession) {
  //       System.out.println("This is Login Controller");
-
+        System.out.println(httpSession.toString());
         if (error != null) {
             model.addAttribute("error", "Your username and password is invalid.");
         }
@@ -57,7 +57,7 @@ public class LoginController {
 
         AtomicInteger counter = (AtomicInteger) model.getAttribute("counter");
         System.out.println(counter);
-        if(counter.intValue() >= 2) {
+        if(counter.intValue() >= 1) {
             Captcha captcha = captchaGenerator.createCaptcha(200, 50);
             httpSession.setAttribute("captcha", captcha);
             model.addAttribute("captchaEncode", CaptchaUtils.encodeBase64(captcha));
@@ -85,7 +85,7 @@ public class LoginController {
     @RequestMapping(value =  "/logout" , method = RequestMethod.GET)
     public String logout(Model model) {
         System.out.println("Logout Successful");
-      //  model.addAttribute("login", new Lo());
+        new AtomicInteger(0);
         return "login";
     }
 }

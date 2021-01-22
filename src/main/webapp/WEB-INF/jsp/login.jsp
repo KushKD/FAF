@@ -20,10 +20,10 @@
             </div>
             <!-- Captcha -->
             <c:if test="${not empty captchaEncode}">
-               <div class="input-group mb-3">
+               <div class="form-group col-lg-12">
                   <img alt="captcha" class="img-thumbnail" src="data:image/png;base64,${captchaEncode}"/>
                </div>
-               <div class="input-group mb-3">
+               <div class="input-group col-lg-11">
                   <div class="input-group-prepend">
                      <span class="input-group-text">
                      <i class="fa fa-key"></i>
@@ -38,6 +38,7 @@
                      <spring:message code="placeholder.captcha"/>
                   </div>
                </div>
+               </br>
             </c:if>
             <!-- Captcha Ends -->
             <div class="form-group col-lg-12">

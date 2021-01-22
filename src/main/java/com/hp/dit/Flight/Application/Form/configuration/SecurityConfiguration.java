@@ -87,7 +87,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .successHandler(loginSuccessHandler())
                 .failureHandler(loginFailureHandler())
                 .authenticationDetailsSource(detailsSource).permitAll().and()
-                .logout().logoutSuccessHandler(logoutSuccessHandler())
+                .logout()
+                .logoutSuccessUrl("/logout")
                 .clearAuthentication(true)
                 .invalidateHttpSession(true)
                 .deleteCookies("JSESSIONID")
@@ -147,10 +148,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         };
     }
 
-    private LogoutSuccessHandler logoutSuccessHandler() {
-        return (request, response, authentication) -> {
-            request.getSession().setAttribute("message", "Logout Successful.");
-            response.sendRedirect("/login");
-        };
-    }
+//    private LogoutSuccessHandler logoutSuccessHandler() {
+//        return (request, response, authentication) -> {
+//            request.getSession().setAttribute("message", "Logout Successful.");
+//            response.sendRedirect("/login");
+//        };
+//    }
 }
