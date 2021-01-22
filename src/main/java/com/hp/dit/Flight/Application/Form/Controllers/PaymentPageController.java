@@ -48,53 +48,92 @@ public class PaymentPageController {
         try {
             user = flightFormService.getDataByUserID(userId);
             if (user != null) {
-                System.out.println(user.toString());
-                PaymentDetail paymentDetail = new PaymentDetail();
-                //Calculate Amount
-                paymentDetail.setAmount(Double.parseDouble(CalculateAmount.calculateAmount(user)));
-                paymentDetail.setName(user.getFullName());
-                paymentDetail.setProductInfo(Integer.toString(user.getUserId()));
-                paymentDetail.setPhone(String.valueOf(user.getMobileNumber()));
-                paymentDetail.setEmail("kushkumardhawan@gmail.com");
 
-                paymentDetail = PaymentUtil.populatePaymentDetail(paymentDetail);
+                if(user.getAge()<=3){
+                    System.out.println(user.toString());
+                    PaymentDetail paymentDetail = new PaymentDetail();
+                    //Calculate Amount
+                    paymentDetail.setAmount(Double.parseDouble(CalculateAmount.calculateAmount(user)));
+                    paymentDetail.setName(user.getFullName());
+                    paymentDetail.setProductInfo(Integer.toString(user.getUserId()));
+                    paymentDetail.setPhone(String.valueOf(user.getMobileNumber()));
+                    paymentDetail.setEmail("kushkumardhawan@gmail.com");
 
-                //Save Data to Entity
-                UserTranactionEntity transactionEntity = new UserTranactionEntity();
-                transactionEntity.setUserId(user.getUserId());
-                transactionEntity.setEmail("kushkumardhawan@gmail.com");
-                transactionEntity.setName(user.getFullName());
-                transactionEntity.setPhone(String.valueOf(user.getMobileNumber()));
-                transactionEntity.setAmount(CalculateAmount.calculateAmount(user));
-                transactionEntity.setPaymentStatus("");
-                transactionEntity.setTransactionId(paymentDetail.getTxnId());
-                transactionEntity.setActive(true);
-                Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-                Date date = new Date(timestamp.getTime());
-                transactionEntity.setCreatedDate(date);
-                transactionEntity.setPaymentdateresponse(date);
-                userTransactionService.saveTransaction(transactionEntity);
+                    paymentDetail = PaymentUtil.populatePaymentDetail(paymentDetail);
+
+                    //Save Data to Entity
+                    UserTranactionEntity transactionEntity = new UserTranactionEntity();
+                    transactionEntity.setUserId(user.getUserId());
+                    transactionEntity.setEmail("kushkumardhawan@gmail.com");
+                    transactionEntity.setName(user.getFullName());
+                    transactionEntity.setPhone(String.valueOf(user.getMobileNumber()));
+                    transactionEntity.setAmount(CalculateAmount.calculateAmount(user));
+                    transactionEntity.setPaymentStatus("");
+                    transactionEntity.setTransactionId(paymentDetail.getTxnId());
+                    transactionEntity.setActive(true);
+                    Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+                    Date date = new Date(timestamp.getTime());
+                    transactionEntity.setCreatedDate(date);
+                    transactionEntity.setPaymentdateresponse(date);
+                    userTransactionService.saveTransaction(transactionEntity);
 
 
-                request.getSession().setAttribute("merchant_key", paymentDetail.getKey());
-                request.getSession().setAttribute("hash", paymentDetail.getHash());
-                request.getSession().setAttribute("txnid", paymentDetail.getTxnId());
-                request.getSession().setAttribute("amount", paymentDetail.getAmount());
-                request.getSession().setAttribute("firstname", paymentDetail.getName());
-                request.getSession().setAttribute("email", paymentDetail.getEmail());
-                request.getSession().setAttribute("phone", paymentDetail.getPhone());
-                request.getSession().setAttribute("productinfo", paymentDetail.getProductInfo());
-                request.getSession().setAttribute("surl", paymentDetail.getsUrl());
-                request.getSession().setAttribute("furl", paymentDetail.getfUrl());
-                model.addAttribute("user", user);
-                return "paymentpage";
+                    request.getSession().setAttribute("firstname", paymentDetail.getName());
+                    request.getSession().setAttribute("phone", paymentDetail.getPhone());
+                    request.getSession().setAttribute("productinfo", paymentDetail.getProductInfo());
+
+                    model.addAttribute("user", user);
+                    return "nopaymentpage";
+                }else{
+                    System.out.println(user.toString());
+                    PaymentDetail paymentDetail = new PaymentDetail();
+                    //Calculate Amount
+                    paymentDetail.setAmount(Double.parseDouble(CalculateAmount.calculateAmount(user)));
+                    paymentDetail.setName(user.getFullName());
+                    paymentDetail.setProductInfo(Integer.toString(user.getUserId()));
+                    paymentDetail.setPhone(String.valueOf(user.getMobileNumber()));
+                    paymentDetail.setEmail("kushkumardhawan@gmail.com");
+
+                    paymentDetail = PaymentUtil.populatePaymentDetail(paymentDetail);
+
+                    //Save Data to Entity
+                    UserTranactionEntity transactionEntity = new UserTranactionEntity();
+                    transactionEntity.setUserId(user.getUserId());
+                    transactionEntity.setEmail("kushkumardhawan@gmail.com");
+                    transactionEntity.setName(user.getFullName());
+                    transactionEntity.setPhone(String.valueOf(user.getMobileNumber()));
+                    transactionEntity.setAmount(CalculateAmount.calculateAmount(user));
+                    transactionEntity.setPaymentStatus("");
+                    transactionEntity.setTransactionId(paymentDetail.getTxnId());
+                    transactionEntity.setActive(true);
+                    Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+                    Date date = new Date(timestamp.getTime());
+                    transactionEntity.setCreatedDate(date);
+                    transactionEntity.setPaymentdateresponse(date);
+                    userTransactionService.saveTransaction(transactionEntity);
+
+
+                    request.getSession().setAttribute("merchant_key", paymentDetail.getKey());
+                    request.getSession().setAttribute("hash", paymentDetail.getHash());
+                    request.getSession().setAttribute("txnid", paymentDetail.getTxnId());
+                    request.getSession().setAttribute("amount", paymentDetail.getAmount());
+                    request.getSession().setAttribute("firstname", paymentDetail.getName());
+                    request.getSession().setAttribute("email", paymentDetail.getEmail());
+                    request.getSession().setAttribute("phone", paymentDetail.getPhone());
+                    request.getSession().setAttribute("productinfo", paymentDetail.getProductInfo());
+                    request.getSession().setAttribute("surl", paymentDetail.getsUrl());
+                    request.getSession().setAttribute("furl", paymentDetail.getfUrl());
+                    model.addAttribute("user", user);
+                    return "paymentpage";
+                }
+
             } else {
                 return "applicationform";
             }
         } catch (Exception ex) {
+            return "applicationform";
         }
 
-        return "applicationform";
     }
 
 

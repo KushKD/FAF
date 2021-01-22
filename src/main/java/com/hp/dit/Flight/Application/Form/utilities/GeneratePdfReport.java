@@ -36,7 +36,8 @@ public class GeneratePdfReport {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         Font boldFont = new Font(Font.FontFamily.TIMES_ROMAN, 14, Font.BOLD);
         Font boldFont2 = new Font(Font.FontFamily.TIMES_ROMAN, 12);
-        Font boldFontIns = new Font(Font.FontFamily.TIMES_ROMAN, 10);
+        Font boldFontIns = new Font(Font.FontFamily.TIMES_ROMAN, 11, Font.ITALIC);
+        Font boldFontInsHead = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.BOLD);
 
         try {
 
@@ -57,12 +58,12 @@ public class GeneratePdfReport {
             childTable0.setWidths(z);
             childTable0.getDefaultCell().setBorder(0);
 
-            Image image = Image.getInstance(new URL(Utilities.getPhotoUrl("hp_logo.png")));
+            Image image = Image.getInstance(new URL(Utilities.getPhotoUrl(Constants.IMAGE_NAME_PASS)));
            // image.setUseVariableBorders(false);
             image.setBorder(Image.NO_BORDER);
             childTable0.addCell(image);
 
-            PdfPCell cellheader = new PdfPCell(new Phrase("Flight Service Pass (Lahaul & Spiti for Winter Season 2021)", boldFont));
+            PdfPCell cellheader = new PdfPCell(new Phrase(Constants.TICKET_HEADING, boldFont));
             cellheader.setColspan(4);
             cellheader.setBorder(0);
             cellheader.setVerticalAlignment(Element.ALIGN_MIDDLE);
@@ -130,30 +131,22 @@ public class GeneratePdfReport {
             childTable1.addCell(getCell( vehicleOwnerEntries.getFlightDistrictToGoFrom().getDistrictName(),boldFont2));
             childTable1.addCell(getCell("Boarding Helipad:",boldFont2));
             childTable1.addCell(getCell( vehicleOwnerEntries.getFlightHelipadNameToGoFrom().getHelipadName(),boldFont2));
-
             childTable1.addCell(getCell("Destination Location:",boldFont2));
             childTable1.addCell(getCell( vehicleOwnerEntries.getDistrict_id_dest().getDistrictName(),boldFont2));
             childTable1.addCell(getCell("Destination Helipad:",boldFont2));
             childTable1.addCell(getCell( vehicleOwnerEntries.getHelipad_id_dest().getHelipadName(),boldFont2));
-
-
-            childTable1.addCell(getCell("Tentitive Flying Date:",boldFont2));
+            childTable1.addCell(getCell("Tentitive Date for availing flight Service from:",boldFont2));
             childTable1.addCell(getCell( vehicleOwnerEntries.getTentitiveFlightDate(),boldFont2));
+            childTable1.addCell(getCell("Tentitive Date for availing flight Service to:",boldFont2));
+            childTable1.addCell(getCell( vehicleOwnerEntries.getTentitiveFlightDateTo(),boldFont2));
 
 
 
             one.addCell(childTable1);
-
-
-
-            //Two Ends
-
-
-            one.addCell(instructionCell("Instruction1",boldFontIns));
-            one.addCell(instructionCell("Instruction2",boldFontIns));
-            one.addCell(instructionCell("Instruction3",boldFontIns));
-            one.addCell(instructionCell("Instruction4",boldFontIns));
-            one.addCell(instructionCell("Instruction5",boldFontIns));
+            one.addCell(instructionCell(Constants.INSTRUCTUIN_0,boldFontInsHead));
+            one.addCell(instructionCell(Constants.INSTRUCTUIN_I,boldFontIns));
+            one.addCell(instructionCell(Constants.INSTRUCTUIN_II,boldFontIns));
+            one.addCell(instructionCell(Constants.INSTRUCTUIN_III,boldFontIns));
 
             parent.addCell(zero);
             parent.addCell(one);

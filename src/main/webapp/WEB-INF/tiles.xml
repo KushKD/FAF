@@ -43,6 +43,12 @@
         <put-attribute name="content" value="/WEB-INF/jsp/paymentProceed.jsp" />
     </definition>
 
+    <definition name="nopaymentpage" extends="main">
+        <put-attribute name="content" value="/WEB-INF/jsp/nopaymentProceed.jsp" />
+    </definition>
+
+
+
     <definition name="gallery" extends="main">
         <put-attribute name="content" value="/WEB-INF/jsp/gallery.jsp" />
     </definition>
