@@ -17,7 +17,7 @@ public class Constants {
      * Credentials For the CDAC OTP
      */
     public static final String smsUsername = "hhpgovt-DCLAS";
-    public static final String smsPassword = "LAS@123";
+    public static final String smsPassword = "LAS@123456789";
     public static final String smsSenderId = "hpgovt";
     public static final String smsSecureKey = "01817f89-bba9-4c78-80f4-78a6ab49e88a";
     public static final String otp_Message = "You have been successfully Registered for EFlight Service. Your application Id is:-  ";
