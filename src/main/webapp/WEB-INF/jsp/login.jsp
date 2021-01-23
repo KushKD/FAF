@@ -46,8 +46,8 @@
                <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
             </div>
             <div class="form-group">
-               <c:if test="${param.error != null}">
-                  <p>Login Failed</p>
+               <c:if test="${error != null}">
+                  <p>${error}</p>
                </c:if>
             </div>
          </form>

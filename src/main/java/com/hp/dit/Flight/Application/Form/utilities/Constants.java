@@ -16,13 +16,16 @@ public class Constants {
     /**
      * Credentials For the CDAC OTP
      */
-    public static final String smsUsername = "hpgovt-covid";
-    public static final String smsPassword = "Covid@12345";
+    public static final String smsUsername = "hhpgovt-DCLAS";
+    public static final String smsPassword = "LAS@123";
     public static final String smsSenderId = "hpgovt";
-    public static final String smsSecureKey = "f005c2a6-dcf3-4f24-886d-53a51c043be6";
-    public static final String otp_Message = "Your OTP to login into the ID Card Generator Application is:  ";
-    public static final String getCarDetailsVahan = "getDetails";
-    public static final String clientId = "HPEDISTRICT";
+    public static final String smsSecureKey = "01817f89-bba9-4c78-80f4-78a6ab49e88a";
+    public static final String otp_Message = "You have been successfully Registered for EFlight Service. Your application Id is:-  ";
+    public static final String ticket_ID = "To Be Added";
+
+
+
+
     public static final String PENDING = "P";
     public static final String INCOMPLETE = "I";
     public static final String APPROVED = "A";
