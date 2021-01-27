@@ -329,6 +329,17 @@ CREATE TABLE user_transaction (
 );
 
 
+-- OTP TABLE
+CREATE TABLE otp_logs (
+    id serial PRIMARY KEY  NOT NULL,
+    user_id INTEGER NOT NULL,
+    phone character varying(100),
+    sent_message character varying(255),
+    cdac_response character varying(10),
+    send_time timestamp without time zone DEFAULT ('now'::text)::date NOT NULL
+);
+
+
 
 
 -- Updated Queries

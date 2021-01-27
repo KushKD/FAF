@@ -4,6 +4,8 @@ import com.hp.dit.Flight.Application.Form.entities.RolesEntity;
 import com.hp.dit.Flight.Application.Form.entities.UserEntity;
 import com.hp.dit.Flight.Application.Form.repositories.RolesRepository;
 import com.hp.dit.Flight.Application.Form.repositories.UserRepository;
+import com.hp.dit.Flight.Application.Form.utilities.Constants;
+import com.hp.dit.Flight.Application.Form.utilities.SMSServices;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -176,6 +178,34 @@ class FlightApplicationFormApplicationTests {
 //            String data = http.postData();
 //
 //        System.out.println("Data is:= "+ data);
+//
+//
+//    }
+
+
+//    @Test
+//    public void sms(){
+//        SMSServices sms = new SMSServices();
+//        String SMSServerCode;
+//       String data =  sms.sendOtpSMS(Constants.smsUsername,
+//                Constants.smsPassword, Constants.otp_Message +" "+ "131" + Constants.otp_MessageEnd,
+//                Constants.smsSenderId,"9459619235",Constants.smsSecureKey, Constants.templateId);
+//        System.out.println(data);
+//
+//        if (!data.isEmpty()) {
+//            System.out.println(data);
+//            SMSServerCode = data.split(",")[0];
+//
+//            if(SMSServerCode.equalsIgnoreCase("402")){
+//                //Save to DB
+//            }else{
+//                //Save to DB no SMS
+//            }
+//
+//        }else{
+//            System.out.println("Some Error Occured");
+//        }
+//
 //
 //
 //    }
