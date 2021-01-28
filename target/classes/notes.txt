@@ -292,6 +292,14 @@ CREATE TABLE userFormData (
 
 ALTER TABLE  userFormData ADD COLUMN concerned_authority_comments character varying (255);
 
+-- Indexing Goes Here
+CREATE INDEX idx_userFormData_user_id ON userFormData USING btree (user_id);
+CREATE INDEX idx_userFormData_mobile_number ON userFormData USING btree (mobile_number);
+CREATE INDEX idx_userFormData_age ON userFormData USING btree (age);
+CREATE INDEX idx_userFormData_district_id ON userFormData USING btree (district_id);
+CREATE INDEX idx_userFormData_helipad_id ON userFormData USING btree (helipad_id);
+CREATE INDEX idx_userFormData_full_name ON userFormData USING btree (full_name);
+
 
 -- userFormData_previousService
 CREATE TABLE userFormData_previousService (
@@ -329,6 +337,17 @@ CREATE TABLE user_transaction (
 );
 
 
+-- OTP TABLE
+CREATE TABLE otp_logs (
+    id serial PRIMARY KEY  NOT NULL,
+    user_id INTEGER NOT NULL,
+    phone character varying(100),
+    sent_message character varying(255),
+    cdac_response character varying(10),
+    send_time timestamp without time zone DEFAULT ('now'::text)::date NOT NULL
+);
+
+
 
 
 -- Updated Queries
@@ -336,3 +355,7 @@ UPDATE mst_reasonavailing_flight SET reasonavailing_flight_name = 'Official' WHE
 ALTER TABLE userformdata ADD COLUMN tentitive_flight_date_to character varying(20);
 ALTER TABLE userformdata ADD COLUMN is_boarded character varying(10);
 ALTER TABLE userformdata ADD COLUMN boarded_comments character varying(255);
+
+
+
+-- Indexing

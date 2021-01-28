@@ -65,17 +65,17 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
         http.headers().addHeaderWriter(new XFrameOptionsHeaderWriter(XFrameOptionsHeaderWriter.XFrameOptionsMode.SAMEORIGIN));
-         // http.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
+        // http.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
         // http.addFilterAfter(new CsrfTokenResponseHeaderBindingFilter(), CsrfFilter.class);
         // http.csrf().disable();
         http.csrf()
                 .csrfTokenRepository(csrfTokenRepository()).and()
                 .addFilterAfter(csrfHeaderFilter(), CsrfFilter.class);
         http.csrf().ignoringAntMatchers("/nocsrf", "/paymentResponse/**");
-      //  http.csrf().ignoringAntMatchers("/nocsrf", "/ajax/**");
-        
-         //.anonymous()
-          //.and()
+        //  http.csrf().ignoringAntMatchers("/nocsrf", "/ajax/**");
+
+        //.anonymous()
+        //.and()
         http.authorizeRequests()
                 .antMatchers("/**").permitAll()
                 .antMatchers("/downloadFile/**").permitAll()
@@ -138,8 +138,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 response.setContentType("text/html; charset=UTF-8");
                 response.setHeader("pragma", "no-cache");
                 response.setHeader("Cache-control", "no-cache, no-store, must-revalidate");
-              //  response.setHeader("Set-Cookie", "locale=de;  SameSite=same-origin");  //HttpOnly;
-                 filterChain.doFilter(request, response);
+                //  response.setHeader("Set-Cookie", "locale=de;  SameSite=same-origin");  //HttpOnly;
+                filterChain.doFilter(request, response);
             }
         };
     }

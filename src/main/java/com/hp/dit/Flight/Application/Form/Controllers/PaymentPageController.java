@@ -1,6 +1,7 @@
 package com.hp.dit.Flight.Application.Form.Controllers;
 
 import com.hp.dit.Flight.Application.Form.entities.FlightFormEntity;
+import com.hp.dit.Flight.Application.Form.entities.OTPEntity;
 import com.hp.dit.Flight.Application.Form.entities.UserTranactionEntity;
 import com.hp.dit.Flight.Application.Form.enums.PaymentMode;
 import com.hp.dit.Flight.Application.Form.enums.PaymentStatus;
@@ -10,8 +11,11 @@ import com.hp.dit.Flight.Application.Form.paymentutility.PaymentCallback;
 import com.hp.dit.Flight.Application.Form.paymentutility.PaymentDetail;
 import com.hp.dit.Flight.Application.Form.paymentutility.PaymentUtil;
 import com.hp.dit.Flight.Application.Form.services.FlightFormService;
+import com.hp.dit.Flight.Application.Form.services.OTPService;
 import com.hp.dit.Flight.Application.Form.services.UserTransactionService;
 import com.hp.dit.Flight.Application.Form.utilities.CalculateAmount;
+import com.hp.dit.Flight.Application.Form.utilities.Constants;
+import com.hp.dit.Flight.Application.Form.utilities.SMSServices;
 import com.hp.dit.Flight.Application.Form.utilities.Utilities;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,6 +37,11 @@ public class PaymentPageController {
     UserTransactionService userTransactionService;
     @Autowired
     private FlightFormService flightFormService;
+
+    @Autowired
+    private OTPService otpService;
+
+    private String otp_response = null;
 
 
 
@@ -57,14 +66,14 @@ public class PaymentPageController {
                     paymentDetail.setName(user.getFullName());
                     paymentDetail.setProductInfo(Integer.toString(user.getUserId()));
                     paymentDetail.setPhone(String.valueOf(user.getMobileNumber()));
-                    paymentDetail.setEmail("kushkumardhawan@gmail.com");
+                    paymentDetail.setEmail(Constants.email_reference);
 
                     paymentDetail = PaymentUtil.populatePaymentDetail(paymentDetail);
 
                     //Save Data to Entity
                     UserTranactionEntity transactionEntity = new UserTranactionEntity();
                     transactionEntity.setUserId(user.getUserId());
-                    transactionEntity.setEmail("kushkumardhawan@gmail.com");
+                    transactionEntity.setEmail(Constants.email_reference);
                     transactionEntity.setName(user.getFullName());
                     transactionEntity.setPhone(String.valueOf(user.getMobileNumber()));
                     transactionEntity.setAmount(CalculateAmount.calculateAmount(user));
@@ -76,6 +85,54 @@ public class PaymentPageController {
                     transactionEntity.setCreatedDate(date);
                     transactionEntity.setPaymentdateresponse(date);
                     userTransactionService.saveTransaction(transactionEntity);
+
+
+                    //SEND OTP TO CLIENT
+                    SMSServices sms = new SMSServices();
+                    String SMSServerCode = null;
+                    otp_response = sms.sendOtpSMS(Constants.smsUsername,
+                            Constants.smsPassword, Constants.otp_Message +" "+ user.getUserId() + Constants.otp_MessageEnd,
+                            Constants.smsSenderId,String.valueOf(user.getMobileNumber()),Constants.smsSecureKey, Constants.templateId);
+
+                    if (!otp_response.isEmpty()) {
+                        System.out.println(otp_response);
+                        SMSServerCode = otp_response.split(",")[0];
+
+                        if(SMSServerCode.equalsIgnoreCase("402")){
+                            OTPEntity otp = new OTPEntity();
+                            otp.setCdac_response(otp_response);
+                            otp.setPhone(String.valueOf(user.getMobileNumber()));
+                            otp.setUserId(user.getUserId());
+                            otp.setSent_message(Constants.otp_Message +" "+ user.getUserId() + Constants.otp_MessageEnd);
+                            Timestamp timestampx = new Timestamp(System.currentTimeMillis());
+                            Date datex = new Date(timestampx.getTime());
+                            otp.setSendTime(datex);
+                            otpService.saveOTP(otp);
+
+                        }else{
+                            //Save to DB no SMS
+                            OTPEntity otp = new OTPEntity();
+                            otp.setCdac_response(otp_response);
+                            otp.setPhone(String.valueOf(user.getMobileNumber()));
+                            otp.setUserId(user.getUserId());
+                            otp.setSent_message(Constants.otp_Message +" "+ user.getUserId() + Constants.otp_MessageEnd);
+                            Timestamp timestampy = new Timestamp(System.currentTimeMillis());
+                            Date datey = new Date(timestampy.getTime());
+                            otp.setSendTime(datey);
+                            otpService.saveOTP(otp);
+                        }
+
+                    }else{
+                        OTPEntity otp = new OTPEntity();
+                        otp.setCdac_response("No Resonse From CDAC");
+                        otp.setPhone(String.valueOf(user.getMobileNumber()));
+                        otp.setUserId(user.getUserId());
+                        otp.setSent_message(Constants.otp_Message +" "+ user.getUserId() + Constants.otp_MessageEnd);
+                        Timestamp timestampz = new Timestamp(System.currentTimeMillis());
+                        Date datez = new Date(timestampz.getTime());
+                        otp.setSendTime(datez);
+                        otpService.saveOTP(otp);
+                    }
 
 
                     request.getSession().setAttribute("firstname", paymentDetail.getName());
@@ -92,14 +149,14 @@ public class PaymentPageController {
                     paymentDetail.setName(user.getFullName());
                     paymentDetail.setProductInfo(Integer.toString(user.getUserId()));
                     paymentDetail.setPhone(String.valueOf(user.getMobileNumber()));
-                    paymentDetail.setEmail("kushkumardhawan@gmail.com");
+                    paymentDetail.setEmail(Constants.email_reference);
 
                     paymentDetail = PaymentUtil.populatePaymentDetail(paymentDetail);
 
                     //Save Data to Entity
                     UserTranactionEntity transactionEntity = new UserTranactionEntity();
                     transactionEntity.setUserId(user.getUserId());
-                    transactionEntity.setEmail("kushkumardhawan@gmail.com");
+                    transactionEntity.setEmail(Constants.email_reference);
                     transactionEntity.setName(user.getFullName());
                     transactionEntity.setPhone(String.valueOf(user.getMobileNumber()));
                     transactionEntity.setAmount(CalculateAmount.calculateAmount(user));
@@ -286,6 +343,56 @@ public class PaymentPageController {
                            request.getSession().setAttribute("Name", entity_.getName());
                            request.getSession().setAttribute("MobileNumber", entity_.getPhone());
                            request.getSession().setAttribute("email", entity_.getEmail());
+                           //SEND OTP TO CLIENT
+                           SMSServices sms = new SMSServices();
+                           String SMSServerCode = null;
+                           otp_response = sms.sendOtpSMS(Constants.smsUsername,
+                                   Constants.smsPassword, Constants.otp_Message +" "+ entity_.getUserId() + Constants.otp_MessageEnd,
+                                   Constants.smsSenderId,entity_.getPhone(),Constants.smsSecureKey, Constants.templateId);
+
+                           if (!otp_response.isEmpty()) {
+                               System.out.println(otp_response);
+                               SMSServerCode = otp_response.split(",")[0];
+
+                               if(SMSServerCode.equalsIgnoreCase("402")){
+                                   OTPEntity otp = new OTPEntity();
+                                   otp.setCdac_response(otp_response);
+                                   otp.setPhone(String.valueOf(entity_.getPhone()));
+                                   otp.setUserId(entity_.getUserId());
+                                   otp.setSent_message(Constants.otp_Message +" "+ entity_.getUserId() + Constants.otp_MessageEnd);
+                                   Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+                                   Date date = new Date(timestamp.getTime());
+                                   otp.setSendTime(date);
+                                   otpService.saveOTP(otp);
+
+                               }else{
+                                   //Save to DB no SMS
+                                   OTPEntity otp = new OTPEntity();
+                                   otp.setCdac_response(otp_response);
+                                   otp.setPhone(String.valueOf(entity_.getPhone()));
+                                   otp.setUserId(entity_.getUserId());
+                                   otp.setSent_message(Constants.otp_Message +" "+ entity_.getUserId() + Constants.otp_MessageEnd);
+                                   Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+                                   Date date = new Date(timestamp.getTime());
+                                   otp.setSendTime(date);
+                                   otpService.saveOTP(otp);
+                               }
+
+                           }else{
+                               OTPEntity otp = new OTPEntity();
+                               otp.setCdac_response("No Resonse From CDAC");
+                               otp.setPhone(String.valueOf(entity_.getPhone()));
+                               otp.setUserId(entity_.getUserId());
+                               otp.setSent_message(Constants.otp_Message +" "+ entity_.getUserId() + Constants.otp_MessageEnd);
+                               Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+                               Date date = new Date(timestamp.getTime());
+                               otp.setSendTime(date);
+                               otpService.saveOTP(otp);
+                           }
+
+
+
+
                            userTransactionService.saveTransaction(entity_);
                            return "paymentResponse";
                        }else{

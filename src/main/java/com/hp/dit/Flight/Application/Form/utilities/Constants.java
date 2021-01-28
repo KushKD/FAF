@@ -11,18 +11,23 @@ public class Constants {
     public static final String keyStatus = "STATUS";
     public static final String valueMessage = "Request Successful.";
     public static final String valueMessageEmpty = "Please enter valid Vehicle Registration Number";
+    public static final String email_reference = "dc-lah-hp@nic.in";
 
 
     /**
      * Credentials For the CDAC OTP
      */
-    public static final String smsUsername = "hpgovt-covid";
-    public static final String smsPassword = "Covid@12345";
+    public static final String smsUsername = "hpgovt-DCLAS";
+    public static final String smsPassword = "LAS@123456789";
     public static final String smsSenderId = "hpgovt";
-    public static final String smsSecureKey = "f005c2a6-dcf3-4f24-886d-53a51c043be6";
-    public static final String otp_Message = "Your OTP to login into the ID Card Generator Application is:  ";
-    public static final String getCarDetailsVahan = "getDetails";
-    public static final String clientId = "HPEDISTRICT";
+    public static final String smsSecureKey = "01817f89-bba9-4c78-80f4-78a6ab49e88a";
+    public static final String otp_Message = "You have been successfully registered for E-Flight Service. Your Application ID is:-";
+    public static final String otp_MessageEnd = "- DC Office Lahaul Spiti ";
+    public static final String templateId = "1007290394704048702";
+
+
+
+
     public static final String PENDING = "P";
     public static final String INCOMPLETE = "I";
     public static final String APPROVED = "A";
