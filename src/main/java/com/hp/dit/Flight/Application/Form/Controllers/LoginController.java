@@ -1,6 +1,5 @@
 package com.hp.dit.Flight.Application.Form.Controllers;
 
-import nl.captcha.Captcha;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,8 +41,8 @@ public class LoginController {
             httpSession.removeAttribute("message");
         }
 
-        AtomicInteger counter = (AtomicInteger) model.getAttribute("counter");
-        System.out.println(counter);
+     //   AtomicInteger counter = (AtomicInteger) model.getAttribute("counter");
+      //  System.out.println(counter);
 //        if(counter.intValue() >= 0) {
 //            Captcha captcha = captchaGenerator.createCaptcha(200, 50);
 //            httpSession.setAttribute("captcha", captcha);
