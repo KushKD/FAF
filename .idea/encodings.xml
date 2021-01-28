@@ -2,7 +2,6 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/C/Users/hp-dit/Downloads/FlightApp/spring-boot-app.log" charset="US-ASCII" />
     <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/Controllers/ApplicationFormContoller.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/Controllers/CheckPaymentController.java" charset="UTF-8" />
@@ -16,16 +15,10 @@
     <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/Controllers/ViewApplicationsController.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/captcha/CaptchaGenServlet.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/captcha/Util.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/captchasecurity.java" charset="US-ASCII" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/captchasecurity/CaptchaAuthenticationProvider.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/captchasecurity/CaptchaDetails.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/captchasecurity/CaptchaDetailsSource.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/captchasecurity/CaptchaGenerator.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/captchasecurity/CaptchaUtils.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/entities/District.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/entities/FlightFormEntity.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/entities/Helipad.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/entities/OTPEntity.java" charset="US-ASCII" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/entities/OTPEntity.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/entities/ReasonAvailingFlight.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/entities/RegistrationType.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/entities/RelationshipPrefix.java" charset="UTF-8" />
@@ -41,8 +34,7 @@
     <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/form/FlightApplicationForm.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/form/PaymentForm.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/form/ViewApplications.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/listener.java" charset="US-ASCII" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/listener/CounterApplicationListener.java" charset="US-ASCII" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/listener/CounterApplicationListener.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/modal/AvailedServices.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/paymentutility/PaymentCallback.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/paymentutility/PaymentDetail.java" charset="UTF-8" />
@@ -52,7 +44,7 @@
     <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/repositories/DistrictRepository.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/repositories/FlightFormRepository.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/repositories/HelipadRepository.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/repositories/OTPRepository.java" charset="US-ASCII" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/repositories/OTPRepository.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/repositories/ReasonAvailingFlightRepository.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/repositories/RelationshipPrefixRepository.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/repositories/ReservationTypeRepository.java" charset="UTF-8" />
@@ -65,7 +57,7 @@
     <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/services/FileStorageService.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/services/FlightFormService.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/services/HelipadService.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/services/OTPService.java" charset="US-ASCII" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/services/OTPService.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/services/ReasonAvailingFlightService.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/services/RelationshipPrefixService.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/hp/dit/Flight/Application/Form/services/ReservationTypeService.java" charset="UTF-8" />
@@ -95,8 +87,5 @@
     <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/termsandconditions.jsp" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/userDetails.jsp" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/verify_payment.jsp" charset="UTF-8" />
-    <file url="jar://$PROJECT_DIR$/lib/simplecaptcha-1.2.jar!/nl/captcha/backgrounds/BackgroundProducer.class" charset="GBK" />
-    <file url="jar://$PROJECT_DIR$/lib/simplecaptcha-1.2.jar!/nl/captcha/noise/NoiseProducer.class" charset="GBK" />
-    <file url="jar://$PROJECT_DIR$/lib/simplecaptcha-1.2.jar!/nl/captcha/text/producer/TextProducer.class" charset="GBK" />
   </component>
 </project>

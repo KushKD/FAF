@@ -11,6 +11,7 @@ public class Constants {
     public static final String keyStatus = "STATUS";
     public static final String valueMessage = "Request Successful.";
     public static final String valueMessageEmpty = "Please enter valid Vehicle Registration Number";
+    public static final String email_reference = "dc-lah-hp@nic.in";
 
 
     /**

@@ -66,14 +66,14 @@ public class PaymentPageController {
                     paymentDetail.setName(user.getFullName());
                     paymentDetail.setProductInfo(Integer.toString(user.getUserId()));
                     paymentDetail.setPhone(String.valueOf(user.getMobileNumber()));
-                    paymentDetail.setEmail("dc-lah-hp@nic.in");
+                    paymentDetail.setEmail(Constants.email_reference);
 
                     paymentDetail = PaymentUtil.populatePaymentDetail(paymentDetail);
 
                     //Save Data to Entity
                     UserTranactionEntity transactionEntity = new UserTranactionEntity();
                     transactionEntity.setUserId(user.getUserId());
-                    transactionEntity.setEmail("dc-lah-hp@nic.in");
+                    transactionEntity.setEmail(Constants.email_reference);
                     transactionEntity.setName(user.getFullName());
                     transactionEntity.setPhone(String.valueOf(user.getMobileNumber()));
                     transactionEntity.setAmount(CalculateAmount.calculateAmount(user));
@@ -149,14 +149,14 @@ public class PaymentPageController {
                     paymentDetail.setName(user.getFullName());
                     paymentDetail.setProductInfo(Integer.toString(user.getUserId()));
                     paymentDetail.setPhone(String.valueOf(user.getMobileNumber()));
-                    paymentDetail.setEmail("kushkumardhawan@gmail.com");
+                    paymentDetail.setEmail(Constants.email_reference);
 
                     paymentDetail = PaymentUtil.populatePaymentDetail(paymentDetail);
 
                     //Save Data to Entity
                     UserTranactionEntity transactionEntity = new UserTranactionEntity();
                     transactionEntity.setUserId(user.getUserId());
-                    transactionEntity.setEmail("kushkumardhawan@gmail.com");
+                    transactionEntity.setEmail(Constants.email_reference);
                     transactionEntity.setName(user.getFullName());
                     transactionEntity.setPhone(String.valueOf(user.getMobileNumber()));
                     transactionEntity.setAmount(CalculateAmount.calculateAmount(user));
