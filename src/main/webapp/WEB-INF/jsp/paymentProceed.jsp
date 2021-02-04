@@ -2,7 +2,7 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-      <form method="POST" name="payuForm"  action="https://test.payu.in/_payment">
+      <form method="POST" name="payuForm"  action="https://secure.payu.in/_payment">
       <c:if test="${not empty successMessage}">
          <div class="row">
             <div id="serverError" style="color:#77332F; display: block ;" class="text-center successMessage col-lg-12 breadcrumb">${successMessage}</div>
