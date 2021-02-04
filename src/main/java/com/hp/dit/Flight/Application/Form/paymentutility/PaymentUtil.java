@@ -16,9 +16,11 @@ import java.util.Random;
 
 public class PaymentUtil {
 
-    private static final String paymentKey = "7rnFly";
+    //private static final String paymentKey = "7rnFly"; //test
+    private static final String paymentKey = "WmUizd"; //live  dOqRDsrz
 
-    private static final String paymentSalt = "pjVQAWpA";
+   // private static final String paymentSalt = "pjVQAWpA";  //test
+    private static final String paymentSalt = "dOqRDsrz";  //live  WmUizd
     private static final String serverPath = ServletUriComponentsBuilder.fromCurrentContextPath().path("/paymentResponse").toUriString();
 
     //private static final String sUrl = "http://localhost:8080/paymentResponse";
